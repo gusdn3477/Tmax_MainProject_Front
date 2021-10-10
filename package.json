@@ -1,7 +1,7 @@
 {
-  "name": "SkyDash_admin",
+  "name": "skydash_admin",
   "version": "1.2.1",
-  "description": "",
+  "description": "Skydash is the latest Bootstrap admin template from BootstrapDash. This template has been meticulously crafted to ensure the best possible experience for developers and users alike. This admin template is super easy to set up, modify and use. The clean design minimizes clutter and improves the overall user experience. Skydash is packed with all the features that fit your needs but not cramped with components you would not even use. It is an excellent fit to build admin panels, e-commerce systems, project management systems, CMS or CRM. It comes with a clean and well-commented code that makes it easy to work with the template. Thus making it an ideal pick for jump-starting your project.",
   "main": "index.html",
   "dependencies": {
     "@mdi/font": "^3.6.95",
@@ -13,8 +13,8 @@
     "clipboard": "^2.0.4",
     "codemirror": "^5.47.0",
     "colcade": "^0.2.0",
-    "datatables.net": "^1.10.19",
-    "datatables.net-bs4": "^1.10.19",
+    "datatables.net": "^1.11.3",
+    "datatables.net-bs4": "^1.11.3",
     "flag-icon-css": "^3.3.0",
     "font-awesome": "4.7.0",
     "gulp-sourcemaps": "^2.6.3",
@@ -43,7 +43,7 @@
     "sweetalert": "^2.1.2",
     "tempusdominus-bootstrap-4": "^5.1.2",
     "ti-icons": "^0.1.2",
-    "tinymce": "^5.0.8",
+    "tinymce": "^5.9.2",
     "twbs-pagination": "1.4.1",
     "typeahead.js": "^0.11.1",
     "x-editable": "^1.5.1"
@@ -68,5 +68,16 @@
   "author": "bootstrapdash",
   "url": "http://www.bootstrapdash.com/",
   "copyright": "",
-  "license": ""
+  "license": "ISC",
+  "directories": {
+    "doc": "docs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/technext/skydash.git"
+  },
+  "bugs": {
+    "url": "https://github.com/technext/skydash/issues"
+  },
+  "homepage": "https://github.com/technext/skydash#readme"
 }
