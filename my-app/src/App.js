@@ -16,7 +16,16 @@ function App() {
       <Switch>
         <Route exact path="/"><Home /></Route>
         <Route exact path="/login"><Login /></Route>
-        <Route exact path="/register"><Register /></Route>
+        <Route exact path="/buttons"><Register /></Route>
+        <Route exact path="/dropdowns"><Register /></Route>
+        <Route exact path="/typography"><Register /></Route>
+        <Route exact path="/basic_elements"><Register /></Route>
+        <Route exact path="/chartjs"><Register /></Route>
+        <Route exact path="/basic_table"><Register /></Route>
+        <Route exact path="/mdi"><Register /></Route>
+        <Route exact path="/error_404"><Register /></Route>
+        <Route exact path="/error_500"><Register /></Route>
+        
       </Switch>
       </ToTop>
     </BrowserRouter>

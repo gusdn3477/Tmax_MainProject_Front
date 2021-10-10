@@ -1,6 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import { Collapse } from 'bootstrap';
+import { Link } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
 export default function Banner(){
@@ -9,10 +10,10 @@ export default function Banner(){
       <nav className="sidebar sidebar-offcanvas" id="sidebar">
       <ul className="nav">
         <li className="nav-item">
-          <a className="nav-link" href="index.html">
+          <Link className="nav-link" to="/">
             <i className="icon-grid menu-icon"></i>
             <span className="menu-title">Dashboard</span>
-          </a>
+          </Link>
         </li>
         <li className="nav-item">
           <a className="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
@@ -84,8 +85,8 @@ export default function Banner(){
           </a>
           <div className="collapse" id="auth">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"> <a className="nav-link" href="pages/samples/login.html"> Login </a></li>
-              <li className="nav-item"> <a className="nav-link" href="pages/samples/register.html"> Register </a></li>
+              <Link to="login"><li className="nav-item"><span className="nav-link" > Login </span></li></Link>
+              <Link to="register"><li className="nav-item"> <span className="nav-link"> Register </span></li></Link>
             </ul>
           </div>
         </li>

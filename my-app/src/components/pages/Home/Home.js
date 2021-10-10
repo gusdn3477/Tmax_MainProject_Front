@@ -2,7 +2,7 @@ import React from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-// import Banner from '../../elements/ui/Banner';
+
 export default function Home(){
     return(
         <div id="wrap">
