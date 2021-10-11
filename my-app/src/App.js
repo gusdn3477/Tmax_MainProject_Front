@@ -1,3 +1,11 @@
+// 스타일 관련 추가 (2021/10/11)
+import "./assets/css/mystyle.css";
+import "./assets/css/animate.css";
+import "./assets/css/bootstrap.css";
+import "./assets/css/googlefont.css";
+import "./assets/css/registerChoice.css";
+import "./assets/icons8/css/line-awesome.min.css";
+import "./assets/css/style.css";
 import React from "react";
 import logo from './logo.svg';
 import { BrowserRouter, Route, Switch} from "react-router-dom";
