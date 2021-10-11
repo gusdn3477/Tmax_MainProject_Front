@@ -8,6 +8,7 @@ import './App.css';
 import Home from "./components/pages/Home/Home";
 import Login from './components/pages/User/Login';
 import Register from './components/pages/User/Register';
+import Buttons from "./components/pages/ui-features/buttons";
 
 function App() {
   return (
@@ -16,7 +17,8 @@ function App() {
       <Switch>
         <Route exact path="/"><Home /></Route>
         <Route exact path="/login"><Login /></Route>
-        <Route exact path="/buttons"><Register /></Route>
+        <Route exact path="/register"><Register /></Route>
+        <Route exact path="/buttons"><Buttons/></Route>
         <Route exact path="/dropdowns"><Register /></Route>
         <Route exact path="/typography"><Register /></Route>
         <Route exact path="/basic_elements"><Register /></Route>

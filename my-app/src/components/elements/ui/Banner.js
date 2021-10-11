@@ -23,7 +23,7 @@ export default function Banner(){
           </a>
           <div className="collapse" id="ui-basic">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"> <a className="nav-link" href="pages/ui-features/buttons.html">Buttons</a></li>
+              <li className="nav-item"> <Link className="nav-link" to="/buttons.html">Buttons</Link></li>
               <li className="nav-item"> <a className="nav-link" href="pages/ui-features/dropdowns.html">Dropdowns</a></li>
               <li className="nav-item"> <a className="nav-link" href="pages/ui-features/typography.html">Typography</a></li>
             </ul>
