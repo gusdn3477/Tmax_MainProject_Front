@@ -1,6 +1,7 @@
 //import menuData from "../../../db/nav.json";
 import React, { useEffect, useState } from 'react';
 import {Link} from 'react-router-dom';
+import { Collapse } from 'bootstrap';
 
 export default function SideMenu() {
   
@@ -60,19 +61,19 @@ export default function SideMenu() {
       // </div>
       <li className="nav-item nav-settings d-none d-lg-flex">
             <a className="nav-link" href="#">
-              <i className="icon-ellipsis">아이콘 왜 안 나오지..</i>
+              <i className="icon-ellipsis"></i>
             </a>
-            <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <button className="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-bs-toggle="offcanvas">
               <span className="icon-menu"></span>
             </button>
             <div id="right-sidebar" className="settings-panel">
               <i className="settings-close ti-close"></i>
               <ul className="nav nav-tabs border-top" id="setting-panel" role="tablist">
                 <li className="nav-item">
-                  <a className="nav-link active" id="todo-tab" data-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
+                  <a className="nav-link active" id="todo-tab" data-bs-toggle="tab" href="#todo-section" role="tab" aria-controls="todo-section" aria-expanded="true">TO DO LIST</a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" id="chats-tab" data-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
+                  <a className="nav-link" id="chats-tab" data-bs-toggle="tab" href="#chats-section" role="tab" aria-controls="chats-section">CHATS</a>
                 </li>
               </ul>
               <div className="tab-content" id="setting-content">

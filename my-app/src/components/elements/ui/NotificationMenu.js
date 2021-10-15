@@ -5,7 +5,7 @@ export default function NotificationMenu() {
     const gogo = useHistory();
     return (
         <li className="nav-item dropdown">
-            <a className="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
+            <a className="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-bs-toggle="dropdown">
                 <i className="icon-bell mx-0"></i>
                 <span className="count"></span>
             </a>

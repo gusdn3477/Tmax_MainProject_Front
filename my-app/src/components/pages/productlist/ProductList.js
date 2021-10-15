@@ -5,7 +5,7 @@ import Bread from '../../elements/ui/Bread';
 import SideBar from '../../elements/widgets/productlist/SideBar';
 import Shop from '../../elements/widgets/productlist/Shop';
 
-export default function ProductList(){
+export default function JobsList(){
 
     const [categoryName , setCategoryName] = useState("");
 

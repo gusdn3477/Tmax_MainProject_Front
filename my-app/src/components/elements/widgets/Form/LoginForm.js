@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
-export default function Login() {
+export default function LoginForm() {
 
   const gogo = useHistory();
 
@@ -99,58 +99,10 @@ export default function Login() {
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <div class="brand-logo">
-                  <img src="../../images/logo.svg" alt="logo" />
+                    <Link to="/">Apcik Me</Link>
                 </div>
                 <h4>Hello! let's get started</h4>
                 <h6 class="font-weight-light">Sign in to continue.</h6>
-                <form class="pt-3" onSubmit={handlePutUserLists}>
-                  <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="email" value={values.email} onChange={handleChangeForm} />
-                  </div>
-                  {
-                    error.emailError
-                      ?
-                      <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.emailError}</div>
-                      :
-                      <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.userGuide}</div>
-                  }
-                  <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" 
-                    name="password"
-                    value={values.password}
-                    onChange={handleChangeForm}/>
-                  </div>
-                  {
-                        error.pwdError 
-                            ? 
-                                <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError}</div>
-                            :
-                                <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
-                    }
-                  <div class="mt-3">
-                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
-                  </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input" />
-                        Keep me signed in
-                      </label>
-                    </div>
-                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                  </div>
-                  <div class="mb-2">
-                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                      <i class="ti-facebook mr-2"></i>Connect using facebook
-                    </button>
-                  </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    지원자 계정으로 가입하고 싶으시다면 <Link to="/register-for-user" class="text-primary">Create</Link>
-                  </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    인사담당자 계정으로 가입하고 싶으시다면 <Link to="/register" class="text-primary">Create</Link>
-                  </div>
-                </form>
               </div>
             </div>
           </div>

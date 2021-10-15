@@ -7,16 +7,17 @@ import Img1 from '../../assets/images/logo.svg';
 import Img2 from '../../assets/images/logo-mini.svg';
 import NotificationMenu from '../elements/ui/NotificationMenu';
 import SideMenu from '../elements/ui/SideMenu';
+import { Collapse } from 'bootstrap';
 
 export default function Header() {
   return (
     <nav className="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div className="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <Link className="navbar-brand brand-logo mr-5" to="/"><img src={Img1} className="mr-2" alt="logo" /></Link>
-        <Link className="navbar-brand brand-logo-mini" href="/"><img src={Img2} alt="logo" /></Link>
+        <Link className="navbar-brand brand-logo mr-5" to="/">Apick ME</Link>
+        <Link className="navbar-brand brand-logo-mini" to="/"><img src={Img2} alt="logo" /></Link>
       </div>
       <div className="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+        <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
           <span className="icon-menu"></span>
         </button>
         <ul className="navbar-nav mr-lg-2">
