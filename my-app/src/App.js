@@ -25,6 +25,7 @@ import MyAccountChange from "./components/pages/myaccount/MyAccountChange";
 import ChangePassword from "./components/pages/myaccount/CheckPassword";
 import ProductMake from "./components/pages/Product/ProductMake";
 import HRList from "./components/pages/hr/HRList";
+import CreateJobs from "./components/pages/jobs/CreateJobs";
 
 function App() {
   return (
@@ -48,7 +49,8 @@ function App() {
         <Route exact path="/jobs-list"><JobsList/></Route>
         <Route exact path="/accountchange"><MyAccountChange/></Route>
         <Route exact path="/check-password"><ChangePassword/></Route>
-        <Route exact path="/create"><ProductMake/></Route>
+        <Route exact path="/hr-create"><ProductMake/></Route>
+        <Route exact path="/jobs-create"><CreateJobs/></Route>
       </Switch>
       </ToTop>
     </BrowserRouter>

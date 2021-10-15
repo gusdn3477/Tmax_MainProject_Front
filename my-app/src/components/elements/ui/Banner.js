@@ -3,10 +3,10 @@ import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 
-export default function Banner(){
+export default function Banner() {
 
-    return(
-      <nav className="sidebar sidebar-offcanvas" id="sidebar">
+  return (
+    <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{width:'300px'}}>
       <ul className="nav">
         <li className="nav-item">
           <Link className="nav-link" to="/">
@@ -24,7 +24,7 @@ export default function Banner(){
           <div className="collapse" id="account-control">
             <ul className="nav flex-column sub-menu">
               <li className="nav-item"><Link className="nav-link" to="/hr-manage">인사 담당자 관리</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/create">인사 담당자 추가</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/hr-create">인사 담당자 추가</Link></li>
             </ul>
           </div>
         </li>
@@ -37,8 +37,8 @@ export default function Banner(){
           </a>
           <div className="collapse" id="jobs-control">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/jobs">공고목록</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/create">공고생성</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/jobs">공고 목록 조회</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/jobs-create">공고 생성</Link></li>
             </ul>
           </div>
         </li>
@@ -80,7 +80,7 @@ export default function Banner(){
           </a>
           <div className="collapse" id="interviewee-control">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/buttons">나의 지원 관리 현황</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/buttons">나의 면접</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/buttons">지원자 통계</Link></li>
             </ul>
           </div>
@@ -94,7 +94,7 @@ export default function Banner(){
           </a>
           <div className="collapse" id="jobs-find">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/buttons">공고목록</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/jobs">공고목록</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/buttons">지원자 통계</Link></li>
             </ul>
           </div>
@@ -108,13 +108,13 @@ export default function Banner(){
           </a>
           <div className="collapse" id="mypage">
             <ul className="nav flex-column sub-menu">
-            <li className="nav-item"><Link className="nav-link" to="/check-password">내 정보 수정</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">나의 지원 현황</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">지원자 통계</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/check-password">내 정보 수정</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/buttons">나의 지원 현황(사용자 시점)</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/buttons">지원자 통계(인사담당자 시점)</Link></li>
             </ul>
           </div>
         </li>
-        
+
         {/* <li className="nav-item">
           <a className="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
             <i className="icon-columns menu-icon"></i>
@@ -199,7 +199,7 @@ export default function Banner(){
       {/* 부트스트랩 5는 되는데 4는 토글이 안됨. */}
     </nav>
 
-    
 
-    );
+
+  );
 }

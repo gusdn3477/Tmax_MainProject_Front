@@ -1,5 +1,6 @@
-export default function HRListForm({data}) {
+export default function IntervieweeForm({data}) {
 
+  // 이건 테이블 형식. 전송하는 폼 X
   return (
     <div className="col-md-7 grid-margin stretch-card">
       <div className="card">

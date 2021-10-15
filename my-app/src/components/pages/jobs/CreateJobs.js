@@ -2,9 +2,9 @@ import React from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ProductMakeForm from './ProductMakeForm';
+import CreateJobsForm from '../../elements/widgets/Form/CreateJobsForm';
 
-export default function ProductMake() {
+export default function CreateJobs() {
   return (
     <div id="wrap">
       <Header />
@@ -15,7 +15,7 @@ export default function ProductMake() {
           {/* 여기부터 프사 누르면 나오는 메뉴 */}
           <div className="main-panel">
             <div className="content-wrapper">
-                <ProductMakeForm/>
+                <CreateJobsForm/>
                 <Footer />
             </div>
           </div>

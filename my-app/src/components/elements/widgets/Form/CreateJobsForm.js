@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
-export default function RegisterForUser() {
+export default function CreateJobsForm() {
 
   const [address, setAddress] = useState(''); // 주소
   const [addressDetail, setAddressDetail] = useState(''); // 상세주소
@@ -135,6 +135,7 @@ export default function RegisterForUser() {
           alert("success"),
           gogo.push('/')
           //window.location.href = '/'
+
         )
     }
   }

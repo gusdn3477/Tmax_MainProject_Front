@@ -8,7 +8,8 @@ import Projects from '../../elements/widgets/Home/Projects';
 import Charts from '../../elements/widgets/Home/Notifications';
 import Notifications from '../../elements/widgets/Home/Charts';
 import AdvancedTable from '../../elements/widgets/Home/AdvancedTable';
-import HRListForm from './IntervieweeListForm';
+import IntervieweeForm from '../../elements/widgets/Form/IntervieweeListForm';
+// import HRListForm from './IntervieweeListForm';
 
 export default function IntervieweeList() {
 
@@ -49,7 +50,7 @@ export default function IntervieweeList() {
                 </div>
               </div>
               <div className="row">
-                <HRListForm data={data}/>
+                <IntervieweeForm data={data}/>
                 <ToDoList/>
               </div>
               <div className="row">
