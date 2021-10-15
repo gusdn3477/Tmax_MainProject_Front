@@ -16,7 +16,7 @@ export default function HRList() {
     title: "인사팀 리스트",
     name: "이름",
     companyName: "회사코드",
-    period: "공고 기간",
+    period: "가입 시간",
     status: "상태(활성화, 비활성화)"
   });
 

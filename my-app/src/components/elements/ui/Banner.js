@@ -80,7 +80,7 @@ export default function Banner() {
           </a>
           <div className="collapse" id="interviewee-control">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/buttons">나의 면접</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/buttons">면접자 리스트</Link></li>
               <li className="nav-item"><Link className="nav-link" to="/buttons">지원자 통계</Link></li>
             </ul>
           </div>

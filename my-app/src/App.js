@@ -36,7 +36,6 @@ function App() {
         <Route exact path="/login"><Login /></Route>
         <Route exact path="/register"><Register /></Route>
         <Route exate path="/register-for-user"><RegisterForUser/></Route>
-        <Route exact path="/jobs"><Buttons/></Route>
         <Route exact path="/dropdowns"><Dropdown /></Route>
         <Route exact path="/typography"><Typography /></Route>
         <Route exact path="/basic-elements"><Register /></Route>
@@ -45,11 +44,15 @@ function App() {
         <Route exact path="/mdi"><Register /></Route>
         <Route exact path="/error-404"><Register /></Route>
         <Route exact path="/error-500"><Register /></Route>
-        <Route exact path="/hr-manage"><HRList/></Route>
-        <Route exact path="/jobs-list"><JobsList/></Route>
+        {/* 계정 설정 부분 */}
         <Route exact path="/accountchange"><MyAccountChange/></Route>
         <Route exact path="/check-password"><ChangePassword/></Route>
+        {/* 인사팀 관리 부분 */}
+        <Route exact path="/hr-manage"><HRList/></Route>
         <Route exact path="/hr-create"><ProductMake/></Route>
+        {/* 공고 관리 부분 */}
+        <Route exact path="/jobs"><Buttons/></Route>
+        <Route exact path="/jobs-list"><JobsList/></Route>
         <Route exact path="/jobs-create"><CreateJobs/></Route>
       </Switch>
       </ToTop>
