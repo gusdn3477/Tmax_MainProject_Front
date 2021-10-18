@@ -108,9 +108,12 @@ export default function Banner() {
           </a>
           <div className="collapse" id="mypage">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/check-password">내 정보 수정</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">나의 지원 현황(사용자 시점)</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">지원자 통계(인사담당자 시점)</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="hr/check-password">내 정보 수정(인사담당자)</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="hr/buttons">지원자 통계(인사담당자 시점)</Link></li>
+              
+              <li className="nav-item"><Link className="nav-link" to="user/check-password">내 정보 수정(사용자)</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="user/mylist">나의 지원 현황(사용자)</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="user/statistics">지원자 통계(사용자)</Link></li>
             </ul>
           </div>
         </li>

@@ -44,9 +44,16 @@ function App() {
         <Route exact path="/mdi"><Register /></Route>
         <Route exact path="/error-404"><Register /></Route>
         <Route exact path="/error-500"><Register /></Route>
-        {/* 계정 설정 부분 */}
-        <Route exact path="/accountchange"><MyAccountChange/></Route>
-        <Route exact path="/check-password"><ChangePassword/></Route>
+
+        {/* 인사 담당자 계정 설정 부분 */}
+        <Route exact path="/hr/accountchange"><MyAccountChange/></Route>
+        <Route exact path="/hr/check-password"><ChangePassword/></Route>
+
+        {/* 지원자 계정 설정 부분 */}
+        <Route exact path="/user/accountchange"><MyAccountChange/></Route>
+        <Route exact path="/user/check-password"><ChangePassword/></Route>
+
+
         {/* 인사팀 관리 부분 */}
         <Route exact path="/hr-manage"><HRList/></Route>
         <Route exact path="/hr-create"><ProductMake/></Route>

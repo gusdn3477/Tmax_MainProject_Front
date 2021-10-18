@@ -5,6 +5,7 @@
 // import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
+import Brand from "../../elements/widgets/brand/Brand";
 
 export default function RegisterForUser() {
 
@@ -145,9 +146,7 @@ export default function RegisterForUser() {
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <div class="brand-logo">
-                  <img src="../../images/logo.svg" alt="logo" />
-                </div>
+                <Brand/>
                 <h4>New here?</h4>
                 <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
                 <form class="pt-3">

@@ -35,7 +35,7 @@ export default function Header() {
         <ul className="navbar-nav navbar-nav-right">
           <NotificationMenu />
           <NavProfile />
-          <SideMenu />
+          {/* <SideMenu /> */}
         </ul>
       </div>
     </nav>

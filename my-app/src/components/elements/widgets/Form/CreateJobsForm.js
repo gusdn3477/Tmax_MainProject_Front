@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import Brand from "../brand/Brand";
 
 export default function CreateJobsForm() {
 
@@ -146,12 +147,9 @@ export default function CreateJobsForm() {
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <div class="brand-logo">
-                  {/*<img src="../../images/logo.svg" alt="logo" /> */}
-                  Apick Me
-                </div>
-                <h4>새로운 인사담당자를 등록해 보세요.</h4>
-                <h6 class="font-weight-light">Sign in to continue.</h6>
+                <Brand/>
+                <h4>공고 등록 페이지</h4>
+                <h6 class="font-weight-light">공고를 등록해 보세요!</h6>
                 <form class="pt-3">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이름" />
