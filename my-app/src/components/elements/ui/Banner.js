@@ -51,8 +51,8 @@ export default function Banner() {
           </a>
           <div className="collapse" id="process-control">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/buttons">필기 전형 채점</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">필기 전형 통계</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/written">필기 전형 채점</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/">필기 전형 통계</Link></li>
             </ul>
           </div>
         </li>
@@ -65,9 +65,9 @@ export default function Banner() {
           </a>
           <div className="collapse" id="interview-control">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/buttons">면접 담당자 배정</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">면접 점수 등록</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">면접 전형 통계</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/interview">면접 전형 채점</Link></li>
+              {/* <li className="nav-item"><Link className="nav-link" to="/buttons">면접 점수 등록</Link></li> */}
+              <li className="nav-item"><Link className="nav-link" to="/">면접 전형 통계</Link></li>
             </ul>
           </div>
         </li>
@@ -80,8 +80,8 @@ export default function Banner() {
           </a>
           <div className="collapse" id="interviewee-control">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/buttons">면접자 리스트</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">지원자 통계</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/hr/interviewlist">면접자 리스트</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/">지원자 통계</Link></li>
             </ul>
           </div>
         </li>
@@ -95,7 +95,7 @@ export default function Banner() {
           <div className="collapse" id="jobs-find">
             <ul className="nav flex-column sub-menu">
               <li className="nav-item"><Link className="nav-link" to="/jobs">공고목록</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/buttons">지원자 통계</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/">지원자 통계</Link></li>
             </ul>
           </div>
         </li>
@@ -108,12 +108,9 @@ export default function Banner() {
           </a>
           <div className="collapse" id="mypage">
             <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="hr/check-password">내 정보 수정(인사담당자)</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="hr/buttons">지원자 통계(인사담당자 시점)</Link></li>
-              
-              <li className="nav-item"><Link className="nav-link" to="user/check-password">내 정보 수정(사용자)</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="user/mylist">나의 지원 현황(사용자)</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="user/statistics">지원자 통계(사용자)</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/check-password">내 정보 수정(공통)</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/">나의 지원 현황(사용자)</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/">지원자 통계(사용자)</Link></li>
             </ul>
           </div>
         </li>

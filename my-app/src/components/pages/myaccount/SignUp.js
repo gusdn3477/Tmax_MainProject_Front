@@ -150,7 +150,7 @@ export default function SignUp() {
             <form  onSubmit={handlePutUserLists}>
                 <div className="account-info-wrapper">
                     <h4>회원가입</h4>
-                    <h5>SignUp</h5>
+                    <h5>회원가입 후에 다양한 서비스를 이용해 보세요!</h5>
                 </div>
                 <div className="row">
                     <div className="col-lg-12 col-md-12">

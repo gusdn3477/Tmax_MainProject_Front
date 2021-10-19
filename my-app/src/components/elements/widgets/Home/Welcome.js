@@ -3,8 +3,8 @@ export default function Welcome() {
     <div className="col-md-12 grid-margin">
       <div className="row">
         <div className="col-12 col-xl-8 mb-4 mb-xl-0">
-          <h3 className="font-weight-bold">Welcome 회원이름</h3>
-          <h6 className="font-weight-normal mb-0">All systems are running smoothly! You have <span className="text-primary">3 unread alerts!</span></h6>
+          <h3 className="font-weight-bold">Welcome 홍길동</h3>
+          <h6 className="font-weight-normal mb-0">All systems are running smoothly! You have <span className="text-primary">3 unread alerts!(알림 구현시 사용)</span></h6>
         </div>
         <div className="col-12 col-xl-4">
           <div className="justify-content-end d-flex">

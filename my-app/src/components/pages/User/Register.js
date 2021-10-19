@@ -148,8 +148,8 @@ export default function Register() {
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand/>
-                <h4>New here?</h4>
-                <h6 class="font-weight-light">Signing up is easy. It only takes a few steps</h6>
+                <h4>회원가입</h4>
+                <h6 class="font-weight-light">최소한의 정보로 가입해 보세요.</h6>
                 <form class="pt-3">
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이름" />

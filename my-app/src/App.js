@@ -22,10 +22,13 @@ import Dropdown from "./components/pages/ui-features/dropdown";
 import Typography from "./components/pages/ui-features/typography";
 import JobsList from "./components/pages/jobs/JobsList";
 import MyAccountChange from "./components/pages/myaccount/MyAccountChange";
-import ChangePassword from "./components/pages/myaccount/CheckPassword";
+import ChangePassword from "./components/pages/myaccount/Login";
 import ProductMake from "./components/pages/Product/ProductMake";
 import HRList from "./components/pages/hr/HRList";
 import CreateJobs from "./components/pages/jobs/CreateJobs";
+import IntervieweeList from "./components/pages/interviee/IntervieweeList";
+import Written from "./components/pages/process/Written";
+import Interview from "./components/pages/process/Interview";
 
 function App() {
   return (
@@ -45,22 +48,31 @@ function App() {
         <Route exact path="/error-404"><Register /></Route>
         <Route exact path="/error-500"><Register /></Route>
 
+        {/* 공통 부분 */}
+        <Route exact path="/check-password"><ChangePassword/></Route>
+
         {/* 인사 담당자 계정 설정 부분 */}
         <Route exact path="/hr/accountchange"><MyAccountChange/></Route>
-        <Route exact path="/hr/check-password"><ChangePassword/></Route>
+        <Route exact path="/hr/interviewlist"><IntervieweeList/></Route>
 
         {/* 지원자 계정 설정 부분 */}
         <Route exact path="/user/accountchange"><MyAccountChange/></Route>
         <Route exact path="/user/check-password"><ChangePassword/></Route>
 
 
-        {/* 인사팀 관리 부분 */}
+        {/* 인사팀 계정 생성 및 수정 부분 */}
         <Route exact path="/hr-manage"><HRList/></Route>
         <Route exact path="/hr-create"><ProductMake/></Route>
+
         {/* 공고 관리 부분 */}
         <Route exact path="/jobs"><Buttons/></Route>
         <Route exact path="/jobs-list"><JobsList/></Route>
         <Route exact path="/jobs-create"><CreateJobs/></Route>
+
+        {/* 전형 관리 부분 */}
+        <Route exact path="/written"><Written/></Route>
+        <Route exact path="/interview"><Interview/></Route>
+        
       </Switch>
       </ToTop>
     </BrowserRouter>

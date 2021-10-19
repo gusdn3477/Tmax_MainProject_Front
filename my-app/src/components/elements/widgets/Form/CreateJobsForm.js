@@ -152,14 +152,14 @@ export default function CreateJobsForm() {
                 <h6 class="font-weight-light">공고를 등록해 보세요!</h6>
                 <form class="pt-3">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이름" />
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고명" />
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이메일" />
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="기업명" />
                   </div>
                   <div class="form-group">
                     <select class="form-control form-control-lg" id="exampleFormControlSelect2">
-                      <option>회사 코드</option>
+                      <option>기업 코드</option>
                       {/* <option>Country</option> */}
                       <option>1001</option>
                       <option>1002</option>
@@ -169,24 +169,50 @@ export default function CreateJobsForm() {
                     </select>
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호" />
+                    <input type="text" style={{height:"150px"}} class="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고 내용" />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="비밀번호 확인" />
+                    <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                      <option>채용 유형</option>
+                      {/* <option>Country</option> */}
+                      <option>무관</option>
+                      <option>신입</option>
+                      <option>경력</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                      <option>고용 형태</option>
+                      {/* <option>Country</option> */}
+                      <option>정규직</option>
+                      <option>계약직</option>
+                    </select>
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="채용 인원" />
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="우대사항" />
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="지원자격" />
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="주요 업무" />
+                  </div>
+                  <div class="form-group">
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="근무 지역" />
                   </div>
                   <div class="mb-4">
-                    <div class="form-check">
+                    {/* <div class="form-check">
                       <label class="form-check-label text-muted">
                         <input type="checkbox" class="form-check-input" />
                         I agree to all Terms & Conditions
                       </label>
-                    </div>
+                    </div> */}
                   </div>
                   <div class="mt-3">
                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">등록하기</a>
-                  </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    Already have an account? <a href="login.html" class="text-primary">Login</a>
                   </div>
                 </form>
               </div>

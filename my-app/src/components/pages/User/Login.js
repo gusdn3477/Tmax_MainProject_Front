@@ -100,8 +100,8 @@ export default function Login() {
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand/>
-                <h4>Hello! let's get started</h4>
-                <h6 class="font-weight-light">Sign in to continue.</h6>
+                <h4>로그인 페이지입니다.</h4>
+                {/* <h6 class="font-weight-light">Sign in to continue.</h6> */}
                 <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
                     <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="email" value={values.email} onChange={handleChangeForm} />
@@ -127,20 +127,20 @@ export default function Login() {
                                 <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
                     }
                   <div class="mt-3">
-                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
                     <div class="form-check">
                       <label class="form-check-label text-muted">
                         <input type="checkbox" class="form-check-input" />
-                        Keep me signed in
+                        로그인 기억하기
                       </label>
                     </div>
                     <a href="#" class="auth-link text-black">Forgot password?</a>
                   </div>
                   <div class="mb-2">
                     <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                      <i class="ti-facebook mr-2"></i>Connect using facebook
+                      <i class="ti-facebook mr-2"></i>페이스북 계정으로 시작하기
                     </button>
                   </div>
                   <div class="text-center mt-4 font-weight-light">
