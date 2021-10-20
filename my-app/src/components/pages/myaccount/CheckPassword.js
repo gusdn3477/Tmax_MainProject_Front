@@ -12,7 +12,7 @@ import CheckPasswordForm from "../../elements/widgets/Form/CheckPasswordForm";
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
 
-export default function Login() {
+export default function CheckPassword() {
 
   const gogo = useHistory();
 

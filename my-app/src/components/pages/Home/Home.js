@@ -62,9 +62,6 @@ export default function Home() {
                 <Notifications/>
                 <Charts/>
               </div>
-              <div className="row">
-                <AdvancedTable/>
-              </div>
             </div>
             <Footer />
           </div>

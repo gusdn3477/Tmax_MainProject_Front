@@ -16,8 +16,8 @@ export default function CreateJobs() {
           <div className="main-panel">
             <div className="content-wrapper">
                 <CreateJobsForm/>
-                <Footer />
             </div>
+            <Footer/>
           </div>
         </div>
       </div>

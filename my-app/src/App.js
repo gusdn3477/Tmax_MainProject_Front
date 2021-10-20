@@ -22,13 +22,17 @@ import Dropdown from "./components/pages/ui-features/dropdown";
 import Typography from "./components/pages/ui-features/typography";
 import JobsList from "./components/pages/jobs/JobsList";
 import MyAccountChange from "./components/pages/myaccount/MyAccountChange";
-import ChangePassword from "./components/pages/myaccount/Login";
+import ChangePassword from "./components/pages/myaccount/CheckPassword";
 import ProductMake from "./components/pages/Product/ProductMake";
 import HRList from "./components/pages/hr/HRList";
 import CreateJobs from "./components/pages/jobs/CreateJobs";
 import IntervieweeList from "./components/pages/interviee/IntervieweeList";
 import Written from "./components/pages/process/Written";
 import Interview from "./components/pages/process/Interview";
+import EditHR from "./components/elements/widgets/Form/EditHR";
+import EditUser from "./components/elements/widgets/Form/EditUser";
+import { Button } from "bootstrap";
+import MyList from "./components/pages/ui-features/MyList";
 
 function App() {
   return (
@@ -52,13 +56,14 @@ function App() {
         <Route exact path="/check-password"><ChangePassword/></Route>
 
         {/* 인사 담당자 계정 설정 부분 */}
-        <Route exact path="/hr/accountchange"><MyAccountChange/></Route>
+        <Route exact path="/hr/edit/profile"><EditHR/></Route>
         <Route exact path="/hr/interviewlist"><IntervieweeList/></Route>
 
-        {/* 지원자 계정 설정 부분 */}
-        <Route exact path="/user/accountchange"><MyAccountChange/></Route>
-        <Route exact path="/user/check-password"><ChangePassword/></Route>
 
+        {/* 지원자 계정 설정 부분 */}
+        <Route exact path="/user/edit/profile"><EditUser/></Route>
+        <Route exact path="/user/check-password"><ChangePassword/></Route>
+        <Route exact path="/user/mylist"><MyList/></Route>
 
         {/* 인사팀 계정 생성 및 수정 부분 */}
         <Route exact path="/hr-manage"><HRList/></Route>
