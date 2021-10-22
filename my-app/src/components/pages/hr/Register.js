@@ -5,9 +5,10 @@
 // import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import Brand from "../../elements/widgets/brand/Brand";
 
-export default function RegisterForUser() {
+export default function HRRegister() {
 
   const [address, setAddress] = useState(''); // 주소
   const [addressDetail, setAddressDetail] = useState(''); // 상세주소
@@ -154,19 +155,24 @@ export default function RegisterForUser() {
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이름" />
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이메일 주소" />
+                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이메일" />
+                  </div>
+                  <div class="form-group">
+                    <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                      <option>회사 코드</option>
+                      {/* <option>Country</option> */}
+                      <option>1001</option>
+                      <option>1002</option>
+                      <option>1003</option>
+                      <option>1004</option>
+                      <option>1005</option>
+                    </select>
                   </div>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호" />
                   </div>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="비밀번호 확인" />
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="phone-number" placeholder="휴대폰 번호" />
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="address" placeholder="주소" />
                   </div>
                   <div class="mb-4">
                     <div class="form-check">

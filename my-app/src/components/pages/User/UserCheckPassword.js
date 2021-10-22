@@ -7,12 +7,11 @@ import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Banner from "../../elements/ui/Banner";
-import Brand from "../../elements/widgets/brand/Brand";
-import CheckPasswordForm from "../../elements/widgets/Form/CheckPasswordForm";
+import UserCheckPasswordForm from "../../elements/widgets/Form/UserCheckPasswordForm";
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
 
-export default function CheckPassword() {
+export default function UserCheckPassword() {
 
   const gogo = useHistory();
 
@@ -99,7 +98,7 @@ export default function CheckPassword() {
           {/* 여기부터 프사 누르면 나오는 메뉴 */}
           <div className="main-panel">
             <div className="content-wrapper">
-                <CheckPasswordForm/>
+                <UserCheckPasswordForm/>
             </div>
           </div>
         </div>

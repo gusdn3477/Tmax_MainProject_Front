@@ -127,9 +127,7 @@ export default function EditHR() {
           userId: values.userId,
           pwd: values.password,
           name: values.name,
-          email: values.email,
-          phone: values.phone,
-          address: values.address
+          email: values.email
         }),
       }).
         then(

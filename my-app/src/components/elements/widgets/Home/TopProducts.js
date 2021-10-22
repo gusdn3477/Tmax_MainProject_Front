@@ -3,7 +3,7 @@ import { useState } from "react";
 export default function TopProducts({data}) {
 
   return (
-    <div className="col-md-7 grid-margin stretch-card">
+    <div className="col-md-12 grid-margin stretch-card">
       <div className="card">
         <div className="card-body">
           <p className="card-title mb-0">{data.title}</p>

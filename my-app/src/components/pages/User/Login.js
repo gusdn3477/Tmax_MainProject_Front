@@ -1,20 +1,19 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import LoginForm from '../../elements/widgets/Form/Login';
-// import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Brand from "../../elements/widgets/brand/Brand";
+import axios from 'axios';
 
-export default function Login() {
+
+// 둘다 회원가입
+export default function UserLogin() {
 
   const gogo = useHistory();
-
   const [values, setValues] = useState({
-    email: '',
-    password: '',
+    userEmail: '',
+    userPassword: '',
+    hrEmail: '',
+    hrPassword: ''
   })
 
   const [guideTxts, setGuideTxts] = useState({
@@ -39,12 +38,27 @@ export default function Login() {
     return pwdRegex.test(pass);
   }
 
-  const onTextCheck = () => {
+  const userOnTextCheck = () => {
     let emailError = "";
     let pwdError = "";
 
-    if (!isEmail(values.email)) emailError = "email 형식이 아닙니다.";
-    if (!isPwd(values.password)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
+    if (!isEmail(values.userEmail)) emailError = "email 형식이 아닙니다.";
+    if (!isPwd(values.userPassword)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
+
+    setError({
+      emailError, pwdError
+    })
+
+    if (emailError || pwdError) return false;
+    return true;
+  }
+
+  const hrOnTextCheck = () => {
+    let emailError = "";
+    let pwdError = "";
+
+    if (!isEmail(values.userEmail)) emailError = "email 형식이 아닙니다.";
+    if (!isPwd(values.userPassword)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
 
     setError({
       emailError, pwdError
@@ -61,27 +75,61 @@ export default function Login() {
     });
   }
 
-  const handlePutUserLists = (e) => {
+
+  // 유저 로그인
+  const userLogin = (e) => {
     e.preventDefault();
 
-    const valid = onTextCheck();
+    const valid = userOnTextCheck();
     if (!valid) console.error("retry");
 
     else {
-      fetch(`/user-service/login`, {
+      fetch(`/user-service/users/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
-          email: values.email,
-          password: values.password
+          email: values.userEmail,
+          password: values.userPassword
         })
       }) // res.json() 해 줘야 되는지 생각..
         .then((res) => {
           if (res.headers.get('token')) {
             localStorage.setItem("token", res.headers.get('token'));
             localStorage.setItem("userId", res.headers.get('userId'));
+            localStorage.setItem("email", values.email);
+            gogo.push("/");
+          }
+          else {
+            alert("로그인 정보를 확인하세요.");
+          }
+        })
+    }
+  }
+
+  // 인사담당자 로그인
+  const hrLogin = (e) => {
+    e.preventDefault();
+
+    const valid = hrOnTextCheck();
+    if (!valid) console.error("retry");
+
+    else {
+      fetch(`/hr-service/hr/login`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+          email: values.hrEmail,
+          password: values.hrPassword
+        })
+      }) // res.json() 해 줘야 되는지 생각..
+        .then((res) => {
+          if (res.headers.get('token')) {
+            localStorage.setItem("token", res.headers.get('token'));
+            localStorage.setItem("userId", res.headers.get('empNo'));
             localStorage.setItem("email", values.email);
             gogo.push("/");
           }
@@ -99,57 +147,110 @@ export default function Login() {
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <Brand/>
-                <h4>로그인 페이지입니다.</h4>
+                <Brand />
                 {/* <h6 class="font-weight-light">Sign in to continue.</h6> */}
-                <form class="pt-3" onSubmit={handlePutUserLists}>
-                  <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="email" value={values.email} onChange={handleChangeForm} />
+                <nav>
+                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">사용자 로그인</button>
+                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">관리자 로그인</button>
                   </div>
-                  {
-                    error.emailError
-                      ?
-                      <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.emailError}</div>
-                      :
-                      <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.userGuide}</div>
-                  }
-                  <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password" 
-                    name="password"
-                    value={values.password}
-                    onChange={handleChangeForm}/>
+                </nav>
+                <div class="tab-content" id="nav-tabContent">
+                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                    <form class="pt-3" onSubmit={userLogin}>
+                      <div class="form-group">
+                        <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="userEmail" value={values.userEmail} onChange={handleChangeForm} />
+                      </div>
+                      {
+                        error.emailError
+                          ?
+                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.emailError}</div>
+                          :
+                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.userGuide}</div>
+                      }
+                      <div class="form-group">
+                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password"
+                          name="userPassword"
+                          value={values.userPassword}
+                          onChange={handleChangeForm} />
+                      </div>
+                      {
+                        error.pwdError
+                          ?
+                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError}</div>
+                          :
+                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
+                      }
+                      <div class="mt-3">
+                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
+                      </div>
+                      <div class="my-2 d-flex justify-content-between align-items-center">
+                        <div class="form-check">
+                          <label class="form-check-label text-muted">
+                            <input type="checkbox" class="form-check-input" />
+                            로그인 기억하기
+                          </label>
+                        </div>
+                        <a href="#" class="auth-link text-black">Forgot password?</a>
+                      </div>
+                      <div class="mb-2">
+                        <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                          <i class="ti-facebook mr-2"></i>페이스북 계정으로 시작하기
+                        </button>
+                      </div>
+                      <div class="text-center mt-4 font-weight-light">
+                        지원자 계정으로 가입하고 싶으시다면 <Link to="/register-for-user" class="text-primary">Create</Link>
+                      </div>
+                    </form>
                   </div>
-                  {
-                        error.pwdError 
-                            ? 
-                                <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError}</div>
-                            :
-                                <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
-                    }
-                  <div class="mt-3">
-                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
+                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                    <form class="pt-3" onSubmit={hrLogin}>
+                      <div class="form-group">
+                        <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="hrEmail" value={values.hrEmail} onChange={handleChangeForm} />
+                      </div>
+                      {
+                        error.emailError
+                          ?
+                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.emailError}</div>
+                          :
+                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.userGuide}</div>
+                      }
+                      <div class="form-group">
+                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword" placeholder="Password"
+                          name="hrPassword"
+                          value={values.hrPassword}
+                          onChange={handleChangeForm} />
+                      </div>
+                      {
+                        error.pwdError
+                          ?
+                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError}</div>
+                          :
+                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
+                      }
+                      <div class="mt-3">
+                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
+                      </div>
+                      <div class="my-2 d-flex justify-content-between align-items-center">
+                        <div class="form-check">
+                          <label class="form-check-label text-muted">
+                            <input type="checkbox" class="form-check-input" />
+                            로그인 기억하기
+                          </label>
+                        </div>
+                        <a href="#" class="auth-link text-black">Forgot password?</a>
+                      </div>
+                      <div class="mb-2">
+                        <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                          <i class="ti-facebook mr-2"></i>페이스북 계정으로 시작하기
+                        </button>
+                      </div>
+                      <div class="text-center mt-4 font-weight-light">
+                        인사담당자 계정으로 가입하고 싶으시다면 <Link to="/register" class="text-primary">Create</Link>
+                      </div>
+                    </form>
                   </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input" />
-                        로그인 기억하기
-                      </label>
-                    </div>
-                    <a href="#" class="auth-link text-black">Forgot password?</a>
-                  </div>
-                  <div class="mb-2">
-                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                      <i class="ti-facebook mr-2"></i>페이스북 계정으로 시작하기
-                    </button>
-                  </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    지원자 계정으로 가입하고 싶으시다면 <Link to="/register-for-user" class="text-primary">Create</Link>
-                  </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    인사담당자 계정으로 가입하고 싶으시다면 <Link to="/register" class="text-primary">Create</Link>
-                  </div>
-                </form>
+                </div>
               </div>
             </div>
           </div>

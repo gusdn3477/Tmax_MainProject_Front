@@ -8,7 +8,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Brand from "../brand/Brand";
 
-export default function CreateJobsForm() {
+export default function UserCheckPasswordForm() {
 
   const [address, setAddress] = useState(''); // 주소
   const [addressDetail, setAddressDetail] = useState(''); // 상세주소
