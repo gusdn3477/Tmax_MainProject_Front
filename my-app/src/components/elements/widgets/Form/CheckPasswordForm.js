@@ -136,7 +136,6 @@ export default function CreateJobsForm() {
           alert("success"),
           gogo.push('/')
           //window.location.href = '/'
-
         )
     }
   }
