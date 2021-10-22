@@ -141,24 +141,24 @@ export default function CreateJobsForm() {
     }
   }
   return (
-    <div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
-          <div class="row w-100 mx-0">
-            <div class="col-lg-4 mx-auto">
-              <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+    <div className="container-scroller">
+      <div className="container-fluid page-body-wrapper full-page-wrapper">
+        <div className="content-wrapper d-flex align-items-center auth px-0">
+          <div className="row w-100 mx-0">
+            <div className="col-lg-4 mx-auto">
+              <div className="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand/>
                 <h4>공고 등록 페이지</h4>
-                <h6 class="font-weight-light">공고를 등록해 보세요!</h6>
-                <form class="pt-3">
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고명" />
+                <h6 className="font-weight-light">공고를 등록해 보세요!</h6>
+                <form className="pt-3">
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고명" />
                   </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="기업명" />
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="기업명" />
                   </div>
-                  <div class="form-group">
-                    <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                  <div className="form-group">
+                    <select className="form-control form-control-lg" id="exampleFormControlSelect2">
                       <option>기업 코드</option>
                       {/* <option>Country</option> */}
                       <option>1001</option>
@@ -168,11 +168,12 @@ export default function CreateJobsForm() {
                       <option>1005</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <input type="text" style={{height:"150px"}} class="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고 내용" />
+                  <div className="form-group">
+                    <textarea cols="30" style={{height:"150px"}} className="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고 내용"></textarea>
+                    {/* <input type="text" style={{height:"150px"}} className="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고 내용" /> */}
                   </div>
-                  <div class="form-group">
-                    <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                  <div className="form-group">
+                    <select className="form-control form-control-lg" id="exampleFormControlSelect2">
                       <option>채용 유형</option>
                       {/* <option>Country</option> */}
                       <option>무관</option>
@@ -180,39 +181,48 @@ export default function CreateJobsForm() {
                       <option>경력</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <select class="form-control form-control-lg" id="exampleFormControlSelect2">
+                  <div className="form-group">
+                    <select className="form-control form-control-lg" id="exampleFormControlSelect2">
                       <option>고용 형태</option>
                       {/* <option>Country</option> */}
                       <option>정규직</option>
                       <option>계약직</option>
                     </select>
                   </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="채용 인원" />
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="채용 인원" />
                   </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="우대사항" />
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="필기 합격 배수" />
                   </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="지원자격" />
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="1차 면접 합격 배수" />
                   </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="주요 업무" />
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="2차 면접 합격 배수" />
                   </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="근무 지역" />
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" placeholder="우대사항" />
                   </div>
-                  <div class="mb-4">
-                    {/* <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input" />
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="지원자격" />
+                  </div>
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" placeholder="주요 업무" />
+                  </div>
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="근무 지역" />
+                  </div>
+                  <div className="mb-4">
+                    {/* <div className="form-check">
+                      <label className="form-check-label text-muted">
+                        <input type="checkbox" className="form-check-input" />
                         I agree to all Terms & Conditions
                       </label>
                     </div> */}
                   </div>
-                  <div class="mt-3">
-                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">등록하기</a>
+                  <div className="mt-3">
+                    <a className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">등록하기</a>
                   </div>
                 </form>
               </div>

@@ -2,7 +2,7 @@ export default function IntervieweeForm({data}) {
 
   // 이건 테이블 형식. 전송하는 폼 X
   return (
-    <div className="col-md-7 grid-margin stretch-card">
+    <div className="col-md-12 grid-margin stretch-card">
       <div className="card">
         <div className="card-body">
           <p className="card-title mb-0">{data.title}</p>
@@ -14,6 +14,14 @@ export default function IntervieweeForm({data}) {
                   <th>{data.companyName}</th>
                   <th>{data.period}</th>
                   <th>{data.status}</th>
+                  <th>1차 면접 시간</th>
+                  <th>1차 면접 담당자</th>
+                  <th>1차 면접 점수</th>
+                  <th>1차 면접 결과</th>
+                  <th>2차 면접 시간</th>
+                  <th>2차 면접 담당자</th>
+                  <th>2차 면접 점수</th>
+                  <th>2차 면접 결과</th>
                 </tr>
               </thead>
               <tbody>

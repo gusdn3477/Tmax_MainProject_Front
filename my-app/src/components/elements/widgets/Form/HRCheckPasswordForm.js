@@ -5,9 +5,10 @@
 // import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import Brand from "../../elements/widgets/brand/Brand";
+import { Link } from "react-router-dom";
+import Brand from "../brand/Brand";
 
-export default function UserRegister() {
+export default function HRCheckPasswordForm() {
 
   const [address, setAddress] = useState(''); // 주소
   const [addressDetail, setAddressDetail] = useState(''); // 상세주소
@@ -135,7 +136,6 @@ export default function UserRegister() {
           alert("success"),
           gogo.push('/')
           //window.location.href = '/'
-
         )
     }
   }
@@ -146,41 +146,41 @@ export default function UserRegister() {
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <Brand/>
-                <h4>회원가입</h4>
-                <h6 class="font-weight-light">최소한의 정보로 가입해 보세요.</h6>
-                <form class="pt-3">
+                <Brand />
+                <h4>비밀번호 확인</h4>
+                <h6 class="font-weight-light">비밀번호가 일치해야 회원정보 수정 페이지로 넘어갈 수 있습니다.</h6>
+                <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이름" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호"
+                      name="password"
+                      value={values.password}
+                      onChange={handleChangeForm} />
                   </div>
+                  {
+                    error.pwdError
+                      ?
+                      <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError}</div>
+                      :
+                      <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
+                  }
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이메일 주소" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호 확인"
+                      name="confirm_password"
+                      value={values.confirm_password}
+                      onChange={handleChangeForm} />
                   </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호" />
-                  </div>
-                  <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="비밀번호 확인" />
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="phone-number" placeholder="휴대폰 번호" />
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="address" placeholder="주소" />
-                  </div>
-                  <div class="mb-4">
-                    <div class="form-check">
-                      <label class="form-check-label text-muted">
-                        <input type="checkbox" class="form-check-input" />
-                        I agree to all Terms & Conditions
-                      </label>
-                    </div>
-                  </div>
+                  {
+                    error.pwdError2
+                      ?
+                      <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError2}</div>
+                      :
+                      <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.confirmpwdGuide}</div>
+                  }
                   <div class="mt-3">
-                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN UP</a>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">확인</button>
                   </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    Already have an account? <a href="login.html" class="text-primary">Login</a>
+                  <div class="my-2 d-flex justify-content-between align-items-center">
+                    <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a>
                   </div>
                 </form>
               </div>
