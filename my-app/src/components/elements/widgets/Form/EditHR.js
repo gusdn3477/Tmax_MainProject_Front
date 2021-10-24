@@ -19,13 +19,12 @@ export default function EditHR() {
   const [usersDatas, setUsersDatas] = useState([]);
 
   const [values, setValues] = useState({
-    userId: '',
+    empNo: '',
     email: '',
     password: '',
     confirmPassword: '',
     phone: '',
-    name: '',
-    address: '',
+    name: ''
   })
 
   const [guideTxts, setGuideTxts] = useState({
@@ -106,38 +105,85 @@ export default function EditHR() {
     });
   }
 
-  const handlePutUserLists = (e) => {
+  const putHR = (e) => {
     //alert(usersDatas.length);
     //console.log(values);
     e.preventDefault();
-
     const valid = onTextCheck();
 
-    if (!valid) console.error("retry");
-
+    if (!valid) {
+      console.error("retry");
+      alert("정확한 정보를 입력해 주세요");
+  }
     else {
-
-      fetch(`/user-service/users`, {
+      fetch(`/hr-service/hr`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: usersDatas.length + 1,
-          userId: values.userId,
+          empNo: values.empNo,
           pwd: values.password,
           name: values.name,
           email: values.email
         }),
-      }).
-        then(
+      }).then(
           alert("success"),
-          gogo.push('/')
+          gogo.push('/') // 아래꺼 써야 할수도
           //window.location.href = '/'
 
         )
     }
   }
+
+  const deleteHR = (e) => {
+    // e.preventDefault();
+    fetch(`/hr-service/hr`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        empNo: values.empNo, // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
+        password: values.password
+      }),
+    }).
+      then(
+        alert("탈퇴 성공!"),
+        localStorage.clear(),
+        gogo.push('/')
+      )
+  }
+
+  const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
+    if (!onConfirm || typeof onConfirm !== "function") {
+      return;
+    }
+    if (onCancel && typeof onCancel !== "function") {
+      return;
+    }
+
+    const confirmAction = () => {
+      if (window.confirm(message)) {
+        onConfirm();
+        deleteHR();
+      } else {
+        onCancel();
+      }
+    };
+
+    return confirmAction;
+  };
+
+  const deleteConfirm = () => 1;
+  const cancelConfirm = () => 0;
+  const confirmDelete = useConfirm(
+    "삭제하시겠습니까?",
+    deleteConfirm,
+    cancelConfirm,
+    deleteHR
+  );
+
   return (
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -145,12 +191,12 @@ export default function EditHR() {
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <Brand/>
+                <Brand />
                 <h4>인사담당자 정보 수정</h4>
                 {/* <h6 class="font-weight-light">공고를 등록해 보세요!</h6> */}
-                <form class="pt-3">
+                <form class="pt-3" onSubmit={putHR}>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이메일" readOnly/>
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이메일" readOnly />
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="성함" />
@@ -165,10 +211,10 @@ export default function EditHR() {
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="닉네임" />
                   </div>
                   <div class="mt-3">
-                    <button type="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">수정하기</button>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">수정하기</button>
                   </div>
                   <div class="mt-3">
-                    <button type="button" class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn">탈퇴하기</button>
+                    <button type="button" class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn" onClick={confirmDelete}>탈퇴하기</button>
                   </div>
                 </form>
               </div>

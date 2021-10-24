@@ -2,72 +2,23 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
+import Dashboard from '../widgets/BannerMenu/Dashboard';
+import Jobs from '../widgets/BannerMenu/Jobs';
+import Written from '../widgets/BannerMenu/Written';
+import Interview from '../widgets/BannerMenu/Interview';
+import HRAccount from '../widgets/BannerMenu/HRAccount';
+import FindJobs from '../widgets/BannerMenu/FindJobs';
 
 export default function Banner() {
 
   return (
     <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{width:'300px'}}>
       <ul className="nav">
-        <li className="nav-item">
-          <Link className="nav-link" to="/">
-            <i className="icon-grid menu-icon"></i>
-            <span className="menu-title">Dashboard</span>
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <a className="nav-link" data-bs-toggle="collapse" href="#account-control" aria-expanded="false" aria-controls="account-control">
-            <i className="icon-layout menu-icon"></i>
-            <span className="menu-title">계정관리(인사담당자)</span>
-            <i className="menu-arrow"></i>
-          </a>
-          <div className="collapse" id="account-control">
-            <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/hr/manage">인사 담당자 관리</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/hr/create">인사 담당자 추가</Link></li>
-            </ul>
-          </div>
-        </li>
-
-        <li className="nav-item">
-          <a className="nav-link" data-bs-toggle="collapse" href="#jobs-control" aria-expanded="false" aria-controls="jobs-control">
-            <i className="icon-paper menu-icon"></i>
-            <span className="menu-title">공고관리(인사담당자)</span>
-            <i className="menu-arrow"></i>
-          </a>
-          <div className="collapse" id="jobs-control">
-            <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/jobs">공고 목록 조회</Link></li>
-              <li className="nav-item"><Link className="nav-link" to="/jobs/create">공고 생성</Link></li>
-            </ul>
-          </div>
-        </li>
-
-        <li className="nav-item">
-          <a className="nav-link" data-bs-toggle="collapse" href="#process-control" aria-expanded="false" aria-controls="process-control">
-            <i className="icon-layout menu-icon"></i>
-            <span className="menu-title">필기전형관리(인사담당자)</span>
-            <i className="menu-arrow"></i>
-          </a>
-          <div className="collapse" id="process-control">
-            <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/process/written">필기 전형 채점</Link></li>
-            </ul>
-          </div>
-        </li>
-
-        <li className="nav-item">
-          <a className="nav-link" data-bs-toggle="collapse" href="#interview-control" aria-expanded="false" aria-controls="interview-control">
-            <i className="icon-layout menu-icon"></i>
-            <span className="menu-title">면접전형관리(인사담당자)</span>
-            <i className="menu-arrow"></i>
-          </a>
-          <div className="collapse" id="interview-control">
-            <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/process/interview">면접 전형 관리</Link></li>
-            </ul>
-          </div>
-        </li>
+        <Dashboard/>
+        <HRAccount/>
+        <Jobs/>
+        <Written/>
+        <Interview/>
 
         <li className="nav-item">
           <a className="nav-link" data-bs-toggle="collapse" href="#interviewee-control" aria-expanded="false" aria-controls="interviewee-control">
@@ -81,20 +32,7 @@ export default function Banner() {
             </ul>
           </div>
         </li>
-
-        <li className="nav-item">
-          <a className="nav-link" data-bs-toggle="collapse" href="#jobs-find" aria-expanded="false" aria-controls="jobs-find">
-            <i className="icon-layout menu-icon"></i>
-            <span className="menu-title">공고보기(지원자 관점)</span>
-            <i className="menu-arrow"></i>
-          </a>
-          <div className="collapse" id="jobs-find">
-            <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/jobs">공고목록</Link></li>
-            </ul>
-          </div>
-        </li>
-
+        <FindJobs/>
         <li className="nav-item">
           <a className="nav-link" data-bs-toggle="collapse" href="#mypage" aria-expanded="false" aria-controls="mypage">
             <i className="icon-layout menu-icon"></i>

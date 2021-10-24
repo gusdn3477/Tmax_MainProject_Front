@@ -7,7 +7,6 @@ import "./assets/css/registerChoice.css";
 import "./assets/icons8/css/line-awesome.min.css";
 import "./assets/css/style.css";
 import React from "react";
-import logo from './logo.svg';
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import ToTop from './utilities/ToTop';
 import './assets/css/maps/vertical-layout-light/style.css.map';

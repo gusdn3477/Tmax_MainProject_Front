@@ -3,9 +3,11 @@
 // import Bread from '../../elements/ui/Bread';
 // import RegisterForm from '../../elements/widgets/Form/Register';
 // import { Fragment } from 'react';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRedf } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import { confirmAlert } from 'react-confirm-alert';
+import 'react-confirm-alert/src/react-confirm-alert.css';
 import Brand from "../brand/Brand";
 
 export default function EditUser() {
@@ -113,19 +115,21 @@ export default function EditUser() {
 
     const valid = onTextCheck();
 
-    if (!valid) console.error("retry");
+    if (!valid) {
+      console.error("retry");
+      alert("정확한 정보를 입력해 주세요");
+    }
 
     else {
 
       fetch(`/user-service/users`, {
-        method: "POST",
+        method: "PUT",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: usersDatas.length + 1,
           userId: values.userId,
-          pwd: values.password,
+          password: values.password,
           name: values.name,
           email: values.email,
           phone: values.phone,
@@ -136,10 +140,54 @@ export default function EditUser() {
           alert("success"),
           gogo.push('/')
           //window.location.href = '/'
-
         )
     }
   }
+
+  const deleteUser = (e) => {
+    // e.preventDefault();
+    fetch(`/user-service/users/${localStorage.getItem('userId')}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }).
+      then(
+        alert("탈퇴 성공!"),
+        localStorage.clear(),
+        gogo.push('/')
+      )
+  }
+
+  const useConfirm = (message = null, onConfirm, onCancel, deleteUser) => {
+    if (!onConfirm || typeof onConfirm !== "function") {
+      return;
+    }
+    if (onCancel && typeof onCancel !== "function") {
+      return;
+    }
+
+    const confirmAction = () => {
+      if (window.confirm(message)) {
+        onConfirm();
+        deleteUser();
+      } else {
+        onCancel();
+      }
+    };
+
+    return confirmAction;
+  };
+
+  const deleteConfirm = () => 1;
+  const cancelConfirm = () => 0;
+  const confirmDelete = useConfirm(
+    "삭제하시겠습니까?",
+    deleteConfirm,
+    cancelConfirm,
+    deleteUser
+  );
+
   return (
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -147,33 +195,49 @@ export default function EditUser() {
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <Brand/>
+                <Brand />
                 <h4>회원정보 수정</h4>
                 {/* <h6 class="font-weight-light">공고를 등록해 보세요!</h6> */}
-                <form class="pt-3">
+                <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이메일" readOnly/>
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이메일" readOnly
+                      name="email"
+                      value={values.email}
+                      onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="성함" />
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="성함"
+                      name="name"
+                      value={values.name}
+                      onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="비밀번호" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="비밀번호"
+                      name="password"
+                      value={values.password}
+                      onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="비밀번호 확인" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="비밀번호 확인"
+                      name="confirmPassword"
+                      value={values.confirmPassword}
+                      onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="휴대폰 번호" />
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="휴대폰 번호" name="phone"
+                      value={values.phone}
+                      onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="주소" />
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="주소" name="address"
+                      value={values.address}
+                      onChange={handleChangeForm} />
                   </div>
                   <div class="mt-3">
-                    <button type="button" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">수정하기</button>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">수정하기</button>
                   </div>
                   <div class="mt-3">
-                    <button type="button" class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn">탈퇴하기</button>
+                    <button type="button" class="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn" onClick={confirmDelete}>탈퇴하기</button>
                   </div>
                 </form>
               </div>

@@ -199,7 +199,7 @@ export default function UserLogin() {
                         </button>
                       </div>
                       <div class="text-center mt-4 font-weight-light">
-                        지원자 계정으로 가입하고 싶으시다면 <Link to="/register-for-user" class="text-primary">Create</Link>
+                        지원자 계정으로 가입하고 싶으시다면 <Link to="/user/register" class="text-primary">Create</Link>
                       </div>
                     </form>
                   </div>
@@ -246,7 +246,7 @@ export default function UserLogin() {
                         </button>
                       </div>
                       <div class="text-center mt-4 font-weight-light">
-                        인사담당자 계정으로 가입하고 싶으시다면 <Link to="/register" class="text-primary">Create</Link>
+                        인사담당자 계정으로 가입하고 싶으시다면 <Link to="/hr/register" class="text-primary">Create</Link>
                       </div>
                     </form>
                   </div>
