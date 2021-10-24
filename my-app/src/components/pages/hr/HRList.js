@@ -18,7 +18,8 @@ export default function HRList() {
     name: "이름",
     companyName: "회사코드",
     period: "가입 시간",
-    status: "상태(활성화, 비활성화)"
+    status: "상태(활성화, 비활성화)",
+    remove: "삭제하기"
   });
 
   return (

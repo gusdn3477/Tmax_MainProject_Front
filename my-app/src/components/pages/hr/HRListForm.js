@@ -1,7 +1,7 @@
 export default function HRListForm({data}) {
 
   return (
-    <div className="col-md-7 grid-margin stretch-card">
+    <div className="col-md-12 grid-margin stretch-card">
       <div className="card">
         <div className="card-body">
           <p className="card-title mb-0">{data.title}</p>
@@ -13,6 +13,7 @@ export default function HRListForm({data}) {
                   <th>{data.companyName}</th>
                   <th>{data.period}</th>
                   <th>{data.status}</th>
+                  <th>{data.remove}</th>
                 </tr>
               </thead>
               <tbody>
@@ -21,6 +22,7 @@ export default function HRListForm({data}) {
                   <td className="font-weight-bold">$362</td>
                   <td>21 Sep 2018</td>
                   <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
+                  <td><button type="button" class="btn btn-danger">Danger</button></td>
                 </tr>
                 <tr>
                   <td>Search Engine Optimization</td>

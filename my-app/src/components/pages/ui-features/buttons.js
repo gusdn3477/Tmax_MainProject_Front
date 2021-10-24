@@ -24,15 +24,15 @@ export default function Buttons() {
           <Banner />
           <div className="main-panel">
             <div className="content-wrapper">
-              <div className="row">
+              {/* <div className="row">
                 <TopProducts data={data} />
-              </div>
-              <div className="row">
+              </div> */}
+              {/* <div className="row"> */}
               <Card/>
               <Card/>
               <Card/>
               <Card/>
-              </div>
+              {/* </div> */}
             </div>
             <Footer />
           </div>
