@@ -59,12 +59,16 @@ function App() {
         <Route exact path="/hr/interviewlist"><IntervieweeList/></Route>
         <Route exact path="/hr/manage"><HRList/></Route>
         <Route exact path="/hr/create"><ProductMake/></Route>
+        {/* <Route exact path="/hr/hrId"><ProductMake/></Route> */}
+        
 
         {/* 지원자 계정 설정 부분 */}
         <Route exact path="/user/register"><UserRegister /></Route>
         <Route exact path="/user/check-password"><UserCheckPassword/></Route>
         <Route exact path="/user/edit/profile"><EditUser/></Route>
         <Route exact path="/user/mylist"><MyList/></Route>
+        {/* <Route exact path="/user/:userId"><MyList/></Route> */}
+        
 
         {/* 공고 관리 부분 */}
         <Route exact path="/jobs"><Buttons/></Route>
@@ -75,7 +79,10 @@ function App() {
         {/* 전형 관리 부분 */}
         <Route exact path="/process/written"><Written/></Route>
         <Route exact path="/process/interview"><Interview/></Route>
-
+        {/* <Route exact path="/process/written/:jobsNo"><Written/></Route>
+        <Route exact path="/process/interview/:jobsNo"><Interview/></Route> */}
+        {/* <Route exact path="/process/interview/:jobsNo"><Interview/></Route> */}
+        
         {/* 예외 처리 부분 */}
         <Route component={Error_404}/>
         

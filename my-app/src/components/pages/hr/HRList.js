@@ -1,29 +1,22 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ToDoList from '../../elements/widgets/Home/ToDoList';
-import OrderDetails from '../../elements/widgets/Home/OrderDetails';
-import Projects from '../../elements/widgets/Home/Projects';
-import Charts from '../../elements/widgets/Home/Notifications';
-import Notifications from '../../elements/widgets/Home/Charts';
-import AdvancedTable from '../../elements/widgets/Home/AdvancedTable';
 import HRListForm from './HRListForm';
-import SalesReport from '../../elements/widgets/Home/SalesReport';
 
 export default function HRList() {
 
-  const [data, setData] = useState({
-    title: "인사팀 리스트",
-    name: "이름",
-    empNo : "인사담당자 코드",
-    corpNo : "기업코드",
-    email : "이메일",
-    parents : "부모",
-    auth : "관리자 허가",
-    period: "가입 시간",
-    remove: "삭제하기"
-  });
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    fetch(`/user-service/apply/${localStorage.getItem('userId')}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setData(data);
+      });
+  }, []);
 
   return (
     <div id="wrap">
@@ -36,20 +29,49 @@ export default function HRList() {
           <div className="main-panel">
             <div className="content-wrapper">
               <div className="row">
-              <HRListForm data={data}/>
-              {/* <SalesReport/> */}
-              </div>
-              <div className="row">
-                {/* <HRListForm data={data}/> */}
-                {/* <ToDoList/> */}
-              </div>
-              <div className="row">
-                {/* <Projects/> */}
-                {/* <Charts/> */}
-                {/* <Notifications/> */}
-              </div>
-              <div className="row">
-                {/* <AdvancedTable/> */}
+                <div className="col-md-12 grid-margin stretch-card">
+                  <div className="card">
+                    <div className="card-body">
+                      <p className="card-title mb-0">인사담당자 명단</p>
+                      <div className="table-responsive">
+                        <table className="table table-striped table-borderless">
+                          <thead>
+                            <tr>
+                              <th>인사담당자 코드</th>
+                              <th>기업코드</th>
+                              <th>이름</th>
+                              <th>이메일</th>
+                              <th>권한(부모)</th>
+                              <th>관리자 허가</th>
+                              <th>가입 시간</th>
+                              <th>삭제하기</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                          {
+                              data.length > 0 && data.map(
+                                (item => {
+                                  <HRListForm
+                                    key={item.id}
+                                    data={item}
+                                    setMyList={setData}
+                                  />
+                                })
+                              )
+                            }
+                            <tr>
+                              <td>Search Engine Marketing</td>
+                              <td className="font-weight-bold">$362</td>
+                              <td>21 Sep 2018</td>
+                              <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
+                              <td className="font-weight-medium"><button type="button" class="badge badge-danger">삭제하기</button></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <Footer />
