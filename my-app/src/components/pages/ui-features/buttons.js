@@ -3,7 +3,6 @@ import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import ToDoList from '../../elements/widgets/Home/ToDoList';
-import TopProducts from '../../elements/widgets/Home/TopProducts';
 import Card from '../../elements/widgets/Home/Card';
 
 export default function Buttons() {

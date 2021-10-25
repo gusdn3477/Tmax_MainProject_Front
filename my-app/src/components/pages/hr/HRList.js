@@ -16,9 +16,12 @@ export default function HRList() {
   const [data, setData] = useState({
     title: "인사팀 리스트",
     name: "이름",
-    companyName: "회사코드",
+    empNo : "인사담당자 코드",
+    corpNo : "기업코드",
+    email : "이메일",
+    parents : "부모",
+    auth : "관리자 허가",
     period: "가입 시간",
-    status: "상태(활성화, 비활성화)",
     remove: "삭제하기"
   });
 

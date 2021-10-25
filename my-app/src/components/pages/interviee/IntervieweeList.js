@@ -1,25 +1,22 @@
-import React, {useState} from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ToDoList from '../../elements/widgets/Home/ToDoList';
-import OrderDetails from '../../elements/widgets/Home/OrderDetails';
-import Projects from '../../elements/widgets/Home/Projects';
-import Charts from '../../elements/widgets/Home/Notifications';
-import Notifications from '../../elements/widgets/Home/Charts';
-import AdvancedTable from '../../elements/widgets/Home/AdvancedTable';
 import IntervieweeForm from '../../elements/widgets/Form/IntervieweeListForm';
 // import HRListForm from './IntervieweeListForm';
 
 export default function IntervieweeList() {
 
-  const [data, setData] = useState({
-    title: "면접자 리스트",
-    name: "이름",
-    companyName: "필기 점수",
-    period: "면접 날짜",
-    status: "상태(합격, 불합격)"
-  });
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch(`/user-service/apply/${localStorage.getItem('userId')}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setData(data);
+      });
+  }, []);
 
   return (
     <div id="wrap">
@@ -32,16 +29,51 @@ export default function IntervieweeList() {
           <div className="main-panel">
             <div className="content-wrapper">
               <div className="row">
-                <IntervieweeForm data={data}/>
-                {/* <ToDoList/> */}
-              </div>
-              <div className="row">
-                {/* <Projects/> */}
-                {/* <Charts/> */}
-                {/* <Notifications/> */}
-              </div>
-              <div className="row">
-                {/* <AdvancedTable/> */}
+                <div className="col-md-12 grid-margin stretch-card">
+                  <div className="card">
+                    <div className="card-body">
+                      <p className="card-title mb-0">면접자 명단</p>
+                      <div className="table-responsive">
+                        <table className="table table-striped table-borderless">
+                          <thead>
+                            <tr>
+                              <th>이름</th>
+                              <th>지원자 번호</th>
+                              <th>필기 점수</th>
+                              <th>1차 면접 시간</th>
+                              <th>1차 면접 담당자</th>
+                              <th>1차 면접 점수</th>
+                              <th>1차 면접 결과</th>
+                              <th>2차 면접 시간</th>
+                              <th>2차 면접 담당자</th>
+                              <th>2차 면접 점수</th>
+                              <th>2차 면접 결과</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {
+                              data.length > 0 && data.map(
+                                (item => {
+                                  <IntervieweeForm
+                                    key={item.id}
+                                    data={item}
+                                    setMyList={setData}
+                                  />
+                                })
+                              )
+                            }
+                            <tr>
+                              <td>Search Engine Marketing</td>
+                              <td className="font-weight-bold">$362</td>
+                              <td>21 Sep 2018</td>
+                              <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <Footer />

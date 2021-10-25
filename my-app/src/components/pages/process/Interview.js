@@ -2,12 +2,6 @@ import React, {useState} from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import TopProducts from '../../elements/widgets/Home/TopProducts';
-import ToDoList from '../../elements/widgets/Home/ToDoList';
-import OrderDetails from '../../elements/widgets/Home/OrderDetails';
-import Projects from '../../elements/widgets/Home/Projects';
-import Charts from '../../elements/widgets/Home/Notifications';
-import Notifications from '../../elements/widgets/Home/Charts';
 import AdvancedTable from '../../elements/widgets/Home/AdvancedTable';
 
 export default function Interview() {

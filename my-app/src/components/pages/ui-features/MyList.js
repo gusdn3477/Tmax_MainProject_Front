@@ -1,20 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import ToDoList from '../../elements/widgets/Home/ToDoList';
-import TopProducts from '../../elements/widgets/Home/TopProducts';
+import TopProducts from '../../elements/widgets/Home/MyListForm';
+import MyListForm from '../../elements/widgets/Home/MyListForm';
 
 export default function MyList() {
 
-  const [data, setData] = useState({
-    title: "내가 지원한 공고",
-    name: "공고명",
-    companyName: "회사명",
-    period: "공고 기간",
-    status: "공고 결과"
-  });
-  // const [name, setName] = useState("공고 명단");
+  const [myList, setMyList] = useState([]);
+  useEffect(() => {
+    fetch(`/user-service/apply/${localStorage.getItem('userId')}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setMyList(data);
+      });
+  }, []);
+
   return (
     <div id="wrap">
       <Header />
@@ -24,7 +28,41 @@ export default function MyList() {
           <div className="main-panel">
             <div className="content-wrapper">
               <div className="row">
-                <TopProducts data={data} />
+                <div className="col-md-12 grid-margin stretch-card">
+                  <div className="card">
+                    <div className="card-body">
+                      <p className="card-title mb-0">나의 지원현황</p>
+                      <div className="table-responsive">
+                        <table className="table table-striped table-borderless">
+                          <thead>
+                            <tr>
+                              <th>공고번호</th>
+                              <th>회사명</th>
+                              <th>공고명</th>
+                              <th>공고 기간</th>
+                              <th>채용 유형</th>
+                              <th>근무 지역</th>
+                              <th>지원 일자</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {
+                              myList.length > 0 && myList.map(
+                                (item => {
+                                  <MyListForm 
+                                    key={item.id}
+                                    data={item}
+                                    setMyList = {setMyList}
+                                  />
+                                })
+                              )
+                            }
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
             <Footer />
