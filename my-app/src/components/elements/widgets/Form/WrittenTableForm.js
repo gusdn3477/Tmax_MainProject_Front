@@ -1,4 +1,4 @@
-export default function WrittenTableForm() {
+export default function WrittenTableForm({data}) {
   return (
     <tr>
       <th>15010701</th>

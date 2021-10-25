@@ -1,11 +1,3 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import LoginForm from '../../elements/widgets/Form/Login';
-// import { Fragment } from 'react';
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import Banner from "../../elements/ui/Banner";
 import UserCheckPasswordForm from "../../elements/widgets/Form/UserCheckPasswordForm";
 import Footer from "../../layout/Footer";

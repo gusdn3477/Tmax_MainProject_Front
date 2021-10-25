@@ -1,8 +1,3 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -54,7 +49,7 @@ export default function UserCheckPasswordForm() {
     })
 
     if (pwdError || confirmPwd) return false;
-      return true;
+    return true;
   }
 
   const handleChangeForm = (e) => {
@@ -73,7 +68,7 @@ export default function UserCheckPasswordForm() {
 
     else {
 
-      fetch(`/user-service/users`, {
+      fetch(`/hr-service/hr/checkpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -83,7 +78,8 @@ export default function UserCheckPasswordForm() {
           password: values.password
         }),
       }).
-        then(
+      then(res => res.json())
+        .then(
           alert("success"),
           gogo.push('/')
         )
@@ -115,7 +111,7 @@ export default function UserCheckPasswordForm() {
                   }
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호 확인"
-                      name="confirm_password"
+                      name="confirmPassword"
                       value={values.confirmPassword}
                       onChange={handleChangeForm} />
                   </div>

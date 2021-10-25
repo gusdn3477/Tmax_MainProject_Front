@@ -30,20 +30,63 @@ export default function WrittenTable() {
   }
 
 // 채점하는 함수
-  const handleScore = (id) => {
+  const handleScore = () => {
     fetch(`/process-service/processs/written-test/score`, {
+      method: "PUT",
+      headers: {
+        "Content-Type" : "application/json"
+      },
+      body: JSON.stringify({
+        empNo : data.empNo,
+        jobsNo : data.jobsNo
+      })
+    }).then(
+      alert("채점을 완료하였습니다!"),
+      fetch(`/catalog-service/catalogs`) // 필기 면접자..
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          setData(data);
+        })
+    )
+  }
+
+  const handleToInterview = () => {
+    fetch(`/process-service/process/written-test/result`, {
       method: "PUT"
     }).then(
-      alert("삭제 되었습니다!"),
+      alert("명단을 넘겼습니다!"),
       fetch(`/catalog-service/catalogs`)
         .then(res => {
           return res.json();
         })
         .then(data => {
-          // setCartDatas(data);
+          setData(data);
         })
     )
   }
+
+  // const handleDelete = (id) => {
+  //   fetch(`/hr-service/hr`, {
+  //     method: "DELETE",
+  //     headers: {
+  //       "Content-Type" : "application/json"
+  //     },
+  //     body: JSON.stringify({
+  //       empNo:empNo // 확실하지 않음 되면 이걸로 사용
+  //     })
+  //   }).then(
+  //     alert("삭제 되었습니다!"),
+  //     fetch(`/hr-service/hr`)
+  //       .then(res => {
+  //         return res.json();
+  //       })
+  //       .then(data => {
+  //         setMyList(data);
+  //       })
+  //   )
+  // }
 
   return (
     <div className="col-md-12 grid-margin stretch-card">
@@ -87,10 +130,12 @@ export default function WrittenTable() {
           </div>
         </div>
         <div className="mt-3">
-          <a className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn col-md-4" href="../../index.html">채점하기</a>
+          <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn col-md-4" onClick={()=>handleScore()}>채점하기</button>
+          {/* <a className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn col-md-4" onClick={()=>handleScore()}>채점하기</a> */}
         </div>
         <div className="mt-3">
-          <a className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn col-md-4" href="../../index.html">합격자 명단 넘겨주기(채점 완료시에 가능)</a>
+          <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn col-md-4" onClick={()=>handleToInterview()}>합격자 명단 넘겨주기(채점 완료시에 가능)</button>
+          {/* <a className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn col-md-4" href="../../index.html">합격자 명단 넘겨주기(채점 완료시에 가능)</a> */}
         </div>
       </div>
     </div>
