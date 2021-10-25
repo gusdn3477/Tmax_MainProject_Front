@@ -5,7 +5,6 @@ import Footer from '../../layout/Footer';
 import OrderDetails from '../../elements/widgets/Home/OrderDetails';
 import SalesReport from '../../elements/widgets/Home/SalesReport';
 import DetailedReport from '../../elements/widgets/Home/DetailedReport';
-import TopProducts from '../../elements/widgets/Home/TopProducts.js';
 import ToDoList from '../../elements/widgets/Home/ToDoList';
 import Projects from '../../elements/widgets/Home/Projects';
 import Notifications from '../../elements/widgets/Home/Charts';
@@ -54,7 +53,6 @@ export default function Home() {
                 <DetailedReport/>
               </div>
               <div className="row">
-                {/* <TopProducts/> */}
                 <ToDoList/>
               </div>
               <div className="row">

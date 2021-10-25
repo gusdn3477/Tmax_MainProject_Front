@@ -5,6 +5,7 @@
 // import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import Brand from "../../elements/widgets/brand/Brand";
 
 export default function UserRegister() {
@@ -180,7 +181,7 @@ export default function UserRegister() {
                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN UP</a>
                   </div>
                   <div class="text-center mt-4 font-weight-light">
-                    Already have an account? <a href="login.html" class="text-primary">Login</a>
+                    Already have an account? <Link to="/login">Login</Link>
                   </div>
                 </form>
               </div>

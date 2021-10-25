@@ -1,4 +1,50 @@
+import React, { useState, useEffect } from 'react';
+import WrittenTableForm from '../Form/WrittenTableForm';
+
 export default function WrittenTable() {
+
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetch(`/user-service/apply/${localStorage.getItem('userId')}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setData(data);
+      });
+  }, []);
+
+  const handleDelete = (id) => {
+    fetch(`/catalog-service/catalogs/${id}`, {
+      method: "DELETE"
+    }).then(
+      alert("삭제 되었습니다!"),
+      fetch(`/catalog-service/catalogs`)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          // setCartDatas(data);
+        })
+    )
+  }
+
+// 채점하는 함수
+  const handleScore = (id) => {
+    fetch(`/process-service/processs/written-test/score`, {
+      method: "PUT"
+    }).then(
+      alert("삭제 되었습니다!"),
+      fetch(`/catalog-service/catalogs`)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          // setCartDatas(data);
+        })
+    )
+  }
+
   return (
     <div className="col-md-12 grid-margin stretch-card">
       <div className="card">
@@ -17,27 +63,20 @@ export default function WrittenTable() {
                     </tr>
                   </thead>
                   <tbody>
-                  <tr>
+                    {
+                      data.length > 0 && data.map(
+                        (item => {
+                          <WrittenTableForm
+                            key={item.id}
+                            data={item}
+                            setMyList={setData}
+                          />
+                        })
+                      )
+                    }
+                    <tr>
                       <th>15010701</th>
                       <th>박현우</th>
-                      <th>98</th>
-                      <th>미정</th>
-                    </tr>
-                    <tr>
-                      <th>15010702</th>
-                      <th>윤희상</th>
-                      <th>98</th>
-                      <th>합격</th>
-                    </tr>
-                    <tr>
-                      <th>15010703</th>
-                      <th>권진희</th>
-                      <th>98</th>
-                      <th>미정</th>
-                    </tr>
-                    <tr>
-                      <th>15010704</th>
-                      <th>김영모</th>
                       <th>98</th>
                       <th>미정</th>
                     </tr>

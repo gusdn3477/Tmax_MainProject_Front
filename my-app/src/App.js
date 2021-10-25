@@ -7,7 +7,6 @@ import "./assets/css/registerChoice.css";
 import "./assets/icons8/css/line-awesome.min.css";
 import "./assets/css/style.css";
 import React from "react";
-import logo from './logo.svg';
 import { BrowserRouter, Route, Switch} from "react-router-dom";
 import ToTop from './utilities/ToTop';
 import './assets/css/maps/vertical-layout-light/style.css.map';
@@ -33,6 +32,7 @@ import HRRegister from "./components/pages/hr/Register";
 import UserRegister from "./components/pages/User/Register";
 import HRCheckPassword from "./components/pages/hr/HRCheckPassword";
 import UserCheckPassword from "./components/pages/User/UserCheckPassword";
+import Error_404 from "./components/pages/samples/error-404";
 
 function App() {
   return (
@@ -52,12 +52,13 @@ function App() {
         {/* 공통 부분 */}
         <Route exact path="/login"><Login /></Route>
 
-        {/* 인사 담당자 계정 설정 부분 */}
+        {/* 인사 담당자 부분 */}
         <Route exact path="/hr/register"><HRRegister /></Route>
         <Route exact path="/hr/check-password"><HRCheckPassword/></Route>
         <Route exact path="/hr/edit/profile"><EditHR/></Route>
         <Route exact path="/hr/interviewlist"><IntervieweeList/></Route>
-
+        <Route exact path="/hr/manage"><HRList/></Route>
+        <Route exact path="/hr/create"><ProductMake/></Route>
 
         {/* 지원자 계정 설정 부분 */}
         <Route exact path="/user/register"><UserRegister /></Route>
@@ -65,18 +66,18 @@ function App() {
         <Route exact path="/user/edit/profile"><EditUser/></Route>
         <Route exact path="/user/mylist"><MyList/></Route>
 
-        {/* 인사팀 계정 생성 및 수정 부분 */}
-        <Route exact path="/hr/manage"><HRList/></Route>
-        <Route exact path="/hr/create"><ProductMake/></Route>
-
         {/* 공고 관리 부분 */}
         <Route exact path="/jobs"><Buttons/></Route>
         <Route exact path="/jobs/list"><JobsList/></Route>
         <Route exact path="/jobs/create"><CreateJobs/></Route>
+        {/* <Route exact path="/jobs/:jobsNo"><CreateJobs/></Route> */}
 
         {/* 전형 관리 부분 */}
         <Route exact path="/process/written"><Written/></Route>
         <Route exact path="/process/interview"><Interview/></Route>
+
+        {/* 예외 처리 부분 */}
+        <Route component={Error_404}/>
         
       </Switch>
       </ToTop>

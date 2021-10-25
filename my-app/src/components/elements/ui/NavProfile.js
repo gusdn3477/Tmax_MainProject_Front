@@ -11,7 +11,8 @@ export default function NavProfile() {
         <img src={Img} alt="profile" />
       </a>
       <div className="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-        <Link className="dropdown-item" to="/check-password">
+        {/* 누구냐에 따라 다름 */}
+        <Link className="dropdown-item" to="/check-password"> 
           <i className="ti-settings text-primary"></i>
           My page
         </Link>
