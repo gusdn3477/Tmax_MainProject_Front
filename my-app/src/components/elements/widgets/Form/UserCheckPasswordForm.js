@@ -126,7 +126,8 @@ export default function UserCheckPasswordForm() {
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">확인</button>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
-                    <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a>
+                    <Link to="/user/findpwd" class="auth-link text-black">Forgot password?</Link>
+                    {/* <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a> */}
                   </div>
                 </form>
               </div>
