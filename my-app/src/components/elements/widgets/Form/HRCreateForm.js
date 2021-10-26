@@ -151,8 +151,7 @@ export default function HRCreateForm() {
                   Apick Me
                 </div>
                 <h4>새로운 인사담당자를 등록해 보세요.</h4>
-                <h6 class="font-weight-light">Sign in to continue.</h6>
-                <form class="pt-3">
+                <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이름" />
                   </div>
@@ -185,10 +184,7 @@ export default function HRCreateForm() {
                     </div>
                   </div>
                   <div class="mt-3">
-                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">등록하기</a>
-                  </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    Already have an account? <a href="login.html" class="text-primary">Login</a>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">등록하기</button>
                   </div>
                 </form>
               </div>

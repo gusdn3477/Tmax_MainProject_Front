@@ -22,20 +22,28 @@ export default function UserLogin() {
     pwdGuide: '숫자와 문자를 조합해서 최소 8글자는 입력해 주세요.'
   });
 
+  const [guideTxts2, setGuideTxts2] = useState({
+    emailGuide: '이메일 형식에 맞게 작성해 주세요.',
+    pwdGuide: '숫자와 문자를 조합해서 최소 8글자는 입력해 주세요.'
+  });
+
   const [error, setError] = useState({
+    emailError: '',
+    pwdError: ''
+  })
+
+  const [error2, setError2] = useState({
     emailError: '',
     pwdError: ''
   })
 
   const isEmail = email => {
     const emailRegex = /^(([^<>()\].,;:\s@"]+(\.[^<>()\].,;:\s@"]+)*)|(".+"))@(([^<>()¥[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-
     return emailRegex.test(email);
   };
 
   const isPwd = pass => {
     const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
     return pwdRegex.test(pass);
   }
 
@@ -58,10 +66,10 @@ export default function UserLogin() {
     let emailError = "";
     let pwdError = "";
 
-    if (!isEmail(values.userEmail)) emailError = "email 형식이 아닙니다.";
-    if (!isPwd(values.userPassword)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
+    if (!isEmail(values.hrEmail)) emailError = "email 형식이 아닙니다.";
+    if (!isPwd(values.hrPassword)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
 
-    setError({
+    setError2({
       emailError, pwdError
     })
 
@@ -99,7 +107,7 @@ export default function UserLogin() {
           if (res.headers.get('token')) {
             localStorage.setItem("token", res.headers.get('token'));
             localStorage.setItem("userId", res.headers.get('userId'));
-            localStorage.setItem("email", values.email);
+            // localStorage.setItem("email", values.email);
             gogo.push("/");
           }
           else {
@@ -131,7 +139,7 @@ export default function UserLogin() {
           if (res.headers.get('token')) {
             localStorage.setItem("token", res.headers.get('token'));
             localStorage.setItem("userId", res.headers.get('empNo'));
-            localStorage.setItem("email", values.email);
+            // localStorage.setItem("email", values.email);
             gogo.push("/");
           }
           else {
@@ -192,7 +200,7 @@ export default function UserLogin() {
                             로그인 기억하기
                           </label>
                         </div>
-                        <a href="#" class="auth-link text-black">Forgot password?</a>
+                        <Link to="/user/findpwd" class="auth-link text-black">Forgot password?</Link>
                       </div>
                       <div class="mb-2">
                         <button type="button" class="btn btn-block btn-facebook auth-form-btn">
@@ -204,6 +212,9 @@ export default function UserLogin() {
                       </div>
                     </form>
                   </div>
+
+
+                  {/* 여기부터 인사담당자 로그인 창 */}
                   <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                     <form class="pt-3" onSubmit={hrLogin}>
                       <div class="form-group">
@@ -212,9 +223,9 @@ export default function UserLogin() {
                       {
                         error.emailError
                           ?
-                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.emailError}</div>
+                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error2.emailError}</div>
                           :
-                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.userGuide}</div>
+                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts2.userGuide}</div>
                       }
                       <div class="form-group">
                         <input type="password" class="form-control form-control-lg" id="exampleInputPassword" placeholder="Password"
@@ -225,9 +236,9 @@ export default function UserLogin() {
                       {
                         error.pwdError
                           ?
-                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError}</div>
+                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error2.pwdError}</div>
                           :
-                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
+                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts2.pwdGuide}</div>
                       }
                       <div class="mt-3">
                         <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
@@ -239,7 +250,7 @@ export default function UserLogin() {
                             로그인 기억하기
                           </label>
                         </div>
-                        <a href="#" class="auth-link text-black">Forgot password?</a>
+                        <Link to="/hr/findpwd" class="auth-link text-black">Forgot password?</Link>
                       </div>
                       <div class="mb-2">
                         <button type="button" class="btn btn-block btn-facebook auth-form-btn">

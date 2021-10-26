@@ -35,6 +35,7 @@ import UserCheckPassword from "./components/pages/User/UserCheckPassword";
 import Error_404 from "./components/pages/samples/error-404";
 import HRFindPassword from "./components/pages/hr/HRFindPassword";
 import UserFindPassword from "./components/pages/User/UserFindPassword";
+import HRCreate from "./components/pages/hr/HRCreate";
 
 function App() {
   return (
@@ -55,13 +56,16 @@ function App() {
         <Route exact path="/login"><Login /></Route>
 
         {/* 인사 담당자 부분 */}
-        <Route exact path="/hr/register"><HRRegister /></Route>
+
+        {/* 인사담당자 회원가입 */}
+        <Route exact path="/hr/register"><HRRegister /></Route> 
         <Route exact path="/hr/check-password"><HRCheckPassword/></Route>
         <Route exact path="/hr/findpwd"><HRFindPassword/></Route>
         <Route exact path="/hr/edit/profile"><EditHR/></Route>
         <Route exact path="/hr/interviewlist"><IntervieweeList/></Route>
         <Route exact path="/hr/manage"><HRList/></Route>
-        <Route exact path="/hr/create"><ProductMake/></Route>
+        {/* 인사담당자 추가 */}
+        <Route exact path="/hr/create"><HRCreate/></Route>
         {/* <Route exact path="/hr/hrId"><ProductMake/></Route> */}
         
 

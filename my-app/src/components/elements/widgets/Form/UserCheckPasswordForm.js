@@ -7,8 +7,6 @@ export default function UserCheckPasswordForm() {
 
   const gogo = useHistory();
 
-  const [usersDatas, setUsersDatas] = useState([]);
-
   const [values, setValues] = useState({
     password: '',
     confirmPassword: ''
@@ -125,10 +123,10 @@ export default function UserCheckPasswordForm() {
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">확인</button>
                   </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
+                  {/* <div class="my-2 d-flex justify-content-between align-items-center">
                     <Link to="/user/findpwd" class="auth-link text-black">Forgot password?</Link>
-                    {/* <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a> */}
-                  </div>
+                    <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a>
+                  </div> */}
                 </form>
               </div>
             </div>

@@ -117,7 +117,7 @@ export default function HRRegister() {
 
     else {
 
-      fetch(`/user-service/users`, {
+      fetch(`/hr-service/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

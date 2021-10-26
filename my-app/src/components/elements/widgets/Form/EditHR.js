@@ -144,7 +144,7 @@ export default function EditHR() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        empNo: values.empNo, // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
+        empNo: localStorage.getItem('empNo'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
         password: values.password
       }),
     }).
