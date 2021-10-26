@@ -149,9 +149,6 @@ export default function ProductMakeForm() {
                   <div class="mt-3">
                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">등록하기</a>
                   </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    Already have an account? <a href="login.html" class="text-primary">Login</a>
-                  </div>
                 </form>
               </div>
             </div>

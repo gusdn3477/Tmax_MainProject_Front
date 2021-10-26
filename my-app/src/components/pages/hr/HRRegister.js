@@ -185,9 +185,6 @@ export default function HRRegister() {
                   <div class="mt-3">
                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN UP</a>
                   </div>
-                  <div class="text-center mt-4 font-weight-light">
-                    Already have an account? <Link to="/login">Login</Link>
-                  </div>
                 </form>
               </div>
             </div>

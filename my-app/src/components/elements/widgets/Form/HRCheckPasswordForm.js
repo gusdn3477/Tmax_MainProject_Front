@@ -12,8 +12,6 @@ export default function HRCheckPasswordForm() {
 
   const gogo = useHistory();
 
-  const [usersDatas, setUsersDatas] = useState([]);
-
   const [values, setValues] = useState({
     password: '',
     confirmPassword: ''
@@ -73,13 +71,13 @@ export default function HRCheckPasswordForm() {
 
     else {
 
-      fetch(`/user-service/users`, {
+      fetch(`/hr-service/hr/findpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: values.userId,
+          empNo: localStorage.getItem('empNo'), //values.userId,
           password: values.password
         }),
       }).
@@ -117,8 +115,8 @@ export default function HRCheckPasswordForm() {
                   }
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호 확인"
-                      name="confirm_password"
-                      value={values.confirm_password}
+                      name="confirmPassword"
+                      value={values.confirmPassword}
                       onChange={handleChangeForm} />
                   </div>
                   {
@@ -132,7 +130,8 @@ export default function HRCheckPasswordForm() {
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">확인</button>
                   </div>
                   <div class="my-2 d-flex justify-content-between align-items-center">
-                    <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a>
+                    <Link to="/hr/findpwd" class="auth-link text-black">Forgot password?</Link>
+                    {/* <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a> */}
                   </div>
                 </form>
               </div>

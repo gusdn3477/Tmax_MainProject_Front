@@ -14,7 +14,7 @@ import './assets/css/vertical-layout-light/style.css';
 import './App.css';
 import Home from "./components/pages/Home/Home";
 import Login from './components/pages/User/Login';
-import Register from './components/pages/User/Register';
+import Register from './components/pages/User/UserRegister';
 import Buttons from "./components/pages/ui-features/buttons";
 import Dropdown from "./components/pages/ui-features/dropdown";
 import Typography from "./components/pages/ui-features/typography";
@@ -28,11 +28,13 @@ import Interview from "./components/pages/process/Interview";
 import EditHR from "./components/elements/widgets/Form/EditHR";
 import EditUser from "./components/elements/widgets/Form/EditUser";
 import MyList from "./components/pages/ui-features/MyList";
-import HRRegister from "./components/pages/hr/Register";
-import UserRegister from "./components/pages/User/Register";
+import HRRegister from "./components/pages/hr/HRRegister";
+import UserRegister from "./components/pages/User/UserRegister";
 import HRCheckPassword from "./components/pages/hr/HRCheckPassword";
 import UserCheckPassword from "./components/pages/User/UserCheckPassword";
 import Error_404 from "./components/pages/samples/error-404";
+import HRFindPassword from "./components/pages/hr/HRFindPassword";
+import UserFindPassword from "./components/pages/User/UserFindPassword";
 
 function App() {
   return (
@@ -55,6 +57,7 @@ function App() {
         {/* 인사 담당자 부분 */}
         <Route exact path="/hr/register"><HRRegister /></Route>
         <Route exact path="/hr/check-password"><HRCheckPassword/></Route>
+        <Route exact path="/hr/findpwd"><HRFindPassword/></Route>
         <Route exact path="/hr/edit/profile"><EditHR/></Route>
         <Route exact path="/hr/interviewlist"><IntervieweeList/></Route>
         <Route exact path="/hr/manage"><HRList/></Route>
@@ -65,6 +68,7 @@ function App() {
         {/* 지원자 계정 설정 부분 */}
         <Route exact path="/user/register"><UserRegister /></Route>
         <Route exact path="/user/check-password"><UserCheckPassword/></Route>
+        <Route exact path="/user/findpwd"><UserFindPassword/></Route>
         <Route exact path="/user/edit/profile"><EditUser/></Route>
         <Route exact path="/user/mylist"><MyList/></Route>
         {/* <Route exact path="/user/:userId"><MyList/></Route> */}
