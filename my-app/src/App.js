@@ -19,7 +19,6 @@ import Buttons from "./components/pages/ui-features/buttons";
 import Dropdown from "./components/pages/ui-features/dropdown";
 import Typography from "./components/pages/ui-features/typography";
 import JobsList from "./components/pages/jobs/JobsList";
-import ProductMake from "./components/pages/Product/ProductMake";
 import HRList from "./components/pages/hr/HRList";
 import CreateJobs from "./components/pages/jobs/CreateJobs";
 import IntervieweeList from "./components/pages/interviee/IntervieweeList";
@@ -60,7 +59,9 @@ function App() {
         {/* 인사담당자 회원가입 */}
         <Route exact path="/hr/register"><HRRegister /></Route> 
         <Route exact path="/hr/check-password"><HRCheckPassword/></Route>
-        <Route exact path="/hr/findpwd"><HRFindPassword/></Route>
+
+        {/* 받을 정보 통일 */}
+        <Route exact path="/hr/findpwd"><HRFindPassword/></Route> 
         <Route exact path="/hr/edit/profile"><EditHR/></Route>
         <Route exact path="/hr/interviewlist"><IntervieweeList/></Route>
         <Route exact path="/hr/manage"><HRList/></Route>

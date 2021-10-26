@@ -44,7 +44,6 @@ export default function HRCheckPasswordForm() {
 
     if (!isPwd(values.password)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
     if (!confirmPassword(values.password, values.confirmPassword)) confirmPwd = "비밀번호가 일치하지 않습니다.";
-    if (values.userId === values.password) pwdError = "아이디를 비밀번호로 사용 할 수 없습니다.";
 
     //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
     setError({
@@ -67,7 +66,10 @@ export default function HRCheckPasswordForm() {
 
     const valid = onTextCheck();
 
-    if (!valid) console.error("retry");
+    if (!valid) {
+      console.error("retry");
+      alert("정확한 정보를 입력해 주세요");
+    }
 
     else {
 
@@ -78,14 +80,18 @@ export default function HRCheckPasswordForm() {
         },
         body: JSON.stringify({
           empNo: localStorage.getItem('empNo'), //values.userId,
-          password: values.password
+          pwd: values.password
         }),
       }).
-        then(
-          alert("success"),
-          gogo.push('/')
-          //window.location.href = '/'
-        )
+      then(res => res.stringify())
+      .then(res => {
+        if(res === "true"){
+          gogo.push('/hr/edit/profile');
+        }
+        else{
+          alert("정확한 정보를 입력해 주세요");
+        }
+      })
     }
   }
   

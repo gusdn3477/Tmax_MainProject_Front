@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 import Banner from "../../elements/ui/Banner";
-import UserFindPasswordForm from "../../elements/widgets/Form/UserFindPasswordForm";
+import HRFindPasswordForm from "../../elements/widgets/Form/HRFindPasswordForm";
 import Footer from "../../layout/Footer";
 import Header from "../../layout/Header";
 
@@ -16,7 +16,7 @@ export default function HRFindPassword() {
     //       {/* 여기부터 프사 누르면 나오는 메뉴 */}
     //       <div className="main-panel">
     //         <div className="content-wrapper">
-                <UserFindPasswordForm/>
+                <HRFindPasswordForm/>
     //         </div>
     //       </div>
     //     </div>

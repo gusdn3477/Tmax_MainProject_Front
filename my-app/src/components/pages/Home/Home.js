@@ -5,11 +5,9 @@ import Footer from '../../layout/Footer';
 import OrderDetails from '../../elements/widgets/Home/OrderDetails';
 import SalesReport from '../../elements/widgets/Home/SalesReport';
 import DetailedReport from '../../elements/widgets/Home/DetailedReport';
-import ToDoList from '../../elements/widgets/Home/ToDoList';
 import Projects from '../../elements/widgets/Home/Projects';
 import Notifications from '../../elements/widgets/Home/Charts';
 import Charts from '../../elements/widgets/Home/Notifications';
-import AdvancedTable from '../../elements/widgets/Home/AdvancedTable';
 import Welcome from '../../elements/widgets/Home/Welcome';
 import Card from '../../elements/widgets/Home/Card';
 import Bangalore from '../../elements/widgets/Home/Bangalore';
@@ -53,7 +51,7 @@ export default function Home() {
                 <DetailedReport/>
               </div>
               <div className="row">
-                <ToDoList/>
+                {/* <ToDoList/> */}
               </div>
               <div className="row">
                 <Projects/>

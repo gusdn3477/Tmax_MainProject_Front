@@ -34,14 +34,26 @@ export default function NavProfile() {
       </a>
       <div className="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
         {/* 누구냐에 따라 다름 */}
+        { localStorage.getItem('userId') ? 
+          <Link className="dropdown-item" to="/user/check-password">
+            <i className="ti-settings text-primary"></i>
+            My page
+          </Link> : ''
+        }
+        { localStorage.getItem('empNo') ? 
+          <Link className="dropdown-item" to="/hr/check-password">
+            <i className="ti-settings text-primary"></i>
+            My page
+          </Link> : ''
+        }
         <Link className="dropdown-item" to="/check-password">
           <i className="ti-settings text-primary"></i>
           My page
         </Link>
-        <a className="dropdown-item" onClick={handlePutUserLists}>
+        <button type="button" className="dropdown-item" onClick={handlePutUserLists}>
           <i className="ti-power-off text-primary"></i>
           Logout
-        </a>
+        </button>
       </div>
     </li>
   );
