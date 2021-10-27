@@ -150,7 +150,7 @@ export default function CreateJobsForm() {
                 <Brand/>
                 <h4>공고 등록 페이지</h4>
                 <h6 className="font-weight-light">공고를 등록해 보세요!</h6>
-                <form className="pt-3">
+                <form className="pt-3" onSubmit={handlePutUserLists}>
                   <div className="form-group">
                     <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고명" />
                   </div>
@@ -176,17 +176,17 @@ export default function CreateJobsForm() {
                     <select className="form-control form-control-lg" id="exampleFormControlSelect2">
                       <option>채용 유형</option>
                       {/* <option>Country</option> */}
-                      <option>무관</option>
-                      <option>신입</option>
-                      <option>경력</option>
+                      <option value="무관">무관</option>
+                      <option value="신입">신입</option>
+                      <option value="경력">경력</option>
                     </select>
                   </div>
                   <div className="form-group">
                     <select className="form-control form-control-lg" id="exampleFormControlSelect2">
                       <option>고용 형태</option>
                       {/* <option>Country</option> */}
-                      <option>정규직</option>
-                      <option>계약직</option>
+                      <option value="정규직">정규직</option>
+                      <option value="계약직">계약직</option>
                     </select>
                   </div>
                   <div className="form-group">
@@ -222,7 +222,7 @@ export default function CreateJobsForm() {
                     </div> */}
                   </div>
                   <div className="mt-3">
-                    <a className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">등록하기</a>
+                    <button type="submit" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">등록하기</button>
                   </div>
                 </form>
               </div>

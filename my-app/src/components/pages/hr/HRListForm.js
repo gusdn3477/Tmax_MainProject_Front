@@ -8,10 +8,10 @@ export default function HRListForm({ key, data, setMyList }) {
     fetch(`/hr-service/hr`, {
       method: "DELETE",
       headers: {
-        "Content-Type" : "application/json"
+        "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        empNo:empNo // 확실하지 않음 되면 이걸로 사용
+        empNo: empNo // 확실하지 않음 되면 이걸로 사용
       })
     }).then(
       alert("삭제 되었습니다!"),
@@ -25,32 +25,34 @@ export default function HRListForm({ key, data, setMyList }) {
     )
   }
 
-  // const handlePutUserLists = (e) => {
-  //   e.preventDefault();
+  const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
+    if (!onConfirm || typeof onConfirm !== "function") {
+      return;
+    }
+    if (onCancel && typeof onCancel !== "function") {
+      return;
+    }
 
-  //   const valid = onTextCheck();
+    const confirmAction = () => {
+      if (window.confirm(message)) {
+        onConfirm();
+        deleteHR();
+      } else {
+        onCancel();
+      }
+    };
 
-  //   if (!valid) console.error("retry");
+    return confirmAction;
+  };
 
-  //   else {
-
-  //     fetch(`/hr-service/hr/checkpwd`, {
-  //       method: "POST",
-  //       headers: {
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         userId: values.userId, // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯(백엔드 단에서 처리)
-  //         password: values.password
-  //       }),
-  //     }).
-  //     then(res => res.json())
-  //       .then(
-  //         alert("success"),
-  //         gogo.push('/')
-  //       )
-  //   }
-  // }
+  const deleteConfirm = () => 1;
+  const cancelConfirm = () => 0;
+  const confirmDelete = useConfirm(
+    "삭제하시겠습니까?",
+    deleteConfirm,
+    cancelConfirm,
+    handleDelete
+  );
 
   return (
     <tr>
@@ -60,7 +62,7 @@ export default function HRListForm({ key, data, setMyList }) {
       <td className="font-weight-bold">{data.email}</td>
       <td className="font-weight-bold">{data.parents}</td>
       <td className="font-weight-bold">{data.auth}</td>
-      <td className="font-weight-medium"><button type="button" class="badge badge-danger" onClick={()=>handleDelete()}>삭제하기</button></td>
+      <td className="font-weight-medium"><button type="button" class="badge badge-danger" onClick={() => confirmDelete()}>삭제하기</button></td>
     </tr>
   );
 }

@@ -1,13 +1,9 @@
 import React from 'react';
-import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import NavProfile from '../elements/ui/NavProfile';
-// import "bootstrap-icons/font/bootstrap-icons.css";
-import Img1 from '../../assets/images/logo.svg';
+import "bootstrap-icons/font/bootstrap-icons.css";
 import Img2 from '../../assets/images/logo-mini.svg';
 import NotificationMenu from '../elements/ui/NotificationMenu';
-import SideMenu from '../elements/ui/SideMenu';
-import { Collapse } from 'bootstrap';
 
 export default function Header() {
   return (

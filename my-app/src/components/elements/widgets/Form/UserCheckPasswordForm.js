@@ -7,8 +7,6 @@ export default function UserCheckPasswordForm() {
 
   const gogo = useHistory();
 
-  const [usersDatas, setUsersDatas] = useState([]);
-
   const [values, setValues] = useState({
     password: '',
     confirmPassword: ''
@@ -68,21 +66,29 @@ export default function UserCheckPasswordForm() {
 
     else {
 
-      fetch(`/hr-service/hr/checkpwd`, {
+      fetch(`/user-service/user/checkpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: values.userId, // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯(백엔드 단에서 처리)
+          userId: localStorage.getItem('userId'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯(백엔드 단에서 처리)
           password: values.password
         }),
       }).
-      then(res => res.json())
-        .then(
-          alert("success"),
-          gogo.push('/')
-        )
+      then(res => {
+        if(res === "True"){
+          gogo.push('/user/edit/profile');
+        }
+        else{
+          alert("정확한 정보를 입력해 주세요");
+        }
+      })
+      // then(res => res.json())
+      //   .then(
+      //     alert("success"),
+      //     gogo.push('/')
+      //   )
     }
   }
   return (
@@ -124,10 +130,6 @@ export default function UserCheckPasswordForm() {
                   }
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">확인</button>
-                  </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <Link to="/user/findpwd" class="auth-link text-black">Forgot password?</Link>
-                    {/* <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a> */}
                   </div>
                 </form>
               </div>
