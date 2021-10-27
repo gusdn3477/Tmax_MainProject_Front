@@ -96,8 +96,7 @@ export default function EditHR() {
         body: JSON.stringify({
           empNo: localStorage.getItem('empNo'),
           pwd: values.password,
-          name: values.name,
-          email: values.email
+          name: values.name
         }),
       }).then(
           alert("success"),
@@ -117,7 +116,7 @@ export default function EditHR() {
       },
       body: JSON.stringify({
         empNo: localStorage.getItem('empNo'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
-        password: values.password
+        pwd: values.password
       }),
     }).
       then(

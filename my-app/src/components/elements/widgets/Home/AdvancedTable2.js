@@ -1,4 +1,4 @@
-export default function AdvancedTable() {
+export default function AdvancedTable2() {
   return (
     <div className="col-md-12 grid-margin stretch-card">
       <div className="card">
@@ -12,9 +12,9 @@ export default function AdvancedTable() {
                     <tr>
                       <th>수험번호</th>
                       <th>이름</th>
-                      <th>1차 면접관</th>
-                      <th>1차 면점 점수</th>
-                      <th>1차 면접 합/불</th>
+                      <th>2차 면접관</th>
+                      <th>2차 면점 점수</th>
+                      <th>2차 면접 합/불</th>
                     </tr>
                   </thead>
                 </table>

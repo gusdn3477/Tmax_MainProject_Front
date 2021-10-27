@@ -12,15 +12,25 @@ import FindJobs from '../widgets/BannerMenu/FindJobs';
 export default function Banner() {
 
   return (
-    <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{width:'300px'}}>
+    <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{ width: '300px' }}>
       <ul className="nav">
-        <Dashboard/>
-        <HRAccount/>
-        <Jobs/>
-        <Written/>
-        <Interview/>
-
+        <Dashboard />
+        <HRAccount />
+        <Jobs />
         <li className="nav-item">
+          <a className="nav-link" data-bs-toggle="collapse" href="#process-control" aria-expanded="false" aria-controls="process-control">
+            <i className="icon-layout menu-icon"></i>
+            <span className="menu-title">전형관리(인사담당자)</span>
+            <i className="menu-arrow"></i>
+          </a>
+          <div className="collapse" id="process-control">
+            <ul className="nav flex-column sub-menu">
+              <li className="nav-item"><Link className="nav-link" to="/process/written">필기 전형</Link></li>
+              <li className="nav-item"><Link className="nav-link" to="/process/interview">면접 전형</Link></li>
+            </ul>
+          </div>
+        </li>
+        {/* <li className="nav-item">
           <a className="nav-link" data-bs-toggle="collapse" href="#interviewee-control" aria-expanded="false" aria-controls="interviewee-control">
             <i className="icon-layout menu-icon"></i>
             <span className="menu-title">지원자관리(인사담당자)</span>
@@ -31,8 +41,8 @@ export default function Banner() {
               <li className="nav-item"><Link className="nav-link" to="/hr/interviewlist">면접자 리스트</Link></li>
             </ul>
           </div>
-        </li>
-        <FindJobs/>
+        </li> */}
+        <FindJobs />
         <li className="nav-item">
           <a className="nav-link" data-bs-toggle="collapse" href="#mypage" aria-expanded="false" aria-controls="mypage">
             <i className="icon-layout menu-icon"></i>

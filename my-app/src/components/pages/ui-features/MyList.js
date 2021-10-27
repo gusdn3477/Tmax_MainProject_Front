@@ -2,8 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import ToDoList from '../../elements/widgets/Home/ToDoList';
-import TopProducts from '../../elements/widgets/Home/MyListForm';
 import MyListForm from '../../elements/widgets/Home/MyListForm';
 
 export default function MyList() {

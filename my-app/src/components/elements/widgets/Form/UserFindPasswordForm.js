@@ -49,12 +49,13 @@ export default function UserFindPasswordForm() {
           // password: values.password
         }),
       }).
-      then(res => {
-        if(res === "True"){
-          alert("이메일을 확인해 ㅋ주세요.");
+      then(res => res.stringify())
+      .then(res => {
+        if(res === "true"){
+          alert("이메일로 전송된 비밀번호를 확인해 주세요.")
         }
         else{
-          alert("정확한 정보를 입력해 주세요");
+          alert("정확한 정보를 입력해 주세요;")
         }
       })
     }

@@ -3,6 +3,7 @@ import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import AdvancedTable from '../../elements/widgets/Home/AdvancedTable';
+import AdvancedTable2 from '../../elements/widgets/Home/AdvancedTable2';
 
 export default function Interview() {
 
@@ -30,6 +31,9 @@ export default function Interview() {
               </div> */}
               <div className="row">
                 <AdvancedTable/>
+              </div>
+              <div className="row">
+                <AdvancedTable2/>
               </div>
             </div>
             <Footer />
