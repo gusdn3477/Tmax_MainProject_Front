@@ -98,7 +98,7 @@ export default function HRRegister() {
           email: values.email,
           name: values.name,
           pwd: values.password,
-          corpNo: values.companyName // 추후에 중복 체크 있으면 좋을 듯
+          corpName: values.companyName // 추후에 중복 체크 있으면 좋을 듯
         }),
       }).
         then(
@@ -154,16 +154,6 @@ export default function HRRegister() {
                     onChange={handleChangeForm}
                     placeholder="비밀번호 확인" />
                   </div>
-                  {/* <div class="form-group">
-                    <select class="form-control form-control-lg" id="exampleFormControlSelect2">
-                      <option>회사 코드</option>
-                      <option>1001</option>
-                      <option>1002</option>
-                      <option>1003</option>
-                      <option>1004</option>
-                      <option>1005</option>
-                    </select>
-                  </div> */}
                   <div class="mb-4">
                     <div class="form-check">
                       <label class="form-check-label text-muted">

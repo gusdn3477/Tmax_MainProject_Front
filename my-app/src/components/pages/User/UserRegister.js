@@ -19,7 +19,6 @@ export default function UserRegister() {
   const [usersDatas, setUsersDatas] = useState([]);
 
   const [values, setValues] = useState({
-    userId: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -123,12 +122,11 @@ export default function UserRegister() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: usersDatas.length + 1,
-          userId: values.userId,
-          pwd: values.password,
-          name: values.name,
           email: values.email,
-          phone: values.phone,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+          phoneNum: values.phone,
+          applyName: values.name,
           address: values.address
         }),
       }).
@@ -150,24 +148,48 @@ export default function UserRegister() {
                 <Brand/>
                 <h4>회원가입</h4>
                 <h6 class="font-weight-light">최소한의 정보로 가입해 보세요.</h6>
-                <form class="pt-3">
+                <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이름" />
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" 
+                    name="name"
+                    value={values.name}
+                    onChange={handleChangeForm}
+                    placeholder="이름" />
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이메일 주소" />
+                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" 
+                    name="email"
+                    value={values.email}
+                    onChange={handleChangeForm}
+                    placeholder="이메일 주소" />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" 
+                    name="password"
+                    value={values.password}
+                    onChange={handleChangeForm}
+                    placeholder="비밀번호" />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="비밀번호 확인" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword2" 
+                    name="confirmPassword"
+                    value={values.confirmPassword}
+                    onChange={handleChangeForm}
+                    placeholder="비밀번호 확인" />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="phone-number" placeholder="휴대폰 번호" />
+                    <input type="text" class="form-control form-control-lg" id="phone-number" 
+                    name="phone"
+                    value={values.phone}
+                    onChange={handleChangeForm}
+                    placeholder="휴대폰 번호" />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="address" placeholder="주소" />
+                    <input type="text" class="form-control form-control-lg" id="address" 
+                    name="address"
+                    value={values.address}
+                    onChange={handleChangeForm}
+                    placeholder="주소" />
                   </div>
                   <div class="mb-4">
                     <div class="form-check">
@@ -178,7 +200,7 @@ export default function UserRegister() {
                     </div>
                   </div>
                   <div class="mt-3">
-                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN UP</a>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                   </div>
                   <div class="text-center mt-4 font-weight-light">
                     Already have an account? <Link to="/login">Login</Link>

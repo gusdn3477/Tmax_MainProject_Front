@@ -132,13 +132,13 @@ export default function UserLogin() {
         },
         body: JSON.stringify({
           email: values.hrEmail,
-          password: values.hrPassword
+          pwd: values.hrPassword
         })
       }) // res.json() 해 줘야 되는지 생각..
         .then((res) => {
           if (res.headers.get('token')) {
             localStorage.setItem("token", res.headers.get('token'));
-            localStorage.setItem("userId", res.headers.get('empNo'));
+            localStorage.setItem("empNo", res.headers.get('empNo'));
             // localStorage.setItem("email", values.email);
             gogo.push("/");
           }

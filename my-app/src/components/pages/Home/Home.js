@@ -11,9 +11,14 @@ import Charts from '../../elements/widgets/Home/Notifications';
 import Welcome from '../../elements/widgets/Home/Welcome';
 import Card from '../../elements/widgets/Home/Card';
 import Bangalore from '../../elements/widgets/Home/Bangalore';
+import { useHistory } from 'react-router';
 
 export default function Home() {
+
+  const gogo = useHistory();
+  
   return (
+    localStorage.getItem('userId') ?
     <div id="wrap">
       <Header />
       <div className="container-scroller">
@@ -63,7 +68,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div>
-
-  );
+    </div> : window.location.href='/login'
+  ); 
 }
