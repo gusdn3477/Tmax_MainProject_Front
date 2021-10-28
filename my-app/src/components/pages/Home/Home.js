@@ -11,8 +11,12 @@ import Charts from '../../elements/widgets/Home/Notifications';
 import Welcome from '../../elements/widgets/Home/Welcome';
 import Card from '../../elements/widgets/Home/Card';
 import Bangalore from '../../elements/widgets/Home/Bangalore';
+import { useHistory } from 'react-router';
 
 export default function Home() {
+
+  const gogo = useHistory();
+  
   return (
     <div id="wrap">
       <Header />
@@ -64,6 +68,5 @@ export default function Home() {
         </div>
       </div>
     </div>
-
-  );
+  ); 
 }

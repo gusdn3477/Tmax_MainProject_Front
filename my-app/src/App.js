@@ -42,16 +42,18 @@ function App() {
       <ToTop>
       <Switch>
         <Route exact path="/"><Home /></Route>
-        <Route exact path="/dropdowns"><Dropdown /></Route>
+        {/* 여기부터 53번줄 까지는 보실 필요 없습니다. */}
+        {/* <Route exact path="/dropdowns"><Dropdown /></Route>
         <Route exact path="/typography"><Typography /></Route>
         <Route exact path="/basic-elements"><Register /></Route>
         <Route exact path="/chartjs"><Register /></Route>
         <Route exact path="/basic_table"><Register /></Route>
         <Route exact path="/mdi"><Register /></Route>
         <Route exact path="/error-404"><Register /></Route>
-        <Route exact path="/error-500"><Register /></Route>
+        <Route exact path="/error-500"><Register /></Route> */}
 
         {/* 공통 부분 */}
+        {/* 완료 */}
         <Route exact path="/login"><Login /></Route>
 
         {/* 인사 담당자 부분 */}

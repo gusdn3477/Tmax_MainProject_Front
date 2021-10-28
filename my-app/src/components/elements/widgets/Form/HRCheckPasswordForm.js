@@ -28,8 +28,7 @@ export default function HRCheckPasswordForm() {
   })
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 
@@ -83,13 +82,14 @@ export default function HRCheckPasswordForm() {
           pwd: values.password
         }),
       }).
-      then(res => res.stringify())
-      .then(res => {
-        if(res === "true"){
-          gogo.push('/hr/edit/profile');
+      then(res => 
+        res.text()
+      ).then(res => {
+        if(res === "TRUE"){
+          alert("이메일을 확인해 주세요.");
         }
         else{
-          alert("정확한 정보를 입력해 주세요");
+          alert("회원정보가 일치하지 않습니다.");
         }
       })
     }

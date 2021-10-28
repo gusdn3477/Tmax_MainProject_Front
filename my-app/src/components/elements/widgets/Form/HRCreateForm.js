@@ -88,7 +88,7 @@ export default function HRCreateForm() {
 
     else {
 
-      fetch(`/user-service/users`, { // 수정해야 합니다
+      fetch(`/hr-service/hr/register`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +97,6 @@ export default function HRCreateForm() {
           pwd: values.password,
           name: values.name,
           email: values.email,
-          phone: values.phone,
           empNo: localStorage.getItem('empNo')
         }),
       }).

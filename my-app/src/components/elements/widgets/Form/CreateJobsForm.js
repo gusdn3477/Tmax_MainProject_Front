@@ -10,22 +10,34 @@ import Brand from "../brand/Brand";
 
 export default function CreateJobsForm() {
 
-  const [address, setAddress] = useState(''); // 주소
-  const [addressDetail, setAddressDetail] = useState(''); // 상세주소
-  const [isOpenPost, setIsOpenPost] = useState(false);
-
   const gogo = useHistory();
 
-  const [usersDatas, setUsersDatas] = useState([]);
-
   const [values, setValues] = useState({
-    userId: '',
-    email: '',
-    password: '',
-    confirmPassword: '',
-    phone: '',
-    name: '',
-    address: '',
+    jobsNo: '',
+    corpNo: '',
+    empNo: '',
+    jobsTitle: '',
+    jobsContext: '',
+    recruitNum: '',
+    favoriteLang: '',
+    jobLocation: '',
+    jobType: '',
+    jobQualify: '',
+    applyStart: '',
+    employType: '',
+    workDetail: '',
+    applyEnd: '',
+    intv1Start: '',
+    intv1End: '',
+    intv2Start: '',
+    intv2End: '',
+    
+    writtenMultiple: '',
+    writtenPass: '',
+    intv1Multiple: '',
+    intv1Pass: '',
+    intv2Multiple: '',
+    intv2Pass: '',
   })
 
   const [guideTxts, setGuideTxts] = useState({
@@ -123,7 +135,6 @@ export default function CreateJobsForm() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: usersDatas.length + 1,
           userId: values.userId,
           pwd: values.password,
           name: values.name,
@@ -152,25 +163,22 @@ export default function CreateJobsForm() {
                 <h6 className="font-weight-light">공고를 등록해 보세요!</h6>
                 <form className="pt-3" onSubmit={handlePutUserLists}>
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고명" />
+                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" 
+                    name="jobsTitle"
+                    value={values.jobsTitle}
+                    onChange={handleChangeForm}
+                    placeholder="공고명" />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="기업명" />
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" 
+                    placeholder="기업명" />
                   </div>
                   <div className="form-group">
-                    <select className="form-control form-control-lg" id="exampleFormControlSelect2">
-                      <option>기업 코드</option>
-                      {/* <option>Country</option> */}
-                      <option>1001</option>
-                      <option>1002</option>
-                      <option>1003</option>
-                      <option>1004</option>
-                      <option>1005</option>
-                    </select>
-                  </div>
-                  <div className="form-group">
-                    <textarea cols="30" style={{height:"150px"}} className="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고 내용"></textarea>
-                    {/* <input type="text" style={{height:"150px"}} className="form-control form-control-lg" id="exampleInputUsername1" placeholder="공고 내용" /> */}
+                    <textarea cols="30" style={{height:"150px"}} className="form-control form-control-lg" id="exampleInputUsername1" 
+                    name="text"
+                    value={values.jobsContext}
+                    onChange={handleChangeForm}
+                    placeholder="공고 내용"></textarea>
                   </div>
                   <div className="form-group">
                     <select className="form-control form-control-lg" id="exampleFormControlSelect2">
@@ -190,7 +198,8 @@ export default function CreateJobsForm() {
                     </select>
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="채용 인원" />
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="채용 인원"
+                     />
                   </div>
                   <div className="form-group">
                     <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="필기 합격 배수" />

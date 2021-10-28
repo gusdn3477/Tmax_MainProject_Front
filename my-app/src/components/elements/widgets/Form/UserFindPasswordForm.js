@@ -37,7 +37,7 @@ export default function UserFindPasswordForm() {
 
     else {
 
-      fetch(`/user-service/user/checkpwd`, {
+      fetch(`/user-service/users/findpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -45,19 +45,19 @@ export default function UserFindPasswordForm() {
         body: JSON.stringify({
           phoneNum : values.phoneNum,
           email: values.email
-          // userId: localStorage.getItem('userId'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯(백엔드 단에서 처리)
-          // password: values.password
         }),
       }).
-      then(res => res.stringify())
-      .then(res => {
-        if(res === "true"){
-          alert("이메일로 전송된 비밀번호를 확인해 주세요.")
+      then(res => 
+        res.text()
+      ).then(res => {
+        if(res === "TRUE"){
+          alert("이메일을 확인해 주세요.");
         }
         else{
-          alert("정확한 정보를 입력해 주세요;")
+          alert("회원정보가 일치하지 않습니다.");
         }
       })
+        // alert("이메일로 전송된 비밀번호를 확인해 주세요")});
     }
   }
   return (

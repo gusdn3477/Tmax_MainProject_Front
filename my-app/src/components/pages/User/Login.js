@@ -43,7 +43,7 @@ export default function UserLogin() {
   };
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 
@@ -93,7 +93,7 @@ export default function UserLogin() {
     if (!valid) console.error("retry");
 
     else {
-      fetch(`/user-service/users/login`, {
+      fetch(`/user-service/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
@@ -125,20 +125,20 @@ export default function UserLogin() {
     if (!valid) console.error("retry");
 
     else {
-      fetch(`/hr-service/hr/login`, {
+      fetch(`/hr-service/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
         body: JSON.stringify({
           email: values.hrEmail,
-          password: values.hrPassword
+          pwd: values.hrPassword
         })
       }) // res.json() 해 줘야 되는지 생각..
         .then((res) => {
           if (res.headers.get('token')) {
             localStorage.setItem("token", res.headers.get('token'));
-            localStorage.setItem("userId", res.headers.get('empNo'));
+            localStorage.setItem("empNo", res.headers.get('empNo'));
             // localStorage.setItem("email", values.email);
             gogo.push("/");
           }
