@@ -1,21 +1,33 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function HRListForm({ key, data, setMyList }) {
+export default function HRListForm({ idx, key, data, setMyList }) {
 
-  const [empNo, setEmpNo] = useState(data.empNo);
+  const [parents, setParents] = useState();
 
-  const handleDelete = (id) => {
-    fetch(`/hr-service/hr`, {
+  useEffect(() => {
+    fetch(`/hr-service/hr/detail/${localStorage.getItem('empNo')}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setParents(data);
+      });
+  }, []);
+
+  const handleDelete = () => {
+
+    fetch(`/hr-service/hr/super`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        empNo: empNo // 확실하지 않음 되면 이걸로 사용
+        parents: parents,
+        empNo: data.empNo // 확실하지 않음 되면 이걸로 사용
       })
     }).then(
       alert("삭제 되었습니다!"),
-      fetch(`/hr-service/hr`)
+      fetch(`/hr-service/hr/${localStorage.getItem('empNo')}`)
         .then(res => {
           return res.json();
         })
@@ -56,11 +68,11 @@ export default function HRListForm({ key, data, setMyList }) {
 
   return (
     <tr>
-      <td>{data.empNo}</td>
-      <td className="font-weight-bold">{data.corpNo}</td>
+      <td>{idx}</td>
       <td>{data.name}</td>
       <td className="font-weight-bold">{data.email}</td>
-      <td className="font-weight-bold">{data.parents}</td>
+      <td>{data.empNo}</td>
+      <td className="font-weight-bold">{data.parents === "admin" ? "슈퍼" : "일반"}</td>
       <td className="font-weight-bold">{data.auth}</td>
       <td className="font-weight-medium"><button type="button" class="badge badge-danger" onClick={() => confirmDelete()}>삭제하기</button></td>
     </tr>

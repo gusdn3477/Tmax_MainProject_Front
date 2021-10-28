@@ -1,24 +1,34 @@
 import { useState, useEffect } from "react";
 
-export default function Card() {
+export default function Card({ idx, key, data, setData }) {
 
-  const [data, setData] = useState({
-    title: "공고 리스트",
-    name: "공고명",
-    companyName: "회사명",
-    period: "공고 기간",
-    status: "신입/정규"
-  });
+  const handleDelete = (id) => {
+    fetch(`/catalog-service/catalogs/${id}`, { // body에 넣어야 함
+      method: "DELETE"
+    }).then(
+      alert("삭제 되었습니다!"),
+      fetch(`/catalog-service/catalogs`)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          setData(data);
+        })
+    )
+  }
 
   return (
-    <div className="col-md-6 mb-4 stretch-card transparent">
-      <div className="card card-tale">
-        <div className="card-body">
-          <p className="mb-4">{data.companyName}</p>
-          <p className="fs-30 mb-2">{data.name}</p>
-          <p>{data.status}</p>
-          <p>{data.period}</p>
-        </div>
+    <div class="card" style={{ width: "60rem", margin: "13px" }}>
+      <div class="card-body">
+        <p className="card-head">{data.jobsTitle}</p>
+        <h5 class="card-title">{data.jobsContext}</h5>
+        <p class="card-text">고용형태 :  {data.jobType}</p>
+        <p class="card-text">채용유형 :  {data.jobQualify}</p>
+        <p class="card-text">지원자격 :  {data.employType}</p>
+        {data.applyStart && data.applyEnd ?
+          <p class="card-text">지원기간 : {(data.applyStart).substring(0, 10)} ~ {(data.applyEnd).substring(0, 10)}</p> : ""
+        }
+        <a href="#" class="btn btn-primary">Go somewhere</a>
       </div>
     </div>
   );

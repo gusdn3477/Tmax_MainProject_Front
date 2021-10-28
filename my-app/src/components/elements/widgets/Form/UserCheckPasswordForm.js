@@ -75,19 +75,15 @@ export default function UserCheckPasswordForm() {
           password: values.password
         }),
       }).
+      then(res => res.text()).
       then(res => {
-        if(res === "True"){
+        if(res === "true"){
           gogo.push('/user/edit/profile');
         }
         else{
-          alert("정확한 정보를 입력해 주세요");
+          alert("회원정보가 일치하지 않습니다.");
         }
       })
-      // then(res => res.json())
-      //   .then(
-      //     alert("success"),
-      //     gogo.push('/')
-      //   )
     }
   }
   return (
