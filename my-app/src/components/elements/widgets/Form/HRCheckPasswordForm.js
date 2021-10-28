@@ -28,8 +28,7 @@ export default function HRCheckPasswordForm() {
   })
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,50})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 

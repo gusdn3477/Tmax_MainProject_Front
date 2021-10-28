@@ -18,7 +18,6 @@ export default function Home() {
   const gogo = useHistory();
   
   return (
-    localStorage.getItem('userId') ?
     <div id="wrap">
       <Header />
       <div className="container-scroller">
@@ -68,6 +67,6 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </div> : window.location.href='/login'
+    </div>
   ); 
 }
