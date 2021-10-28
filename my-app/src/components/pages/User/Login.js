@@ -139,8 +139,6 @@ export default function UserLogin() {
           if (res.headers.get('token')) {
             localStorage.setItem("token", res.headers.get('token'));
             localStorage.setItem("empNo", res.headers.get('empNo'));
-            // localStorage.setItem("email", values.email);
-            gogo.push("/");
           }
           else {
             alert("로그인 정보를 확인하세요.");

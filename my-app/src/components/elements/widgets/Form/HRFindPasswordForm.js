@@ -49,7 +49,7 @@ export default function HRFindPasswordForm() {
 
     else {
 
-      fetch(`/user-service/users/findpwd`, {
+      fetch(`/hr-service/hr/findpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -59,14 +59,16 @@ export default function HRFindPasswordForm() {
           name: values.name
         }),
       }).
-        then(res => {
-          if (res === "True") {
-            alert("이메일을 확인해 주세요.");
-          }
-          else {
-            alert("정확한 정보를 입력해 주세요");
-          }
-        })
+      then(res => 
+        res.text()
+      ).then(res => {
+        if(res === "TRUE"){ // 이건 문자열 반환이라.. boolean이랑 다른 듯
+          alert("이메일을 확인해 주세요.");
+        }
+        else{
+          alert("회원정보가 일치하지 않습니다.");
+        }
+      })
     }
   }
 

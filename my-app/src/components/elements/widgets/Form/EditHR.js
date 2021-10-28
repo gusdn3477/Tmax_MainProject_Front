@@ -33,10 +33,19 @@ export default function EditHR() {
     nameError: '',
     phoneError: ''
   })
+  
+  useEffect(()=>{
+    fetch(`/hr-service/hr/detail/${localStorage.getItem('empNo')}`)
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        setValues(data);
+    });
+  },[]);
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 
@@ -53,21 +62,16 @@ export default function EditHR() {
     let pwdError = "";
     let confirmPwd = "";
     let nameError = "";
-    let phoneError = "";
 
     if (!isPwd(values.password)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
     if (!confirmPassword(values.password, values.confirmPassword)) confirmPwd = "비밀번호가 일치하지 않습니다.";
-    if (values.userId === values.password) pwdError = "아이디를 비밀번호로 사용 할 수 없습니다.";
-    if (!isPhone(values.phone)) phoneError = "휴대폰 형식이 아닙니다.";
 
     if (values.name.length === 0) nameError = "이름을 입력해주세요.";
-
-    //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
     setError({
-      pwdError, confirmPwd, nameError, phoneError
+      pwdError, confirmPwd, nameError
     })
 
-    if (pwdError || confirmPwd || nameError || phoneError) return false;
+    if (pwdError || confirmPwd || nameError) return false;
     return true;
   }
 
@@ -107,23 +111,33 @@ export default function EditHR() {
     }
   }
 
-  const deleteHR = (e) => {
+  const deleteHR = () => {
     // e.preventDefault();
-    fetch(`/hr-service/hr`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        empNo: localStorage.getItem('empNo'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
-        pwd: values.password
-      }),
-    }).
-      then(
-        alert("탈퇴 성공!"),
-        localStorage.clear(),
-        gogo.push('/')
-      )
+
+    const valid = onTextCheck();
+
+    if (!valid) {
+      console.error("retry");
+      alert("정확한 정보를 입력해 주세요");
+    }
+    
+    else{
+      fetch(`/hr-service/hr`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          empNo: localStorage.getItem('empNo'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
+          pwd: values.password
+        }),
+      }).
+        then(
+          alert("탈퇴 성공!"),
+          localStorage.clear(),
+          gogo.push('/')
+        )
+      }
   }
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
@@ -149,7 +163,7 @@ export default function EditHR() {
   const deleteConfirm = () => 1;
   const cancelConfirm = () => 0;
   const confirmDelete = useConfirm(
-    "삭제하시겠습니까?",
+    "탈퇴하시겠습니까?",
     deleteConfirm,
     cancelConfirm,
     deleteHR

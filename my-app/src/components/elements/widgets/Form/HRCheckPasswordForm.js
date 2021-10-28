@@ -72,7 +72,7 @@ export default function HRCheckPasswordForm() {
 
     else {
 
-      fetch(`/hr-service/hr/findpwd`, {
+      fetch(`/hr-service/hr/checkpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -82,16 +82,16 @@ export default function HRCheckPasswordForm() {
           pwd: values.password
         }),
       }).
-      then(res => 
-        res.text()
-      ).then(res => {
-        if(res === "TRUE"){
-          alert("이메일을 확인해 주세요.");
+      then(res => res.text()).
+      then(res => {
+        if(res === "true"){
+          gogo.push('/hr/edit/profile');
         }
         else{
           alert("회원정보가 일치하지 않습니다.");
         }
-      })
+      }
+      )
     }
   }
   

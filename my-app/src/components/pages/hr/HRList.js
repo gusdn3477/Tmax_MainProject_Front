@@ -9,7 +9,7 @@ export default function HRList() {
   const [data, setData] = useState([]);
   
   useEffect(() => {
-    fetch(`/user-service/apply/${localStorage.getItem('userId')}`)
+    fetch(`/hr-service/hr/${localStorage.getItem('empNo')}`)
       .then(res => {
         return res.json();
       })
@@ -37,35 +37,28 @@ export default function HRList() {
                         <table className="table table-striped table-borderless">
                           <thead>
                             <tr>
-                              <th>인사담당자 코드</th>
-                              <th>기업코드</th>
+                              <th>번호</th>
                               <th>이름</th>
                               <th>이메일</th>
-                              <th>권한(부모)</th>
+                              <th>인사담당자 코드</th>
+                              <th>직급</th>
                               <th>관리자 허가</th>
-                              <th>가입 시간</th>
                               <th>삭제하기</th>
                             </tr>
                           </thead>
                           <tbody>
                           {
                               data.length > 0 && data.map(
-                                (item => {
+                                (item, idx) => (
                                   <HRListForm
-                                    key={item.id}
+                                    idx={idx+1}
+                                    key={item.idx}
                                     data={item}
                                     setMyList={setData}
                                   />
-                                })
-                              )
+                                )
+                                )
                             }
-                            <tr>
-                              <td>Search Engine Marketing</td>
-                              <td className="font-weight-bold">$362</td>
-                              <td>21 Sep 2018</td>
-                              <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
-                              <td className="font-weight-medium"><button type="button" class="badge badge-danger">삭제하기</button></td>
-                            </tr>
                           </tbody>
                         </table>
                       </div>

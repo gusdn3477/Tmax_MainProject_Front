@@ -104,6 +104,27 @@ export default function UserRegister() {
     });
   }
 
+  const checkEmail = () => {
+    fetch(`/user-service/users/checkemail`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email : values.email
+      }),
+    }).
+    then(res => res.text()).
+    then(res => {
+      if(res === "true"){
+        alert("이미 등록된 계정입니다.")
+      }
+      else{
+        alert("이 계정은 사용하실 수 있습니다.");
+      }
+    })
+  }
+
   const handlePutUserLists = (e) => {
     //alert(usersDatas.length);
     //console.log(values);
@@ -162,6 +183,7 @@ export default function UserRegister() {
                     onChange={handleChangeForm}
                     placeholder="이메일 주소" />
                   </div>
+                  <button class="btn btn-primary" type="button" onClick={checkEmail}>이메일 중복 확인</button>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" 
                     name="password"

@@ -46,10 +46,6 @@ export default function NavProfile() {
             My page
           </Link> : ''
         }
-        <Link className="dropdown-item" to="/check-password">
-          <i className="ti-settings text-primary"></i>
-          My page
-        </Link>
         <button type="button" className="dropdown-item" onClick={handlePutUserLists}>
           <i className="ti-power-off text-primary"></i>
           Logout
