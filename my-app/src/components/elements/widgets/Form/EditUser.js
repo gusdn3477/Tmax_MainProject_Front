@@ -48,6 +48,17 @@ export default function EditUser() {
     phoneError: ''
   })
 
+
+  useEffect(()=>{
+    fetch(`/hr-service/hr/detail/${localStorage.getItem('userId')}`)
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        setValues(data);
+    });
+  },[]);
+
   const isUserId = userId => {
     const userIdRegex = /^[a-z0-9_!@$%^&*-+=?"]{1,20}$/
     return userIdRegex.test(userId);
@@ -91,7 +102,6 @@ export default function EditUser() {
 
     if (values.name.length === 0) nameError = "이름을 입력해주세요.";
 
-    //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
     setError({
       userIdError, emailError, pwdError, confirmPwd, nameError, phoneError
     })

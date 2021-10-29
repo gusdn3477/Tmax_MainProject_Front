@@ -35,6 +35,7 @@ import Error_404 from "./components/pages/samples/error-404";
 import HRFindPassword from "./components/pages/hr/HRFindPassword";
 import UserFindPassword from "./components/pages/User/UserFindPassword";
 import HRCreate from "./components/pages/hr/HRCreate";
+import JobsDetail from "./components/pages/jobs/JobsDetail";
 
 function App() {
   return (
@@ -90,7 +91,7 @@ function App() {
         {/* <Route exact path="/jobs/list"><JobsList/></Route> */}
         <Route exact path="/jobs/create"><CreateJobs/></Route>
         {/* 이 두개는 필요. 공고번호별로 보기, 회사별로 보기 */}
-        {/* <Route exact path="/jobs/:jobsNo"><CreateJobs/></Route> */}
+        <Route exact path="/jobs/:jobsNo"><JobsDetail/></Route>
         {/* <Route exact path="/jobs/:corpNo"><CreateJobs/></Route> */}
 
         {/* 전형 관리 부분 => 인사담당자 부분이니까*/}

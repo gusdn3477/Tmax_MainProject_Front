@@ -12,6 +12,10 @@ export default function EditHR() {
 
   const gogo = useHistory();
 
+  const [corp, setCorp] = useState({
+    corpName : ''
+  })
+
   const [values, setValues] = useState({
     empNo: '',
     email: '',

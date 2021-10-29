@@ -36,9 +36,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="row">
+                {/* <div className="row">
                   <Bangalore />
-                </div>
+                </div> */}
                 <div className="row">
                   <OrderDetails />
                   <SalesReport />
@@ -53,6 +53,7 @@ export default function Home() {
                   <Projects />
                   <Notifications />
                   <Charts />
+                  {/* <Bar/> */}
                 </div>
               </div>
               <Footer />

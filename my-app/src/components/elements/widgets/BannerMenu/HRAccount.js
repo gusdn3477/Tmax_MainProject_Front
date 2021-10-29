@@ -8,7 +8,7 @@ export default function HRAccount() {
     <li className="nav-item">
       <a className="nav-link" data-bs-toggle="collapse" href="#account-control" aria-expanded="false" aria-controls="account-control">
         <i className="icon-layout menu-icon"></i>
-        <span className="menu-title">계정관리(인사담당자)</span>
+        <span className="menu-title">계정관리</span>
         <i className="menu-arrow"></i>
       </a>
       <div className="collapse" id="account-control">
