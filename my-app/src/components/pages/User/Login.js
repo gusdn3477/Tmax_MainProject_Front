@@ -5,7 +5,7 @@ import Brand from "../../elements/widgets/brand/Brand";
 import axios from 'axios';
 
 
-// 둘다 회원가입
+// 둘다 로그인
 // 이거 공용입니다. 헷갈리지 마세요!
 export default function UserLogin() {
 

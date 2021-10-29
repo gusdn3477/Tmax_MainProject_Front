@@ -22,7 +22,7 @@ export default function HRListForm({ idx, key, data, setMyList }) {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        parents: parents,
+        parents: parents.parents,
         empNo: data.empNo // 확실하지 않음 되면 이걸로 사용
       })
     }).then(

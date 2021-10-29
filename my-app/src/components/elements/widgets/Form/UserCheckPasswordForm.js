@@ -65,7 +65,7 @@ export default function UserCheckPasswordForm() {
 
     else {
 
-      fetch(`/user-service/user/checkpwd`, {
+      fetch(`/user-service/users/checkpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
