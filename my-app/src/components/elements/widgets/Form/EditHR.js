@@ -195,7 +195,7 @@ export default function EditHR() {
                     placeholder="이메일" readOnly />
                   </div>
                   <div class="form-group">
-                    <div>회원번호</div>
+                    <div>인사코드</div>
                     <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
                     name="empNo" 
                     value={values.empNo}
@@ -222,6 +222,7 @@ export default function EditHR() {
                     <div>비밀번호</div>
                     <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" 
                     name="password"
+                    // 깃 되나 확인
                     value={values.password}
                     onChange={handleChangeForm}
                     placeholder="비밀번호" />

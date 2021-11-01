@@ -20,9 +20,9 @@ export default function NavProfile() {
     }).
       then(
         // alert("success"),
-        // gogo.push('/')
+        gogo.push('/login'),
         localStorage.clear(),
-        window.location.href = '/'
+        // window.location.href = '/'
       )
 
   }
