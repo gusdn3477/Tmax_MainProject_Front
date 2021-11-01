@@ -9,6 +9,7 @@ import { useEffect } from 'react';
 export default function Buttons() {
 
   const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch(`/job-service/jobs`)
@@ -17,10 +18,11 @@ export default function Buttons() {
       })
       .then(data => {
         setData(data);
+        setLoading(false);
       });
   }, []);
 
-  // const [name, setName] = useState("공고 명단");
+  if(loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />

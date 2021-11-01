@@ -4,8 +4,6 @@ import { Link } from 'react-router-dom';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Dashboard from '../widgets/BannerMenu/Dashboard';
 import Jobs from '../widgets/BannerMenu/Jobs';
-import Written from '../widgets/BannerMenu/Written';
-import Interview from '../widgets/BannerMenu/Interview';
 import HRAccount from '../widgets/BannerMenu/HRAccount';
 import FindJobs from '../widgets/BannerMenu/FindJobs';
 
@@ -27,7 +25,8 @@ export default function Banner() {
             <div className="collapse" id="process-control">
               <ul className="nav flex-column sub-menu">
                 <li className="nav-item"><Link className="nav-link" to="/process/written">필기 전형</Link></li>
-                <li className="nav-item"><Link className="nav-link" to="/process/interview">면접 전형</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/process/firstinterview">1차 면접 전형</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/process/secondinterview">2차 면접 전형</Link></li>
               </ul>
             </div>
           </li>

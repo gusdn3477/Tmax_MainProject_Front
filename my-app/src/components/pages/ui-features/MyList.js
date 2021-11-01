@@ -7,6 +7,8 @@ import MyListForm from '../../elements/widgets/Home/MyListForm';
 export default function MyList() {
 
   const [myList, setMyList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch(`/user-service/apply/${localStorage.getItem('userId')}`)
       .then(res => {
@@ -14,9 +16,11 @@ export default function MyList() {
       })
       .then(data => {
         setMyList(data);
+        setLoading(false);
       });
   }, []);
 
+  if(loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />

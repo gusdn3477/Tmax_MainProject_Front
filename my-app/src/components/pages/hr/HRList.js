@@ -7,7 +7,8 @@ import HRListForm from './HRListForm';
 export default function HRList() {
 
   const [data, setData] = useState([]);
-  
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     fetch(`/hr-service/hr/${localStorage.getItem('empNo')}`)
       .then(res => {
@@ -15,9 +16,11 @@ export default function HRList() {
       })
       .then(data => {
         setData(data);
+        setLoading(false);
       });
   }, []);
 
+  if(loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />

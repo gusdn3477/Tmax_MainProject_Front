@@ -13,16 +13,6 @@ export default function JobsDetail() {
   const [loading, setLoading] = useState(true);
   const [ values, setValues ] = useState();
   const {jobsNo} = useParams();
-  // useEffect((jobsNo) => {
-  //   const fetchData = async () => {
-  //     const res = await fetch(
-  //       `/job-service/jobs/${jobsNo}`,
-  //     );
-  //     const json = await res.json();
-  //     setData(json);
-  //   };
-  //   fetchData();
-  // }, [setData]);
 
   useEffect(()=>{
     fetch(`/job-service/jobs/${jobsNo}`)

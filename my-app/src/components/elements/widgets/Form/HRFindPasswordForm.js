@@ -1,6 +1,5 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import Brand from "../brand/Brand";
 
 export default function HRFindPasswordForm() {

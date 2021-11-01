@@ -1,12 +1,5 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect, useRedf } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Brand from "../brand/Brand";
 
@@ -15,6 +8,7 @@ export default function EditUser() {
   const [address, setAddress] = useState(''); // 주소
   const [addressDetail, setAddressDetail] = useState(''); // 상세주소
   const [isOpenPost, setIsOpenPost] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const gogo = useHistory();
 
@@ -56,6 +50,7 @@ export default function EditUser() {
     })
     .then(data => {
         setValues(data);
+        setLoading(false);
     });
   },[]);
 
@@ -201,6 +196,7 @@ export default function EditUser() {
     deleteUser
   );
 
+  if(loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
