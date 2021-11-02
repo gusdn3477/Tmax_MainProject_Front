@@ -47,6 +47,27 @@ export default function HRRegister() {
     return pass === confirmPass
   }
 
+  const checkEmail = () => {
+    fetch(`/hr-service/hr/checkemail`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email : values.email
+      }),
+    }).
+    then(res => res.text()).
+    then(res => {
+      if(res === "true"){
+        alert("이미 등록된 계정입니다.")
+      }
+      else{
+        alert("사용 가능한 이메일입니다.");
+      }
+    })
+  }
+
   const onTextCheck = () => {
     let emailError = "";
     let pwdError = "";
@@ -132,6 +153,7 @@ export default function HRRegister() {
                     onChange={handleChangeForm}
                     placeholder="이메일" />
                   </div>
+                  <button class="btn btn-primary" type="button" onClick={checkEmail}>이메일 중복 확인</button>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
                     name="companyName"

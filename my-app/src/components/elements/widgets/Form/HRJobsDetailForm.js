@@ -16,12 +16,39 @@ export default function JobsDetailForm({data}) {
   const [ values, setValues ] = useState();
   const {jobsNo} = useParams();
 
-  const passListToWritten = (id) => {
-    fetch(`/process-service/process/${jobsNo}`, { // body에 넣어야 함
-      method: "GET"
-    }).then(
-      console.log('데이터 옮기기')
-    )
+  useEffect(()=>{
+    fetch(`/user-service/users/${localStorage.getItem('userId')}`)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+        console.log(data);
+        setValues(data);
+        setLoading(false);
+    })
+  },[]);
+
+  const apply = () => {
+
+    fetch(`/user-service/users/apply`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: values.userId,
+        applyName: values.name,
+        applyEmail: values.email,
+        jobsNo: jobsNo,
+        applyContact: values.phoneNum
+      }),
+    }).
+      then(
+        alert("success"),
+        gogo.push('/')
+        //window.location.href = '/'
+
+      )
   }
 
   return (
@@ -66,7 +93,7 @@ export default function JobsDetailForm({data}) {
                   {localStorage.getItem('empNo') ? 
                   <Fragment>
                   <div className="mt-3">
-                    <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={passListToWritten}>마감하기</button>
+                    <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">마감하기</button>
                   </div>
                   <div className="mt-3">
                     <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">수정하기</button>
@@ -78,9 +105,7 @@ export default function JobsDetailForm({data}) {
                   {localStorage.getItem('userId') ? 
                   <Fragment>
                   <div className="mt-3">
-                    <Link to={`/users/apply/${jobsNo}`}>
-                      <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">지원하기</button>
-                    </Link>
+                    <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={apply}>지원하기</button>
                   </div></Fragment> : ''}
                 </form>
               </div>

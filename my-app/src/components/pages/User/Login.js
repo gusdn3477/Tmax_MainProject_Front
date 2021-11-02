@@ -142,6 +142,7 @@ export default function UserLogin() {
           if (res.headers.get('token')) {
             localStorage.setItem("token", res.headers.get('token'));
             localStorage.setItem("empNo", res.headers.get('empNo'));
+            localStorage.setItem("corpNo", res.headers.get('corpNo'));
             gogo.push('/');
           }
           else {

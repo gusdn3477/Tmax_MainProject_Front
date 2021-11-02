@@ -31,6 +31,8 @@ import HRFindPassword from "./components/pages/hr/HRFindPassword";
 import UserFindPassword from "./components/pages/User/UserFindPassword";
 import HRCreate from "./components/pages/hr/HRCreate";
 import JobsDetail from "./components/pages/jobs/JobsDetail";
+import HRJobsList from "./components/pages/hr/HRJobsList";
+import JobsApplyForm from "./components/elements/widgets/Form/JobsApplyForm";
 
 function App() {
   return (
@@ -66,13 +68,17 @@ function App() {
         <Route exact path="/user/findpwd"><UserFindPassword/></Route>
         <Route exact path="/user/edit/profile"><EditUser/></Route>
         <Route exact path="/user/mylist"><MyList/></Route>
+        <Route exact path="/users/apply/:jobsNo"><JobsApplyForm/></Route>
         {/* 유저 상세 조회 -> 일단 보류 */}
         {/* <Route exact path="/user/:userId"><MyList/></Route> */}
         
 
         {/* 공고 관리 부분 */}
-        {/* 공고 전체 보기 */}
+        {/* 공고 전체 보기, 이건 유저용 */}
         <Route exact path="/jobs"><Buttons/></Route>
+        {/* 이건 기업용(자기 회사 공고만 보임) */}
+        <Route exact path="/hr/jobs"><HRJobsList/></Route>
+        
         {/* <Route exact path="/jobs/list"><JobsList/></Route> */}
         <Route exact path="/jobs/create"><CreateJobs/></Route>
         {/* 이 두개는 필요. 공고번호별로 보기, 회사별로 보기 */}

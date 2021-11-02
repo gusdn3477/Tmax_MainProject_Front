@@ -19,7 +19,7 @@ export default function EditUser() {
     email: '',
     password: '',
     confirmPassword: '',
-    phone: '',
+    phoneNum: '',
     name: '',
     address: '',
   })
@@ -42,9 +42,8 @@ export default function EditUser() {
     phoneError: ''
   })
 
-
   useEffect(()=>{
-    fetch(`/hr-service/hr/detail/${localStorage.getItem('userId')}`)
+    fetch(`/user-service/users/${localStorage.getItem('userId')}`)
     .then(res => {
         return res.json();
     })
@@ -136,7 +135,7 @@ export default function EditUser() {
           password: values.password,
           name: values.name,
           email: values.email,
-          phone: values.phone,
+          phoneNum: values.phone,
           address: values.address
         }),
       }).
@@ -215,7 +214,7 @@ export default function EditUser() {
                       onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="성함"
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이름"
                       name="name"
                       value={values.name}
                       onChange={handleChangeForm} />
@@ -234,7 +233,7 @@ export default function EditUser() {
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="휴대폰 번호" name="phone"
-                      value={values.phone}
+                      value={values.phoneNum}
                       onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">

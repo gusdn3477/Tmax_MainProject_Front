@@ -2,14 +2,11 @@ import React, {useState, useEffect} from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import CreateJobsForm from '../../elements/widgets/Form/CreateJobsForm';
 import { useParams } from 'react-router';
 import JobsDetailForm from '../../elements/widgets/Form/JobsDetailForm';
-import { data } from 'jquery';
 
 export default function JobsDetail() {
 
-  const ip = useState('');
   const [loading, setLoading] = useState(true);
   const [ values, setValues ] = useState();
   const {jobsNo} = useParams();

@@ -9,7 +9,7 @@ import FindJobs from '../widgets/BannerMenu/FindJobs';
 
 export default function Banner() {
 
-  if (localStorage.getItem('empNo')) {
+  if (localStorage.getItem('empNo')) { // 인사담당자인 경우
     return (
       <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{ width: '300px' }}>
         <ul className="nav">
@@ -30,18 +30,6 @@ export default function Banner() {
               </ul>
             </div>
           </li>
-          {/* <li className="nav-item">
-          <a className="nav-link" data-bs-toggle="collapse" href="#interviewee-control" aria-expanded="false" aria-controls="interviewee-control">
-            <i className="icon-layout menu-icon"></i>
-            <span className="menu-title">지원자관리(인사담당자)</span>
-            <i className="menu-arrow"></i>
-          </a>
-          <div className="collapse" id="interviewee-control">
-            <ul className="nav flex-column sub-menu">
-              <li className="nav-item"><Link className="nav-link" to="/hr/interviewlist">면접자 리스트</Link></li>
-            </ul>
-          </div>
-        </li> */}
           <li className="nav-item">
             <a className="nav-link" data-bs-toggle="collapse" href="#mypage" aria-expanded="false" aria-controls="mypage">
               <i className="icon-layout menu-icon"></i>
@@ -61,28 +49,28 @@ export default function Banner() {
     )
   }
 
-  else if(localStorage.getItem('userId')){
-      return (
-        <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{ width: '300px' }}>
-          <ul className="nav">
-            <Dashboard />
-            <FindJobs/>
-            <li className="nav-item">
-              <a className="nav-link" data-bs-toggle="collapse" href="#mypage" aria-expanded="false" aria-controls="mypage">
-                <i className="icon-layout menu-icon"></i>
-                <span className="menu-title">마이페이지</span>
-                <i className="menu-arrow"></i>
-              </a>
-              <div className="collapse" id="mypage">
-                <ul className="nav flex-column sub-menu">
-                  <li className="nav-item"><Link className="nav-link" to="/user/check-password">내 정보 수정</Link></li>
-                  <li className="nav-item"><Link className="nav-link" to="/user/mylist">나의 지원 현황</Link></li>
-                </ul>
-              </div>
-            </li>
-          </ul>
-          {/* 부트스트랩 5는 되는데 4는 토글이 안됨. */}
-        </nav>
-      )
+  else if (localStorage.getItem('userId')) {
+    return (
+      <nav className="sidebar sidebar-offcanvas" id="sidebar" style={{ width: '300px' }}>
+        <ul className="nav">
+          <Dashboard />
+          <FindJobs />
+          <li className="nav-item">
+            <a className="nav-link" data-bs-toggle="collapse" href="#mypage" aria-expanded="false" aria-controls="mypage">
+              <i className="icon-layout menu-icon"></i>
+              <span className="menu-title">마이페이지</span>
+              <i className="menu-arrow"></i>
+            </a>
+            <div className="collapse" id="mypage">
+              <ul className="nav flex-column sub-menu">
+                <li className="nav-item"><Link className="nav-link" to="/user/check-password">내 정보 수정</Link></li>
+                <li className="nav-item"><Link className="nav-link" to="/user/mylist">나의 지원 현황</Link></li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+        {/* 부트스트랩 5는 되는데 4는 토글이 안됨. */}
+      </nav>
+    )
   }
 }
