@@ -46,7 +46,7 @@ export default function MyList() {
                               <th>공고 기간</th>
                               <th>채용 유형</th>
                               <th>근무 지역</th>
-                              <th>지원 일자</th>
+                              <th>합격 여부</th>
                             </tr>
                           </thead>
                           <tbody>

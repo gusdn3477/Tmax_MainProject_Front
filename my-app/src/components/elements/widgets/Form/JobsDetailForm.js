@@ -20,9 +20,39 @@ export default function JobsDetailForm({data}) {
     fetch(`/process-service/process/${jobsNo}`, { // body에 넣어야 함
       method: "GET"
     }).then(
-      console.log('데이터 옮기기')
+      //예외처리 있으면 좋을 듯
+      alert('마감 완료!')
     )
   }
+
+  const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
+    if (!onConfirm || typeof onConfirm !== "function") {
+      return;
+    }
+    if (onCancel && typeof onCancel !== "function") {
+      return;
+    }
+
+    const confirmAction = () => {
+      if (window.confirm(message)) {
+        onConfirm();
+        deleteHR();
+      } else {
+        onCancel();
+      }
+    };
+
+    return confirmAction;
+  };
+
+  const deleteConfirm = () => 1;
+  const cancelConfirm = () => 0;
+  const confirmDelete = useConfirm(
+    "해당 공고를 마감하시겠습니까?",
+    deleteConfirm,
+    cancelConfirm,
+    passListToWritten
+  );
 
   return (
     <div className="container-scroller">
@@ -66,13 +96,13 @@ export default function JobsDetailForm({data}) {
                   {localStorage.getItem('empNo') ? 
                   <Fragment>
                   <div className="mt-3">
-                    <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={passListToWritten}>마감하기</button>
+                    <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={confirmDelete}>마감하기</button>
                   </div>
                   <div className="mt-3">
-                    <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">수정하기</button>
+                    <button type="button" className="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">수정하기</button>
                   </div>
                   <div className="mt-3">
-                    <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">삭제하기</button>
+                    <button type="button" className="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn">삭제하기</button>
                   </div></Fragment> : ''}
 
                   {localStorage.getItem('userId') ? 
