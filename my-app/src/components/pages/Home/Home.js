@@ -17,7 +17,7 @@ export default function Home() {
   const gogo = useHistory();
   const [loading, setLoading] = useState(true);
 
-  if (localStorage.getItem('token')) { // 유저인 경우
+  if (localStorage.getItem('token')) { // 토큰이 있는 경우
     return (
       <div id="wrap">
         <Header />

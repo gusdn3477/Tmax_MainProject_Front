@@ -21,36 +21,36 @@ export default function HRJobsList() {
         console.log(data);
         setLoading(false);
       })
-}, []);
+  }, []);
 
-if (loading) return <div>잠시만 기다려 주세요</div>;
-return (
-  <div id="wrap">
-    <Header />
-    <div className="container-scroller">
-      <div className="container-fluid page-body-wrapper">
-        <Banner />
-        <div className="main-panel">
-          <div className="content-wrapper">
-            <div className="row">
-              {
-                data.length > 0 && data.map(
-                  (item, idx) => (
-                    <Card
-                      idx={idx + 1}
-                      key={item.idx}
-                      data={item}
-                      setData={setData}
-                    />
+  if (loading) return <div>잠시만 기다려 주세요</div>;
+  return (
+    <div id="wrap">
+      <Header />
+      <div className="container-scroller">
+        <div className="container-fluid page-body-wrapper">
+          <Banner />
+          <div className="main-panel">
+            <div className="content-wrapper">
+              <div className="row">
+                {
+                  data.length > 0 && data.map(
+                    (item, idx) => (
+                      <Card
+                        idx={idx + 1}
+                        key={item.idx}
+                        data={item}
+                        setData={setData}
+                      />
+                    )
                   )
-                )
-              }
+                }
+              </div>
             </div>
+            <Footer />
           </div>
-          <Footer />
         </div>
       </div>
     </div>
-  </div>
-);
+  );
 }
