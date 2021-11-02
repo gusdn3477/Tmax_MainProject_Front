@@ -1,11 +1,10 @@
 import { useState, useEffect } from "react";
 
-export default function MyListForm({key, data, setMylist}) {
-
-  const [myList, setMyList] = useState([]);
+export default function MyListForm({idx, key, data, setMylist}) {
 
   return (
     <tr>
+      <td>{idx}</td>
       <td>{data.jobsNo}</td>
       <td className="font-weight-bold">{data.corpNo}</td>
       <td>{data.jobsTitle}</td>

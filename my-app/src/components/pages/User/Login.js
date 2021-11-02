@@ -3,7 +3,10 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Brand from "../../elements/widgets/brand/Brand";
 import axios from 'axios';
+import KaKaoLogin from 'react-kakao-login';
 
+// 카카오 로그인 연습
+// import { KAKAO_AUTH_URL } from "../../../utilities/Oauth";
 
 // 둘다 로그인
 // 이거 공용입니다. 헷갈리지 마세요!
@@ -139,6 +142,8 @@ export default function UserLogin() {
           if (res.headers.get('token')) {
             localStorage.setItem("token", res.headers.get('token'));
             localStorage.setItem("empNo", res.headers.get('empNo'));
+            localStorage.setItem("corpNo", res.headers.get('corpNo'));
+            gogo.push('/');
           }
           else {
             alert("로그인 정보를 확인하세요.");
@@ -208,6 +213,14 @@ export default function UserLogin() {
                       <div class="text-center mt-4 font-weight-light">
                         지원자 계정으로 가입하고 싶으시다면 <Link to="/user/register" class="text-primary">Create</Link>
                       </div>
+                      <div>
+                      <KaKaoLogin
+                          token={'cb62ba611015f1bdd64463795774c772'}
+                          onSuccess={console.log}
+                          onFail={console.error}
+                          onLogout={console.info}
+                      />
+                    </div>
                     </form>
                   </div>
 
@@ -258,6 +271,7 @@ export default function UserLogin() {
                       <div class="text-center mt-4 font-weight-light">
                         인사담당자 계정으로 가입하고 싶으시다면 <Link to="/hr/register" class="text-primary">Create</Link>
                       </div>
+                      
                     </form>
                   </div>
                 </div>

@@ -5,21 +5,18 @@
 // import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import Brand from "../brand/Brand";
 
 export default function EditHR() {
 
   const gogo = useHistory();
-
-  const [corp, setCorp] = useState({
-    corpName : ''
-  })
+  const [loading, setLoading] = useState(true);
 
   const [values, setValues] = useState({
     empNo: '',
     email: '',
     name: '',
+    parents: '',
     password: '',
     confirmPassword: '',
   })
@@ -45,6 +42,7 @@ export default function EditHR() {
     })
     .then(data => {
         setValues(data);
+        setLoading(false);
     });
   },[]);
 
@@ -173,6 +171,7 @@ export default function EditHR() {
     deleteHR
   );
 
+  if(loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -185,6 +184,7 @@ export default function EditHR() {
                 {/* <h6 class="font-weight-light">공고를 등록해 보세요!</h6> */}
                 <form class="pt-3" onSubmit={putHR}>
                   <div class="form-group">
+                    <div>이메일</div>
                     <input type="email" class="form-control form-control-lg" id="exampleInputUsername1" 
                     name="email" 
                     value={values.email}
@@ -192,6 +192,15 @@ export default function EditHR() {
                     placeholder="이메일" readOnly />
                   </div>
                   <div class="form-group">
+                    <div>인사코드</div>
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
+                    name="empNo" 
+                    value={values.empNo}
+                    onChange={handleChangeForm}
+                    placeholder="회원번호" readOnly />
+                  </div>
+                  <div class="form-group">
+                    <div>이름</div>
                     <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
                     name="name" 
                     value={values.name}
@@ -199,13 +208,24 @@ export default function EditHR() {
                     placeholder="이름" />
                   </div>
                   <div class="form-group">
+                    <div>직급</div>
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
+                    name="name" 
+                    value={values.parents}
+                    onChange={handleChangeForm}
+                    placeholder="직급" readOnly/>
+                  </div>
+                  <div class="form-group">
+                    <div>비밀번호</div>
                     <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" 
                     name="password"
+                    // 깃 되나 확인
                     value={values.password}
                     onChange={handleChangeForm}
                     placeholder="비밀번호" />
                   </div>
                   <div class="form-group">
+                    <div>비밀번호 확인</div>
                     <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" 
                     name="confirmPassword" 
                     value={values.confirmPassword}

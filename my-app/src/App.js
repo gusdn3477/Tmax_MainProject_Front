@@ -14,14 +14,9 @@ import './assets/css/vertical-layout-light/style.css';
 import './App.css';
 import Home from "./components/pages/Home/Home";
 import Login from './components/pages/User/Login';
-import Register from './components/pages/User/UserRegister';
 import Buttons from "./components/pages/ui-features/buttons";
-import Dropdown from "./components/pages/ui-features/dropdown";
-import Typography from "./components/pages/ui-features/typography";
-import JobsList from "./components/pages/jobs/JobsList";
 import HRList from "./components/pages/hr/HRList";
 import CreateJobs from "./components/pages/jobs/CreateJobs";
-import IntervieweeList from "./components/pages/interviee/IntervieweeList";
 import Written from "./components/pages/process/Written";
 import Interview from "./components/pages/process/Interview";
 import EditHR from "./components/elements/widgets/Form/EditHR";
@@ -36,6 +31,8 @@ import HRFindPassword from "./components/pages/hr/HRFindPassword";
 import UserFindPassword from "./components/pages/User/UserFindPassword";
 import HRCreate from "./components/pages/hr/HRCreate";
 import JobsDetail from "./components/pages/jobs/JobsDetail";
+import HRJobsList from "./components/pages/hr/HRJobsList";
+import JobsApplyForm from "./components/elements/widgets/Form/JobsApplyForm";
 
 function App() {
   return (
@@ -43,16 +40,6 @@ function App() {
       <ToTop>
       <Switch>
         <Route exact path="/"><Home /></Route>
-        {/* 여기부터 53번줄 까지는 보실 필요 없습니다. */}
-        {/* <Route exact path="/dropdowns"><Dropdown /></Route>
-        <Route exact path="/typography"><Typography /></Route>
-        <Route exact path="/basic-elements"><Register /></Route>
-        <Route exact path="/chartjs"><Register /></Route>
-        <Route exact path="/basic_table"><Register /></Route>
-        <Route exact path="/mdi"><Register /></Route>
-        <Route exact path="/error-404"><Register /></Route>
-        <Route exact path="/error-500"><Register /></Route> */}
-
         {/* 공통 부분 */}
         {/* 완료 */}
         <Route exact path="/login"><Login /></Route>
@@ -81,13 +68,17 @@ function App() {
         <Route exact path="/user/findpwd"><UserFindPassword/></Route>
         <Route exact path="/user/edit/profile"><EditUser/></Route>
         <Route exact path="/user/mylist"><MyList/></Route>
+        <Route exact path="/users/apply/:jobsNo"><JobsApplyForm/></Route>
         {/* 유저 상세 조회 -> 일단 보류 */}
         {/* <Route exact path="/user/:userId"><MyList/></Route> */}
         
 
         {/* 공고 관리 부분 */}
-        {/* 공고 전체 보기 */}
+        {/* 공고 전체 보기, 이건 유저용 */}
         <Route exact path="/jobs"><Buttons/></Route>
+        {/* 이건 기업용(자기 회사 공고만 보임) */}
+        <Route exact path="/hr/jobs"><HRJobsList/></Route>
+        
         {/* <Route exact path="/jobs/list"><JobsList/></Route> */}
         <Route exact path="/jobs/create"><CreateJobs/></Route>
         {/* 이 두개는 필요. 공고번호별로 보기, 회사별로 보기 */}
@@ -96,7 +87,9 @@ function App() {
 
         {/* 전형 관리 부분 => 인사담당자 부분이니까*/}
         <Route exact path="/process/written"><Written/></Route>
-        <Route exact path="/process/interview"><Interview/></Route>
+        <Route exact path="/process/firstinterview"><Interview/></Route>
+        <Route exact path="/process/secondinterview"><Interview/></Route>
+
         {/* 공고별 필기 전형자 보기 / 공고별 1,2차 면접 전형자 보기*/}
         {/* <Route exact path="/process/written/:jobsNo/:empNo"><Written/></Route>
         <Route exact path="/process/interview/:jobsNo/:empNo"><Interview/></Route> */}

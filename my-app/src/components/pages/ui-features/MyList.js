@@ -7,16 +7,21 @@ import MyListForm from '../../elements/widgets/Home/MyListForm';
 export default function MyList() {
 
   const [myList, setMyList] = useState([]);
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
-    fetch(`/user-service/apply/${localStorage.getItem('userId')}`)
+    fetch(`/user-service/users/jobs/${localStorage.getItem('userId')}`)
       .then(res => {
         return res.json();
       })
       .then(data => {
         setMyList(data);
+        console.log(data);
+        setLoading(false);
       });
   }, []);
 
+  if(loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />
@@ -34,6 +39,7 @@ export default function MyList() {
                         <table className="table table-striped table-borderless">
                           <thead>
                             <tr>
+                              <th>번호</th>
                               <th>공고번호</th>
                               <th>회사명</th>
                               <th>공고명</th>
@@ -46,13 +52,14 @@ export default function MyList() {
                           <tbody>
                             {
                               myList.length > 0 && myList.map(
-                                (item => {
-                                  <MyListForm 
+                                (item, idx) => (
+                                  <MyListForm
+                                    idx={idx+1} 
                                     key={item.id}
                                     data={item}
                                     setMyList = {setMyList}
                                   />
-                                })
+                                )
                               )
                             }
                           </tbody>

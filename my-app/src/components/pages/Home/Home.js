@@ -9,16 +9,15 @@ import Projects from '../../elements/widgets/Home/Projects';
 import Notifications from '../../elements/widgets/Home/Charts';
 import Charts from '../../elements/widgets/Home/Notifications';
 import Welcome from '../../elements/widgets/Home/Welcome';
-import Card from '../../elements/widgets/Home/Card';
-import Bangalore from '../../elements/widgets/Home/Bangalore';
-import { useHistory } from 'react-router';
-import UserLogin from '../User/Login';
+import { useHistory, Redirect } from 'react-router';
+import { useState } from 'react';
 
 export default function Home() {
 
   const gogo = useHistory();
+  const [loading, setLoading] = useState(true);
 
-  if (localStorage.getItem('userId') || localStorage.getItem('empNo')) { // 유저인 경우
+  if (localStorage.getItem('token')) { // 유저인 경우
     return (
       <div id="wrap">
         <Header />
@@ -36,9 +35,6 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                {/* <div className="row">
-                  <Bangalore />
-                </div> */}
                 <div className="row">
                   <OrderDetails />
                   <SalesReport />
@@ -64,8 +60,9 @@ export default function Home() {
     );
   }
   else{
+    // gogo.push('/login')
     return(
-      <UserLogin/>
+      <Redirect to="/login"/>
     )
   }
 }

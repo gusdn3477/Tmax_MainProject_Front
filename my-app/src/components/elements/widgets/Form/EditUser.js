@@ -1,12 +1,5 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect, useRedf } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Brand from "../brand/Brand";
 
@@ -15,6 +8,7 @@ export default function EditUser() {
   const [address, setAddress] = useState(''); // 주소
   const [addressDetail, setAddressDetail] = useState(''); // 상세주소
   const [isOpenPost, setIsOpenPost] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const gogo = useHistory();
 
@@ -25,7 +19,7 @@ export default function EditUser() {
     email: '',
     password: '',
     confirmPassword: '',
-    phone: '',
+    phoneNum: '',
     name: '',
     address: '',
   })
@@ -48,14 +42,14 @@ export default function EditUser() {
     phoneError: ''
   })
 
-
   useEffect(()=>{
-    fetch(`/hr-service/hr/detail/${localStorage.getItem('userId')}`)
+    fetch(`/user-service/users/${localStorage.getItem('userId')}`)
     .then(res => {
         return res.json();
     })
     .then(data => {
         setValues(data);
+        setLoading(false);
     });
   },[]);
 
@@ -141,7 +135,7 @@ export default function EditUser() {
           password: values.password,
           name: values.name,
           email: values.email,
-          phone: values.phone,
+          phoneNum: values.phone,
           address: values.address
         }),
       }).
@@ -201,6 +195,7 @@ export default function EditUser() {
     deleteUser
   );
 
+  if(loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -219,7 +214,7 @@ export default function EditUser() {
                       onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="성함"
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이름"
                       name="name"
                       value={values.name}
                       onChange={handleChangeForm} />
@@ -238,7 +233,7 @@ export default function EditUser() {
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="휴대폰 번호" name="phone"
-                      value={values.phone}
+                      value={values.phoneNum}
                       onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">

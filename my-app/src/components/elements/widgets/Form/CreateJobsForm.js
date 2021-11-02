@@ -24,18 +24,16 @@ export default function CreateJobsForm() {
     jobType: '',
     jobQualify: '',
     applyStart: '',
+    applyEnd: '',
     employType: '',
     workDetail: '',
-    applyEnd: '',
     intv1Start: '',
     intv1End: '',
     intv2Start: '',
     intv2End: '',
-    
+
     writtenMultiple: '',
-    writtenPass: '',
     intv1Multiple: '',
-    intv1Pass: '',
     intv2Multiple: '',
     intv2Pass: '',
   })
@@ -123,33 +121,46 @@ export default function CreateJobsForm() {
     //console.log(values);
     e.preventDefault();
 
-    const valid = onTextCheck();
+    // const valid = onTextCheck();
 
-    if (!valid) console.error("retry");
+    // if (!valid) console.error("retry");
 
-    else {
+    // else {
 
-      fetch(`/user-service/users`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          userId: values.userId,
-          pwd: values.password,
-          name: values.name,
-          email: values.email,
-          phone: values.phone,
-          address: values.address
-        }),
-      }).
-        then(
-          alert("success"),
-          gogo.push('/')
-          //window.location.href = '/'
-
-        )
-    }
+    fetch(`/job-service/jobs`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        corpNo:localStorage.getItem('corpNo'),
+        empNo: localStorage.getItem('empNo'),
+        jobsTitle: values.jobsTitle,
+        jobsContext: values.jobsContext,
+        recruitNum: values.recruitNum,
+        favoriteLang: values.favoriteLang,
+        jobLocation: values.jobLocation,
+        jobType: values.jobType,
+        employType: values.employType,
+        jobQualify: values.jobQualify,
+        workDetail: values.workDetail,
+        applyStart: values.applyStart,
+        applyEnd: values.applyEnd,
+        intv1Start: values.intv1Start,
+        intv1End: values.intv1End,
+        intv2Start: values.intv2Start,
+        intv2End: values.intv2End,
+        writtenMultiple: values.writtenMultiple,
+        intv1Multiple: values.intv1Multiple,
+        intv2Multiple: values.intv2Multiple
+      }),
+    }).
+      then(
+        alert("success"),
+        gogo.push('/')
+        //window.location.href = '/'
+      )
+    // }
   }
   return (
     <div className="container-scroller">
@@ -158,78 +169,153 @@ export default function CreateJobsForm() {
           <div className="row w-100 mx-0">
             <div className="col-lg-4 mx-auto">
               <div className="auth-form-light text-left py-5 px-4 px-sm-5">
-                <Brand/>
+                <Brand />
                 <h4>공고 등록 페이지</h4>
                 <h6 className="font-weight-light">공고를 등록해 보세요!</h6>
                 <form className="pt-3" onSubmit={handlePutUserLists}>
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" 
-                    name="jobsTitle"
-                    value={values.jobsTitle}
-                    onChange={handleChangeForm}
-                    placeholder="공고명" />
+                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="jobsTitle"
+                      value={values.jobsTitle}
+                      onChange={handleChangeForm}
+                      placeholder="공고명" />
                   </div>
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" 
-                    placeholder="기업명" />
+                    <textarea cols="30" style={{ height: "150px" }} className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="jobsContext"
+                      value={values.jobsContext}
+                      onChange={handleChangeForm}
+                      placeholder="공고 내용"></textarea>
                   </div>
+
                   <div className="form-group">
-                    <textarea cols="30" style={{height:"150px"}} className="form-control form-control-lg" id="exampleInputUsername1" 
-                    name="text"
-                    value={values.jobsContext}
-                    onChange={handleChangeForm}
-                    placeholder="공고 내용"></textarea>
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="recruitNum"
+                      value={values.recruitNum}
+                      onChange={handleChangeForm}
+                      placeholder="채용인원" />
                   </div>
+
                   <div className="form-group">
-                    <select className="form-control form-control-lg" id="exampleFormControlSelect2">
-                      <option>채용 유형</option>
-                      {/* <option>Country</option> */}
-                      <option value="무관">무관</option>
-                      <option value="신입">신입</option>
-                      <option value="경력">경력</option>
-                    </select>
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="jobType"
+                      value={values.jobType}
+                      onChange={handleChangeForm}
+                      placeholder="고용 유형" />
                   </div>
+
                   <div className="form-group">
-                    <select className="form-control form-control-lg" id="exampleFormControlSelect2">
-                      <option>고용 형태</option>
-                      {/* <option>Country</option> */}
-                      <option value="정규직">정규직</option>
-                      <option value="계약직">계약직</option>
-                    </select>
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="employType"
+                      value={values.employType}
+                      onChange={handleChangeForm}
+                      placeholder="고용 형태" />
                   </div>
+
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="채용 인원"
-                     />
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="jobQualify"
+                      value={values.jobQualify}
+                      onChange={handleChangeForm}
+                      placeholder="지원자격" />
                   </div>
+
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="필기 합격 배수" />
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="favoriteLang"
+                      value={values.favoriteLang}
+                      onChange={handleChangeForm}
+                      placeholder="선호 언어" />
                   </div>
+
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="1차 면접 합격 배수" />
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="jobLocation"
+                      value={values.jobLocation}
+                      onChange={handleChangeForm}
+                      placeholder="근무 지역" />
                   </div>
+
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="2차 면접 합격 배수" />
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="workDetail"
+                      value={values.workDetail}
+                      onChange={handleChangeForm}
+                      placeholder="업무내용" />
                   </div>
+
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" placeholder="우대사항" />
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="applyStart"
+                      value={values.applyStart}
+                      onChange={handleChangeForm}
+                      placeholder="지원시작일" />
                   </div>
+
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="지원자격" />
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="applyEnd"
+                      value={values.applyEnd}
+                      onChange={handleChangeForm}
+                      placeholder="지원마감일" />
                   </div>
+
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputUsername1" placeholder="주요 업무" />
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="intv1Start"
+                      value={values.intv1Start}
+                      onChange={handleChangeForm}
+                      placeholder="1차 면접 시작일" />
                   </div>
+
                   <div className="form-group">
-                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1" placeholder="근무 지역" />
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="intv1End"
+                      value={values.intv1End}
+                      onChange={handleChangeForm}
+                      placeholder="1차 면접 마감일" />
                   </div>
-                  <div className="mb-4">
-                    {/* <div className="form-check">
-                      <label className="form-check-label text-muted">
-                        <input type="checkbox" className="form-check-input" />
-                        I agree to all Terms & Conditions
-                      </label>
-                    </div> */}
+
+                  <div className="form-group">
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="intv2Start"
+                      value={values.intv2Start}
+                      onChange={handleChangeForm}
+                      placeholder="2차 면접 시작일" />
                   </div>
+
+                  <div className="form-group">
+                    <input className="form-control form-control-lg" id="exampleInputUsername1"
+                      name="intv2End"
+                      value={values.intv2End}
+                      onChange={handleChangeForm}
+                      placeholder="2차 면접 마감일" />
+                  </div>
+
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1"
+                      name="writtenMultiple"
+                      value={values.writtenMultiple}
+                      onChange={handleChangeForm}
+                      placeholder="필기 합격 배수" />
+                  </div>
+
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1"
+                      name="intv1Multiple"
+                      value={values.intv1Multiple}
+                      onChange={handleChangeForm}
+                      placeholder="1차 면접 합격 배수" />
+                  </div>
+
+                  <div className="form-group">
+                    <input type="text" className="form-control form-control-lg" id="exampleInputEmail1"
+                      name="intv2Multiple"
+                      value={values.intv2Multiple}
+                      onChange={handleChangeForm}
+                      placeholder="2차 면접 합격 배수" />
+                  </div>
+
                   <div className="mt-3">
                     <button type="submit" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">등록하기</button>
                   </div>

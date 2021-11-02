@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import DaumPost from "../../../utilities/DaumPostCode";
 import Brand from "../../elements/widgets/brand/Brand";
 
 export default function UserRegister() {
@@ -15,8 +16,6 @@ export default function UserRegister() {
   const [isOpenPost, setIsOpenPost] = useState(false);
 
   const gogo = useHistory();
-
-  const [usersDatas, setUsersDatas] = useState([]);
 
   const [values, setValues] = useState({
     email: '',
@@ -111,23 +110,22 @@ export default function UserRegister() {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        email : values.email
+        email: values.email
       }),
     }).
-    then(res => res.text()).
-    then(res => {
-      if(res === "true"){
-        alert("이미 등록된 계정입니다.")
-      }
-      else{
-        alert("이 계정은 사용하실 수 있습니다.");
-      }
-    })
+      then(res => res.text()).
+      then(res => {
+        if (res === "true") {
+          alert("이미 등록된 계정입니다.")
+        }
+        else {
+          alert("사용 가능한 이메일입니다.");
+        }
+      })
   }
 
   const handlePutUserLists = (e) => {
-    //alert(usersDatas.length);
-    //console.log(values);
+
     e.preventDefault();
 
     const valid = onTextCheck();
@@ -165,52 +163,68 @@ export default function UserRegister() {
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <Brand/>
+                <Brand />
                 <h4>회원가입</h4>
                 <h6 class="font-weight-light">최소한의 정보로 가입해 보세요.</h6>
                 <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" 
-                    name="name"
-                    value={values.name}
-                    onChange={handleChangeForm}
-                    placeholder="이름" />
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1"
+                      name="name"
+                      value={values.name}
+                      onChange={handleChangeForm}
+                      placeholder="이름" />
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" 
-                    name="email"
-                    value={values.email}
-                    onChange={handleChangeForm}
-                    placeholder="이메일 주소" />
+                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
+                      name="email"
+                      value={values.email}
+                      onChange={handleChangeForm}
+                      placeholder="이메일 주소" />
                   </div>
                   <button class="btn btn-primary" type="button" onClick={checkEmail}>이메일 중복 확인</button>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" 
-                    name="password"
-                    value={values.password}
-                    onChange={handleChangeForm}
-                    placeholder="비밀번호" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
+                      name="password"
+                      value={values.password}
+                      onChange={handleChangeForm}
+                      placeholder="비밀번호" />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword2" 
-                    name="confirmPassword"
-                    value={values.confirmPassword}
-                    onChange={handleChangeForm}
-                    placeholder="비밀번호 확인" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword2"
+                      name="confirmPassword"
+                      value={values.confirmPassword}
+                      onChange={handleChangeForm}
+                      placeholder="비밀번호 확인" />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="phone-number" 
-                    name="phone"
-                    value={values.phone}
-                    onChange={handleChangeForm}
-                    placeholder="휴대폰 번호" />
+                    <input type="text" class="form-control form-control-lg" id="phone-number"
+                      name="phone"
+                      value={values.phone}
+                      onChange={handleChangeForm}
+                      placeholder="휴대폰 번호" />
                   </div>
+                  {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                  </button>
+
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <DaumPost data={address}/>
+                        </div>
+                      </div>
+                    </div>
+                  </div> */}
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="address" 
-                    name="address"
-                    value={values.address}
-                    onChange={handleChangeForm}
-                    placeholder="주소" />
+                    <input type="text" class="form-control form-control-lg" id="address"
+                      name="address"
+                      value={values.address}
+                      onChange={handleChangeForm}
+                      placeholder="주소" />
                   </div>
                   <div class="mb-4">
                     <div class="form-check">
