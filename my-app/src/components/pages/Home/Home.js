@@ -1,23 +1,24 @@
-import React from 'react';
-import Banner from '../../elements/ui/Banner';
-import Header from '../../layout/Header';
-import Footer from '../../layout/Footer';
-import OrderDetails from '../../elements/widgets/Home/OrderDetails';
-import SalesReport from '../../elements/widgets/Home/SalesReport';
-import DetailedReport from '../../elements/widgets/Home/DetailedReport';
-import Projects from '../../elements/widgets/Home/Projects';
-import Notifications from '../../elements/widgets/Home/Charts';
-import Charts from '../../elements/widgets/Home/Notifications';
-import Welcome from '../../elements/widgets/Home/Welcome';
-import { useHistory, Redirect } from 'react-router';
-import { useState } from 'react';
+import React from "react";
+import Banner from "../../elements/ui/Banner";
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
+import OrderDetails from "../../elements/widgets/Home/OrderDetails";
+import SalesReport from "../../elements/widgets/Home/SalesReport";
+import DetailedReport from "../../elements/widgets/Home/DetailedReport";
+import Projects from "../../elements/widgets/Home/Projects";
+import Notifications from "../../elements/widgets/Home/Charts";
+import Charts from "../../elements/widgets/Home/Notifications";
+import Welcome from "../../elements/widgets/Home/Welcome";
+import { useHistory, Redirect } from "react-router";
+import { useState } from "react";
+import Calender from "../../elements/widgets/Home/Calender";
 
 export default function Home() {
-
   const gogo = useHistory();
   const [loading, setLoading] = useState(true);
 
-  if (localStorage.getItem('token')) { // 토큰이 있는 경우
+  if (localStorage.getItem("token")) {
+    // 토큰이 있는 경우
     return (
       <div id="wrap">
         <Header />
@@ -35,6 +36,9 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+
+                <Calender />
+
                 <div className="row">
                   <OrderDetails />
                   <SalesReport />
@@ -42,9 +46,7 @@ export default function Home() {
                 <div className="row">
                   <DetailedReport />
                 </div>
-                <div className="row">
-                  {/* <ToDoList/> */}
-                </div>
+                <div className="row">{/* <ToDoList/> */}</div>
                 <div className="row">
                   <Projects />
                   <Notifications />
@@ -58,11 +60,8 @@ export default function Home() {
         </div>
       </div>
     );
-  }
-  else{
+  } else {
     // gogo.push('/login')
-    return(
-      <Redirect to="/login"/>
-    )
+    return <Redirect to="/login" />;
   }
 }
