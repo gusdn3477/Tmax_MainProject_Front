@@ -23,6 +23,7 @@ export default function HRJobsList() {
       })
   }, []);
 
+
   if (loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">

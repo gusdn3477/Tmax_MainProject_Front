@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
@@ -8,23 +8,31 @@ import JobsDetailForm from '../../elements/widgets/Form/JobsDetailForm';
 export default function JobsDetail() {
 
   const [loading, setLoading] = useState(true);
-  const [ values, setValues ] = useState();
-  const {jobsNo} = useParams();
+  const [values, setValues] = useState();
+  const [process, setProcess] = useState();
+  const { jobsNo } = useParams();
 
-  useEffect(()=>{
+  useEffect(() => {
     fetch(`/job-service/jobs/${jobsNo}`)
-    .then(res => {
-      return res.json();
-    })
-    .then(data => {
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
         console.log(data);
         setValues(data);
-        setLoading(false);
-    }).then(
-    );
-  },[]);
+      }).then(
+        fetch(`/job-service/jobprocess/${jobsNo}`)
+          .then(res => {
+            return res.json();
+          })
+          .then(data=>{
+            setProcess(data);
+            setLoading(false);
+          })
+      );
+  }, []);
 
-  if(loading) return <div>잠시만 기다려 주세요</div>;
+  if (loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />
@@ -35,9 +43,9 @@ export default function JobsDetail() {
           {/* 여기부터 프사 누르면 나오는 메뉴 */}
           <div className="main-panel">
             <div className="content-wrapper">
-                <JobsDetailForm data={values}/>
+              <JobsDetailForm data={values} data2={process} />
             </div>
-            <Footer/>
+            <Footer />
           </div>
         </div>
       </div>
