@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function MyListForm({idx, key, data}) {
 
@@ -19,17 +20,36 @@ export default function MyListForm({idx, key, data}) {
     );
   },[]);
 
-  if(loading) return <div>잠시만 기다려 주세요.</div>
+  if(loading) return <div></div>
   return (
     <tr>
       <td>{idx}</td>
-      <td>{data.jobsNo}</td>
+      <td><Link to={`/jobs/${data.jobsNo}`}>{data.jobsNo}</Link></td>
       <td className="font-weight-bold">{data.corpNo}</td>
       <td>{data.jobsTitle}</td>
-      <td>{data.createdAt}</td>
+      {/* <td>{data.createdAt}</td> */}
       <td>{data.employType}</td>
       <td>{data.jobLocation}</td>
       <td>{data.written_result ? <button type="button" class="btn btn-primary">확인하기</button> : "미정" }</td>
+      <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">내 지원서 보기</button></td>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            ...
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
       {/* <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
       <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
       <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
