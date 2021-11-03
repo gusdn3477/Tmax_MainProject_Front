@@ -10,6 +10,8 @@ export default function Buttons() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage, setPostsPerPage] = useState(10);
 
   useEffect(() => {
     fetch(`/job-service/jobs`)
@@ -18,13 +20,21 @@ export default function Buttons() {
       })
       .then(data => {
         setData(data);
+        console.log(data);
         setLoading(false);
       });
   }, []);
 
-  const filterUse = data.filter((data) => data.closed === 'F');
+  const indexOfLast = currentPage * postsPerPage;
+  const indexOfFirst = indexOfLast - postsPerPage;
 
-  if(loading) return <div>잠시만 기다려 주세요</div>;
+  function currentPosts(tmp) {
+    let currentPosts = 0;
+    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
+    return currentPosts;
+  }
+
+  if (loading) return <div>잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />

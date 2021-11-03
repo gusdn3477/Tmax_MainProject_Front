@@ -18,7 +18,6 @@ import Buttons from "./components/pages/ui-features/buttons";
 import HRList from "./components/pages/hr/HRList";
 import CreateJobs from "./components/pages/jobs/CreateJobs";
 import Written from "./components/pages/process/Written";
-import Interview from "./components/pages/process/Interview";
 import EditHR from "./components/elements/widgets/Form/EditHR";
 import EditUser from "./components/elements/widgets/Form/EditUser";
 import MyList from "./components/pages/ui-features/MyList";
@@ -33,6 +32,11 @@ import HRCreate from "./components/pages/hr/HRCreate";
 import JobsDetail from "./components/pages/jobs/JobsDetail";
 import HRJobsList from "./components/pages/hr/HRJobsList";
 import JobsApplyForm from "./components/elements/widgets/Form/JobsApplyForm";
+import FirstInterview from "./components/pages/process/FirstInterview";
+import SecondInterview from "./components/pages/process/SecondInterview";
+import WrittenScore from "./components/pages/process/WrittenScore";
+import FirstInterviewScore from "./components/pages/process/FIrstInterviewScore";
+import SecondInterviewScore from "./components/pages/process/SecondInterviewScore";
 
 function App() {
   return (
@@ -87,8 +91,12 @@ function App() {
 
         {/* 전형 관리 부분 => 인사담당자 부분이니까*/}
         <Route exact path="/process/written"><Written/></Route>
-        <Route exact path="/process/firstinterview"><Interview/></Route>
-        <Route exact path="/process/secondinterview"><Interview/></Route>
+        <Route exact path="/process/firstinterview"><FirstInterview/></Route>
+        <Route exact path="/process/secondinterview"><SecondInterview/></Route>
+
+        <Route exact path="/process/written/:jobsNo"><WrittenScore/></Route>
+        <Route exact path="/process/first-interview/:jobsNo"><FirstInterviewScore/></Route>
+        <Route exact path="/process/second-interview/:jobsNo"><SecondInterviewScore/></Route>
 
         {/* 공고별 필기 전형자 보기 / 공고별 1,2차 면접 전형자 보기*/}
         {/* <Route exact path="/process/written/:jobsNo/:empNo"><Written/></Route>
