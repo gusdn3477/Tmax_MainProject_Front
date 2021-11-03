@@ -59,6 +59,8 @@ function App() {
         {/* 인사담당자 추가 */}
         <Route exact path="/hr/create"><HRCreate/></Route>
         {/* 인사담당자 상세 조회 -> 일단 보류 */}
+        {/* 이건 기업용(자기 회사 공고만 보임) */}
+        <Route exact path="/hr/jobs"><HRJobsList/></Route>
         {/* <Route exact path="/hr/:hrId"><ProductMake/></Route> */}
         
 
@@ -76,8 +78,6 @@ function App() {
         {/* 공고 관리 부분 */}
         {/* 공고 전체 보기, 이건 유저용 */}
         <Route exact path="/jobs"><Buttons/></Route>
-        {/* 이건 기업용(자기 회사 공고만 보임) */}
-        <Route exact path="/hr/jobs"><HRJobsList/></Route>
         
         {/* <Route exact path="/jobs/list"><JobsList/></Route> */}
         <Route exact path="/jobs/create"><CreateJobs/></Route>
