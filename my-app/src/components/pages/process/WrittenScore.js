@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
-import { useEffect } from 'react';
 import { useParams } from 'react-router';
 import WrittenTableForm from '../../elements/widgets/Form/WrittenTableForm';
 
@@ -10,7 +9,10 @@ export default function WrittenScore() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [writtenPass, setWrittenPass] = useState();
+  const [save, setSave] = useState();
   const { jobsNo } = useParams();
+  const [flag, setFlag] = useState(0);
 
   useEffect(() => {
     fetch(`/process-service/process/written/${jobsNo}`)
@@ -19,83 +21,95 @@ export default function WrittenScore() {
       })
       .then(data => {
         setData(data);
-        setLoading(false);
-      });
-  }, []);
-
-
-  // const checkEmail = () => {
-  //   fetch(`/hr-service/hr/checkemail`, {
-  //     method: "POST",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       email : values.email
-  //     }),
-  //   }).
-  //   then(res => res.text()).
-  //   then(res => {
-  //     if(res === "true"){
-  //       alert("이미 등록된 계정입니다.")
-  //     }
-  //     else{
-  //       alert("사용 가능한 이메일입니다.");
-  //     }
-  //   })
-  // }
-
-  const score = () => {
-    fetch(`/process-service/process/written-test/score`, {
-      method: "PUT",
-      headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          jobsNo : jobsNo
-        }),       
-    })
-      .then(res => {
-        return res.json();
       })
       .then(
+        fetch(`/job-service/jobprocess/${jobsNo}`) // 필기 합격 인원 가져오기
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            setWrittenPass(data);
+            setLoading(false);
+          })
+      );
+  }, []);
+
+  const score = () => {
+    setLoading(true);
+    fetch(`/process-service/process/written-test/score`, { // 점수 매기는 과정.. => 여기서 점수 바뀜
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        jobsNo: jobsNo
+      }),
+    })
+    .then(res => {return res.json()})
+    .then(res =>
+      {
+        console.log('res', res);
+        setSave(res);
+      }
+    )
+      .then(
         fetch(`/process-service/process/written/${jobsNo}`)
-      .then(res => {
-        return res.json();
-      })
-      .then(data => {
-        setData(data);
-        setLoading(false);
-        alert("채점 완료!")
-      })
+          .then(res => {
+            return res.json();
+          })
+          .then(data => {
+            setData(data);
+            setFlag(1);
+            setLoading(false);
+            alert("채점 완료!")
+          })
       )
   }
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
-    fetch(`/process-service/process/written-test/result`, {
-      method: "PUT",
-      headers: {
+    if (flag === 0) {
+      alert("채점 후에 합/불 여부를 가릴 수 있습니다");
+    }
+    else {
+      setLoading(true);
+      fetch(`/process-service/process/written-test/result`, {
+        method: "PUT",
+        headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          jobsNo : jobsNo,
-          empNo : localStorage.getItem('empNo')
-        }),       
-    })
-      .then(res => {
-        return res.json();
+          jobsNo: jobsNo,
+          empNo: localStorage.getItem('empNo'),
+          count: writtenPass.writtenPass
+        }),
       })
-      .then(
-        fetch(`/process-service/process/written/${jobsNo}`)
-      .then(res => {
-        return res.json();
+        .then(
+          fetch(`/process-service/process/written/${jobsNo}`)
+            .then(res => {
+              return res.json();
+            })
+            .then(data => {
+              setFlag(2);
+              setData(data);
+              setLoading(false);
+              alert("합/불 여부 체크 완료")
+            })
+        )
+    }
+  }
+
+  const PassList = () => { // jobprocess 가져올 수 있어야 함
+    if (flag !== 2) {
+      alert("합/불 여부가 정해진 뒤에 합격자 명단을 넘길 수 있습니다.");
+    }
+    else {
+      fetch(`/process-service/process/written-test/${jobsNo}`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        }
       })
-      .then(data => {
-        setData(data);
-        setLoading(false);
-        alert("합/불 여부 체크 완료")
-      })
-      )
+    }
   }
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
@@ -114,18 +128,33 @@ export default function WrittenScore() {
         onCancel();
       }
     };
-
     return confirmAction;
   };
 
   const deleteConfirm = () => 1;
   const cancelConfirm = () => 0;
+
   const confirmScore = useConfirm(
     "채점하시겠습니까?",
     deleteConfirm,
     cancelConfirm,
     score
   );
+
+  const confirmPassOrNot = useConfirm(
+    "합/불 여부를 결정하시겠습니까?",
+    deleteConfirm,
+    cancelConfirm,
+    PassOrNot
+  );
+
+  const confirmPassList = useConfirm(
+    "필기 합격자 명단을 넘기시겠습니까?",
+    deleteConfirm,
+    cancelConfirm,
+    PassList
+  );
+
 
   if (loading) return <div>잠시만 기다려 주세요</div>;
   return (
@@ -162,7 +191,7 @@ export default function WrittenScore() {
                                     idx={idx + 1}
                                     key={item.idx}
                                     data={item}
-                                    setMyList={setData}
+                                    jobsNo={jobsNo}
                                   />
                                 )
                               )
@@ -175,9 +204,9 @@ export default function WrittenScore() {
                 </div>
                 <div>
                   <button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button>
-                  <button type="button" className="btn btn-primary" onClick={confirmScore}>합/불 여부 결정하기</button>
-                  <button type="button" className="btn btn-primary">합격자 명단 넘기기</button>
-              </div>
+                  <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
+                  <button type="button" className="btn btn-primary" onClick={confirmPassList}>합격자 명단 넘기기</button>
+                </div>
               </div>
             </div>
             <Footer />
