@@ -12,6 +12,7 @@ import Brand from "../brand/Brand";
 export default function JobsDetailForm({data, data2}) {
 
   const gogo = useHistory();
+  const [loading, setLoading] = useState(true);
   const {jobsNo} = useParams();
 
   const passListToWritten = (id) => {

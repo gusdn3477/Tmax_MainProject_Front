@@ -16,7 +16,6 @@ export default function MyList() {
       })
       .then(data => {
         setMyList(data);
-        console.log(data);
         setLoading(false);
       });
   }, []);
