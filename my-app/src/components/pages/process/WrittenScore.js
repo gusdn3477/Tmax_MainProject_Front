@@ -10,9 +10,9 @@ export default function WrittenScore() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [writtenPass, setWrittenPass] = useState();
-  const [save, setSave] = useState();
   const { jobsNo } = useParams();
   const [flag, setFlag] = useState(0);
+  const [ready, setReady] = useState(true);
 
   useEffect(() => {
     fetch(`/process-service/process/written/${jobsNo}`)
@@ -36,6 +36,7 @@ export default function WrittenScore() {
 
   const score = () => {
     setLoading(true);
+    setReady(true);
     fetch(`/process-service/process/written-test/score`, { // 점수 매기는 과정.. => 여기서 점수 바뀜
       method: "PUT",
       headers: {
@@ -45,24 +46,28 @@ export default function WrittenScore() {
         jobsNo: jobsNo
       }),
     })
-    .then(res => {return res.json()})
-    .then(res =>
-      {
+      .then(res => {
+        return res.json()
+      })
+      .then(res => {
+        setReady(false);
         console.log('res', res);
-        setSave(res);
+        return res;
       }
-    )
+      )
       .then(
+        res => {
         fetch(`/process-service/process/written/${jobsNo}`)
           .then(res => {
             return res.json();
           })
           .then(data => {
             setData(data);
+            console.log('data', data);
             setFlag(1);
-            setLoading(false);
             alert("채점 완료!")
-          })
+            setLoading(false);
+          })}
       )
   }
 
@@ -82,8 +87,9 @@ export default function WrittenScore() {
           empNo: localStorage.getItem('empNo'),
           count: writtenPass.writtenPass
         }),
-      })
+      }).then(res => res.json())
         .then(
+          res => {
           fetch(`/process-service/process/written/${jobsNo}`)
             .then(res => {
               return res.json();
@@ -93,7 +99,7 @@ export default function WrittenScore() {
               setData(data);
               setLoading(false);
               alert("합/불 여부 체크 완료")
-            })
+            })}
         )
     }
   }

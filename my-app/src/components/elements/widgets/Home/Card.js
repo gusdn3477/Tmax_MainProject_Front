@@ -18,25 +18,25 @@ export default function Card({ idx, key, data, setData }) {
     )
   }
 
-  if (data.closed === 'T') 
-  return (
-    <div className="card" style={{ width: "60rem", margin: "13px" }}>
-      <div>마감된 공고입니다.</div>
-      <div className="card-body">
-        <p classNameName="card-head">{data.jobsTitle}</p>
-        <h5 className="card-title">{data.jobsContext}</h5>
-        <p className="card-text">고용형태 :  {data.jobType}</p>
-        <p className="card-text">채용유형 :  {data.jobQualify}</p>
-        <p className="card-text">지원자격 :  {data.employType}</p>
-        {data.applyStart && data.applyEnd ?
-          <p className="card-text">지원기간 : {(data.applyStart).substring(0, 10)} ~ {(data.applyEnd).substring(0, 10)}</p> : ""
-        }
-        <Link to={`/jobs/${data.jobsNo}`}>
-          <button type="button" className="btn btn-primary">공고보기</button>
-        </Link>
+  if (data.closed === 'T')
+    return (
+      <div className="card" style={{ width: "60rem", margin: "13px" }}>
+        <div>마감된 공고입니다.</div>
+        <div className="card-body">
+          <h5 className="card-title">{data.jobsTitle}</h5>
+          <h6 className="card-text">{data.jobsContext}</h6>
+          <p className="card-text">고용형태 :  {data.jobType}</p>
+          <p className="card-text">채용유형 :  {data.jobQualify}</p>
+          <p className="card-text">지원자격 :  {data.employType}</p>
+          {data.applyStart && data.applyEnd ?
+            <p className="card-text">지원기간 : {(data.applyStart).substring(0, 10)} ~ {(data.applyEnd).substring(0, 10)}</p> : ""
+          }
+          <Link to={`/jobs/${data.jobsNo}`}>
+            <button type="button" className="btn btn-primary">공고보기</button>
+          </Link>
+        </div>
       </div>
-    </div>
-  );
+    );
 
   else {
     return (

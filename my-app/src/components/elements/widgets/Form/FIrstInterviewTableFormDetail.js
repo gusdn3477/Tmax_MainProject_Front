@@ -75,12 +75,11 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo }) {
   return (
     <tr>
       <td>{idx}</td>
-      <td>{data.applyNum}</td>
-      <td><input type="text" class="form-control" id="exampleInputPassword1" name="score" onChange={handleChangeForm} />
-      <button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
-      <td>{data.firstInterviewScore}</td>
-      <td>{data.firstInterviewResult}</td>
-      <td>{data.firstInterviewer}</td>
+      <td>{values.applyNum}</td>
+      <td><input type="text" class="form-control" id="exampleInputPassword1" name="score" onChange={handleChangeForm} /></td>
+      <td>{values.firstInterviewScore}</td>
+      <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
+      <td>{values.firstInterviewer}</td>
     </tr>
   );
 }

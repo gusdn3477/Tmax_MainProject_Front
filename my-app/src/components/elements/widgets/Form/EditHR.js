@@ -1,8 +1,3 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import Brand from "../brand/Brand";

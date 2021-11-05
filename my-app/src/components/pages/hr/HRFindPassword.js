@@ -1,8 +1,4 @@
-import { Fragment } from "react";
-import Banner from "../../elements/ui/Banner";
 import HRFindPasswordForm from "../../elements/widgets/Form/HRFindPasswordForm";
-import Footer from "../../layout/Footer";
-import Header from "../../layout/Header";
 
 export default function HRFindPassword() {
 

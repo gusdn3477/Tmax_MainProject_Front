@@ -3,9 +3,8 @@
 // import Bread from '../../elements/ui/Bread';
 // import RegisterForm from '../../elements/widgets/Form/Register';
 // import { Fragment } from 'react';
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import Brand from "../brand/Brand";
 
