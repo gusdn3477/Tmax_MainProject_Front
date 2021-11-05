@@ -67,27 +67,6 @@ export default function WrittenTable() {
     )
   }
 
-  // const handleDelete = (id) => {
-  //   fetch(`/hr-service/hr`, {
-  //     method: "DELETE",
-  //     headers: {
-  //       "Content-Type" : "application/json"
-  //     },
-  //     body: JSON.stringify({
-  //       empNo:empNo // 확실하지 않음 되면 이걸로 사용
-  //     })
-  //   }).then(
-  //     alert("삭제 되었습니다!"),
-  //     fetch(`/hr-service/hr`)
-  //       .then(res => {
-  //         return res.json();
-  //       })
-  //       .then(data => {
-  //         setMyList(data);
-  //       })
-  //   )
-  // }
-
   return (
     <div className="col-md-12 grid-margin stretch-card">
       <div className="card">

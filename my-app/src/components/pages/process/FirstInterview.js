@@ -31,6 +31,7 @@ export default function FirstInterview() {
           <Banner />
           <div className="main-panel">
             <div className="content-wrapper">
+            <div class="alert alert-primary" role="alert">마감된 공고만 보입니다.</div>
               <div className="row">
                 {
                   data.length > 0 && data.map(
@@ -53,28 +54,6 @@ export default function FirstInterview() {
         </div>
       </div>
     </div>
-
-  // if (loading) return <div>잠시만 기다려 주세요</div>;
-
-  // return (
-  //   <div id="wrap">
-  //     <Header />
-  //     <div className="container-scroller">
-  //       <div className="container-fluid page-body-wrapper">
-  //         {/* Banner는 왼쪽에 있는 리스트 형식의 메뉴 */}
-  //         <Banner />
-  //         {/* 여기부터 프사 누르면 나오는 메뉴 */}
-  //         <div className="main-panel">
-  //           <div className="content-wrapper">
-  //             <div className="row">
-  //               <WrittenTable/>
-  //             </div>
-  //           </div>
-  //           <Footer />
-  //         </div>
-  //       </div>
-  //     </div>
-  //   </div>
 
   );
 }

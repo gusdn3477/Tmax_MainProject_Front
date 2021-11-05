@@ -12,7 +12,6 @@ import Brand from "../brand/Brand";
 export default function JobsDetailForm({data, data2}) {
 
   const gogo = useHistory();
-  const [loading, setLoading] = useState(true);
   const {jobsNo} = useParams();
 
   const passListToWritten = (id) => {
@@ -97,9 +96,9 @@ export default function JobsDetailForm({data, data2}) {
                   <div className="mt-3">
                     <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={confirmDelete}>마감하기</button>
                   </div>
-                  <div className="mt-3">
+                  {/* <div className="mt-3">
                     <button type="button" className="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">수정하기</button>
-                  </div>
+                  </div> */}
                   <div className="mt-3">
                     <button type="button" className="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn">삭제하기</button>
                   </div></Fragment> : ''}

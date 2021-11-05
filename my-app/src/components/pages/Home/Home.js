@@ -38,21 +38,6 @@ export default function Home() {
                 </div>
 
                 <Calender />
-
-                <div className="row">
-                  <OrderDetails />
-                  <SalesReport />
-                </div>
-                <div className="row">
-                  <DetailedReport />
-                </div>
-                <div className="row">{/* <ToDoList/> */}</div>
-                <div className="row">
-                  <Projects />
-                  <Notifications />
-                  <Charts />
-                  {/* <Bar/> */}
-                </div>
               </div>
               <Footer />
             </div>

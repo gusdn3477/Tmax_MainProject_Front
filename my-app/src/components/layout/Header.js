@@ -13,9 +13,6 @@ export default function Header() {
         <Link className="navbar-brand brand-logo-mini" to="/"><img src={Img2} alt="logo" /></Link>
       </div>
       <div className="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button className="navbar-toggler navbar-toggler align-self-center" type="button" data-bs-toggle="minimize">
-          <span className="icon-menu"></span>
-        </button>
         <ul className="navbar-nav mr-lg-2">
           <li className="nav-item nav-search d-none d-lg-block">
             <div className="input-group">
@@ -29,7 +26,7 @@ export default function Header() {
           </li>
         </ul>
         <ul className="navbar-nav navbar-nav-right">
-          <NotificationMenu />
+          {/* <NotificationMenu /> */}
           <NavProfile />
           {/* <SideMenu /> */}
         </ul>

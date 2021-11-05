@@ -31,6 +31,7 @@ export default function Written() {
           <Banner />
           <div className="main-panel">
             <div className="content-wrapper">
+            <div class="alert alert-primary" role="alert">마감된 공고만 보입니다.</div>
               <div className="row">
                 {
                   data.length > 0 && data.map(
