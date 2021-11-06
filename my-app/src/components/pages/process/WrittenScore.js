@@ -162,7 +162,7 @@ export default function WrittenScore() {
   );
 
 
-  if (loading) return <div>잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />
@@ -209,9 +209,17 @@ export default function WrittenScore() {
                   </div>
                 </div>
                 <div>
-                  <button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button>
-                  <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
-                  <button type="button" className="btn btn-primary" onClick={confirmPassList}>합격자 명단 넘기기</button>
+                  <form class="row gy-2 gx-3 align-items-center" style={{marginTop:"-22px", float:"right"}}>
+                    <div class="col-auto">
+                      <button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button>
+                    </div>
+                    <div class="col-auto">
+                      <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
+                    </div>
+                    <div class="col-auto" style={{marginRight:"10px"}}>
+                      <button type="button" className="btn btn-primary" onClick={confirmPassList}>합격자 명단 넘기기</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>
