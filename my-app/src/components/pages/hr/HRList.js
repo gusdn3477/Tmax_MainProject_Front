@@ -20,7 +20,7 @@ export default function HRList() {
       });
   }, []);
 
-  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />
@@ -34,8 +34,8 @@ export default function HRList() {
               <div className="row">
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
-                    <div className="card-body">
-                      <p className="card-title mb-0">인사담당자 명단</p>
+                    <div className="card-body2">
+                      <p className="card-title mb-3 ">인사담당자 명단</p>
                       <div className="table-responsive">
                         <table className="table table-striped table-borderless">
                           <thead>

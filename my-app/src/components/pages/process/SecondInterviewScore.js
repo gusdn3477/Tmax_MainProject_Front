@@ -151,8 +151,8 @@ export default function SecondInterviewScore() {
     PassList
   );
 
-
-  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
+// class="spinner-border text-primary" role="status"
+if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />

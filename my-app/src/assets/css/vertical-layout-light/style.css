@@ -10407,8 +10407,9 @@ pre code {
 }
 
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(245, 247, 255, 0.05);
 }
+
 
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
@@ -13817,6 +13818,12 @@ input[type="button"].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+}
+
+.card-body2 {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 2.25rem 1.50rem;
 }
 
 .card-title {
