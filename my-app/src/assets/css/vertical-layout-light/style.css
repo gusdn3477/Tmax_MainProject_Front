@@ -22593,7 +22593,7 @@ code {
   border-left: 0;
   border-bottom: 0;
   font: normal normal normal 24px/1 "themify";
-  content: "\e64b";
+  /* content: "\e64b"; */
   width: auto;
   height: auto;
   vertical-align: middle;
@@ -26756,7 +26756,7 @@ table.dataTable tbody td.select-checkbox:after {
 }
 
 .fc .fc-button-group .fc-button {
-  background-color: #596fc5;
+  background-color: #ffffff;
   margin: 0;
 }
 
