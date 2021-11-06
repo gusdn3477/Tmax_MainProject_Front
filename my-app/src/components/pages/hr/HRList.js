@@ -45,8 +45,8 @@ export default function HRList() {
                               <th>이메일</th>
                               <th>인사담당자 코드</th>
                               <th>직급</th>
-                              <th>관리자 허가</th>
-                              <th>삭제하기</th>
+                              <th style={{textAlign:"center"}}>관리자 허가</th>
+                              <th style={{textAlign:"center"}}>삭제하기</th>
                             </tr>
                           </thead>
                           <tbody>

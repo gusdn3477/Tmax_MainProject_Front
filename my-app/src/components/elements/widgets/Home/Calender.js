@@ -84,7 +84,7 @@ export default function Calender() {
           },
         }}
         events={events}
-        eventColor="red"
+        eventColor="#596fc5"
         nowIndicator
         dateClick={(e) => console.log(e.dateStr)}
         eventClick={(e) => console.log(e.event.id)}

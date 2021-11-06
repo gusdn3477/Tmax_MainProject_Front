@@ -140,7 +140,8 @@ export default function FirstInterviewScore() {
                   </div>
                 </div>
                 <div>
-                  <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
+                  <button type="button" className="btn btn-primary" 
+                  style={{marginTop:"-22px", marginRight:"10px", float:"right"}} onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
                 </div>
               </div>
             </div>
