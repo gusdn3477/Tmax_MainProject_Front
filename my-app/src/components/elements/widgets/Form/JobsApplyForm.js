@@ -65,7 +65,7 @@ export default function JobsApplyForm() {
     });
   }
 
-  if(loading) return <div>잠시만 기다려 주세요</div>
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div className="container-scroller">
       <div className="container-fluid page-body-wrapper full-page-wrapper">

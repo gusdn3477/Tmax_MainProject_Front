@@ -33,7 +33,7 @@ export default function Welcome() {
     }
   }, []);
 
-  if(loading) return <div>불러오는 중입니다.</div>
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div className="col-md-12 grid-margin">
       <div className="row">

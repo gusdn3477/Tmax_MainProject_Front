@@ -27,12 +27,14 @@ export default function JobsDetail() {
           })
           .then(data=>{
             setProcess(data);
-            setLoading(false);
-          })
+          }).then(res => {
+            return res;
+          }).then(res => 
+            setLoading(false))
       );
   }, []);
 
-  if (loading) return <div>잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />
