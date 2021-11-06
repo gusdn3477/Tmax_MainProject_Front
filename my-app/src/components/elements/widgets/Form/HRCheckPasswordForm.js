@@ -96,15 +96,21 @@ export default function HRCheckPasswordForm() {
   }
   
   return (
+    
     <div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@300;400,500&display=swap" rel="stylesheet"></link>
+
+
+      <div class="container-fluid page-body-wrapper full-page-wrapper" style={{fontFamily:"IBM Plex Sans KR", fontWeight:"500"}}>
+        <div class="content-wrapper d-flex align-items-center auth px-10">
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
-              <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="auth-form-light text-left  px-4 px-sm-5" style={{paddingTop: "6rem", paddingBottom:"6rem"}}>
                 <Brand />
-                <h4>비밀번호 확인</h4>
-                <h6 class="font-weight-light">비밀번호가 일치해야 회원정보 수정 페이지로 넘어갈 수 있습니다.</h6>
+                <h3 class="font-weight-bold">비밀번호 확인</h3>
+                <h6 >비밀번호가 일치해야 회원정보 수정 페이지로 넘어갈 수 있습니다.</h6>
                 <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호"
