@@ -62,8 +62,8 @@ export default function JobsDetailForm({data, data2}) {
                 <Brand />
                 <h4>{data?.jobsTitle}</h4>
                 <form className="pt-3" >
-                  <div className="form-group">
-                    {data?.jobsContext}
+                  <div className="form-group" style={{marginBottom:"2rem"}}>
+                    {data.jobsContext}
                   </div>
                   <div className="form-group">
                     채용 형태 : {data?.employType}
