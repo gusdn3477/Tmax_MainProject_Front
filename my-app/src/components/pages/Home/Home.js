@@ -12,7 +12,7 @@ import Welcome from "../../elements/widgets/Home/Welcome";
 import { useHistory, Redirect } from "react-router";
 import { useState } from "react";
 import Calender from "../../elements/widgets/Home/Calender";
-
+import ApplyCount from "../../elements/widgets/Home/ApplyCount";
 export default function Home() {
   const gogo = useHistory();
   const [loading, setLoading] = useState(true);
@@ -36,23 +36,28 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-
-                <Calender />
+                {/* <div className="row">
+                  <ApplyCount />
+                </div> */}
 
                 <div className="row">
+                  <Calender />
+                </div>
+
+                {/* <div className="row">
                   <OrderDetails />
                   <SalesReport />
-                </div>
-                <div className="row">
+                </div> */}
+                {/* <div className="row">
                   <DetailedReport />
-                </div>
+                </div> */}
                 <div className="row">{/* <ToDoList/> */}</div>
-                <div className="row">
+                {/* <div className="row">
                   <Projects />
                   <Notifications />
                   <Charts />
-                  {/* <Bar/> */}
-                </div>
+                   <Bar/> 
+                </div> */}
               </div>
               <Footer />
             </div>
