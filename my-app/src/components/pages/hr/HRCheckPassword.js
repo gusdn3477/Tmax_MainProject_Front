@@ -1,15 +1,4 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import LoginForm from '../../elements/widgets/Form/Login';
-// import { Fragment } from 'react';
-import { useState, useEffect } from "react";
-import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import Banner from "../../elements/ui/Banner";
 import HRCheckPasswordForm from "../../elements/widgets/Form/HRCheckPasswordForm";
-import Footer from "../../layout/Footer";
-import Header from "../../layout/Header";
 
 export default function HRCheckPassword() {
 

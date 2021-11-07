@@ -12,7 +12,6 @@ import Brand from "../brand/Brand";
 export default function JobsDetailForm({data, data2}) {
 
   const gogo = useHistory();
-  const [loading, setLoading] = useState(true);
   const {jobsNo} = useParams();
 
   const passListToWritten = (id) => {
@@ -61,35 +60,35 @@ export default function JobsDetailForm({data, data2}) {
             <div className="col-lg-4 mx-auto">
               <div className="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand />
-                <h4>{data.jobsTitle}</h4>
+                <h4>{data?.jobsTitle}</h4>
                 <form className="pt-3" >
                   <div className="form-group">
-                    {data.jobsContext}
+                    {data?.jobsContext}
                   </div>
                   <div className="form-group">
-                    채용 형태 : {data.employType}
+                    채용 형태 : {data?.employType}
                   </div>
                   <div className="form-group">
-                    고용 형태 : {data.jobType}
+                    고용 형태 : {data?.jobType}
                   </div>
                   <div className="form-group">
-                    지원 자격 : {data.jobQualify}
+                    지원 자격 : {data?.jobQualify}
                   </div>
                   <div className="form-group">
-                    채용인원 : {data.recruitNum}명
+                    채용인원 : {data?.recruitNum}명
                   </div>
                   <div className="form-group">
-                    우대언어 : {data.favoriteLang}
+                    우대언어 : {data?.favoriteLang}
                   </div>
                   <div className="form-group">
-                    근무지역 : {data.jobLocation}
+                    근무지역 : {data?.jobLocation}
                   </div>
                   <div className="form-group">
-                    상세 내용 : {data.workDetail}
+                    상세 내용 : {data?.workDetail}
                   </div>
-                  {data.applyStart && data.applyEnd ? 
+                  {data?.applyStart && data?.applyEnd ? 
                   <div className="form-group">
-                    모집 기간 : {(data.applyStart).substr(0,10)} ~ {(data.applyEnd).substr(0,10)}
+                    모집 기간 : {(data?.applyStart).substr(0,10)} ~ {(data?.applyEnd).substr(0,10)}
                   </div> : ''}
 
                   {localStorage.getItem('empNo') ? 
@@ -97,9 +96,9 @@ export default function JobsDetailForm({data, data2}) {
                   <div className="mt-3">
                     <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={confirmDelete}>마감하기</button>
                   </div>
-                  <div className="mt-3">
+                  {/* <div className="mt-3">
                     <button type="button" className="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">수정하기</button>
-                  </div>
+                  </div> */}
                   <div className="mt-3">
                     <button type="button" className="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn">삭제하기</button>
                   </div></Fragment> : ''}

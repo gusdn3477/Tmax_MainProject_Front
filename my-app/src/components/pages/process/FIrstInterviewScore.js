@@ -9,7 +9,7 @@ export default function FirstInterviewScore() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [writtenPass, setWrittenPass] = useState();
+  const [firstInterviewPass, setFirstInterviewPass] = useState();
   const { jobsNo } = useParams();
   const [flag, setFlag] = useState(0);
 
@@ -22,90 +22,45 @@ export default function FirstInterviewScore() {
         setData(data);
       })
       .then(
-        fetch(`/job-service/jobprocess/${jobsNo}`) // 필기 합격 인원 가져오기
+        fetch(`/job-service/jobprocess/${jobsNo}`) // 1차 합격 인원 가져오기
           .then(res => {
             return res.json();
           })
           .then(data => {
-            setWrittenPass(data);
+            setFirstInterviewPass(data);
+            console.log(data);
             setLoading(false);
           })
       );
   }, []);
 
-  const score = () => {
+
+  const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);
-    fetch(`/process-service/process/written-test/score`, {
+    fetch(`/process-service/process/written-test/result`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        jobsNo: jobsNo
+        jobsNo: jobsNo,
+        empNo: localStorage.getItem('empNo'),
+        count: firstInterviewPass.firstInterviewPass
       }),
-    })
-      .then(res => {
-        return res.json();
-      })
+    }).then(res => res.json)
       .then(
-        fetch(`/process-service/process/written/${jobsNo}`)
-          .then(res => {
-            return res.json();
-          })
-          .then(data => {
-            setData(data);
-            console.log(data);
-            setFlag(1);
-            setLoading(false);
-            alert("채점 완료!")
-          })
-      )
-  }
-
-  const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
-    if (flag === 0) {
-      alert("채점 후에 합/불 여부를 가릴 수 있습니다");
-    }
-    else {
-      setLoading(true);
-      fetch(`/process-service/process/written-test/result`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          jobsNo: jobsNo,
-          empNo: localStorage.getItem('empNo'),
-          count: writtenPass.writtenPass
-        }),
-      })
-        .then(
-          fetch(`/process-service/process/written/${jobsNo}`)
+        res => {
+          fetch(`/process-service/process/first-interview/${jobsNo}`)
             .then(res => {
               return res.json();
             })
             .then(data => {
-              setFlag(2);
               setData(data);
               setLoading(false);
               alert("합/불 여부 체크 완료")
             })
-        )
-    }
-  }
-
-  const PassList = () => { // jobprocess 가져올 수 있어야 함
-    if (flag !== 2) {
-      alert("합/불 여부가 정해진 뒤에 합격자 명단을 넘길 수 있습니다.");
-    }
-    else {
-      fetch(`/process-service/process/written-test/${jobsNo}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
         }
-      })
-    }
+      )
   }
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
@@ -130,13 +85,6 @@ export default function FirstInterviewScore() {
   const deleteConfirm = () => 1;
   const cancelConfirm = () => 0;
 
-  const confirmScore = useConfirm(
-    "채점하시겠습니까?",
-    deleteConfirm,
-    cancelConfirm,
-    score
-  );
-
   const confirmPassOrNot = useConfirm(
     "합/불 여부를 결정하시겠습니까?",
     deleteConfirm,
@@ -144,15 +92,7 @@ export default function FirstInterviewScore() {
     PassOrNot
   );
 
-  const confirmPassList = useConfirm(
-    "필기 합격자 명단을 넘기시겠습니까?",
-    deleteConfirm,
-    cancelConfirm,
-    PassList
-  );
-
-
-  if (loading) return <div>잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />
@@ -174,6 +114,7 @@ export default function FirstInterviewScore() {
                             <tr>
                               <th>번호</th>
                               <th>수험번호</th>
+                              <th>점수 입력</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
                               <th>채점자 인사코드</th>
@@ -199,9 +140,8 @@ export default function FirstInterviewScore() {
                   </div>
                 </div>
                 <div>
-                  <button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button>
-                  <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
-                  <button type="button" className="btn btn-primary" onClick={confirmPassList}>합격자 명단 넘기기</button>
+                  <button type="button" className="btn btn-primary" 
+                  style={{marginTop:"-22px", marginRight:"10px", float:"right"}} onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
                 </div>
               </div>
             </div>

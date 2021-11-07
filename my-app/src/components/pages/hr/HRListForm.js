@@ -70,6 +70,7 @@ export default function HRListForm({ idx, key, data, setMyList }) {
       <td>{data.name}</td>
       <td className="font-weight-bold">{data.email}</td>
       <td>{data.empNo}</td>
+
       <td className="font-weight-bold">
         {data.parents === "admin" ? "슈퍼" : "일반"}
       </td>
@@ -83,6 +84,11 @@ export default function HRListForm({ idx, key, data, setMyList }) {
           삭제하기
         </button>
       </td>
+
+      <td className="font-weight-bold">{data.parents === "admin" ? "슈퍼" : "일반"}</td>
+      <td className="font-weight-bold" style={{textAlign:"center"}}>{data.auth === "true" ? "허가" : "불허"}</td>
+      <td className="font-weight-medium" style={{textAlign:"center"}}><button type="button" class="btn btn-outline-danger" onClick={() => confirmDelete()}>삭제하기</button></td>
+
     </tr>
   );
 }

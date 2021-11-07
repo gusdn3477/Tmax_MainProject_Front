@@ -3,7 +3,7 @@ import Banner from '../../elements/ui/Banner';
 import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import { useParams } from 'react-router';
-import SecondInterviewTableForm from '../../elements/widgets/Form/SecondInterviewTableForm copy';
+import SecondInterviewTableForm from '../../elements/widgets/Form/SecondInterviewTableForm';
 
 export default function SecondInterviewScore() {
 
@@ -35,7 +35,7 @@ export default function SecondInterviewScore() {
 
   const score = () => {
     setLoading(true);
-    fetch(`/process-service/process/written-test/score`, {
+    fetch(`/process-service/process/second-interview/score`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ export default function SecondInterviewScore() {
         return res.json();
       })
       .then(
-        fetch(`/process-service/process/written/${jobsNo}`)
+        fetch(`/process-service/process/second-interview/${jobsNo}`)
           .then(res => {
             return res.json();
           })
@@ -152,7 +152,7 @@ export default function SecondInterviewScore() {
   );
 
 
-  if (loading) return <div>잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />
@@ -199,9 +199,14 @@ export default function SecondInterviewScore() {
                   </div>
                 </div>
                 <div>
-                  <button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button>
-                  <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
-                  <button type="button" className="btn btn-primary" onClick={confirmPassList}>합격자 명단 넘기기</button>
+                  <form class="row gy-2 gx-3 align-items-center" style={{marginTop:"-22px", float:"right"}}>                 
+                    <div class="col-auto">
+                      <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
+                    </div>
+                    <div class="col-auto" style={{marginRight:"10px"}}>
+                      <button type="button" className="btn btn-primary" onClick={confirmPassList}>합격자 명단 넘기기</button>
+                    </div>
+                  </form>
                 </div>
               </div>
             </div>

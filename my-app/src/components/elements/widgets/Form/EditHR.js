@@ -1,8 +1,3 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import Brand from "../brand/Brand";
@@ -171,7 +166,7 @@ export default function EditHR() {
     deleteHR
   );
 
-  if(loading) return <div>잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">

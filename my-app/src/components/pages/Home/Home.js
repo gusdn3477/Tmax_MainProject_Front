@@ -2,12 +2,6 @@ import React from "react";
 import Banner from "../../elements/ui/Banner";
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
-import OrderDetails from "../../elements/widgets/Home/OrderDetails";
-import SalesReport from "../../elements/widgets/Home/SalesReport";
-import DetailedReport from "../../elements/widgets/Home/DetailedReport";
-import Projects from "../../elements/widgets/Home/Projects";
-import Notifications from "../../elements/widgets/Home/Charts";
-import Charts from "../../elements/widgets/Home/Notifications";
 import Welcome from "../../elements/widgets/Home/Welcome";
 import { useHistory, Redirect } from "react-router";
 import { useState } from "react";
@@ -36,6 +30,7 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
+
                 {/* <div className="row">
                   <ApplyCount />
                 </div> */}
@@ -58,6 +53,10 @@ export default function Home() {
                   <Charts />
                    <Bar/> 
                 </div> */}
+
+
+                <Calender />
+
               </div>
               <Footer />
             </div>

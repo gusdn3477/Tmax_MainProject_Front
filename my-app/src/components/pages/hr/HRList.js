@@ -20,7 +20,7 @@ export default function HRList() {
       });
   }, []);
 
-  if(loading) return <div>잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />
@@ -45,8 +45,8 @@ export default function HRList() {
                               <th>이메일</th>
                               <th>인사담당자 코드</th>
                               <th>직급</th>
-                              <th>관리자 허가</th>
-                              <th>삭제하기</th>
+                              <th style={{textAlign:"center"}}>관리자 허가</th>
+                              <th style={{textAlign:"center"}}>삭제하기</th>
                             </tr>
                           </thead>
                           <tbody>

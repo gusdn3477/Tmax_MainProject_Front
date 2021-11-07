@@ -52,6 +52,10 @@ export default function Calender() {
         week
         eventColor="sky"
         eventTextColor="black"
+
+        eventColor="#596fc5"
+        nowIndicator
+
         dateClick={(e) => console.log(e.dateStr)}
         eventClick={(e) => console.log(e.event.id)}
       />

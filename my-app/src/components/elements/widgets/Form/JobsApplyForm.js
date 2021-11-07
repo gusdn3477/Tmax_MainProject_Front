@@ -3,9 +3,8 @@
 // import Bread from '../../elements/ui/Bread';
 // import RegisterForm from '../../elements/widgets/Form/Register';
 // import { Fragment } from 'react';
-import { useState, useEffect, Fragment } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import Brand from "../brand/Brand";
 
@@ -66,7 +65,7 @@ export default function JobsApplyForm() {
     });
   }
 
-  if(loading) return <div>잠시만 기다려 주세요</div>
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div className="container-scroller">
       <div className="container-fluid page-body-wrapper full-page-wrapper">
