@@ -50,7 +50,7 @@ export default function Card({ idx, key, data, setData }) {
           {data.applyStart && data.applyEnd ?
             <p className="card-text">지원기간 : {(data.applyStart).substring(0, 10)} ~ {(data.applyEnd).substring(0, 10)}</p> : ""
           }
-          <Link to={`/jobs/${data.jobsNo}`}>
+          <Link to={`/jobs/${data?.jobsNo}`}>
             <button type="button" className="btn btn-primary">공고보기</button>
           </Link>
         </div>
