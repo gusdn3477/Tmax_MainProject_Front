@@ -22140,7 +22140,7 @@ code {
 .card-inverse-info {
   background: rgba(36, 138, 253, 0.2);
   border: 1px solid #217fe9;
-  color: #1b69c0;
+  color: #001fff;
 }
 
 .card-inverse-warning {
@@ -30714,4 +30714,15 @@ div.tagsinput span.tag a {
   /* 사용할 폰트의 기본 스타일 */
   font-weight: normal;
   font-style: normal;
+}
+.card-inverse-info-position {
+  margin: 1rem -25px 0px;
+  text-align: center;
+  padding: 0.4rem;
+}
+.google-font-force_l {
+  font-family: "google_l" !important;
+}
+.google-font-force_mid {
+  font-family: "google_mid" !important;
 }

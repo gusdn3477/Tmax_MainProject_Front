@@ -62,7 +62,7 @@ export default function JobsDetailForm({data, data2}) {
                 <Brand />
                 <h3>{data.jobsTitle}</h3>
                 <form className="pt-3" >
-                  <div className="form-group"style={{marginBottom:"2rem"}}>
+                  <div className="form-group" style={{marginBottom:"2rem"}}>
                     {data.jobsContext}
                   </div>
                   <div className="form-group">
