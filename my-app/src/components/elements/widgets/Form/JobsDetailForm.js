@@ -22,6 +22,29 @@ export default function JobsDetailForm({ data, data2 }) {
       alert("마감 완료!")
     );
   };
+  const handleDelete = (id) => {
+    if (localStorage.getItem('empNo') == data?.empNo){
+      fetch(`/job-service/jobs`, {
+      // body에 넣어야 함
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          empNo: localStorage.getItem('empNo'),
+          jobsNo : jobsNo
+        }),
+    }).then(
+      //예외처리 있으면 좋을 듯
+      alert("삭제 완료!"),
+      fetch(`/job-service/jobs}`)
+    );
+  }
+  else{
+    alert("공고생성자 외에는 삭제할수 없습니다")
+  }
+}
+  
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -45,11 +68,17 @@ export default function JobsDetailForm({ data, data2 }) {
 
   const deleteConfirm = () => 1;
   const cancelConfirm = () => 0;
-  const confirmDelete = useConfirm(
+  const confirmEnd = useConfirm(
     "해당 공고를 마감하시겠습니까?",
     deleteConfirm,
     cancelConfirm,
     passListToWritten
+  );
+  const confirmDelete = useConfirm(
+    "해당 공고를 삭제하시겠습니까?",
+    deleteConfirm,
+    cancelConfirm,
+    handleDelete
   );
 
   return (
@@ -100,7 +129,7 @@ export default function JobsDetailForm({ data, data2 }) {
                           <button
                             type="button"
                             className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                            onClick={confirmDelete}
+                            onClick={confirmEnd}
                           >
                             마감하기
                           </button>
@@ -112,6 +141,7 @@ export default function JobsDetailForm({ data, data2 }) {
                           <button
                             type="button"
                             className="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn"
+                            onClick={confirmDelete}                          
                           >
                             삭제하기
                           </button>
