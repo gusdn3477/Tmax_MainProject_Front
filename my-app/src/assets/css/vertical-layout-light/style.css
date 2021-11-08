@@ -9273,7 +9273,9 @@ pre code {
 
 .row-cols-2 > * {
   flex: 0 0 50%;
-  max-width: 50%;
+  max-width: 47%;
+  margin-bottom: 1rem;
+  margin-top: 1rem;
 }
 
 .row-cols-3 > * {
@@ -10180,7 +10182,7 @@ pre code {
 }
 
 .table-striped tbody tr:nth-of-type(odd) {
-  background-color: #F5F7FF;
+  background-color: #c4aef342;
 }
 
 .table-hover tbody tr:hover {
@@ -22008,9 +22010,11 @@ code {
 
 .card .card-title {
   color: #010101;
-  margin-bottom: 1.2rem;
+  margin-left: .5rem;
+  margin-top: 1.2rem;
+  margin-bottom: 1.5rem;
   text-transform: capitalize;
-  font-size: 1.125rem;
+  font-size: 1.5rem;
   font-weight: 600;
 }
 
@@ -22021,13 +22025,35 @@ code {
 }
 
 .card .card-description {
-  margin-bottom: .875rem;
+  margin-left: .5rem;
+  margin-bottom: 1.2rem;
   font-weight: 400;
-  color: #76838f;
+  color: #64686a;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  font-family: "google_mid";
+  background: aliceblue;
+}
+
+.card .card-text-end {
+  margin-bottom: .5rem;
+  margin-left: .5rem;
+  font-weight: 400;
+  font-size: 1rem;
+  color: #9fa5ab;
+}
+
+.card .card-text-ing {
+  margin-left: .5rem;
+  margin-bottom: .5rem;
+  margin-top: .8rem;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #000000;
 }
 
 .card.card-outline-success {
-  border: 1px solid #57B657;
+  border: 2px solid #2a27c9;
 }
 
 .card.card-outline-primary {
@@ -22139,7 +22165,7 @@ code {
 
 .card-inverse-info {
   background: rgba(36, 138, 253, 0.2);
-  border: 1px solid #217fe9;
+  /* border: 1px solid #217fe9; */
   color: #001fff;
 }
 
@@ -30716,9 +30742,9 @@ div.tagsinput span.tag a {
   font-style: normal;
 }
 .card-inverse-info-position {
-  margin: 1rem -25px 0px;
-  text-align: center;
-  padding: 0.4rem;
+  margin: 1.5rem -12px -1.0rem;
+  /* text-align: center; */
+  padding: 0.7rem 2rem;
 }
 .google-font-force_l {
   font-family: "google_l" !important;

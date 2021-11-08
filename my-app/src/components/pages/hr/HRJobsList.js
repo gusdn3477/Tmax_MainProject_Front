@@ -38,9 +38,7 @@ export default function HRJobsList() {
 
   if (loading)
     return (
-      <div class="spinner-border text-primary" role="status">
-        잠시만 기다려 주세요
-      </div>
+      <div class="spinner-border text-primary" role="status"></div>
     );
   return (
     <div id="wrap">
@@ -54,13 +52,14 @@ export default function HRJobsList() {
                 {pagedJobs.map((job, idx) => (
                   <Card idx={idx + 1} key={job.idx} data={job} setData={job} />
                 ))}
-              </div>
+              
+              <div >
               <Pagination
                 itemsCount={data.length}
                 pageSize={pageSize}
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
-              />
+              /></div></div>
             </div>
             <Footer />
           </div>
