@@ -20,6 +20,7 @@ export default function JobsDetailForm({ data, data2 }) {
     }).then(
       //예외처리 있으면 좋을 듯
       alert("마감 완료!")
+      gogo.replace('/hr/jobs')
     );
   };
   const handleDelete = (id) => {
@@ -37,7 +38,7 @@ export default function JobsDetailForm({ data, data2 }) {
     }).then(
       //예외처리 있으면 좋을 듯
       alert("삭제 완료!"),
-      fetch(`/job-service/jobs}`)
+      gogo.replace('/hr/jobs')
     );
   }
   else{
