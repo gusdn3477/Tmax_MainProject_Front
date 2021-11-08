@@ -112,7 +112,7 @@ export default function HRCreateForm() {
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand/>
                 <h4>새로운 인사담당자를 등록해 보세요.</h4>
-                <form class="pt-3" onSubmit={handlePutUserLists}>
+                <form class="pt-5" onSubmit={handlePutUserLists}>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" 
                     name="name"
