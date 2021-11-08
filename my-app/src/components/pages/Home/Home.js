@@ -53,10 +53,6 @@ export default function Home() {
                   <Charts />
                    <Bar/> 
                 </div> */}
-
-
-                <Calender />
-
               </div>
               <Footer />
             </div>
