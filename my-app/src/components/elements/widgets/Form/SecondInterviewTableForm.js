@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setData }) {
 
@@ -75,12 +75,12 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
   return (
     <tr>
       <td>{idx}</td>
-      <td>{data.applyNum}</td>
+      <td>{data.applyNum ? (data.applyNum).substring(0,8) : ""}</td>
       <td><input type="text" class="form-control" id="exampleInputPassword1" name="score" onChange={handleChangeForm} /></td>
       <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.secondInterviewScore}</td>
       <td>{data.secondInterviewResult}</td>
-      <td>{data.secondInterviewer}</td>
+      <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td>
     </tr>
   );
 }

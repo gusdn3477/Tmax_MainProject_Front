@@ -11,7 +11,6 @@ export default function FirstInterviewScore() {
   const [loading, setLoading] = useState(true);
   const [firstInterviewPass, setFirstInterviewPass] = useState();
   const { jobsNo } = useParams();
-  const [flag, setFlag] = useState(0);
 
   useEffect(() => {
     fetch(`/process-service/process/first-interview/${jobsNo}`)
@@ -37,7 +36,7 @@ export default function FirstInterviewScore() {
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);
-    fetch(`/process-service/process/written-test/result`, {
+    fetch(`/process-service/process/first-interview/result`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -45,11 +44,12 @@ export default function FirstInterviewScore() {
       body: JSON.stringify({
         jobsNo: jobsNo,
         empNo: localStorage.getItem('empNo'),
-        count: firstInterviewPass.firstInterviewPass
+        count: firstInterviewPass.intv1Pass
       }),
-    }).then(res => res.json)
+    }).then(res => {return res.json()})
       .then(
         res => {
+          console.log('결과', res);
           fetch(`/process-service/process/first-interview/${jobsNo}`)
             .then(res => {
               return res.json();

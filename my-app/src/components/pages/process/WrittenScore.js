@@ -12,7 +12,6 @@ export default function WrittenScore() {
   const [writtenPass, setWrittenPass] = useState();
   const { jobsNo } = useParams();
   const [flag, setFlag] = useState(0);
-  const [ready, setReady] = useState(true);
 
   useEffect(() => {
     fetch(`/process-service/process/written/${jobsNo}`)
@@ -36,7 +35,6 @@ export default function WrittenScore() {
 
   const score = () => {
     setLoading(true);
-    setReady(true);
     fetch(`/process-service/process/written-test/score`, { // 점수 매기는 과정.. => 여기서 점수 바뀜
       method: "PUT",
       headers: {
@@ -50,7 +48,6 @@ export default function WrittenScore() {
         return res.json()
       })
       .then(res => {
-        setReady(false);
         console.log('res', res);
         return res;
       }
@@ -87,7 +84,7 @@ export default function WrittenScore() {
           empNo: localStorage.getItem('empNo'),
           count: writtenPass.writtenPass
         }),
-      }).then(res => res.json())
+      }).then(res => res.json()) // 여기 의심스럽긴 합니다
         .then(
           res => {
           fetch(`/process-service/process/written/${jobsNo}`)
