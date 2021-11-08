@@ -9,19 +9,19 @@ import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import Brand from "../brand/Brand";
 
-export default function JobsDetailForm({data, data2}) {
-
+export default function JobsDetailForm({ data, data2 }) {
   const gogo = useHistory();
-  const {jobsNo} = useParams();
+  const { jobsNo } = useParams();
 
   const passListToWritten = (id) => {
-    fetch(`/process-service/process/${jobsNo}`, { // body에 넣어야 함
-      method: "GET"
+    fetch(`/process-service/process/${jobsNo}`, {
+      // body에 넣어야 함
+      method: "GET",
     }).then(
       //예외처리 있으면 좋을 듯
-      alert('마감 완료!')
-    )
-  }
+      alert("마감 완료!")
+    );
+  };
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -58,61 +58,86 @@ export default function JobsDetailForm({data, data2}) {
         <div className="content-wrapper d-flex align-items-center auth px-0">
           <div className="row w-100 mx-0">
             <div className="col-lg-8 mx-auto">
-              <div className="auth-form-light text-left py-5 px-4 px-sm-5" >
+              <div className="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand />
-                <h3>{data.jobsTitle}</h3>
-                <form className="pt-3" >
-                  <div className="form-group" style={{marginBottom:"2rem"}}>
-                    {data.jobsContext}
+                <h3>{data?.jobsTitle}</h3>
+                <form className="pt-3">
+                  <div className="form-group" style={{ marginBottom: "2rem" }}>
+                    {data?.jobsContext}
                   </div>
                   <div className="form-group">
-                    채용 형태 : {data.employType}
+                    채용 형태 : {data?.employType}
+                  </div>
+                  <div className="form-group">고용 형태 : {data?.jobType}</div>
+                  <div className="form-group">
+                    지원 자격 : {data?.jobQualify}
                   </div>
                   <div className="form-group">
-                    고용 형태 : {data.jobType}
+                    채용인원 : {data?.recruitNum}명
                   </div>
                   <div className="form-group">
-                    지원 자격 : {data.jobQualify}
+                    우대언어 : {data?.favoriteLang}
                   </div>
                   <div className="form-group">
-                    채용인원 : {data.recruitNum}명
+                    근무지역 : {data?.jobLocation}
                   </div>
                   <div className="form-group">
-                    우대언어 : {data.favoriteLang}
+                    상세 내용 : {data?.workDetail}
                   </div>
-                  <div className="form-group">
-                    근무지역 : {data.jobLocation}
-                  </div>
-                  <div className="form-group">
-                    상세 내용 : {data.workDetail}
-                  </div>
-                  {data.applyStart && data.applyEnd ? 
-                  <div className="form-group">
-                    모집 기간 : {(data.applyStart).substr(0,10)} ~ {(data.applyEnd).substr(0,10)}
-                  </div> : ''}
-
-                  <div style={{margin:"5rem 0 2rem 0"}}>
-                    {localStorage.getItem('empNo') ? 
-                    <Fragment>
-                    <div className="mt-3">
-                      <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={confirmDelete}>마감하기</button>
+                  {data?.applyStart && data?.applyEnd ? (
+                    <div className="form-group">
+                      모집 기간 : {(data?.applyStart).substr(0, 10)} ~{" "}
+                      {(data?.applyEnd).substr(0, 10)}
                     </div>
-                    {/* <div className="mt-3">
+                  ) : (
+                    ""
+                  )}
+
+                  <div style={{ margin: "5rem 0 2rem 0" }}>
+                    {localStorage.getItem("empNo") ? (
+                      <Fragment>
+                        <div className="mt-3">
+                          <button
+                            type="button"
+                            className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                            onClick={confirmDelete}
+                          >
+                            마감하기
+                          </button>
+                        </div>
+                        {/* <div className="mt-3">
                       <button type="button" className="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">수정하기</button>
                     </div> */}
-                    <div className="mt-3">
-                      <button type="button" className="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn">삭제하기</button>
-                    </div></Fragment> : ''}
+                        <div className="mt-3">
+                          <button
+                            type="button"
+                            className="btn btn-block btn-danger btn-lg font-weight-medium auth-form-btn"
+                          >
+                            삭제하기
+                          </button>
+                        </div>
+                      </Fragment>
+                    ) : (
+                      ""
+                    )}
 
-                    {localStorage.getItem('userId') ? 
-                    <Fragment>
-                    <div className="mt-3">
-                      <Link to={`/users/apply/${jobsNo}`}>
-                        <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">지원하기</button>
-                      </Link>
-                    </div></Fragment> : ''}
+                    {localStorage.getItem("userId") ? (
+                      <Fragment>
+                        <div className="mt-3">
+                          <Link to={`/users/apply/${jobsNo}`}>
+                            <button
+                              type="button"
+                              className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                            >
+                              지원하기
+                            </button>
+                          </Link>
+                        </div>
+                      </Fragment>
+                    ) : (
+                      ""
+                    )}
                   </div>
-
                 </form>
               </div>
             </div>
