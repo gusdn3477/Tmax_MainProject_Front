@@ -10407,8 +10407,9 @@ pre code {
 }
 
 .table-dark.table-striped tbody tr:nth-of-type(odd) {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgba(245, 247, 255, 0.05);
 }
+
 
 .table-dark.table-hover tbody tr:hover {
   color: #fff;
@@ -13817,6 +13818,12 @@ input[type="button"].btn-block {
   flex: 1 1 auto;
   min-height: 1px;
   padding: 1.25rem;
+}
+
+.card-body2 {
+  flex: 1 1 auto;
+  min-height: 1px;
+  padding: 2.25rem 1.50rem;
 }
 
 .card-title {
@@ -22133,7 +22140,7 @@ code {
 .card-inverse-info {
   background: rgba(36, 138, 253, 0.2);
   border: 1px solid #217fe9;
-  color: #1b69c0;
+  color: #001fff;
 }
 
 .card-inverse-warning {
@@ -30593,3 +30600,129 @@ div.tagsinput span.tag a {
 }
 
 /*# sourceMappingURL=../maps/vertical-layout-light/style.css.map */
+/*-------------------------------------------
+    $ Loaders
+-------------------------------------------*/
+
+.loader {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin: 3em;
+  display: inline-block;
+  position: relative;
+  vertical-align: middle;
+}
+.loader,
+.loader:before,
+.loader:after {
+  animation: 1s infinite ease-in-out;
+}
+.loader:before,
+.loader:after {
+  width: 100%; 
+  height: 100%;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.loader-black { background-color: #007aff; }
+
+.loader-1 { animation-name: loader1; }
+@keyframes loader1 {
+  from { transform: scale(0); opacity: 1; }
+  to   { transform: scale(1); opacity: 0; }
+}
+
+
+
+/* Loader 6 */
+
+.loader-6 {
+  animation: loader6-1 1.5s infinite linear;
+}
+.loader-6:before,
+.loader-6:after {
+  content:'';
+  margin: -25px 0 0 -25px;
+  top: 50%;
+  left: 50%;
+  background-color: rgba(0, 122, 255, 0.7);
+  animation-name: loader6-2;
+}
+.loader-6:after { animation-direction: reverse; }
+
+  @keyframes loader6-1 {
+      0% {   transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+  }
+
+  @keyframes loader6-2 {
+      0%   { transform: scale(0.2); left:   0%; }
+      50%  { transform: scale(1.0); left:  50%; }
+      100% { transform: scale(0.2); left: 100%; }
+  }
+  
+
+  .wrapper {
+    min-width: 290px;
+    max-width: 800px;
+    padding-left: 1em;
+    padding-right: 1em;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.text-giga { line-height: 1; font-size: 24px; font-weight: 300; }
+.pad-top    { padding-top: 1em; }
+.space-out { margin: 100px; }
+
+@font-face {
+  /* 사용할 폰트의 이름 */
+  font-family: 'google_mid';
+  font-display: fallback;
+
+  /* 
+  src: 사용할 폰트의 위치 및 형식 
+     Safari, Android, iOS => ttf
+     Modern Browsers => woff
+     IE6-IE8 => eot
+  */
+  src: url("../../fonts/google/IBMPlexSansKR-Medium.ttf") format("truetype"), url("../../fonts/google/IBMPlexSansKR-Medium.woff")
+      format("woff"), url("../../fonts/google/IBMPlexSansKR-Regular.eot?#iefix") format("embedded-opentype");
+
+  /* 사용할 폰트의 기본 스타일 */
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  /* 사용할 폰트의 이름 */
+  font-family: 'google_l';
+  font-display: fallback;
+
+  /* 
+  src: 사용할 폰트의 위치 및 형식 
+     Safari, Android, iOS => ttf
+     Modern Browsers => woff
+     IE6-IE8 => eot
+  */
+  src: url("../../fonts/google/IBMPlexSansKR-Light.ttf") format("truetype"), url("../../fonts/google/IBMPlexSansKR-Light.woff")
+      format("woff"), url("../../fonts/google/IBMPlexSansKR-Light.eot?#iefix") format("embedded-opentype");
+
+  /* 사용할 폰트의 기본 스타일 */
+  font-weight: normal;
+  font-style: normal;
+}
+.card-inverse-info-position {
+  margin: 1rem -25px 0px;
+  text-align: center;
+  padding: 0.4rem;
+}
+.google-font-force_l {
+  font-family: "google_l" !important;
+}
+.google-font-force_mid {
+  font-family: "google_mid" !important;
+}

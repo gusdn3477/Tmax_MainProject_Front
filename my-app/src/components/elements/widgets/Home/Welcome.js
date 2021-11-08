@@ -33,7 +33,7 @@ export default function Welcome() {
     }
   }, []);
 
-  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
+  if (loading) return <div class="main-header pad-top wrapper" id="mainHeader"><h1 class="text-giga">Loading ...</h1> <div class="loader loader-6"/></div>;
   return (
     <div className="col-md-12 grid-margin">
       <div className="row">

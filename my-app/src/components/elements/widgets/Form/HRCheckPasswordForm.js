@@ -99,8 +99,8 @@ export default function HRCheckPasswordForm() {
     
     <div class="container-scroller">
       <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@300;400,500&display=swap" rel="stylesheet"></link>
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+      <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@300;400,500&display=swap" rel="stylesheet"></link>
 
 
       <div class="container-fluid page-body-wrapper full-page-wrapper" style={{fontFamily:"IBM Plex Sans KR", fontWeight:"500"}}>
