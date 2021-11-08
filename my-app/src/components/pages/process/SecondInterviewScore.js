@@ -9,9 +9,8 @@ export default function SecondInterviewScore() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [writtenPass, setWrittenPass] = useState();
+  const [secondInterviewPass, setSecondInterviewPass] = useState();
   const { jobsNo } = useParams();
-  const [flag, setFlag] = useState(0);
 
   useEffect(() => {
     fetch(`/process-service/process/second-interview/${jobsNo}`)
@@ -22,90 +21,46 @@ export default function SecondInterviewScore() {
         setData(data);
       })
       .then(
-        fetch(`/job-service/jobprocess/${jobsNo}`) // 필기 합격 인원 가져오기
+        fetch(`/job-service/jobprocess/${jobsNo}`) // 2차 합격 인원 가져오기
           .then(res => {
             return res.json();
           })
           .then(data => {
-            setWrittenPass(data);
+            setSecondInterviewPass(data);
+            console.log(data);
             setLoading(false);
           })
       );
   }, []);
 
-  const score = () => {
+
+  const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);
-    fetch(`/process-service/process/second-interview/score`, {
+    fetch(`/process-service/process/second-interview/result`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        jobsNo: jobsNo
+        jobsNo: jobsNo,
+        empNo: localStorage.getItem('empNo'),
+        count: secondInterviewPass.intv2Pass
       }),
-    })
-      .then(res => {
-        return res.json();
-      })
+    }).then(res => {return res.json()})
       .then(
-        fetch(`/process-service/process/second-interview/${jobsNo}`)
-          .then(res => {
-            return res.json();
-          })
-          .then(data => {
-            setData(data);
-            console.log(data);
-            setFlag(1);
-            setLoading(false);
-            alert("채점 완료!")
-          })
-      )
-  }
-
-  const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
-    if (flag === 0) {
-      alert("채점 후에 합/불 여부를 가릴 수 있습니다");
-    }
-    else {
-      setLoading(true);
-      fetch(`/process-service/process/written-test/result`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          jobsNo: jobsNo,
-          empNo: localStorage.getItem('empNo'),
-          count: writtenPass.writtenPass
-        }),
-      })
-        .then(
-          fetch(`/process-service/process/written/${jobsNo}`)
+        res => {
+          console.log('결과', res);
+          fetch(`/process-service/process/second-interview/${jobsNo}`)
             .then(res => {
               return res.json();
             })
             .then(data => {
-              setFlag(2);
               setData(data);
               setLoading(false);
               alert("합/불 여부 체크 완료")
             })
-        )
-    }
-  }
-
-  const PassList = () => { // jobprocess 가져올 수 있어야 함
-    if (flag !== 2) {
-      alert("합/불 여부가 정해진 뒤에 합격자 명단을 넘길 수 있습니다.");
-    }
-    else {
-      fetch(`/process-service/process/written-test/${jobsNo}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
         }
-      })
-    }
+      )
   }
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
@@ -130,13 +85,6 @@ export default function SecondInterviewScore() {
   const deleteConfirm = () => 1;
   const cancelConfirm = () => 0;
 
-  const confirmScore = useConfirm(
-    "채점하시겠습니까?",
-    deleteConfirm,
-    cancelConfirm,
-    score
-  );
-
   const confirmPassOrNot = useConfirm(
     "합/불 여부를 결정하시겠습니까?",
     deleteConfirm,
@@ -144,15 +92,7 @@ export default function SecondInterviewScore() {
     PassOrNot
   );
 
-  const confirmPassList = useConfirm(
-    "필기 합격자 명단을 넘기시겠습니까?",
-    deleteConfirm,
-    cancelConfirm,
-    PassList
-  );
-
-// class="spinner-border text-primary" role="status"
-if (loading) return <div class="spinner-border text-primary" role="status"></div>;
+  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
   return (
     <div id="wrap">
       <Header />
@@ -174,6 +114,8 @@ if (loading) return <div class="spinner-border text-primary" role="status"></div
                             <tr>
                               <th>번호</th>
                               <th>수험번호</th>
+                              <th>점수 입력</th>
+                              <th>채점하기</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
                               <th>채점자 인사코드</th>
@@ -188,6 +130,7 @@ if (loading) return <div class="spinner-border text-primary" role="status"></div
                                     key={item.idx}
                                     data={item}
                                     jobsNo={jobsNo}
+                                    setData={setData}
                                   />
                                 )
                               )
@@ -199,11 +142,8 @@ if (loading) return <div class="spinner-border text-primary" role="status"></div
                   </div>
                 </div>
                 <div>
-                  <form class="row gy-2 gx-3 align-items-center" style={{marginTop:"-22px", float:"right"}}>                 
-                    <div class="col-auto">
-                      <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
-                    </div>
-                  </form>
+                  <button type="button" className="btn btn-primary" 
+                  style={{marginTop:"-22px", marginRight:"10px", float:"right"}} onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
                 </div>
               </div>
             </div>
