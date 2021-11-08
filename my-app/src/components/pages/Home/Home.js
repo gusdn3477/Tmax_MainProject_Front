@@ -31,7 +31,31 @@ export default function Home() {
                   </div>
                 </div>
 
-                <Calender />
+
+                {/* <div className="row">
+                  <ApplyCount />
+                </div> */}
+
+                <div className="row">
+                  <Calender />
+                </div>
+
+                {/* <div className="row">
+                  <OrderDetails />
+                  <SalesReport />
+                </div> */}
+                {/* <div className="row">
+                  <DetailedReport />
+                </div> */}
+                <div className="row">{/* <ToDoList/> */}</div>
+                {/* <div className="row">
+                  <Projects />
+                  <Notifications />
+                  <Charts />
+                   <Bar/> 
+                </div> */}
+
+
               </div>
               <Footer />
             </div>
