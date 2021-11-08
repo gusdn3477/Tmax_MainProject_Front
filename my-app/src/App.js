@@ -102,6 +102,11 @@ function App() {
         {/* <Route exact path="/process/written/:jobsNo/:empNo"><Written/></Route>
         <Route exact path="/process/interview/:jobsNo/:empNo"><Interview/></Route> */}
         
+          {/* 통계자료 - 공고별 지원자수 보기*/}
+          <Route exact path="/statistics">
+            <ApplyChart />
+          </Route>
+
         {/* 예외 처리 부분 */}
         <Route component={Error_404}/>
         
