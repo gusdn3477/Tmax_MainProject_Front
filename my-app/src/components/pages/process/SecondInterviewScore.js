@@ -203,9 +203,6 @@ if (loading) return <div class="spinner-border text-primary" role="status"></div
                     <div class="col-auto">
                       <button type="button" className="btn btn-primary" onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
                     </div>
-                    <div class="col-auto" style={{marginRight:"10px"}}>
-                      <button type="button" className="btn btn-primary" onClick={confirmPassList}>합격자 명단 넘기기</button>
-                    </div>
                   </form>
                 </div>
               </div>

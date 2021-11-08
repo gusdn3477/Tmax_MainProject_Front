@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function FirstInterviewTableForm({ idx, key, data, jobsNo }) {
+export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setData }) {
 
   const [values, setValues] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -18,21 +18,21 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo }) {
       }),
     })
       .then(res => {
-        return res.json();
+        return res;
       })
       .then(
-        fetch(`/process-service/process/first-interview/${jobsNo}`)
-          .then(res => {
-            return res.json();
-          })
-          .then(
-            res => {
-            setValues(res);
-            console.log(res);
-            setLoading(false);
-            alert("채점 완료!");
+        res =>
+          fetch(`/process-service/process/first-interview/${jobsNo}`)
+            .then(res => {
+              return res.json();
             })
-          )
+        .then(res => {
+          setData(res);
+          console.log('res', res);
+          setLoading(false);
+          alert("채점 완료!");
+        })
+        )
   }
 
 
@@ -76,8 +76,8 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo }) {
     <tr>
       <td>{idx}</td>
       <td>{data.applyNum}</td>
-      <td><input type="text" class="form-control" id="exampleInputPassword1" name="score" onChange={handleChangeForm} />
-      <button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
+      <td><input type="text" class="form-control" id="exampleInputPassword1" name="score" onChange={handleChangeForm} /></td>
+      <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.firstInterviewScore}</td>
       <td>{data.firstInterviewResult}</td>
       <td>{data.firstInterviewer}</td>

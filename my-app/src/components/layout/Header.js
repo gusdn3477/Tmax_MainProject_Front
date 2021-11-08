@@ -21,7 +21,7 @@ export default function Header() {
                   <i className="icon-search"></i>
                 </span>
               </div>
-              <input type="text" className="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" />
+              {/* <input type="text" className="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" /> */}
             </div>
           </li>
         </ul>

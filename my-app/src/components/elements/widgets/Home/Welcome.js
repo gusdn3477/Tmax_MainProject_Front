@@ -38,7 +38,7 @@ export default function Welcome() {
     <div className="col-md-12 grid-margin">
       <div className="row">
         <div className="col-12 col-xl-8 mb-4 mb-xl-0 ">
-          <h3 className="font-weight-bold" style={{fontFamily:"Nunito"}}>Welcome {data.name}님</h3>
+          <h3 className="font-weight-bold" style={{fontFamily:"Nunito"}}>{data.name}님, 환영합니다!</h3>
           {/* <h6 className="font-weight-normal mb-0">All systems are running smoothly! You have <span className="text-primary">3 unread alerts!(알림 구현시 사용)</span></h6> */}
         </div>
         <div className="col-12 col-xl-4">

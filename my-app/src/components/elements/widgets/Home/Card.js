@@ -21,7 +21,7 @@ export default function Card({ idx, key, data, setData }) {
   if (data.closed === "T")
     return (
       <div className="card" style={{ width: "60rem", margin: "13px" }}>
-        <div className="card-inverse-info card-inverse-info-position ">
+        <div className="card-inverse-info card-inverse-info-position">
           마감된 공고입니다.
         </div>
         <div className="card-body">
