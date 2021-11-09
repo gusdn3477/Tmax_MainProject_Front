@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setData }) {
+export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setData, passOrNonPass }) {
 
   const [values, setValues] = useState('');
   const [interviwer, SetInterviewer] = useState(data.firstInterviewer);
@@ -81,6 +81,7 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
       <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.firstInterviewScore}</td>
       <td>{data.firstInterviewResult}</td>
+      {/* <td>{passOrNonPass ? (passOrNonPass.firstInterviewResult) : ""}</td> */}
       <td>{data.firstInterviewer ? (data.firstInterviewer).substring(0,8) : ""}</td>
     </tr>
   );

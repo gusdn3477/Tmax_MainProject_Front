@@ -47,16 +47,17 @@ export default function FirstInterviewScore() {
         firstInterviewer: localStorage.getItem('empNo'),
         count: firstInterviewPass.intv1Pass
       }),
-    }).then(res => {return res.json()})
+    }).then(res => res.json())
       .then(
         res => {
           console.log('결과', res);
           fetch(`/process-service/process/first-interview/${jobsNo}`)
-            .then(res => {
-              return res.json();
-            })
+            .then(res => 
+              res.json()
+            )
             .then(data => {
-              setData(data);
+              setPassOrNonPass(data);
+              console.log('passornon', passOrNonPass);
               setLoading(false);
               alert("합/불 여부 체크 완료")
             })
@@ -132,6 +133,7 @@ export default function FirstInterviewScore() {
                                     data={item}
                                     jobsNo={jobsNo}
                                     setData={setData}
+                                    passOrNonPass={passOrNonPass}
                                   />
                                 )
                               )

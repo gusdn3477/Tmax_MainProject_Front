@@ -45,7 +45,7 @@ export default function SecondInterviewScore() {
         secondInterviewer: localStorage.getItem('empNo'),
         count: secondInterviewPass.intv2Pass
       }),
-    }).then(res => {return res.json()})
+    }).then(res => res.json())
       .then(
         res => {
           console.log('결과', res);
