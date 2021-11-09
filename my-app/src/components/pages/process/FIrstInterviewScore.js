@@ -10,6 +10,7 @@ export default function FirstInterviewScore() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [firstInterviewPass, setFirstInterviewPass] = useState();
+  const [passOrNonPass, setPassOrNonPass] = useState();
   const { jobsNo } = useParams();
 
   useEffect(() => {
@@ -43,7 +44,7 @@ export default function FirstInterviewScore() {
       },
       body: JSON.stringify({
         jobsNo: jobsNo,
-        empNo: localStorage.getItem('empNo'),
+        firstInterviewer: localStorage.getItem('empNo'),
         count: firstInterviewPass.intv1Pass
       }),
     }).then(res => {return res.json()})

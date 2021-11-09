@@ -2,7 +2,8 @@ import { useState, useEffect } from "react";
 
 export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setData }) {
 
-  const [values, setValues] = useState(data);
+  const [values, setValues] = useState('');
+  const [interviwer, SetInterviewer] = useState(data.firstInterviewer);
   const [loading, setLoading] = useState(false);
 
   const score = () => {
@@ -18,6 +19,7 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
       }),
     })
       .then(res => {
+        setValues('');
         return res;
       })
       .then(
@@ -34,7 +36,6 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
         })
         )
   }
-
 
   const handleChangeForm = (e) => {
     setValues({

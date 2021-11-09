@@ -33,7 +33,6 @@ export default function SecondInterviewScore() {
       );
   }, []);
 
-
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);
     fetch(`/process-service/process/second-interview/result`, {
@@ -43,7 +42,7 @@ export default function SecondInterviewScore() {
       },
       body: JSON.stringify({
         jobsNo: jobsNo,
-        empNo: localStorage.getItem('empNo'),
+        secondInterviewer: localStorage.getItem('empNo'),
         count: secondInterviewPass.intv2Pass
       }),
     }).then(res => {return res.json()})
@@ -51,9 +50,9 @@ export default function SecondInterviewScore() {
         res => {
           console.log('결과', res);
           fetch(`/process-service/process/second-interview/${jobsNo}`)
-            .then(res => {
-              return res.json();
-            })
+            .then(res => 
+              res.json()
+            )
             .then(data => {
               setData(data);
               setLoading(false);

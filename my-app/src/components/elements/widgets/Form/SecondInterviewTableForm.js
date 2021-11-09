@@ -18,6 +18,7 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
       }),
     })
       .then(res => {
+        setValues('');
         return res;
       })
       .then(
