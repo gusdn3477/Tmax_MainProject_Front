@@ -153,7 +153,7 @@ export default function HRRegister() {
                     onChange={handleChangeForm}
                     placeholder="이메일" />
                   </div>
-                  <button class="btn btn-primary" type="button" onClick={checkEmail}>이메일 중복 확인</button>
+                  <button class="btn btn-outline-success" type="button" style={{marginBottom:"1rem", marginTop:"-1rem",padding:"0.7rem", float:"right"}} onClick={checkEmail}>이메일 중복 확인</button>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
                     name="companyName"

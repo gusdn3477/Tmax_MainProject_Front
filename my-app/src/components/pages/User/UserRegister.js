@@ -181,7 +181,7 @@ export default function UserRegister() {
                       onChange={handleChangeForm}
                       placeholder="이메일 주소" />
                   </div>
-                  <button class="btn btn-primary" type="button" onClick={checkEmail}>이메일 중복 확인</button>
+                  <button class="btn btn-outline-success" style={{marginBottom:"1rem", marginTop:"-1rem",padding:"0.7rem", float:"right"}} type="button" onClick={checkEmail}>이메일 중복 확인</button>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
                       name="password"
