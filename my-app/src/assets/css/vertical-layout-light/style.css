@@ -116,6 +116,7 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300,400,500;700;900&display=swap');
 @-moz-keyframes flash {
   0% {
     opacity: 1;
@@ -19525,7 +19526,17 @@ h6, .h6 {
 }
 
 .display-5 {
-  font-size: 1.25rem;
+  /* padding-left: 3%;
+  padding-right: 2.5%; */
+  padding:3%;
+  font-size: 1.2rem;
+  font-family: "google_mid" !important;
+  font-weight: 100;
+  color: black;
+  background: #e5efff;
+  letter-spacing : 1px;
+  word-spacing: 2.3px;
+  line-height: 1.7;
 }
 
 @media (max-width: 991px) {
@@ -30751,4 +30762,44 @@ div.tagsinput span.tag a {
 }
 .google-font-force_mid {
   font-family: "google_mid" !important;
+}
+
+.simple_table { 
+  width: 100%; 
+  border: none; 
+  border-collapse: separate; 
+  border-spacing: 2px;
+}
+
+.simple_table th { 
+  width: 45%;
+  padding-left: 13%; 
+  border: none; 
+  /* border-left: 5px solid #C03; 
+  border-bottom: 1px solid #DDD; 
+  background: #FCF0F3;  */
+  font-weight: 700;
+  font-family: "Noto Sans KR", sans-serif !important; 
+  text-align:left; 
+  /* text-shadow: 0 1px #FFF;  */
+  vertical-align: middle;
+  font-size: 1.4rem;
+  letter-spacing : 1px;
+  /* text-underline-position: under; */
+  text-decoration :underline rgba(24, 83, 220, 0.42) 7px;
+}
+.simple_table td { 
+  /* padding: 15px;  */
+  border: none; 
+  /* border-bottom: 1px solid #DDD;  */
+  font-family: "Noto Sans KR", sans-serif; 
+  font-weight: 300;
+  font-size: 1.2rem;
+  text-align: left; 
+  vertical-align: middle;
+  letter-spacing : 1px;
+}
+
+.simple_table th, .simple_table td{
+  padding-bottom: 2.5rem;
 }
