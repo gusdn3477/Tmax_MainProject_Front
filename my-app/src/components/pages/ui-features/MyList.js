@@ -1,26 +1,30 @@
-import React, { useState, useEffect } from 'react';
-import Banner from '../../elements/ui/Banner';
-import Header from '../../layout/Header';
-import Footer from '../../layout/Footer';
-import MyListForm from '../../elements/widgets/Home/MyListForm';
+import React, { useState, useEffect } from "react";
+import Banner from "../../elements/ui/Banner";
+import Header from "../../layout/Header";
+import Footer from "../../layout/Footer";
+import MyListForm from "../../elements/widgets/Home/MyListForm";
 
 export default function MyList() {
-
   const [myList, setMyList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch(`/user-service/users/jobs/${localStorage.getItem('userId')}`)
-      .then(res => {
+    fetch(`/user-service/users/jobs/${localStorage.getItem("userId")}`)
+      .then((res) => {
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         setMyList(data);
         setLoading(false);
       });
   }, []);
 
-  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
+  if (loading)
+    return (
+      <div class="spinner-border text-primary" role="status">
+        잠시만 기다려 주세요
+      </div>
+    );
   return (
     <div id="wrap">
       <Header />
@@ -39,9 +43,9 @@ export default function MyList() {
                           <thead>
                             <tr>
                               <th>번호</th>
-                              <th>회사명</th>
-                              <th>공고번호</th>
                               <th>공고명</th>
+                              <th>회사명</th>
+                              {/* <th>공고명</th> */}
                               {/* <th>공고 기간</th> */}
                               <th>채용 유형</th>
                               <th>근무 지역</th>
@@ -50,18 +54,15 @@ export default function MyList() {
                             </tr>
                           </thead>
                           <tbody>
-                            {
-                              myList.length > 0 && myList.map(
-                                (item, idx) => (
-                                  <MyListForm
-                                    idx={idx+1} 
-                                    key={item.id}
-                                    data={item}
-                                    setMyList = {setMyList}
-                                  />
-                                )
-                              )
-                            }
+                            {myList.length > 0 &&
+                              myList.map((item, idx) => (
+                                <MyListForm
+                                  idx={idx + 1}
+                                  key={item.id}
+                                  data={item}
+                                  setMyList={setMyList}
+                                />
+                              ))}
                           </tbody>
                         </table>
                       </div>
