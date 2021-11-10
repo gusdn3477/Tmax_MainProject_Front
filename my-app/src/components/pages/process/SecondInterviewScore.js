@@ -10,6 +10,7 @@ export default function SecondInterviewScore() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [secondInterviewPass, setSecondInterviewPass] = useState();
+  const [save, setSave] = useState();
   const { jobsNo } = useParams();
 
   useEffect(() => {
@@ -33,6 +34,11 @@ export default function SecondInterviewScore() {
       );
   }, []);
 
+  if(!loading){
+    const result = data.filter(data => data.secondInterviewResult === 'P'); // result 담음
+    console.log('result입니다', result);
+  }
+
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);
     fetch(`/process-service/process/second-interview/result`, {
@@ -48,13 +54,17 @@ export default function SecondInterviewScore() {
     }).then(res => res.json())
       .then(
         res => {
-          console.log('결과', res);
+          setData(res);
+        }
+        )
+          .then(res=>{
+          console.log('res 확인용', data);
+          console.log('second 확인용', save);
           fetch(`/process-service/process/second-interview/${jobsNo}`)
             .then(res => 
               res.json()
             )
             .then(data => {
-              setData(data);
               setLoading(false);
               alert("합/불 여부 체크 완료")
             })
