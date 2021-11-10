@@ -107,7 +107,7 @@ export default function SecondInterviewScore() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-0">2차 면접 대상자 목록</p>
+                      <p className="card-title mb-4">2차 면접 대상자 목록</p>
                       <div className="table-responsive">
                         <table className="table table-striped table-borderless">
                           <thead>

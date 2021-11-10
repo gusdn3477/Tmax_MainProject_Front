@@ -92,7 +92,7 @@ export default function FirstInterviewScore() {
     PassOrNot
   );
 
-  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />
@@ -107,15 +107,15 @@ export default function FirstInterviewScore() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-0">1차 면접 대상자 목록</p>
+                      <p className="card-title mb-4 ml-3">1차 면접 대상자 목록</p>
                       <div className="table-responsive">
-                        <table className="table table-striped table-borderless">
+                        <table className="table table-striped table-borderless" style={{marginBottom:"2rem"}}>
                           <thead>
                             <tr>
                               <th>번호</th>
                               <th>수험번호</th>
                               <th>점수 입력</th>
-                              <th>채점하기</th>
+                              <th style={{paddingLeft:"39px"}}>채점하기</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
                               <th>채점자 인사코드</th>
