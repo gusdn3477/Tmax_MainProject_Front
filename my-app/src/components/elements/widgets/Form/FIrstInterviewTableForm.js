@@ -80,9 +80,9 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
       <td><input style={{width:"70%"}} type="text" class="form-control" id="exampleInputPassword1" name="score" placeholder="Only Number" onChange={handleChangeForm} /></td>
       <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.firstInterviewScore}</td>
-      <td>{data.firstInterviewResult}</td>
+      <td style={{paddingLeft:"3rem"}}>{data.firstInterviewResult}</td>
       {/* <td>{passOrNonPass ? (passOrNonPass.firstInterviewResult) : ""}</td> */}
-      <td>{data.firstInterviewer ? (data.firstInterviewer).substring(0,8) : ""}</td>
+      <td style={{paddingLeft:"2rem"}}>{data.firstInterviewer ? (data.firstInterviewer).substring(0,8) : ""}</td>
     </tr>
   );
 }
