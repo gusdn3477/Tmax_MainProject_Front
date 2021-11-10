@@ -8875,6 +8875,7 @@ th {
 }
 
 label {
+  word-break: keep-all;
   display: inline-block;
   margin-bottom: 0.5rem;
 }
@@ -22036,14 +22037,15 @@ code {
 }
 
 .card .card-description {
-  margin-left: .5rem;
-  margin-bottom: 1.2rem;
+  margin-left: .7rem;
+  margin-bottom: 1.4rem;
   font-weight: 400;
   color: #64686a;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.5rem;
-  font-family: "google_mid";
-  background: aliceblue;
+  font-family: "google_l";
+  /* background: aliceblue; */
+  /* background-color: aliceblue; */
 }
 
 .card .card-text-end {
@@ -28433,7 +28435,7 @@ div.tagsinput span.tag a {
 }
 
 .auth form .form-group label {
-  font-size: .8125rem;
+  font-size: 1.01rem;
 }
 
 .auth form .form-group .form-control, .auth form .form-group .asColorPicker-input, .auth form .form-group .dataTables_wrapper select, .dataTables_wrapper .auth form .form-group select, .auth form .form-group .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row .auth form .form-group input[type=text],
@@ -30802,4 +30804,31 @@ div.tagsinput span.tag a {
 
 .simple_table th, .simple_table td{
   padding-bottom: 2.5rem;
+}
+
+.creat-job-font{
+  font-family: "Noto Sans KR", sans-serif; 
+  font-weight: 500;
+  /* font-size: 1.2rem !important; */
+  letter-spacing : -1.2px;
+}
+
+.creat-job-title{
+  margin-left: 4%;
+  margin-top: -1rem;
+  margin-bottom: 2.5rem;
+  font-size: 2.5rem;
+  font-family: '';
+  font-weight: 500;
+  letter-spacing : -1.5px;
+}
+
+.card .card-inmidle {
+  margin: 2.5rem 0;
+  font-weight: 400;
+  color: #64686a;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  font-family: "google_mid";
+  word-spacing: 4px;
 }
