@@ -51,6 +51,7 @@ export default function FirstInterviewScore() {
       .then(
         res => {
           setData(res);
+          console.log('data 확인', data);
         }
       )
       .then(res => {
