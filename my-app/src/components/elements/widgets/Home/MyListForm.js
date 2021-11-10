@@ -36,17 +36,15 @@ export default function MyListForm({ idx, key, data }) {
   // }, []);
 
   useEffect(() => {
-    fetch(
-      `/user-service/users/apply/${localStorage.getItem("userId")}/${data.jobsNo}`
+    fetch(`/user-service/users/apply/${localStorage.getItem("userId")}/${data.jobsNo}`
     )
       .then((res) => {
         return res.json();
       })
-      .then((event) => {
-        setApplyInfo(event);
+      .then(res => {
+        setApplyInfo(res);
+        console.log('data', applyInfo);
         setLoading(false);
-        console.log('data', data);
-        console.log('지원 관련', event);
       });
   }, []);
 
@@ -77,14 +75,14 @@ export default function MyListForm({ idx, key, data }) {
             type="button"
             class="btn btn-primary"
             data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            data-bs-target={`#exampleModal`+idx}
           >
             내 지원서 보기
           </button>
         </div>
         <div
           class="modal fade"
-          id="exampleModal"
+          id={`exampleModal`+idx}
           tabindex="-1"
           aria-labelledby="exampleModalLabel"
           aria-hidden="true"
@@ -107,9 +105,9 @@ export default function MyListForm({ idx, key, data }) {
                 <br></br> 이름 : {applyInfo.applyName} <br></br>
                 <br></br> 이메일 : {applyInfo.applyEmail} <br></br>
                 <br></br> 전화번호 : {applyInfo.applyContact} <br></br>
-                <br></br> 지원날짜 : {applyInfo.applyDateTime} <br></br>
-                <br></br> data.jobsNo : {data.jobsNo} <br></br>
-                <br></br> applyInfo.jobsNo : {applyInfo.jobsNo} <br></br>
+                <br></br> 지원날짜 : {(applyInfo.applyDateTime).substring(0,10)} <br></br>
+                {/* <br></br> data.jobsNo : {data.jobsNo} <br></br> */}
+                <br></br> 지원번호 : {applyInfo.jobsNo} <br></br>
               </div>
               {/* <div>{applyList}</div> */}
               <div class="modal-footer">
@@ -141,7 +139,7 @@ export default function MyListForm({ idx, key, data }) {
       </td>
 
       {/* 잠시 대기 */}
-      <div
+      {/* <div
         class="modal fade"
         id="exampleModal2"
         tabindex="-1"
@@ -173,7 +171,7 @@ export default function MyListForm({ idx, key, data }) {
             </div>
           </div>
         </div>
-      </div>
+      </div> */}
     </tr>
   );
 }
