@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setData }) {
+export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setData, secondInterviewPass, setSecondInterviewPass }) {
 
   const [values, setValues] = useState(data);
   const [loading, setLoading] = useState(false);
@@ -18,6 +18,8 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
       }),
     })
       .then(res => {
+        setValues('');
+        console.log('데이터 확인용', secondInterviewPass)
         return res;
       })
       .then(
@@ -79,7 +81,7 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
       <td><input type="text" class="form-control" id="exampleInputPassword1" name="score" onChange={handleChangeForm} /></td>
       <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.secondInterviewScore}</td>
-      <td>{data.secondInterviewResult}</td>
+      <td>{data.secondInterviewResult ? data.secondInterviewResult : "미정"}</td>
       <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td>
     </tr>
   );
