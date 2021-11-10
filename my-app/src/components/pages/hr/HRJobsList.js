@@ -13,7 +13,7 @@ export default function HRJobsList() {
   const [loading, setLoading] = useState(true);
   const [jobpage, setJobpage] = useState({
     jobdata: [],
-    pageSize: 5,
+    pageSize: 20,
     currentPage: 1,
   });
 
@@ -37,9 +37,7 @@ export default function HRJobsList() {
   const pagedJobs = paginate(data, currentPage, pageSize);
 
   if (loading)
-    return (
-      <div class="spinner-border text-primary" role="status"></div>
-    );
+    return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />
@@ -52,14 +50,16 @@ export default function HRJobsList() {
                 {pagedJobs.map((job, idx) => (
                   <Card idx={idx + 1} key={job.idx} data={job} setData={job} />
                 ))}
-              
-              <div >
-              <Pagination
-                itemsCount={data.length}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-              /></div></div>
+
+                <div>
+                  <Pagination
+                    itemsCount={data.length}
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                    onPageChange={handlePageChange}
+                  />
+                </div>
+              </div>
             </div>
             <Footer />
           </div>
