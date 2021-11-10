@@ -50,14 +50,16 @@ export default function FirstInterviewScore() {
     }).then(res => res.json())
       .then(
         res => {
+          setData(res);
+        }
+      )
+      .then(res => {
           console.log('결과', res);
           fetch(`/process-service/process/first-interview/${jobsNo}`)
             .then(res => 
               res.json()
             )
             .then(data => {
-              setPassOrNonPass(data);
-              console.log('passornon', passOrNonPass);
               setLoading(false);
               alert("합/불 여부 체크 완료")
             })
