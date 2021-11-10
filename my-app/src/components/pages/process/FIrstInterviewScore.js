@@ -120,7 +120,7 @@ export default function FirstInterviewScore() {
                               <th>번호</th>
                               <th>수험번호</th>
                               <th>점수 입력</th>
-                              <th style={{paddingLeft:"39px"}}>채점하기</th>
+                              <th style={{paddingLeft:"42px"}}>채점하기</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
                               <th>채점자 인사코드</th>
