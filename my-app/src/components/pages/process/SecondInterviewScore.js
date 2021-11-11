@@ -27,10 +27,11 @@ export default function SecondInterviewScore() {
       })
       .then(data => {
         const data2 = data.filter(data => data.firstInterviewResult === 'P');
-        console.log('data2', data2);
-        setData(data2);
-        // setData(data => data.filter(data.firstInterviewResult === 'P'));
+        return data2;
       })
+      .then(res => {
+        setData(res);
+        console.log('data2', res)})
       .then(
         fetch(`/job-service/jobprocess/${jobsNo}`) // 2차 합격 인원 가져오기
           .then(res => {
