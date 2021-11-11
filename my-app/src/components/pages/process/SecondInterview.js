@@ -4,14 +4,21 @@ import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import { useEffect } from 'react';
 import HRCard from '../../elements/widgets/Home/HRCard';
+import Pagination from '../../../utilities/Pagination';
+import { paginate } from '../../../utilities/paginate';
 
 export default function SecondInterview() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [jobpage, setJobpage] = useState({
+    jobdata: [],
+    pageSize: 1,
+    currentPage: 1,
+  });
 
   useEffect(() => {
-    fetch(`/job-service/${localStorage.getItem('corpNo')}/jobs`)
+    fetch(`/job-service/${localStorage.getItem('corpNo')}/jobs/closed`)
       .then(res => {
         return res.json();
       })
@@ -21,6 +28,16 @@ export default function SecondInterview() {
         setLoading(false);
       })
   }, []);
+
+  const handlePageChange = (page) => {
+    setLoading(true)
+    setJobpage({ ...jobpage, currentPage: page });
+    setLoading(false)
+  };
+
+  const { jobdata, pageSize, currentPage } = jobpage;
+  const pagedJobs = paginate(data, currentPage, pageSize);
+  console.log(pagedJobs); 
 
   if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
@@ -40,14 +57,12 @@ export default function SecondInterview() {
                 </div>
               </div>
               <div className="row row-cols-2">
-                {
-                  data.length > 0 && data.map(
-                    (item, idx) => (
+              {pagedJobs.map((data) => (
                       // 아래는 마감된 공고
                       <HRCard
-                        idx={idx + 1}
-                        key={item.idx}
-                        data={item}
+                        // idx={idx + 1}
+                        // key={item.idx}
+                        data={data}
                         what={"second-interview"}
                         setData={setData}
                       />
@@ -55,6 +70,13 @@ export default function SecondInterview() {
                   )
                 }
               </div>
+              <div >
+              <Pagination
+                itemsCount={data.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              /></div>
             </div>
             <Footer />
           </div>
