@@ -19,7 +19,10 @@ export default function SecondInterviewScore() {
         return res.json();
       })
       .then(data => {
-        setData(data);
+        const data2 = data.filter(data => data.firstInterviewResult === 'P');
+        console.log('data2', data2);
+        setData(data2);
+        // setData(data => data.filter(data.firstInterviewResult === 'P'));
       })
       .then(
         fetch(`/job-service/jobprocess/${jobsNo}`) // 2차 합격 인원 가져오기
@@ -33,11 +36,6 @@ export default function SecondInterviewScore() {
           })
       );
   }, []);
-
-  if(!loading){
-    const result = data.filter(data => data.secondInterviewResult === 'P'); // result 담음
-    console.log('result입니다', result);
-  }
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);

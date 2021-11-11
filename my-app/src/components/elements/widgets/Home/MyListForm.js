@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function MyListForm({ idx, key, data }) {
-  const [written, Setwritten] = useState([]);
+  const [written, setWritten] = useState([]);
   const [interview, setInterview] = useState([]);
   const [loading, setLoading] = useState(true);
   const [applyInfo, setApplyInfo] = useState([]);
@@ -15,50 +15,33 @@ export default function MyListForm({ idx, key, data }) {
         return res.json();
       })
       .then((data) => {
-        console.log('필기 결과', data);
-        Setwritten(data);
+        setWritten(data);
         return data;
       })
       .then(
         res => {
           fetch(`/process-service/process/interview/${data.jobsNo}/${localStorage.getItem("userId")}`)
-            .then((res) => 
-              res.json()
-            )
+            .then((res) => {
+              return res.json();
+            })
             .then((data) => {
-              console.log('면접 결과', data);
               setInterview(data);
+              console.log('data', interview);
+              return data;
             })
         }
-      );
-
-    // 지원내역 가져오는 부분
-    fetch(`/user-service/users/apply/${localStorage.getItem("userId")}/${data.jobsNo}`)
-      .then((res) => {
-        return res.json();
-      })
-      .then(res => {
-        setApplyInfo(res);
-        console.log('data', applyInfo);
-        setLoading(false);
-      });
-  }, []);
-
-  if(!loading){
-    function findResult(){
-      if(written.writtenResult === 'F'){
-        return "아쉽게도 필기전형에서 불합격 하셨습니다.";
-      }
-      else{
-        if(!interview){
-          return "필기 전형 합격입니다.";
-        }
-        else if(interview.firstInterviewResult === 'F'){
-          return "1차 면접에서 불합격 하셨습니다.";
-        }
-      }
-    }
-  }
+        ).then(res => {
+          // 지원내역 가져오는 부분
+          fetch(`/user-service/users/apply/${localStorage.getItem("userId")}/${data.jobsNo}`)
+          .then((res) => {
+            return res.json();
+          })
+          .then(res => {
+            setApplyInfo(res);
+            setLoading(false);
+          });
+        });
+  }, [interview]);  
 
   // 이걸로 결과 얻기
   if (loading)
@@ -166,8 +149,8 @@ export default function MyListForm({ idx, key, data }) {
               ></button>
             </div>
             <div className="modal-body">
-              <findResult/>
-              {written.writtenResult === 'P' ? "1차 합격" : "대기"}
+              {written?.writtenResult === 'P' ? "1차 합격" : "대기"}
+              {interview?.secondInterviewResult}
               
               </div>
             <div className="modal-footer">
