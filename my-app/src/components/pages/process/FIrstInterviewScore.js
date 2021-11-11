@@ -4,6 +4,8 @@ import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import { useParams } from 'react-router';
 import FirstInterviewTableForm from '../../elements/widgets/Form/FIrstInterviewTableForm';
+import Pagination from '../../../utilities/Pagination';
+import { paginate } from '../../../utilities/paginate';
 
 export default function FirstInterviewScore() {
 
@@ -12,6 +14,11 @@ export default function FirstInterviewScore() {
   const [firstInterviewPass, setFirstInterviewPass] = useState();
   const [passOrNonPass, setPassOrNonPass] = useState();
   const { jobsNo } = useParams();
+  const [jobpage, setJobpage] = useState({
+    jobdata: [],
+    pageSize: 8,
+    currentPage: 1,
+  });
 
   useEffect(() => {
     fetch(`/process-service/process/first-interview/${jobsNo}`)
@@ -67,6 +74,14 @@ export default function FirstInterviewScore() {
         }
       )
   }
+  const handlePageChange = (page) => {
+    setLoading(true)
+    setJobpage({ ...jobpage, currentPage: page });
+    setLoading(false)
+  };
+  const { jobdata, pageSize, currentPage } = jobpage;
+  const pagedJobs = paginate(data, currentPage, pageSize);
+  console.log(pagedJobs);
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -128,12 +143,12 @@ export default function FirstInterviewScore() {
                           </thead>
                           <tbody>
                             {
-                              data.length > 0 && data.map(
-                                (item, idx) => (
+                              pagedJobs.length > 0 && pagedJobs.map(
+                                (data, idx) => (
                                   <FirstInterviewTableForm
                                     idx={idx + 1}
-                                    key={item.idx}
-                                    data={item}
+                                    key={data.idx}
+                                    data={data}
                                     jobsNo={jobsNo}
                                     setData={setData}
                                     passOrNonPass={passOrNonPass}
@@ -152,6 +167,13 @@ export default function FirstInterviewScore() {
                   style={{marginTop:"-22px", marginRight:"10px", float:"right"}} onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
                 </div>
               </div>
+              <div >
+              <Pagination
+                itemsCount={data.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              /></div>
             </div>
             <Footer />
           </div>
