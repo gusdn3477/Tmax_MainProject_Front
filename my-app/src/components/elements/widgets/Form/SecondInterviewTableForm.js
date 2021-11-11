@@ -6,6 +6,17 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
   const [loading, setLoading] = useState(false);
 
   const score = () => {
+
+    if(values.score === undefined){
+      alert("빈 칸은 입력할 수 없습니다.");
+      return;
+    }
+
+    if(values.score < 0 || values.score > 100){
+      alert("0과 100 사이의 숫자만 입력해 주세요.");
+      return;
+    }
+
     fetch(`/process-service/process/second-interview/score`, {
       method: "PUT",
       headers: {
@@ -18,7 +29,7 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
       }),
     })
       .then(res => {
-        setValues('');
+        // setValues('');
         console.log('데이터 확인용', secondInterviewPass)
         return res;
       })
@@ -79,7 +90,7 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
     <tr>
       <td>{idx}</td>
       <td>{data.applyNum ? (data.applyNum).substring(0,8) : ""}</td>
-      <td><input type="text" class="form-control" id="exampleInputPassword1" name="score" onChange={handleChangeForm} /></td>
+      <td><input type="text" class="form-control" id="exampleInputPassword1" name="score" placeholder="Only Number" onChange={handleChangeForm} /></td>
       <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.secondInterviewScore}</td>
       <td>{data.secondInterviewResult ? data.secondInterviewResult : "미정"}</td>
