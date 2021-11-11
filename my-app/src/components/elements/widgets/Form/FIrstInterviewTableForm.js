@@ -93,6 +93,7 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
       <td style={{paddingLeft:"3rem"}}>{data.firstInterviewResult}</td>
       {/* <td>{passOrNonPass ? (passOrNonPass.firstInterviewResult) : ""}</td> */}
       <td style={{paddingLeft:"2rem"}}>{data.firstInterviewer ? (data.firstInterviewer).substring(0,8) : ""}</td>
+      <td style={{paddingLeft:"2rem"}}>{data.firstCheck ? (data.firstCheck).substring(0,8) : ""}</td>
     </tr>
   );
 }

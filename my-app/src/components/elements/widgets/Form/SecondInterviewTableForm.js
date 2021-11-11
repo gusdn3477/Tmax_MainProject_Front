@@ -95,6 +95,7 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
       <td>{data.secondInterviewScore}</td>
       <td>{data.secondInterviewResult ? data.secondInterviewResult : "미정"}</td>
       <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td>
+      <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td>
     </tr>
   );
 }

@@ -93,7 +93,9 @@ export default function UserLogin() {
     e.preventDefault();
 
     const valid = userOnTextCheck();
-    if (!valid) console.error("retry");
+    if (!valid) {
+      alert("입력한 정보를 확인해 주세요")
+    }
 
     else {
       fetch(`/user-service/login`, {
@@ -117,6 +119,9 @@ export default function UserLogin() {
             alert("로그인 정보를 확인하세요.");
           }
         })
+        .catch(
+          alert("로그인 정보를 확인하세요")
+        )
     }
   }
 
@@ -125,7 +130,9 @@ export default function UserLogin() {
     e.preventDefault();
 
     const valid = hrOnTextCheck();
-    if (!valid) console.error("retry");
+    if (!valid) {
+      alert("입력한 정보를 확인해 주세요")
+    }
 
     else {
       fetch(`/hr-service/login`, {

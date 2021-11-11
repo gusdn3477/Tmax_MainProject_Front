@@ -152,7 +152,9 @@ export default function UserRegister() {
           alert("success"),
           gogo.push('/')
           //window.location.href = '/'
-
+        )
+        .catch(
+          alert("이메일과 비밀번호를 확인해 주세요")
         )
     }
   }

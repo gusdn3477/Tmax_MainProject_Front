@@ -68,6 +68,7 @@ export default function FirstInterviewScore() {
               res.json()
             )
             .then(data => {
+              setData(data);
               setLoading(false);
               alert("합/불 여부 체크 완료")
             })
@@ -139,6 +140,7 @@ export default function FirstInterviewScore() {
                               <th>점수</th>
                               <th>합/불 여부</th>
                               <th>채점자 인사코드</th>
+                              <th>최종 결정자 인사코드</th>
                             </tr>
                           </thead>
                           <tbody>

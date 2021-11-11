@@ -27,13 +27,14 @@ export default function SecondInterviewScore() {
       })
       .then(data => {
         const data2 = data.filter(data => data.firstInterviewResult === 'P');
-        console.log('data', data);
-        setData(data2);
         return data2;
       })
       .then(res => {
         setData(res);
-        console.log('data2', res)})
+        console.log('data2', res);
+      }
+        // setData(data => data.filter(data.firstInterviewResult === 'P'));
+      )
       .then(
         fetch(`/job-service/jobprocess/${jobsNo}`) // 2차 합격 인원 가져오기
           .then(res => {
@@ -46,8 +47,6 @@ export default function SecondInterviewScore() {
           })
       );
   }, []);
-  // let data2 = data.filter(value => value.firstInterviewResult === "P");
-  console.log('data2', data)
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);
@@ -76,6 +75,7 @@ export default function SecondInterviewScore() {
             )
             .then(data => {
               setLoading(false);
+              setData(data);
               alert("합/불 여부 체크 완료")
             })
         }
@@ -146,6 +146,7 @@ export default function SecondInterviewScore() {
                               <th>점수</th>
                               <th>합/불 여부</th>
                               <th>채점자 인사코드</th>
+                              <th>최종 결정자 인사코드</th>
                             </tr>
                           </thead>
                           <tbody>
