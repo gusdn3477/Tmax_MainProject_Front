@@ -17,9 +17,9 @@ export default function Header() {
           <li className="nav-item nav-search d-none d-lg-block">
             <div className="input-group">
               <div className="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span className="input-group-text" id="search">
+                {/* <span className="input-group-text" id="search">
                   <i className="icon-search"></i>
-                </span>
+                </span> */}
               </div>
               {/* <input type="text" className="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search" /> */}
             </div>

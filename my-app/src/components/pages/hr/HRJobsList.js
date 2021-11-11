@@ -50,9 +50,7 @@ export default function HRJobsList() {
   console.log(pagedJobs);
 
   if (loading)
-    return (
-      <div class="spinner-border text-primary" role="status"></div>
-    );
+    return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />
@@ -62,7 +60,6 @@ export default function HRJobsList() {
           <div className="main-panel">
             <div className="content-wrapper">
               <div className="row">
-              
                 {pagedJobs.map((data) => (
                   // <Card  data={job} setData={job} />
       <div className="card" style={{ width: "60rem", margin: "13px" }}>
@@ -107,7 +104,6 @@ export default function HRJobsList() {
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
               /></div>
-              
               </div>
             </div>
             <Footer />

@@ -9,7 +9,7 @@ export default function HRCard({ idx, key, what, data, setData }) {
     <div className="card" style={{ width: "60rem", margin: "13px" }}>
       <div className="card-body">
         <h5 className="card-title">{data.jobsTitle}</h5>
-        <h6 className="card-description">{data.jobsContext}</h6>
+        <h6 className="card-description"><i class="fas fa-angle-right"></i>&nbsp;&nbsp;{data.jobsContext}</h6>
         <p className="card-text card-text-ing">고용형태 :  {data.jobType}</p>
         <p className="card-text card-text-ing">채용유형 :  {data.jobQualify}</p>
         <p className="card-text card-text-ing">지원자격 :  {data.employType}</p>

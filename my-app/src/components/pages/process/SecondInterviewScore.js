@@ -10,6 +10,7 @@ export default function SecondInterviewScore() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [secondInterviewPass, setSecondInterviewPass] = useState();
+  const [save, setSave] = useState();
   const { jobsNo } = useParams();
 
   useEffect(() => {
@@ -33,6 +34,10 @@ export default function SecondInterviewScore() {
       );
   }, []);
 
+  if(!loading){
+    const result = data.filter(data => data.secondInterviewResult === 'P'); // result 담음
+    console.log('result입니다', result);
+  }
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);
@@ -43,19 +48,23 @@ export default function SecondInterviewScore() {
       },
       body: JSON.stringify({
         jobsNo: jobsNo,
-        empNo: localStorage.getItem('empNo'),
+        secondInterviewer: localStorage.getItem('empNo'),
         count: secondInterviewPass.intv2Pass
       }),
-    }).then(res => {return res.json()})
+    }).then(res => res.json())
       .then(
         res => {
-          console.log('결과', res);
+          setData(res);
+        }
+        )
+          .then(res=>{
+          console.log('res 확인용', data);
+          console.log('second 확인용', save);
           fetch(`/process-service/process/second-interview/${jobsNo}`)
-            .then(res => {
-              return res.json();
-            })
+            .then(res => 
+              res.json()
+            )
             .then(data => {
-              setData(data);
               setLoading(false);
               alert("합/불 여부 체크 완료")
             })
@@ -92,7 +101,7 @@ export default function SecondInterviewScore() {
     PassOrNot
   );
 
-  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />
@@ -107,7 +116,7 @@ export default function SecondInterviewScore() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-0">2차 면접 대상자 목록</p>
+                      <p className="card-title mb-4">2차 면접 대상자 목록</p>
                       <div className="table-responsive">
                         <table className="table table-striped table-borderless">
                           <thead>

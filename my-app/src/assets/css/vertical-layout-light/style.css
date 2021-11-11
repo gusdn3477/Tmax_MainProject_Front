@@ -116,6 +116,7 @@
 /* === Import template variables === */
 /*-------------------------------------------------------------------*/
 /* === SCSS Compass Functions === */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300,400,500;700;900&display=swap');
 @-moz-keyframes flash {
   0% {
     opacity: 1;
@@ -8874,6 +8875,7 @@ th {
 }
 
 label {
+  word-break: keep-all;
   display: inline-block;
   margin-bottom: 0.5rem;
 }
@@ -19525,7 +19527,17 @@ h6, .h6 {
 }
 
 .display-5 {
-  font-size: 1.25rem;
+  /* padding-left: 3%;
+  padding-right: 2.5%; */
+  padding:3%;
+  font-size: 1.2rem;
+  font-family: "google_mid" !important;
+  font-weight: 100;
+  color: black;
+  background: #e5efff;
+  letter-spacing : 1px;
+  word-spacing: 2.3px;
+  line-height: 1.7;
 }
 
 @media (max-width: 991px) {
@@ -22025,14 +22037,15 @@ code {
 }
 
 .card .card-description {
-  margin-left: .5rem;
-  margin-bottom: 1.2rem;
+  margin-left: .7rem;
+  margin-bottom: 1.4rem;
   font-weight: 400;
   color: #64686a;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   line-height: 1.5rem;
-  font-family: "google_mid";
-  background: aliceblue;
+  font-family: "google_l";
+  /* background: aliceblue; */
+  /* background-color: aliceblue; */
 }
 
 .card .card-text-end {
@@ -28422,7 +28435,7 @@ div.tagsinput span.tag a {
 }
 
 .auth form .form-group label {
-  font-size: .8125rem;
+  font-size: 1.01rem;
 }
 
 .auth form .form-group .form-control, .auth form .form-group .asColorPicker-input, .auth form .form-group .dataTables_wrapper select, .dataTables_wrapper .auth form .form-group select, .auth form .form-group .jsgrid .jsgrid-table .jsgrid-filter-row input[type=text], .jsgrid .jsgrid-table .jsgrid-filter-row .auth form .form-group input[type=text],
@@ -30751,4 +30764,71 @@ div.tagsinput span.tag a {
 }
 .google-font-force_mid {
   font-family: "google_mid" !important;
+}
+
+.simple_table { 
+  width: 100%; 
+  border: none; 
+  border-collapse: separate; 
+  border-spacing: 2px;
+}
+
+.simple_table th { 
+  width: 45%;
+  padding-left: 13%; 
+  border: none; 
+  /* border-left: 5px solid #C03; 
+  border-bottom: 1px solid #DDD; 
+  background: #FCF0F3;  */
+  font-weight: 700;
+  font-family: "Noto Sans KR", sans-serif !important; 
+  text-align:left; 
+  /* text-shadow: 0 1px #FFF;  */
+  vertical-align: middle;
+  font-size: 1.4rem;
+  letter-spacing : 1px;
+  /* text-underline-position: under; */
+  text-decoration :underline rgba(24, 83, 220, 0.42) 7px;
+}
+.simple_table td { 
+  /* padding: 15px;  */
+  border: none; 
+  /* border-bottom: 1px solid #DDD;  */
+  font-family: "Noto Sans KR", sans-serif; 
+  font-weight: 300;
+  font-size: 1.2rem;
+  text-align: left; 
+  vertical-align: middle;
+  letter-spacing : 1px;
+}
+
+.simple_table th, .simple_table td{
+  padding-bottom: 2.5rem;
+}
+
+.creat-job-font{
+  font-family: "Noto Sans KR", sans-serif; 
+  font-weight: 500;
+  /* font-size: 1.2rem !important; */
+  letter-spacing : -1.2px;
+}
+
+.creat-job-title{
+  margin-left: 4%;
+  margin-top: -1rem;
+  margin-bottom: 2.5rem;
+  font-size: 2.5rem;
+  font-family: '';
+  font-weight: 500;
+  letter-spacing : -1.5px;
+}
+
+.card .card-inmidle {
+  margin: 2.5rem 0;
+  font-weight: 400;
+  color: #64686a;
+  font-size: 1.2rem;
+  line-height: 1.5rem;
+  font-family: "google_mid";
+  word-spacing: 4px;
 }

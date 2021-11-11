@@ -10,6 +10,7 @@ export default function FirstInterviewScore() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [firstInterviewPass, setFirstInterviewPass] = useState();
+  const [passOrNonPass, setPassOrNonPass] = useState();
   const { jobsNo } = useParams();
 
   useEffect(() => {
@@ -43,19 +44,23 @@ export default function FirstInterviewScore() {
       },
       body: JSON.stringify({
         jobsNo: jobsNo,
-        empNo: localStorage.getItem('empNo'),
+        firstInterviewer: localStorage.getItem('empNo'),
         count: firstInterviewPass.intv1Pass
       }),
-    }).then(res => {return res.json()})
+    }).then(res => res.json())
       .then(
         res => {
+          setData(res);
+          console.log('data 확인', data);
+        }
+      )
+      .then(res => {
           console.log('결과', res);
           fetch(`/process-service/process/first-interview/${jobsNo}`)
-            .then(res => {
-              return res.json();
-            })
+            .then(res => 
+              res.json()
+            )
             .then(data => {
-              setData(data);
               setLoading(false);
               alert("합/불 여부 체크 완료")
             })
@@ -92,7 +97,7 @@ export default function FirstInterviewScore() {
     PassOrNot
   );
 
-  if (loading) return <div class="spinner-border text-primary" role="status">잠시만 기다려 주세요</div>;
+  if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />
@@ -107,15 +112,15 @@ export default function FirstInterviewScore() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-0">1차 면접 대상자 목록</p>
+                      <p className="card-title mb-4 ml-3">1차 면접 대상자 목록</p>
                       <div className="table-responsive">
-                        <table className="table table-striped table-borderless">
+                        <table className="table table-striped table-borderless" style={{marginBottom:"2rem"}}>
                           <thead>
                             <tr>
                               <th>번호</th>
                               <th>수험번호</th>
                               <th>점수 입력</th>
-                              <th>채점하기</th>
+                              <th style={{paddingLeft:"42px"}}>채점하기</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
                               <th>채점자 인사코드</th>
@@ -131,6 +136,7 @@ export default function FirstInterviewScore() {
                                     data={item}
                                     jobsNo={jobsNo}
                                     setData={setData}
+                                    passOrNonPass={passOrNonPass}
                                   />
                                 )
                               )
