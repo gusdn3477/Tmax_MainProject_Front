@@ -27,6 +27,8 @@ export default function SecondInterviewScore() {
       })
       .then(data => {
         const data2 = data.filter(data => data.firstInterviewResult === 'P');
+        console.log('data', data);
+        setData(data2);
         return data2;
       })
       .then(res => {
@@ -44,6 +46,8 @@ export default function SecondInterviewScore() {
           })
       );
   }, []);
+  // let data2 = data.filter(value => value.firstInterviewResult === "P");
+  console.log('data2', data)
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     setLoading(true);
