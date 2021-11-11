@@ -7,6 +7,16 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
   const [loading, setLoading] = useState(false);
 
   const score = () => {
+
+    if(values.score === undefined){
+      alert("빈 칸은 입력할 수 없습니다.");
+      return;
+    }
+
+    if(values.score < 0 || values.score > 100){
+      alert("0과 100 사이의 숫자만 입력해 주세요.");
+      return;
+    }
     fetch(`/process-service/process/first-interview/score`, {
       method: "PUT",
       headers: {
@@ -19,7 +29,7 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
       }),
     })
       .then(res => {
-        setValues('');
+        // setValues('');
         return res;
       })
       .then(

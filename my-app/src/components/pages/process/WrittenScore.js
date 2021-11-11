@@ -111,7 +111,7 @@ export default function WrittenScore() {
         headers: {
           "Content-Type": "application/json",
         }
-      })
+      }).then(alert("명단을 넘겼습니다!"));
     }
   }
 
