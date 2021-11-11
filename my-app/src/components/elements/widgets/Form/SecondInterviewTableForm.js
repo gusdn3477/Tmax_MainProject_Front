@@ -28,10 +28,11 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
             .then(res => {
               return res.json();
             })
-        .then(res => {
-          setData(res);
-          console.log('res', res);
-          setLoading(false);
+        .then(data => {
+          // setData(data);
+          const data2 = data.filter(data => data.firstInterviewResult === 'P');
+          console.log('data2', data2);
+          setData(data2);
           alert("채점 완료!");
         })
         )

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function MyListForm({ idx, key, data }) {
-  const [written, Setwritten] = useState([]);
+  const [written, setWritten] = useState([]);
   const [interview, setInterview] = useState([]);
   const [loading, setLoading] = useState(true);
   const [applyInfo, setApplyInfo] = useState([]);
@@ -44,6 +44,7 @@ export default function MyListForm({ idx, key, data }) {
         return res.json();
       })
       .then((data) => {
+
         console.log("필기 결과", data);
         Setwritten(data);
         return data;
@@ -90,6 +91,7 @@ export default function MyListForm({ idx, key, data }) {
       }
     }
   }
+
 
   // 이걸로 결과 얻기
   if (loading)
@@ -213,6 +215,7 @@ export default function MyListForm({ idx, key, data }) {
               ></button>
             </div>
             <div className="modal-body">
+
               {/* <findResult />
               {written.writtenResult === "P" ? "1차 합격" : "대기"}
               {interview.firstInterviewResult === "p"
@@ -230,6 +233,7 @@ export default function MyListForm({ idx, key, data }) {
               <br></br>두번째 면접 결과 : {interview.secondInterviewResult}
               <br></br>
             </div>
+
             <div className="modal-footer">
               <button
                 type="button"

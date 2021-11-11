@@ -4,6 +4,8 @@ import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import { useParams } from 'react-router';
 import WrittenTableForm from '../../elements/widgets/Form/WrittenTableForm';
+import Pagination from '../../../utilities/Pagination';
+import { paginate } from '../../../utilities/paginate';
 
 export default function WrittenScore() {
 
@@ -12,6 +14,11 @@ export default function WrittenScore() {
   const [writtenPass, setWrittenPass] = useState();
   const { jobsNo } = useParams();
   const [flag, setFlag] = useState(0);
+  const [jobpage, setJobpage] = useState({
+    jobdata: [],
+    pageSize: 8,
+    currentPage: 1,
+  });
 
   useEffect(() => {
     fetch(`/process-service/process/written/${jobsNo}`)
@@ -67,6 +74,15 @@ export default function WrittenScore() {
           })}
       )
   }
+  const handlePageChange = (page) => {
+    setLoading(true)
+    setJobpage({ ...jobpage, currentPage: page });
+    setLoading(false)
+  };
+  const { jobdata, pageSize, currentPage } = jobpage;
+  const pagedJobs = paginate(data, currentPage, pageSize);
+  console.log(pagedJobs);
+
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
     if (flag === 0) {
@@ -188,12 +204,12 @@ export default function WrittenScore() {
                           </thead>
                           <tbody>
                             {
-                              data.length > 0 && data.map(
-                                (item, idx) => (
+                              pagedJobs.length > 0 && pagedJobs.map(
+                                (data, idx) => (
                                   <WrittenTableForm
                                     idx={idx + 1}
-                                    key={item.idx}
-                                    data={item}
+                                    key={data.idx}
+                                    data={data}
                                     jobsNo={jobsNo}
                                   />
                                 )
@@ -219,6 +235,13 @@ export default function WrittenScore() {
                   </form>
                 </div>
               </div>
+              <div >
+              <Pagination
+                itemsCount={data.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              /></div>
             </div>
             <Footer />
           </div>

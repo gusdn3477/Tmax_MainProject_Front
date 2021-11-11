@@ -15,18 +15,12 @@ export default function HRJobsList() {
   const [loading, setLoading] = useState(true);
   const [jobpage, setJobpage] = useState({
     jobdata: [],
-    pageSize: 1,
+    pageSize: 3,
     currentPage: 1,
   });
 
   useEffect(() => {
-    // const fetchPost = async () => {
-    //   setLoading(true);
-    //   const res = await axios.get('/job-service/${localStorage.getItem("corpNo")}/jobs');
-    //   setData(res.data);
-    //   setLoading(false);
-    // }
-    // fetchPost(); 
+
     fetch(`/job-service/${localStorage.getItem("corpNo")}/jobs`)
       .then((res) => {
         return res.json();
@@ -50,7 +44,9 @@ export default function HRJobsList() {
   console.log(pagedJobs);
 
   if (loading)
-    return <div class="spinner-border text-primary" role="status"></div>;
+    return (
+      <div class="spinner-border text-primary" role="status"></div>
+    );
   return (
     <div id="wrap">
       <Header />
@@ -60,7 +56,8 @@ export default function HRJobsList() {
           <div className="main-panel">
             <div className="content-wrapper">
               <div className="row">
-                {pagedJobs.map((data) => (
+              
+                {pagedJobs.map((data) => ( 
                   // <Card  data={job} setData={job} />
       <div className="card" style={{ width: "60rem", margin: "13px" }}>
         <div>
@@ -104,6 +101,7 @@ export default function HRJobsList() {
                 currentPage={currentPage}
                 onPageChange={handlePageChange}
               /></div>
+              
               </div>
             </div>
             <Footer />

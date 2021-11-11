@@ -12,6 +12,11 @@ export default function Buttons() {
   const [loading, setLoading] = useState(true);
   const [currentPage, setCurrentPage] = useState(1);
   const [postsPerPage, setPostsPerPage] = useState(10);
+  const [jobpage, setJobpage] = useState({
+    jobdata: [],
+    pageSize: 1,
+    currentPage: 1,
+  });
 
   useEffect(() => {
     fetch(`/job-service/jobs`)
@@ -19,11 +24,16 @@ export default function Buttons() {
         return res.json();
       })
       .then(data => {
-        setData(data);
-        console.log(data);
-        setLoading(false);
+  
+          setData(data);
+          console.log(data);
+          setLoading(false);
+
+        
       });
   }, []);
+  let data2 = data.filter(value => value.closed !== "T");
+  console.log(data2);
 
   const indexOfLast = currentPage * postsPerPage;
   const indexOfFirst = indexOfLast - postsPerPage;
@@ -45,7 +55,7 @@ export default function Buttons() {
             <div className="content-wrapper">
               <div className="row">
                 {
-                  data.length > 0 && data.map(
+                  data2.length > 0 && data2.map(
                     (item, idx) => (
                       <Card
                         idx={idx + 1}
