@@ -12,8 +12,8 @@ export default function WrittenScore() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [writtenPass, setWrittenPass] = useState();
-  const { jobsNo } = useParams();
   const [flag, setFlag] = useState(0);
+  const { jobsNo } = useParams();
   const [jobpage, setJobpage] = useState({
     jobdata: [],
     pageSize: 8,

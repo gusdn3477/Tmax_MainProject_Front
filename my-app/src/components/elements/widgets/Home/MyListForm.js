@@ -46,7 +46,7 @@ export default function MyListForm({ idx, key, data }) {
       .then((data) => {
 
         console.log("필기 결과", data);
-        Setwritten(data);
+        setWritten(data);
         return data;
       })
       .then((res) => {});
