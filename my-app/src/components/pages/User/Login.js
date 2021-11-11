@@ -205,11 +205,11 @@ export default function UserLogin() {
                         </div>
                         <Link to="/user/findpwd" class="auth-link text-black">Forgot password?</Link>
                       </div>
-                      <div class="mb-2">
+                      {/* <div class="mb-2">
                         <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                           <i class="ti-facebook mr-2"></i>페이스북 계정으로 시작하기
                         </button>
-                      </div>
+                      </div> */}
                       <div class="text-center mt-4 font-weight-light">
                         지원자 계정으로 가입하고 싶으시다면 <Link to="/user/register" class="text-primary">Create</Link>
                       </div>
@@ -263,11 +263,11 @@ export default function UserLogin() {
                         </div>
                         <Link to="/hr/findpwd" class="auth-link text-black">Forgot password?</Link>
                       </div>
-                      <div class="mb-2">
+                      {/* <div class="mb-2">
                         <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                           <i class="ti-facebook mr-2"></i>페이스북 계정으로 시작하기
                         </button>
-                      </div>
+                      </div> */}
                       <div class="text-center mt-4 font-weight-light">
                         인사담당자 계정으로 가입하고 싶으시다면 <Link to="/hr/register" class="text-primary">Create</Link>
                       </div>
