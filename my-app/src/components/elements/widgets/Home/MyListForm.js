@@ -7,33 +7,6 @@ export default function MyListForm({ idx, key, data }) {
   const [loading, setLoading] = useState(true);
   const [applyInfo, setApplyInfo] = useState([]);
 
-  // useEffect(() => {
-  //   fetch(
-  //     `/process-service/process/written/${data.jobsNo}/${localStorage.getItem(
-  //       "userId"
-  //     )}`
-  //   )
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       console.log("필기 결과", data);
-  //       Setwritten(data);
-  //       return data;
-  //     })
-  //     .then((res) => {
-  //       fetch(
-  //         `/process-service/process/interview/${
-  //           data.jobsNo
-  //         }/${localStorage.getItem("userId")}`
-  //       )
-  //         .then((res) => res.json())
-  //         .then((data) => {
-  //           console.log("면접 결과", data);
-  //           setInterview(data);
-  //         });
-  //     });
-
   useEffect(() => {
     fetch(
       `/process-service/process/written/${data.jobsNo}/${localStorage.getItem(
@@ -44,7 +17,6 @@ export default function MyListForm({ idx, key, data }) {
         return res.json();
       })
       .then((data) => {
-
         console.log("필기 결과", data);
         setWritten(data);
         return data;
@@ -79,7 +51,7 @@ export default function MyListForm({ idx, key, data }) {
   }, []);
 
   if (!loading) {
-    function findResult() {
+    function findWrittenResult() {
       if (written.writtenResult === "F") {
         return "아쉽게도 필기전형에서 불합격 하셨습니다.";
       } else {
@@ -91,7 +63,6 @@ export default function MyListForm({ idx, key, data }) {
       }
     }
   }
-
 
   // 이걸로 결과 얻기
   if (loading)
@@ -150,8 +121,8 @@ export default function MyListForm({ idx, key, data }) {
                 <br></br> 이름 : {applyInfo.applyName} <br></br>
                 <br></br> 이메일 : {applyInfo.applyEmail} <br></br>
                 <br></br> 전화번호 : {applyInfo.applyContact} <br></br>
-                <br></br> 지원날짜 : {applyInfo.applyDateTime.substring(0, 10)}{" "}
-                <br></br>
+                {/* <br></br> 지원날짜 : {applyInfo.applyDateTime.substring(0, 10)}{" "} */}
+                <br></br> 지원날짜 : {applyInfo.applyDateTime}
                 {/* <br></br> data.jobsNo : {data.jobsNo} <br></br> */}
                 <br></br> 지원번호 : {applyInfo.jobsNo} <br></br>
               </div>
@@ -215,23 +186,27 @@ export default function MyListForm({ idx, key, data }) {
               ></button>
             </div>
             <div className="modal-body">
-
-              {/* <findResult />
-              {written.writtenResult === "P" ? "1차 합격" : "대기"}
-              {interview.firstInterviewResult === "p"
-                ? "1차면접 합겨억"
-                : "대기"} */}
+              <br></br> <br></br>
+              <br></br>{" "}
+              {written.writtenResult === "P"
+                ? " 필기 전형 결과 : 축하드립니다. 필기 전형에 합격하셨습니다."
+                : written.writtenResult === "F"
+                ? " 필기 전형 결과 : 안타깝지만 필기 전형에 불합격 하셨습니다"
+                : "전형 발표 기간이 아닙니다."}{" "}
               <br></br>
+              <br></br>{" "}
+              {interview.firstInterviewResult === "P"
+                ? "1차 면접 전형 결과 : 축하드립니다. 1차 면접 전형에 합격하셨습니다."
+                : interview.firstInterviewResult === "F"
+                ? "1차 면접 전형 결과 : 안타깝지만 1차 면접 전형에 불합격 하셨습니다"
+                : ""}{" "}
               <br></br>
-              <br></br>
-              <br></br>
-              <br></br>
-              <br></br>필기 전형 결과 : {written.writtenResult}
-              <br></br>
-              <br></br>첫번째 면접 결과 : {interview.firstInterviewResult}
-              <br></br>
-              <br></br>두번째 면접 결과 : {interview.secondInterviewResult}
-              <br></br>
+              <br></br>{" "}
+              {interview.secondInterviewResult === "P"
+                ? "2차 면접 전형 결과 : 축하드립니다. 2차 면접 전형에 합격하셨습니다."
+                : interview.secondInterviewResult === "F"
+                ? "2차 면접 전형 결과 : 안타깝지만 2차 면접 전형에 불합격 하셨습니다"
+                : ""}{" "}
             </div>
 
             <div className="modal-footer">
