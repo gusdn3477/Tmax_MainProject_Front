@@ -4,6 +4,8 @@ import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import { useParams } from 'react-router';
 import SecondInterviewTableForm from '../../elements/widgets/Form/SecondInterviewTableForm';
+import Pagination from '../../../utilities/Pagination';
+import { paginate } from '../../../utilities/paginate';
 
 export default function SecondInterviewScore() {
 
@@ -12,6 +14,11 @@ export default function SecondInterviewScore() {
   const [secondInterviewPass, setSecondInterviewPass] = useState();
   const [save, setSave] = useState();
   const { jobsNo } = useParams();
+  const [jobpage, setJobpage] = useState({
+    jobdata: [],
+    pageSize: 8,
+    currentPage: 1,
+  });
 
   useEffect(() => {
     fetch(`/process-service/process/second-interview/${jobsNo}`)
@@ -71,6 +78,14 @@ export default function SecondInterviewScore() {
         }
       )
   }
+  const handlePageChange = (page) => {
+    setLoading(true)
+    setJobpage({ ...jobpage, currentPage: page });
+    setLoading(false)
+  };
+  const { jobdata, pageSize, currentPage } = jobpage;
+  const pagedJobs = paginate(data, currentPage, pageSize);
+  console.log(pagedJobs);
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
     if (!onConfirm || typeof onConfirm !== "function") {
@@ -132,12 +147,12 @@ export default function SecondInterviewScore() {
                           </thead>
                           <tbody>
                             {
-                              data.length > 0 && data.map(
-                                (item, idx) => (
+                              pagedJobs.length > 0 && pagedJobs.map(
+                                (data, idx) => (
                                   <SecondInterviewTableForm
                                     idx={idx + 1}
-                                    key={item.idx}
-                                    data={item}
+                                    key={data.idx}
+                                    data={data}
                                     jobsNo={jobsNo}
                                     setData={setData}
                                   />
@@ -155,6 +170,13 @@ export default function SecondInterviewScore() {
                   style={{marginTop:"-22px", marginRight:"10px", float:"right"}} onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
                 </div>
               </div>
+              <div >
+              <Pagination
+                itemsCount={data.length}
+                pageSize={pageSize}
+                currentPage={currentPage}
+                onPageChange={handlePageChange}
+              /></div>
             </div>
             <Footer />
           </div>

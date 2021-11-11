@@ -13,7 +13,7 @@ export default function Written() {
   const [loading, setLoading] = useState(true);
   const [jobpage, setJobpage] = useState({
     jobdata: [],
-    pageSize: 1,
+    pageSize: 4,
     currentPage: 1,
   });
 
