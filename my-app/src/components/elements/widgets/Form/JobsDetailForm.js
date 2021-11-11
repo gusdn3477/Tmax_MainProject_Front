@@ -178,11 +178,6 @@ export default function JobsDetailForm({ data, data2 }) {
                     </table>
                   </div>
 
-
-
-
-
-
                   <div class="row align-items-center" style={{ margin: "3rem 10% 2rem " }}>
                     {localStorage.getItem("empNo") ? (
                       <Fragment>
