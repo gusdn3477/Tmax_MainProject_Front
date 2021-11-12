@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function MyProcessCard({ data, interview }) {
-  console.log(data)
+  console.log('data 확인용', data)
   console.log(interview)
     if(!data.writtenResult){
         return(<div>필기전형 진행중 입니다.</div>)
@@ -27,7 +27,7 @@ export default function MyProcessCard({ data, interview }) {
                     }
                     else{
                         if(interview.secondInterviewResult==="P"){
-                            return(<div>최종 면접 합격하셨습니다</div>);
+                            return(<div>최종 면접 합격하셨습니다. 진심으로 축하드립니다!</div>);
                         }
                         else{
                             return(<div>최종 면접 불합격하셨습니다</div>);

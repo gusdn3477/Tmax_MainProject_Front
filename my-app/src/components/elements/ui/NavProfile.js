@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Img from '../../../assets/images/faces/face28.jpg';
+import mask from '../../../assets/images/mask.PNG';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import { useHistory } from 'react-router';
 
@@ -11,7 +12,6 @@ export default function NavProfile() {
   const handlePutUserLists = (e) => {
 
     e.preventDefault();
-
     fetch(`/hr-service/hr/findpwd`, {
       method: "GET",
       headers: {
@@ -24,13 +24,12 @@ export default function NavProfile() {
         localStorage.clear(),
         // window.location.href = '/'
       )
-
   }
 
   return (
     <li className="nav-item nav-profile dropdown">
       <a className="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-        <img src={Img} alt="profile" />
+        <img src={mask} alt="profile" />
       </a>
       <div className="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
         {/* 누구냐에 따라 다름 */}
