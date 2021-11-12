@@ -27,6 +27,7 @@ export default function WrittenScore() {
       })
       .then(data => {
         setData(data);
+        console.log('data', data[0]);
       })
       .then(
         fetch(`/job-service/jobprocess/${jobsNo}`) // 필기 합격 인원 가져오기
@@ -85,8 +86,15 @@ export default function WrittenScore() {
 
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
+
+    if(data[0].writtenCheck){
+      alert("이미 합/불 여부가 결정된 전형입니다.");
+      return;
+    }
+
     if (flag === 0) {
       alert("채점 후에 합/불 여부를 가릴 수 있습니다");
+      return;
     }
     else {
       setLoading(true);
@@ -161,7 +169,7 @@ export default function WrittenScore() {
   );
 
   const confirmPassOrNot = useConfirm(
-    "합/불 여부를 결정하시겠습니까?",
+    "합/불 여부를 결정한 후에는 재채점이 불가능합니다. 합/불 여부를 결정하시겠습니까?",
     deleteConfirm,
     cancelConfirm,
     PassOrNot
@@ -199,7 +207,7 @@ export default function WrittenScore() {
                               <th>수험번호</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
-                              <th>채점자 인사코드</th>
+                              <th>최종 결정자 인사코드</th>
                             </tr>
                           </thead>
                           <tbody>

@@ -6,6 +6,8 @@ export default function MyListForm({ idx, key, data }) {
   const [written, setWritten] = useState([]);
   const [interview, setInterview] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+  const [loading3, setLoading3] = useState(true);
   const [applyInfo, setApplyInfo] = useState([]);
 
   useEffect(() => {
@@ -50,20 +52,6 @@ export default function MyListForm({ idx, key, data }) {
         setLoading(false);
       });
   }, []);
-
-  if (!loading) {
-    function findWrittenResult() {
-      if (written.writtenResult === "F") {
-        return "아쉽게도 필기전형에서 불합격 하셨습니다.";
-      } else {
-        if (!interview) {
-          return "필기 전형 합격입니다.";
-        } else if (interview.firstInterviewResult === "F") {
-          return "1차 면접에서 불합격 하셨습니다.";
-        }
-      }
-    }
-  }
 
   // 이걸로 결과 얻기
   if (loading)
@@ -122,8 +110,8 @@ export default function MyListForm({ idx, key, data }) {
                 <br></br> 이름 : {applyInfo.applyName} <br></br>
                 <br></br> 이메일 : {applyInfo.applyEmail} <br></br>
                 <br></br> 전화번호 : {applyInfo.applyContact} <br></br>
-                {/* <br></br> 지원날짜 : {applyInfo.applyDateTime.substring(0, 10)}{" "} */}
-                <br></br> 지원날짜 : {applyInfo.applyDateTime}
+                <br></br> 지원날짜 : {applyInfo.applyDateTime ? applyInfo.applyDateTime.substring(0, 10) : ""}<br></br>
+                {/* <br></br> 지원날짜 : {applyInfo.applyDateTime} */}
                 {/* <br></br> data.jobsNo : {data.jobsNo} <br></br> */}
                 <br></br> 지원번호 : {applyInfo.jobsNo} <br></br>
               </div>
@@ -142,19 +130,6 @@ export default function MyListForm({ idx, key, data }) {
         </div>
       </td>
       <td>
-        {/* {written.writtenResult ? (
-          <button
-            type="button"
-            className="btn btn-primary"
-            data-bs-toggle="modal"
-            data-bs-target={`#exampleModalTwo` + idx}
-          >
-            확인하기
-          </button>
-        ) : (
-          "미정"
-        )} */}
-
         <button
           type="button"
           className="btn btn-primary"
@@ -165,7 +140,6 @@ export default function MyListForm({ idx, key, data }) {
         </button>
       </td>
 
-      {/* 잠시 대기 */}
       <div
         className="modal fade"
         id={`exampleModalTwo` + idx}
@@ -191,27 +165,6 @@ export default function MyListForm({ idx, key, data }) {
               data = {written}
               interview = {interview}
               />
-              {/* <br></br> <br></br>
-              <br></br>{" "}
-              {written.writtenResult === "P"
-                ? " 필기 전형 결과 : 축하드립니다. 필기 전형에 합격하셨습니다."
-                : written.writtenResult === "F"
-                ? " 필기 전형 결과 : 안타깝지만 필기 전형에 불합격 하셨습니다"
-                : "전형 발표 기간이 아닙니다."}{" "}
-              <br></br>
-              <br></br>{" "}
-              {interview.firstInterviewResult === "P"
-                ? "1차 면접 전형 결과 : 축하드립니다. 1차 면접 전형에 합격하셨습니다."
-                : interview.firstInterviewResult === "F"
-                ? "1차 면접 전형 결과 : 안타깝지만 1차 면접 전형에 불합격 하셨습니다"
-                : ""}{" "}
-              <br></br>
-              <br></br>{" "}
-              {interview.secondInterviewResult === "P"
-                ? "2차 면접 전형 결과 : 축하드립니다. 2차 면접 전형에 합격하셨습니다."
-                : interview.secondInterviewResult === "F"
-                ? "2차 면접 전형 결과 : 안타깝지만 2차 면접 전형에 불합격 하셨습니다"
-                : ""}{" "} */}
             </div>
 
             <div className="modal-footer">

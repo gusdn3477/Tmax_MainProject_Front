@@ -61,11 +61,11 @@ export default function HRJobsList() {
                   // <Card  data={job} setData={job} />
       <div className="card" style={{ width: "60rem", margin: "13px" }}>
         <div>
-        {(data.closed==="T") ? <div className="card-inverse-info card-inverse-info-position ">
+        {(data.closed==="T") ? 
+          <div className="card-inverse-info card-inverse-info-position ">
             <i class="fas fa-exclamation"></i>&nbsp;&nbsp;마감된 공고입니다.
-            </div> : <div className="card-inverse-info card-inverse-info-position ">
-            <i class="fas fa-exclamation"></i>&nbsp;&nbsp;
-            </div>}
+          </div> : 
+          ""}
         </div>
         <div className="card-body">
           <h5 className="card-title" style={{color:"#949aa1"}}>{data.jobsTitle}</h5>

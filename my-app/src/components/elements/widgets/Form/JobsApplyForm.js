@@ -44,7 +44,7 @@ export default function JobsApplyForm() {
       }),
     }).
       then(
-        alert("success"),
+        alert("지원 완료되었습니다."),
         gogo.push('/')
         //window.location.href = '/'
 

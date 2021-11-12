@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
 export default function Card({ idx, key, data, setData }) {
+  
   const handleDelete = (id) => {
     fetch(`/catalog-service/catalogs/${id}`, {
       // body에 넣어야 함

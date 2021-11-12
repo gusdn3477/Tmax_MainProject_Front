@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import NavProfile from '../elements/ui/NavProfile';
 import "bootstrap-icons/font/bootstrap-icons.css";
 import Img2 from '../../assets/images/logo-mini.svg';
+import mask from '../../assets/images/mask.PNG';
 import NotificationMenu from '../elements/ui/NotificationMenu';
 
 export default function Header() {

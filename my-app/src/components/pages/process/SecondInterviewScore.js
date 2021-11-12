@@ -49,6 +49,11 @@ export default function SecondInterviewScore() {
   }, []);
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
+
+    if(data[0].secondCheck){
+      alert("이미 합/불 여부가 결정났습니다.");
+      return;
+    }
     setLoading(true);
     fetch(`/process-service/process/second-interview/result`, {
       method: "PUT",
@@ -113,7 +118,7 @@ export default function SecondInterviewScore() {
   const cancelConfirm = () => 0;
 
   const confirmPassOrNot = useConfirm(
-    "합/불 여부를 결정하시겠습니까?",
+    "합/불 여부 결정 후에는 수정이 불가능합니다. 합/불 여부를 결정하시겠습니까?",
     deleteConfirm,
     cancelConfirm,
     PassOrNot

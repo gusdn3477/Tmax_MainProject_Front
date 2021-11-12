@@ -119,9 +119,6 @@ export default function UserLogin() {
             alert("로그인 정보를 확인하세요.");
           }
         })
-        .catch(
-          alert("로그인 정보를 확인하세요")
-        )
     }
   }
 

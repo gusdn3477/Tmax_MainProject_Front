@@ -8,7 +8,10 @@ import JobsDetailForm from '../../elements/widgets/Form/JobsDetailForm';
 export default function JobsDetail() {
 
   const [loading, setLoading] = useState(true);
+  const [loading2, setLoading2] = useState(true);
+  
   const [values, setValues] = useState();
+  const [data, setData] = useState();
   const [process, setProcess] = useState();
   const { jobsNo } = useParams();
 
@@ -32,9 +35,21 @@ export default function JobsDetail() {
           }).then(res => 
             setLoading(false))
       );
+
+      // 지원내역 가져오는 부분
+    fetch(
+      `/user-service/users/apply/${localStorage.getItem("userId")}/${jobsNo}`
+    )
+      .then((res) => {
+        return res.json();
+      })
+      .then((res) => {
+        setData(res);
+        console.log("data", res);
+      }).then(res => setLoading2(false));
   }, []);
 
-  if (loading) return <div class="spinner-border text-primary" role="status"></div>;
+  if (loading || loading2) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />
@@ -45,7 +60,7 @@ export default function JobsDetail() {
           {/* 여기부터 프사 누르면 나오는 메뉴 */}
           <div className="main-panel">
             <div className="content-wrapper">
-              <JobsDetailForm data={values} data2={process} />
+              <JobsDetailForm data={values} data2={process} data3={data} />
             </div>
             <Footer />
           </div>

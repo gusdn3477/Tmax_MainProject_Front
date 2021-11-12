@@ -1,8 +1,3 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect, Fragment } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -24,7 +19,7 @@ export default function JobsDetailForm({ data, data2 }) {
     );
   };
   const handleDelete = (id) => {
-    if (localStorage.getItem('empNo') == data?.empNo){
+    if (localStorage.getItem('empNo') === data?.empNo){
       fetch(`/job-service/jobs`, {
       // body에 넣어야 함
         method: "DELETE",
@@ -100,35 +95,7 @@ export default function JobsDetailForm({ data, data2 }) {
                   
                   <div className="form-group display-5" style={{ marginBottom: "4rem"}}>
                     {data?.jobsContext}
-                  </div>{/*
-                  <div className="form-group">
-                    채용 구분 : {data?.employType}
                   </div>
-                  <div className="form-group">
-                    근무 형태 : {data?.jobType}</div>
-                  <div className="form-group">
-                    자격 요건 : {data?.jobQualify}
-                  </div>
-                  <div className="form-group">
-                    채용인원 : {data?.recruitNum}명
-                  </div>
-                  <div className="form-group">
-                    우대언어 : {data?.favoriteLang}
-                  </div>
-                  <div className="form-group">
-                    근무지역 : {data?.jobLocation}
-                  </div>
-                  <div className="form-group">
-                    상세 내용 : {data?.workDetail}
-                  </div>
-                  {data?.applyStart && data?.applyEnd ? (
-                    <div className="form-group">
-                      모집 기간 : {(data?.applyStart).substr(0, 10)} ~{" "}
-                      {(data?.applyEnd).substr(0, 10)}
-                    </div>
-                  ) : (
-                    ""
-                  )} */}
 
                   <div className="table-responsive">
                     <table className="simple_table">
@@ -178,8 +145,8 @@ export default function JobsDetailForm({ data, data2 }) {
                     </table>
                   </div>
 
-                  <div class="row align-items-center" style={{ margin: "3rem 10% 2rem " }}>
-                    {localStorage.getItem("empNo") ? (
+                  <div class="row align-items-center" style={{ margin: "3rem 10% 2rem" }}>
+                    {localStorage.getItem("empNo") && data?.closed === 'F' ? (
                       <Fragment>
                         <div className="mt-3 col-auto w-50" >
                           <button
@@ -191,9 +158,12 @@ export default function JobsDetailForm({ data, data2 }) {
                             마감하기
                           </button>
                         </div>
+                        </Fragment> ) : ("")}
                         {/* <div className="mt-3">
                       <button type="button" className="btn btn-block btn-warning btn-lg font-weight-medium auth-form-btn">수정하기</button>
                     </div> */}
+                    {localStorage.getItem("empNo") ? (
+                      <Fragment>
                         <div className="mt-3 col-auto w-50  ">
                           <button
                             type="button"
@@ -208,10 +178,10 @@ export default function JobsDetailForm({ data, data2 }) {
                     ) : (
                       ""
                     )}
-
-                    {localStorage.getItem("userId") ? (
+                    {localStorage.getItem("userId") && data?.closed === 'F'? 
+                    (
                       <Fragment>
-                        <div className="mt-3 col-auto">
+                        <div className="mt-3 col-auto w-50">
                           <Link to={`/users/apply/${jobsNo}`}>
                             <button
                               type="button"
