@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import MyProcessCard from "./MyProcessCard";
 
 export default function MyListForm({ idx, key, data }) {
   const [written, setWritten] = useState([]);
@@ -186,7 +187,11 @@ export default function MyListForm({ idx, key, data }) {
               ></button>
             </div>
             <div className="modal-body">
-              <br></br> <br></br>
+              <MyProcessCard
+              data = {written}
+              interview = {interview}
+              />
+              {/* <br></br> <br></br>
               <br></br>{" "}
               {written.writtenResult === "P"
                 ? " 필기 전형 결과 : 축하드립니다. 필기 전형에 합격하셨습니다."
@@ -206,7 +211,7 @@ export default function MyListForm({ idx, key, data }) {
                 ? "2차 면접 전형 결과 : 축하드립니다. 2차 면접 전형에 합격하셨습니다."
                 : interview.secondInterviewResult === "F"
                 ? "2차 면접 전형 결과 : 안타깝지만 2차 면접 전형에 불합격 하셨습니다"
-                : ""}{" "}
+                : ""}{" "} */}
             </div>
 
             <div className="modal-footer">
