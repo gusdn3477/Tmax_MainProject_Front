@@ -42,6 +42,11 @@ export default function WrittenScore() {
   }, []);
 
   const score = () => {
+
+    if(data[0].writtenCheck){
+      alert("이미 합/불 여부가 결정된 전형은 재채점이 불가능합니다.");
+      return;
+    }
     setLoading(true);
     fetch(`/process-service/process/written-test/score`, { // 점수 매기는 과정.. => 여기서 점수 바뀜
       method: "PUT",
@@ -181,7 +186,6 @@ export default function WrittenScore() {
     cancelConfirm,
     PassList
   );
-
 
   if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (

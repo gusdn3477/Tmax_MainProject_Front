@@ -31,31 +31,10 @@ export default function Home() {
                   </div>
                 </div>
 
-
-                {/* <div className="row">
-                  <ApplyCount />
-                </div> */}
-
                 <div className="row">
                   <Calender />
                 </div>
-
-                {/* <div className="row">
-                  <OrderDetails />
-                  <SalesReport />
-                </div> */}
-                {/* <div className="row">
-                  <DetailedReport />
-                </div> */}
                 <div className="row">{/* <ToDoList/> */}</div>
-                {/* <div className="row">
-                  <Projects />
-                  <Notifications />
-                  <Charts />
-                   <Bar/> 
-                </div> */}
-
-
               </div>
               <Footer />
             </div>
@@ -64,7 +43,6 @@ export default function Home() {
       </div>
     );
   } else {
-    // gogo.push('/login')
-    return <Redirect to="/login" />;
+      return <Redirect to="/login" />;
   }
 }

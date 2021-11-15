@@ -91,6 +91,7 @@ export default function SecondInterviewScore() {
     setJobpage({ ...jobpage, currentPage: page });
     setLoading(false)
   };
+  
   const { jobdata, pageSize, currentPage } = jobpage;
   const pagedJobs = paginate(data, currentPage, pageSize);
   console.log(pagedJobs);

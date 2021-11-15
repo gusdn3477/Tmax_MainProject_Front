@@ -7,12 +7,19 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
   const [loading, setLoading] = useState(false);
 
   const score = () => {
-
+  
+    console.log('score 보기', data);
+    if(data.firstCheck){
+      
+    }
+    // if(data[0].firstCheck){
+    //   alert("이미 합/불 여부가 결정된 전형은 재채점이 불가능합니다.");
+    //   return;
+    // }
     if(values.score === undefined){
       alert("빈 칸은 입력할 수 없습니다.");
       return;
     }
-
     if(values.score < 0 || values.score > 100){
       alert("0과 100 사이의 숫자만 입력해 주세요.");
       return;
@@ -29,7 +36,6 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
       }),
     })
       .then(res => {
-        // setValues('');
         return res;
       })
       .then(
@@ -87,7 +93,7 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
     <tr>
       <td style={{paddingLeft:"2rem"}}>{idx}</td>
       <td>{data.applyNum ? (data.applyNum).substring(0,8) : ""}</td>
-      <td><input style={{width:"70%"}} type="text" class="form-control" id="exampleInputPassword1" name="score" placeholder="Only Number" onChange={handleChangeForm} /></td>
+      <td><input style={{width:"70%"}} type="number" class="form-control" id="exampleInputPassword1" name="score" placeholder="Only Number" onChange={handleChangeForm} /></td>
       <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.firstInterviewScore}</td>
       <td style={{paddingLeft:"3rem"}}>{data.firstInterviewResult}</td>

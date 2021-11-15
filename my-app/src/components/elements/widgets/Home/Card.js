@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import Pagination from "../../../../utilities/Pagination";
+import { paginate } from "../../../../utilities/paginate";
 
 export default function Card({ idx, key, data, setData }) {
   
@@ -82,6 +84,7 @@ export default function Card({ idx, key, data, setData }) {
           </Link>
         </div>
       </div>
+      
     );
   }
 }

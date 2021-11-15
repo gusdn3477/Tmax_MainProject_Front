@@ -12,8 +12,6 @@ export default function Buttons() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [postsPerPage, setPostsPerPage] = useState(10);
   const [jobpage, setJobpage] = useState({
     jobdata: [],
     pageSize: 3,
@@ -26,12 +24,12 @@ export default function Buttons() {
         return res.json();
       })
       .then(data => {
-  
-          setData(data);
-          console.log(data);
-          setLoading(false);
 
-        
+        setData(data);
+        console.log(data);
+        setLoading(false);
+
+
       });
   }, []);
   let data2 = data.filter(value => value.closed !== "T");
@@ -45,16 +43,8 @@ export default function Buttons() {
 
   const { jobdata, pageSize, currentPage } = jobpage;
   const pagedJobs = paginate(data2, currentPage, pageSize);
-  console.log('pagedJobs',pagedJobs);
 
-  // const indexOfLast = currentPage * postsPerPage;
-  // const indexOfFirst = indexOfLast - postsPerPage;
-
-  // function currentPosts(tmp) {
-  //   let currentPosts = 0;
-  //   currentPosts = tmp.slice(indexOfFirst, indexOfLast);
-  //   return currentPosts;
-  // }
+  console.log(pagedJobs);
 
   if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
@@ -73,19 +63,18 @@ export default function Buttons() {
                         idx={idx + 1}
                         key={item.idx}
                         data={item}
-                       
                       />
                     )
                   )
                 }
               </div>
               <div >
-              <Pagination
-                itemsCount={data2.length}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-              /></div>
+                <Pagination
+                  itemsCount={data2.length}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  onPageChange={handlePageChange}
+                /></div>
             </div>
             <Footer />
           </div>
