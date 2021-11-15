@@ -43,6 +43,7 @@ export default function Buttons() {
 
   const { jobdata, pageSize, currentPage } = jobpage;
   const pagedJobs = paginate(data2, currentPage, pageSize);
+
   console.log(pagedJobs);
 
   if (loading) return <div class="spinner-border text-primary" role="status"></div>;
@@ -62,7 +63,6 @@ export default function Buttons() {
                         idx={idx + 1}
                         key={item.idx}
                         data={item}
-
                       />
                     )
                   )

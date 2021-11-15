@@ -10,6 +10,12 @@ export default function MyListForm({ idx, key, data }) {
   const [loading3, setLoading3] = useState(true);
   const [applyInfo, setApplyInfo] = useState([]);
 
+  const [jobdata, setJobdata] = useState("");
+  const [intv1Start, setItv1start] = useState("");
+  const [intv2Start, setItv2start] = useState("");
+  const [intv1End, setItv1End] = useState("");
+  const [intv2End, setItv2End] = useState("");
+
   useEffect(() => {
     fetch(
       `/process-service/process/written/${data.jobsNo}/${localStorage.getItem(
@@ -22,6 +28,7 @@ export default function MyListForm({ idx, key, data }) {
       .then((data) => {
         console.log("필기 결과", data);
         setWritten(data);
+        
         return data;
       })
       .then((res) => {});
@@ -51,7 +58,31 @@ export default function MyListForm({ idx, key, data }) {
         console.log("data", applyInfo);
         setLoading(false);
       });
+
+    fetch(
+        `/job-service/jobs/${data.jobsNo}`
+    )
+    .then((res)=>{
+        return res.json();
+    })
+    .then((data2)=>{
+        console.log("공고내용", data2);
+        setJobdata(data2.jobsTitle);
+        setItv1start(data2.intv1Start);
+        setItv1End(data2.intv1End);
+        setItv2start(data2.intv2Start);
+        setItv2End(data2.intv2End);
+        console.log("jobtitle", jobdata)
+      //   setCorpname(d)
+      
+        return data2.jobsTitle;
+    });
+    
+
+
   }, []);
+  console.log("데이터를확인", data)
+  console.log("jobtitle", jobdata)
 
   // 이걸로 결과 얻기
   if (loading)
@@ -164,8 +195,15 @@ export default function MyListForm({ idx, key, data }) {
               <MyProcessCard
               data = {written}
               interview = {interview}
+              corpName = {data.corpName}
+              jobtitle = {data.jobsTitle}
+              intv1Start = {intv1Start}
+              intv2Start = {intv2Start}
+              intv1End = {intv1End}
+              intv2End = {intv2End}
               />
             </div>
+  
 
             <div className="modal-footer">
               <button
