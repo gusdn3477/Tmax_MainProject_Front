@@ -4,17 +4,17 @@ import Header from '../../layout/Header';
 import Footer from '../../layout/Footer';
 import Card from '../../elements/widgets/Home/Card';
 import { useEffect } from 'react';
+import Pagination from '../../../utilities/Pagination';
+import { paginate } from '../../../utilities/paginate';
 
 // Jobs list로 보시면 됩니다.
 export default function Buttons() {
 
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage, setPostsPerPage] = useState(10);
   const [jobpage, setJobpage] = useState({
     jobdata: [],
-    pageSize: 1,
+    pageSize: 3,
     currentPage: 1,
   });
 
@@ -24,25 +24,26 @@ export default function Buttons() {
         return res.json();
       })
       .then(data => {
-  
-          setData(data);
-          console.log(data);
-          setLoading(false);
 
-        
+        setData(data);
+        console.log(data);
+        setLoading(false);
+
+
       });
   }, []);
   let data2 = data.filter(value => value.closed !== "T");
   console.log(data2);
 
-  const indexOfLast = currentPage * postsPerPage;
-  const indexOfFirst = indexOfLast - postsPerPage;
+  const handlePageChange = (page) => {
+    setLoading(true)
+    setJobpage({ ...jobpage, currentPage: page });
+    setLoading(false)
+  };
 
-  function currentPosts(tmp) {
-    let currentPosts = 0;
-    currentPosts = tmp.slice(indexOfFirst, indexOfLast);
-    return currentPosts;
-  }
+  const { jobdata, pageSize, currentPage } = jobpage;
+  const pagedJobs = paginate(data2, currentPage, pageSize);
+  console.log(pagedJobs);
 
   if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
@@ -55,18 +56,25 @@ export default function Buttons() {
             <div className="content-wrapper">
               <div className="row">
                 {
-                  data2.length > 0 && data2.map(
+                  pagedJobs.length > 0 && pagedJobs.map(
                     (item, idx) => (
                       <Card
                         idx={idx + 1}
                         key={item.idx}
                         data={item}
-                        setData={setData}
+
                       />
                     )
                   )
                 }
               </div>
+              <div >
+                <Pagination
+                  itemsCount={data2.length}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  onPageChange={handlePageChange}
+                /></div>
             </div>
             <Footer />
           </div>

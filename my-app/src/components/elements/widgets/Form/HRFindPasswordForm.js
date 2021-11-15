@@ -5,9 +5,7 @@ import Brand from "../brand/Brand";
 export default function HRFindPasswordForm() {
 
   const gogo = useHistory();
-
   const [usersDatas, setUsersDatas] = useState([]);
-
   const [values, setValues] = useState({
     email: '',
     name: ''
@@ -23,9 +21,7 @@ export default function HRFindPasswordForm() {
     confirmPwd: ''
   })
 
-
   const onTextCheck = () => {
-
     if (values.name.length === 0) {
       return false;
     }
@@ -40,14 +36,11 @@ export default function HRFindPasswordForm() {
   }
 
   const handlePutUserLists = (e) => {
+
     e.preventDefault();
-
     const valid = onTextCheck();
-
     if (!valid) alert("정확한 정보를 입력해 주세요.");
-
     else {
-
       fetch(`/hr-service/hr/findpwd`, {
         method: "POST",
         headers: {
@@ -60,7 +53,8 @@ export default function HRFindPasswordForm() {
       }).
       then(res => 
         res.text()
-      ).then(res => {
+      )
+      .then(res => {
         if(res === "TRUE"){ // 이건 문자열 반환이라.. boolean이랑 다른 듯
           alert("이메일을 확인해 주세요.");
         }

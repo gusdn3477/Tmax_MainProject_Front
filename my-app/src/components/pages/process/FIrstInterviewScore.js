@@ -27,7 +27,7 @@ export default function FirstInterviewScore() {
       })
       .then(data => {
         setData(data);
-        console.log('data', data);
+        console.log('담긴 data', data);
       })
       .then(
         fetch(`/job-service/jobprocess/${jobsNo}`) // 1차 합격 인원 가져오기

@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import Brand from "../brand/Brand";
 
 export default function UserFindPasswordForm() {
@@ -46,8 +45,8 @@ export default function UserFindPasswordForm() {
           phoneNum : values.phoneNum,
           email: values.email
         }),
-      }).
-      then(res => 
+      })
+      .then(res => 
         res.text()
       ).then(res => {
         if(res === "TRUE"){
