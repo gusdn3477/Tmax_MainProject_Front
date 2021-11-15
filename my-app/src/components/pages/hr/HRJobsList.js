@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import Banner from "../../elements/ui/Banner";
 import Header from "../../layout/Header";
 import Footer from "../../layout/Footer";
-import Card from "../../elements/widgets/Home/Card";
 import { useEffect } from "react";
 import Pagination from "../../../utilities/Pagination";
 import { paginate } from "../../../utilities/paginate";
-import axios from "axios";
 import {Link} from "react-router-dom";
 
 // Jobs list로 보시면 됩니다.
@@ -31,7 +29,6 @@ export default function HRJobsList() {
         setLoading(false);
       });
   }, []);
-  console.log(data);
 
   const handlePageChange = (page) => {
     setLoading(true)

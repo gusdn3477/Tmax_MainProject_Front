@@ -87,7 +87,6 @@ export default function UserLogin() {
     });
   }
 
-
   // 유저 로그인
   const userLogin = (e) => {
     e.preventDefault();
@@ -218,12 +217,12 @@ export default function UserLogin() {
                         지원자 계정으로 가입하고 싶으시다면 <Link to="/user/register" class="text-primary">Create</Link>
                       </div>
                       <div>
-                      <KaKaoLogin
+                      {/* <KaKaoLogin
                           token={'cb62ba611015f1bdd64463795774c772'}
                           onSuccess={console.log}
                           onFail={console.error}
                           onLogout={console.info}
-                      />
+                      /> */}
                     </div>
                     </form>
                   </div>
