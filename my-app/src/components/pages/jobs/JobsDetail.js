@@ -9,7 +9,7 @@ export default function JobsDetail() {
 
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(true);
-  
+
   const [values, setValues] = useState();
   const [data, setData] = useState();
   const [process, setProcess] = useState();
@@ -28,15 +28,16 @@ export default function JobsDetail() {
           .then(res => {
             return res.json();
           })
-          .then(data=>{
-            setProcess(data);
-          }).then(res => {
-            return res;
-          }).then(res => 
-            setLoading(false))
+          .then(data => {
+            setProcess(data, setLoading(false));
+          })
+          // .then(res => {
+          //   return res;
+          // }).then(res =>
+          //   setLoading(false))
       );
 
-      // 지원내역 가져오는 부분
+    // 지원내역 가져오는 부분
     fetch(
       `/user-service/users/apply/${localStorage.getItem("userId")}/${jobsNo}`
     )
@@ -44,9 +45,9 @@ export default function JobsDetail() {
         return res.json();
       })
       .then((res) => {
-        setData(res);
-        console.log("data", res);
-      }).then(res => setLoading2(false));
+        setData(res, setLoading2(false));
+        console.log("지원내역", res);
+      })
   }, []);
 
   if (loading || loading2) return <div class="spinner-border text-primary" role="status"></div>;

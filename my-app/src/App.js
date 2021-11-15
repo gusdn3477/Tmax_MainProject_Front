@@ -54,7 +54,6 @@ function App() {
           </Route>
 
           {/* 인사 담당자 부분 */}
-
           {/* 인사담당자 회원가입 */}
           <Route exact path="/hr/register">
             <HRRegister />

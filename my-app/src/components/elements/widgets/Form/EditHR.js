@@ -110,14 +110,11 @@ export default function EditHR() {
 
   const deleteHR = () => {
     // e.preventDefault();
-
     const valid = onTextCheck();
-
     if (!valid) {
       console.error("retry");
       alert("정확한 정보를 입력해 주세요");
     }
-    
     else{
       fetch(`/hr-service/hr`, {
         method: "DELETE",
