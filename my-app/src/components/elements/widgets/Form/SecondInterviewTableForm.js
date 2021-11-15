@@ -7,7 +7,7 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
 
   const score = () => {
 
-    if(data[0].firstCheck){
+    if(data.secondCheck){
       alert("이미 합/불 여부가 결정된 전형은 재채점이 불가능합니다.");
       return;
     }
@@ -97,7 +97,8 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
       <td>{data.secondInterviewScore}</td>
       <td>{data.secondInterviewResult ? data.secondInterviewResult : "미정"}</td>
       <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td>
-      <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td>
+      {/* <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td> */}
+      <td>{data.secondCheck ? (data.secondCheck).substring(0,8) : ""}</td>
     </tr>
   );
 }

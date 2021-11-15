@@ -8,14 +8,10 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
 
   const score = () => {
   
-    console.log('score 보기', data);
     if(data.firstCheck){
-      
+      alert("이미 합/불 여부가 결정된 전형은 재채점이 불가능합니다.");
+      return;
     }
-    // if(data[0].firstCheck){
-    //   alert("이미 합/불 여부가 결정된 전형은 재채점이 불가능합니다.");
-    //   return;
-    // }
     if(values.score === undefined){
       alert("빈 칸은 입력할 수 없습니다.");
       return;
