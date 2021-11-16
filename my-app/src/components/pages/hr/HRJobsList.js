@@ -65,9 +65,10 @@ export default function HRJobsList() {
                         ""}
                     </div>
                     <div className="card-body">
-                      <h5 className="card-title" style={{ color: "#949aa1" }}>{data.jobsTitle}</h5>
-                      <h6 className="card-description">{data.jobsContext}</h6>
-                      <p className="card-text card-text-end">고용형태 : {data.jobType}</p>
+                    {(data.closed === "T") ?
+                        <><h5 className="card-title" style={{ color: "#949aa1" }}>{data.jobsTitle} </h5>
+                        <h6 className="card-description">{data.jobsContext}</h6>
+                        <p className="card-text card-text-end">고용형태 : {data.jobType}</p>
                       <p className="card-text card-text-end">채용유형 : {data.jobQualify}</p>
                       <p className="card-text card-text-end">지원자격 : {data.employType}</p>
                       {data.applyStart && data.applyEnd ? (
@@ -77,7 +78,21 @@ export default function HRJobsList() {
                           {data.applyEnd.substring(0, 10)}
                         </p>
                       ) : ("")
+                      }</>
+                         : <><h5 className="card-title" >{data.jobsTitle} </h5>
+                         <h6 className="card-description">{data.jobsContext}</h6>
+                      <p className="card-text card-text-ing">고용형태 : {data.jobType}</p>
+                      <p className="card-text card-text-ing">채용유형 : {data.jobQualify}</p>
+                      <p className="card-text card-text-ing">지원자격 : {data.employType}</p>
+                      {data.applyStart && data.applyEnd ? (
+                        <p className="card-text"
+                          style={{ color: "red", marginLeft: ".5rem" }}>
+                          지원기간 : {data.applyStart.substring(0, 10)} ~{" "}
+                          {data.applyEnd.substring(0, 10)}
+                        </p>
+                      ) : ("")
                       }
+                         </>}
                       <Link to={`/jobs/${data.jobsNo}`}>
                         <button
                           type="button"

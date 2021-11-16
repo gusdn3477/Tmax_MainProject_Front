@@ -1,5 +1,8 @@
-export default function WrittenTableForm({ idx, key, data, jobsNo}) {
+// import { ApplyNumString } from "../../../../utilities/ChangeString";
 
+export default function WrittenTableForm({ idx, key, data, jobsNo}) {
+  // const name = ApplyNumString(data.applyNum);
+  // console.log("name", {name})
   return (
     <tr>
       <td>{idx}</td>
