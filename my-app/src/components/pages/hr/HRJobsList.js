@@ -55,7 +55,7 @@ export default function HRJobsList() {
 
               {pagedJobs.map((data) => (
                   // <Card  data={job} setData={job} />
-                  <div className="card" style={{ width: "60rem", margin: "13px" }}>
+                  <div className="card" style={{ width: "70%" , margin: "25px", marginLeft: "100px" }}>
                     <div>
                       {(data.closed === "T") ?
                         <div className="card-inverse-info card-inverse-info-position ">

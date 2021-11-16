@@ -218,7 +218,7 @@ export default function WrittenScore() {
                               <th>수험번호</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
-                              <th>최종 결정자 인사코드</th>
+                              <th>최종 결정 담당자</th>
                             </tr>
                           </thead>
                           <tbody>
