@@ -1,10 +1,16 @@
 import { useState, useEffect } from "react";
+import { ChangeEmpNoString } from "../../../../utilities/ChangeString";
 
 export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setData, passOrNonPass }) {
 
   const [values, setValues] = useState('');
   const [interviwer, SetInterviewer] = useState(data.firstInterviewer);
   const [loading, setLoading] = useState(false);
+
+
+  const name2 = ChangeEmpNoString(data.firstInterviewer)
+  const name3 = ChangeEmpNoString(data.firstCheck)
+  console.log("name", name3);
 
   const score = () => {
   
@@ -94,8 +100,11 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
       <td>{data.firstInterviewScore}</td>
       <td style={{paddingLeft:"3rem"}}>{data.firstInterviewResult}</td>
       {/* <td>{passOrNonPass ? (passOrNonPass.firstInterviewResult) : ""}</td> */}
-      <td style={{paddingLeft:"2rem"}}>{data.firstInterviewer ? (data.firstInterviewer).substring(0,8) : ""}</td>
-      <td style={{paddingLeft:"2rem"}}>{data.firstCheck ? (data.firstCheck).substring(0,8) : ""}</td>
+      <td style={{paddingLeft:"2rem"}}>{data.firstInterviewer ? name2 : ""}</td>
+      <td style={{paddingLeft:"2rem"}}>{data.firstCheck ? name3 : ""}</td>
     </tr>
   );
 }
+
+// 101번줄 firstinterviewer test (data.firstInterviewer).substring(0,8)
+// 102번줄 (data.firstCheck).substring(0,8)
