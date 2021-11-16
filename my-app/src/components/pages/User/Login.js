@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useHistory } from "react-router";
+import { Redirect, useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import Brand from "../../elements/widgets/brand/Brand";
 import axios from 'axios';
@@ -155,127 +155,128 @@ export default function UserLogin() {
     }
   }
 
-  return (
-    <div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
-          <div class="row w-100 mx-0">
-            <div class="col-lg-4 mx-auto">
-              <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <Brand />
-                {/* <h6 class="font-weight-light">Sign in to continue.</h6> */}
-                <nav>
-                  <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                    <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">사용자 로그인</button>
-                    <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">관리자 로그인</button>
-                  </div>
-                </nav>
-                <div class="tab-content" id="nav-tabContent">
-                  <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                    <form class="pt-3" onSubmit={userLogin}>
-                      <div class="form-group">
-                        <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="userEmail" value={values.userEmail} onChange={handleChangeForm} />
-                      </div>
-                      {
-                        error.emailError
-                          ?
-                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.emailError}</div>
-                          :
-                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.userGuide}</div>
-                      }
-                      <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password"
-                          name="userPassword"
-                          value={values.userPassword}
-                          onChange={handleChangeForm} />
-                      </div>
-                      {
-                        error.pwdError
-                          ?
-                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError}</div>
-                          :
-                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
-                      }
-                      <div class="mt-3">
-                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
-                      </div>
-                      <div class="my-2 d-flex justify-content-between align-items-center">
-                        <div class="form-check">
-                          <label class="form-check-label text-muted">
-                            <input type="checkbox" class="form-check-input" />
-                            로그인 기억하기
-                          </label>
+  if (!localStorage.getItem("token")) {
+    return (
+      <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+          <div class="content-wrapper d-flex align-items-center auth px-0">
+            <div class="row w-100 mx-0">
+              <div class="col-lg-4 mx-auto">
+                <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                  <Brand />
+                  {/* <h6 class="font-weight-light">Sign in to continue.</h6> */}
+                  <nav>
+                    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+                      <button class="nav-link active" id="nav-home-tab" data-bs-toggle="tab" data-bs-target="#nav-home" type="button" role="tab" aria-controls="nav-home" aria-selected="true">사용자 로그인</button>
+                      <button class="nav-link" id="nav-profile-tab" data-bs-toggle="tab" data-bs-target="#nav-profile" type="button" role="tab" aria-controls="nav-profile" aria-selected="false">관리자 로그인</button>
+                    </div>
+                  </nav>
+                  <div class="tab-content" id="nav-tabContent">
+                    <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                      <form class="pt-3" onSubmit={userLogin}>
+                        <div class="form-group">
+                          <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="userEmail" value={values.userEmail} onChange={handleChangeForm} />
                         </div>
-                        <Link to="/user/findpwd" class="auth-link text-black">Forgot password?</Link>
-                      </div>
-                      {/* <div class="mb-2">
+                        {
+                          error.emailError
+                            ?
+                            <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.emailError}</div>
+                            :
+                            <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.userGuide}</div>
+                        }
+                        <div class="form-group">
+                          <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="Password"
+                            name="userPassword"
+                            value={values.userPassword}
+                            onChange={handleChangeForm} />
+                        </div>
+                        {
+                          error.pwdError
+                            ?
+                            <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error.pwdError}</div>
+                            :
+                            <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts.pwdGuide}</div>
+                        }
+                        <div class="mt-3">
+                          <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
+                        </div>
+                        <div class="my-2 d-flex justify-content-between align-items-center">
+                          <div class="form-check">
+                            <label class="form-check-label text-muted">
+                              <input type="checkbox" class="form-check-input" />
+                              로그인 기억하기
+                            </label>
+                          </div>
+                          <Link to="/user/findpwd" class="auth-link text-black">Forgot password?</Link>
+                        </div>
+                        {/* <div class="mb-2">
                         <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                           <i class="ti-facebook mr-2"></i>페이스북 계정으로 시작하기
                         </button>
                       </div> */}
-                      <div class="text-center mt-4 font-weight-light">
-                        지원자 계정으로 가입하고 싶으시다면 <Link to="/user/register" class="text-primary">Create</Link>
-                      </div>
-                      <div>
-                      {/* <KaKaoLogin
+                        <div class="text-center mt-4 font-weight-light">
+                          지원자 계정으로 가입하고 싶으시다면 <Link to="/user/register" class="text-primary">Create</Link>
+                        </div>
+                        <div>
+                          {/* <KaKaoLogin
                           token={'cb62ba611015f1bdd64463795774c772'}
                           onSuccess={console.log}
                           onFail={console.error}
                           onLogout={console.info}
                       /> */}
-                    </div>
-                    </form>
-                  </div>
-
-
-                  {/* 여기부터 인사담당자 로그인 창 */}
-                  <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
-                    <form class="pt-3" onSubmit={hrLogin}>
-                      <div class="form-group">
-                        <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="hrEmail" value={values.hrEmail} onChange={handleChangeForm} />
-                      </div>
-                      {
-                        error.emailError
-                          ?
-                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error2.emailError}</div>
-                          :
-                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts2.userGuide}</div>
-                      }
-                      <div class="form-group">
-                        <input type="password" class="form-control form-control-lg" id="exampleInputPassword" placeholder="Password"
-                          name="hrPassword"
-                          value={values.hrPassword}
-                          onChange={handleChangeForm} />
-                      </div>
-                      {
-                        error.pwdError
-                          ?
-                          <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error2.pwdError}</div>
-                          :
-                          <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts2.pwdGuide}</div>
-                      }
-                      <div class="mt-3">
-                        <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
-                      </div>
-                      <div class="my-2 d-flex justify-content-between align-items-center">
-                        <div class="form-check">
-                          <label class="form-check-label text-muted">
-                            <input type="checkbox" class="form-check-input" />
-                            로그인 기억하기
-                          </label>
                         </div>
-                        <Link to="/hr/findpwd" class="auth-link text-black">Forgot password?</Link>
-                      </div>
-                      {/* <div class="mb-2">
+                      </form>
+                    </div>
+
+
+                    {/* 여기부터 인사담당자 로그인 창 */}
+                    <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+                      <form class="pt-3" onSubmit={hrLogin}>
+                        <div class="form-group">
+                          <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="Email" name="hrEmail" value={values.hrEmail} onChange={handleChangeForm} />
+                        </div>
+                        {
+                          error.emailError
+                            ?
+                            <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error2.emailError}</div>
+                            :
+                            <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts2.userGuide}</div>
+                        }
+                        <div class="form-group">
+                          <input type="password" class="form-control form-control-lg" id="exampleInputPassword" placeholder="Password"
+                            name="hrPassword"
+                            value={values.hrPassword}
+                            onChange={handleChangeForm} />
+                        </div>
+                        {
+                          error.pwdError
+                            ?
+                            <div style={{ color: "red", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{error2.pwdError}</div>
+                            :
+                            <div style={{ color: "gray", fontSize: "12px", margin: '-5px 0 10px 15px' }}>{guideTxts2.pwdGuide}</div>
+                        }
+                        <div class="mt-3">
+                          <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
+                        </div>
+                        <div class="my-2 d-flex justify-content-between align-items-center">
+                          <div class="form-check">
+                            <label class="form-check-label text-muted">
+                              <input type="checkbox" class="form-check-input" />
+                              로그인 기억하기
+                            </label>
+                          </div>
+                          <Link to="/hr/findpwd" class="auth-link text-black">Forgot password?</Link>
+                        </div>
+                        {/* <div class="mb-2">
                         <button type="button" class="btn btn-block btn-facebook auth-form-btn">
                           <i class="ti-facebook mr-2"></i>페이스북 계정으로 시작하기
                         </button>
                       </div> */}
-                      <div class="text-center mt-4 font-weight-light">
-                        인사담당자 계정으로 가입하고 싶으시다면 <Link to="/hr/register" class="text-primary">Create</Link>
-                      </div>
-                      
-                    </form>
+                        <div class="text-center mt-4 font-weight-light">
+                          인사담당자 계정으로 가입하고 싶으시다면 <Link to="/hr/register" class="text-primary">Create</Link>
+                        </div>
+                      </form>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -283,6 +284,9 @@ export default function UserLogin() {
           </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
+  else{
+    return <Redirect to="/"></Redirect>
+  }
 }

@@ -84,7 +84,6 @@ export default function Card({ idx, key, data, setData }) {
           </Link>
         </div>
       </div>
-      
     );
   }
 }
