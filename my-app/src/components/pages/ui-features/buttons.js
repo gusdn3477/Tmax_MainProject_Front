@@ -24,12 +24,9 @@ export default function Buttons() {
         return res.json();
       })
       .then(data => {
-
         setData(data);
         console.log(data);
         setLoading(false);
-
-
       });
   }, []);
   let data2 = data.filter(value => value.closed !== "T");

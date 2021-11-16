@@ -43,6 +43,10 @@ export default function WrittenScore() {
 
   const score = () => {
 
+    if(data[0]===undefined) {
+      alert("인원이 없습니다");
+      return;
+    }
     if(data[0].writtenCheck){
       alert("이미 합/불 여부가 결정된 전형은 재채점이 불가능합니다.");
       return;
