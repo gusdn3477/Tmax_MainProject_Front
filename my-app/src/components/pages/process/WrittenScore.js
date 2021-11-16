@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import WrittenTableForm from '../../elements/widgets/Form/WrittenTableForm';
 import Pagination from '../../../utilities/Pagination';
 import { paginate } from '../../../utilities/paginate';
+import ChangeJobString from '../../../utilities/ChangeString';
 
 export default function WrittenScore() {
 
@@ -190,6 +191,8 @@ export default function WrittenScore() {
     cancelConfirm,
     PassList
   );
+  const jobsNo3 = ChangeJobString(jobsNo);
+  console.log("jobsno", jobsNo)
 
   if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
@@ -206,7 +209,7 @@ export default function WrittenScore() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-4 ml-3">필기 대상자 목록</p>
+                      <p className="card-title mb-4 ml-3">{jobsNo3} 필기 대상자 목록</p>
                       <div className="table-responsive">
                         <table className="table table-striped table-borderless" style={{marginBottom:"2rem"}}>
                           <thead>
