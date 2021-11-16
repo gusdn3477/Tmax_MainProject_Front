@@ -14,7 +14,7 @@ export default function Buttons() {
   const [loading, setLoading] = useState(true);
   const [jobpage, setJobpage] = useState({
     jobdata: [],
-    pageSize: 3,
+    pageSize: 4,
     currentPage: 1,
   });
 
