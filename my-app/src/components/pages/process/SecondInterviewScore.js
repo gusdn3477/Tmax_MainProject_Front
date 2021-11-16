@@ -50,6 +50,10 @@ export default function SecondInterviewScore() {
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
 
+    if(!data[0]){
+      alert("합/불 여부를 결정할 명단이 없습니다.");
+      return;
+    }
     if(data[0].secondCheck){
       alert("이미 합/불 여부가 결정났습니다.");
       return;
