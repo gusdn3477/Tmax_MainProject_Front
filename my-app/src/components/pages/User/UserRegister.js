@@ -130,9 +130,7 @@ export default function UserRegister() {
     const valid = onTextCheck();
 
     if (!valid) console.error("retry");
-
     else {
-
       fetch(`/user-service/users`, {
         method: "POST",
         headers: {
@@ -151,9 +149,6 @@ export default function UserRegister() {
           alert("회원가입이 완료되었습니다."),
           gogo.push('/')
           //window.location.href = '/'
-        )
-        .catch(
-          alert("이메일과 비밀번호를 확인해 주세요")
         )
     }
   }
