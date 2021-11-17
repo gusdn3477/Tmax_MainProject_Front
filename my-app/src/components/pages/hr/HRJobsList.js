@@ -24,7 +24,6 @@ export default function HRJobsList() {
       })
       .then((data) => {
         setData(data);
-        // console.log(data);
         setLoading(false);
       });
   }, []);
@@ -37,7 +36,6 @@ export default function HRJobsList() {
 
   const { jobdata, pageSize, currentPage } = jobpage;
   const pagedJobs = paginate(data, currentPage, pageSize);
-  console.log(pagedJobs);
 
   if (loading)
     return <div class="spinner-border text-primary" role="status"></div>;

@@ -191,7 +191,7 @@ export default function MyListForm({ idx, key, data }) {
                 aria-label="Close"
               ></button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body" >
               <MyProcessCard
               data = {written}
               interview = {interview}
@@ -203,8 +203,6 @@ export default function MyListForm({ idx, key, data }) {
               intv2End = {intv2End}
               />
             </div>
-  
-
             <div className="modal-footer">
               <button
                 type="button"

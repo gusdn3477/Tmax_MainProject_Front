@@ -33,7 +33,6 @@ export default function HRList() {
   };
   const { jobdata, pageSize, currentPage } = jobpage;
   const pagedJobs = paginate(data, currentPage, pageSize);
-  console.log(pagedJobs);
 
   if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (

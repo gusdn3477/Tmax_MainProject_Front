@@ -34,7 +34,6 @@ export default function Home() {
                 <div className="row">
                   <Calender />
                 </div>
-                <div className="row">{/* <ToDoList/> */}</div>
               </div>
               <Footer />
             </div>

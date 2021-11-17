@@ -43,7 +43,6 @@ export default function FirstInterviewScore() {
       );
   }, []);
 
-
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
 
     if(!data[0]){
@@ -153,7 +152,7 @@ export default function FirstInterviewScore() {
                               <th style={{paddingLeft:"42px"}}>채점하기</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
-                              <th>평가자</th>
+                              <th>채점자</th>
                               <th>최종 결정 담당자 </th>
                             </tr>
                           </thead>

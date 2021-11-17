@@ -100,7 +100,7 @@ export default function EditHR() {
           name: values.name
         }),
       }).then(
-          alert("success"),
+          alert("회원정보가 수정되었습니다."),
           gogo.push('/') // 아래꺼 써야 할수도
           //window.location.href = '/'
 
@@ -127,7 +127,7 @@ export default function EditHR() {
         }),
       }).
         then(
-          alert("탈퇴 성공!"),
+          alert("회원 탈퇴에 성공했습니다."),
           localStorage.clear(),
           gogo.push('/')
         )
@@ -173,7 +173,6 @@ export default function EditHR() {
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand />
                 <h4>인사담당자 정보 수정</h4>
-                {/* <h6 class="font-weight-light">공고를 등록해 보세요!</h6> */}
                 <form class="pt-3" onSubmit={putHR}>
                   <div class="form-group">
                     <div>이메일</div>
@@ -211,7 +210,6 @@ export default function EditHR() {
                     <div>비밀번호</div>
                     <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" 
                     name="password"
-                    // 깃 되나 확인
                     value={values.password}
                     onChange={handleChangeForm}
                     placeholder="비밀번호" />

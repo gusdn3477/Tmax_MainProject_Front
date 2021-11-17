@@ -40,11 +40,9 @@ export default function HRCheckPasswordForm() {
     let pwdError = "";
     let confirmPwd = "";
 
-
     if (!isPwd(values.password)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
     if (!confirmPassword(values.password, values.confirmPassword)) confirmPwd = "비밀번호가 일치하지 않습니다.";
-
-    //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
+    
     setError({
       pwdError, confirmPwd
     })
@@ -141,10 +139,6 @@ export default function HRCheckPasswordForm() {
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">확인</button>
                   </div>
-                  {/* <div class="my-2 d-flex justify-content-between align-items-center">
-                    <Link to="/hr/findpwd" class="auth-link text-black">Forgot password?</Link>
-                    <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a>
-                  </div> */}
                 </form>
               </div>
             </div>

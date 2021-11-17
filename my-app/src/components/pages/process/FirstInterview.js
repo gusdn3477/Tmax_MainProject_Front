@@ -17,7 +17,6 @@ export default function FirstInterview() {
     currentPage: 1,
   });
 
-
   useEffect(() => {
     fetch(`/job-service/${localStorage.getItem('corpNo')}/jobs/closed`)
       .then(res => {

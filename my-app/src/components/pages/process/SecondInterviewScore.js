@@ -34,7 +34,6 @@ export default function SecondInterviewScore() {
         setData(res);
         console.log('data2', res);
       }
-        // setData(data => data.filter(data.firstInterviewResult === 'P'));
       )
       .then(
         fetch(`/job-service/jobprocess/${jobsNo}`) // 2차 합격 인원 가져오기
@@ -51,11 +50,11 @@ export default function SecondInterviewScore() {
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
 
-    if(!data[0]){
+    if (!data[0]) {
       alert("합/불 여부를 결정할 명단이 없습니다.");
       return;
     }
-    if(data[0].secondCheck){
+    if (data[0].secondCheck) {
       alert("이미 합/불 여부가 결정났습니다.");
       return;
     }
@@ -75,20 +74,20 @@ export default function SecondInterviewScore() {
         res => {
           setData(res);
         }
-        )
-          .then(res=>{
-          console.log('res 확인용', data);
-          console.log('second 확인용', save);
-          fetch(`/process-service/process/second-interview/${jobsNo}`)
-            .then(res => 
-              res.json()
-            )
-            .then(data => {
-              setLoading(false);
-              setData(data);
-              alert("합/불 여부 체크 완료")
-            })
-        }
+      )
+      .then(res => {
+        console.log('res 확인용', data);
+        console.log('second 확인용', save);
+        fetch(`/process-service/process/second-interview/${jobsNo}`)
+          .then(res =>
+            res.json()
+          )
+          .then(data => {
+            setLoading(false);
+            setData(data);
+            alert("합/불 여부 체크 완료")
+          })
+      }
       )
   }
   const handlePageChange = (page) => {
@@ -96,7 +95,7 @@ export default function SecondInterviewScore() {
     setJobpage({ ...jobpage, currentPage: page });
     setLoading(false)
   };
-  
+
   const { jobdata, pageSize, currentPage } = jobpage;
   const pagedJobs = paginate(data, currentPage, pageSize);
   console.log(pagedJobs);
@@ -158,7 +157,7 @@ export default function SecondInterviewScore() {
                               <th>채점하기</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
-                              <th>평가자</th>
+                              <th>채점자</th>
                               <th>최종 결정 담당자</th>
                             </tr>
                           </thead>
@@ -183,17 +182,17 @@ export default function SecondInterviewScore() {
                   </div>
                 </div>
                 <div>
-                  <button type="button" className="btn btn-primary" 
-                  style={{marginTop:"-22px", marginRight:"10px", float:"right"}} onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
+                  <button type="button" className="btn btn-primary"
+                    style={{ marginTop: "-22px", marginRight: "10px", float: "right" }} onClick={confirmPassOrNot}>합/불 여부 결정하기</button>
                 </div>
               </div>
               <div >
-              <Pagination
-                itemsCount={data.length}
-                pageSize={pageSize}
-                currentPage={currentPage}
-                onPageChange={handlePageChange}
-              /></div>
+                <Pagination
+                  itemsCount={data.length}
+                  pageSize={pageSize}
+                  currentPage={currentPage}
+                  onPageChange={handlePageChange}
+                /></div>
             </div>
             <Footer />
           </div>

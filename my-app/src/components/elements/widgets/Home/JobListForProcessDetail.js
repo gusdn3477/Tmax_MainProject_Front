@@ -11,17 +11,6 @@ export default function JobListForProcessDetail() {
   const { jobsNo } = useParams();
   const [jobTitle, setJobTitle] = useState([]);
 
-  // useEffect(() => {
-  //   fetch(`/process-service/process/final/${jobsNo}`)
-  //     .then((res) => {
-  //       return res.json();
-  //     })
-  //     .then((data) => {
-  //       setData(data);
-  //       setLoading(false);
-  //       console.log(data);
-  //     });
-  // }, []);
 
   useEffect(() => {
     fetch(`/process-service/process/final/${jobsNo}`)
@@ -30,8 +19,8 @@ export default function JobListForProcessDetail() {
       })
       .then((data) => {
         setData(data);
-        setLoading(false);
-        console.log(data);
+        // setLoading(false);
+        console.log('최종 확인용', data);
       });
 
     fetch(`/job-service/jobs/${jobsNo}`)
@@ -43,14 +32,15 @@ export default function JobListForProcessDetail() {
         setLoading(false);
         console.log(jobTitle);
       });
+
   }, []);
 
-  if (loading)
-    return (
-      <div class="spinner-border text-primary" role="status">
-        잠시만 기다려 주세요
-      </div>
-    );
+  // if (loading)
+  //   return (
+  //     <div class="spinner-border text-primary" role="status">
+  //       잠시만 기다려 주세요
+  //     </div>
+  //   );
   return (
     <div id="wrap">
       <Header />
@@ -78,14 +68,6 @@ export default function JobListForProcessDetail() {
                             </tr>
                           </thead>
                           <tbody>
-                            {/* <tr>
-                              <td>{data.applyName}</td>
-                              <td>{data.applyContact}</td>
-                              <td>{data.applyEmail}</td>
-
-                              <td>{data.jobLocation}</td>
-                              <td>{data.jobLocation}</td>
-                            </tr> */}
                             {data.length > 0 &&
                               data.map((item, idx) => (
                                 <JobListForProcessDetailForm
@@ -95,8 +77,6 @@ export default function JobListForProcessDetail() {
                                   setData={setData}
                                 />
                               ))}
-                            {/* {data[0].applyName}
-                            {data[1].applyName} */}
                           </tbody>
                         </table>
                       </div>
