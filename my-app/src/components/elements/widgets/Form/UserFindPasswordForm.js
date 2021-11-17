@@ -33,7 +33,6 @@ export default function UserFindPasswordForm() {
     const valid = onTextCheck();
 
     if (!valid) alert("정확한 정보를 입력해 주세요.");
-
     else {
 
       fetch(`/user-service/users/findpwd`, {
@@ -56,7 +55,6 @@ export default function UserFindPasswordForm() {
           alert("회원정보가 일치하지 않습니다.");
         }
       })
-        // alert("이메일로 전송된 비밀번호를 확인해 주세요")});
     }
   }
   return (

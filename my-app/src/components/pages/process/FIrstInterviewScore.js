@@ -43,7 +43,6 @@ export default function FirstInterviewScore() {
       );
   }, []);
 
-
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
 
     if(!data[0]){
