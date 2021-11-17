@@ -18,8 +18,9 @@ export default function JobListForProcessDetail() {
       .then((data) => {
         setData(data);
         setLoading(false);
-        console.log(data);
+        console.log('최종 확인용', data);
       });
+      
   }, []);
 
   if (loading)

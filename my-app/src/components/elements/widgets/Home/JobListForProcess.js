@@ -24,7 +24,6 @@ export default function JobListForProcess() {
       })
       .then((data) => {
         setData(data);
-        // console.log(data);
         setLoading(false);
       });
   }, []);
