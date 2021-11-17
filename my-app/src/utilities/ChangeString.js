@@ -31,3 +31,18 @@ export function ChangeEmpNoString(empNo){
 
     return name2
 }
+
+export function GetCorpName(corpNo){
+    const [name, setName] = useState("");
+    useEffect(()=>{
+        fetch(`/hr-service/hr/findcorpname/${corpNo}`)
+        .then(res=>{
+            return res.json();
+        })
+        .then(data =>{
+            setName(data.corpName)
+        });
+    });
+
+    return name
+}
