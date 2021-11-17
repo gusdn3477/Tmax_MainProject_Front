@@ -73,16 +73,11 @@ export default function HRCreateForm() {
   }
 
   const handlePutUserLists = (e) => {
-    //alert(usersDatas.length);
-    //console.log(values);
+
     e.preventDefault();
-
     const valid = onTextCheck();
-
     if (!valid) console.error("retry");
-
     else {
-
       fetch(`/hr-service/hr/register`, {
         method: "POST",
         headers: {
@@ -96,10 +91,9 @@ export default function HRCreateForm() {
         }),
       }).
         then(
-          alert("success"),
+          alert("회원가입이 완료되었습니다."),
           gogo.push('/')
           //window.location.href = '/'
-
         )
     }
   }

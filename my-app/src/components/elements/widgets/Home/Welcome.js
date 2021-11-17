@@ -7,7 +7,6 @@ export default function Welcome() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-
     if(localStorage.getItem('userId')){
       fetch(`/user-service/users/${localStorage.getItem('userId')}`)
       .then(res => {
@@ -15,7 +14,6 @@ export default function Welcome() {
       })
       .then(data => {
         setData(data);
-        console.log(data);
         setLoading(false);
       })
     }
@@ -27,7 +25,6 @@ export default function Welcome() {
       })
       .then(data => {
         setData(data);
-        console.log(data);
         setLoading(false);
       })
     }

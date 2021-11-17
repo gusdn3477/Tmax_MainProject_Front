@@ -112,19 +112,13 @@ export default function EditUser() {
   }
 
   const handlePutUserLists = (e) => {
-    //alert(usersDatas.length);
-    //console.log(values);
     e.preventDefault();
-
     const valid = onTextCheck();
-
     if (!valid) {
       console.error("retry");
       alert("정확한 정보를 입력해 주세요");
     }
-
     else {
-
       fetch(`/user-service/users`, {
         method: "PUT",
         headers: {
@@ -140,7 +134,7 @@ export default function EditUser() {
         }),
       }).
         then(
-          alert("success"),
+          alert("회원정보가 수정되었습니다."),
           gogo.push('/')
           //window.location.href = '/'
         )
@@ -205,7 +199,6 @@ export default function EditUser() {
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand />
                 <h4>회원정보 수정</h4>
-                {/* <h6 class="font-weight-light">공고를 등록해 보세요!</h6> */}
                 <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이메일" readOnly

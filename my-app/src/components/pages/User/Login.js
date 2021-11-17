@@ -201,13 +201,13 @@ export default function UserLogin() {
                           <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
                         </div>
                         <div class="my-2 d-flex justify-content-between align-items-center">
-                          <div class="form-check">
+                          {/* <div class="form-check">
                             <label class="form-check-label text-muted">
                               <input type="checkbox" class="form-check-input" />
                               로그인 기억하기
                             </label>
-                          </div>
-                          <Link to="/user/findpwd" class="auth-link text-black">Forgot password?</Link>
+                          </div> */}
+                          <Link to="/user/findpwd" class="auth-link text-black">비밀번호를 잊으셨나요?</Link>
                         </div>
                         {/* <div class="mb-2">
                         <button type="button" class="btn btn-block btn-facebook auth-form-btn">
@@ -215,15 +215,7 @@ export default function UserLogin() {
                         </button>
                       </div> */}
                         <div class="text-center mt-4 font-weight-light">
-                          지원자 계정으로 가입하고 싶으시다면 <Link to="/user/register" class="text-primary">Create</Link>
-                        </div>
-                        <div>
-                          {/* <KaKaoLogin
-                          token={'cb62ba611015f1bdd64463795774c772'}
-                          onSuccess={console.log}
-                          onFail={console.error}
-                          onLogout={console.info}
-                      /> */}
+                          지원자 계정으로 가입하고 싶으시다면? <Link to="/user/register" class="text-primary">Click</Link>
                         </div>
                       </form>
                     </div>
@@ -260,12 +252,12 @@ export default function UserLogin() {
                         </div>
                         <div class="my-2 d-flex justify-content-between align-items-center">
                           <div class="form-check">
-                            <label class="form-check-label text-muted">
+                            {/* <label class="form-check-label text-muted">
                               <input type="checkbox" class="form-check-input" />
                               로그인 기억하기
-                            </label>
+                            </label> */}
                           </div>
-                          <Link to="/hr/findpwd" class="auth-link text-black">Forgot password?</Link>
+                          <Link to="/hr/findpwd" class="auth-link text-black">비밀번호를 잊으셨나요?</Link>
                         </div>
                         {/* <div class="mb-2">
                         <button type="button" class="btn btn-block btn-facebook auth-form-btn">
@@ -273,7 +265,7 @@ export default function UserLogin() {
                         </button>
                       </div> */}
                         <div class="text-center mt-4 font-weight-light">
-                          인사담당자 계정으로 가입하고 싶으시다면 <Link to="/hr/register" class="text-primary">Create</Link>
+                          인사담당자 계정으로 가입하고 싶으시다면? <Link to="/hr/register" class="text-primary">Click</Link>
                         </div>
                       </form>
                     </div>

@@ -102,13 +102,9 @@ export default function HRRegister() {
   const handlePutUserLists = (e) => {
     
     e.preventDefault();
-
     const valid = onTextCheck();
-
     if (!valid) alert("올바른 정보를 입력해 주세요");
-
     else {
-
       fetch(`/hr-service/hr/request`, {
         method: "POST",
         headers: {
@@ -122,7 +118,7 @@ export default function HRRegister() {
         }),
       }).
         then(
-          alert("success"),
+          alert("회원가입에 성공하였습니다."),
           gogo.push('/')
           //window.location.href = '/'
         )

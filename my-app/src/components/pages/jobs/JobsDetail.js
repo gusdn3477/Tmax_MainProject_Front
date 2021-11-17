@@ -31,10 +31,6 @@ export default function JobsDetail() {
           .then(data => {
             setProcess(data, setLoading(false));
           })
-          // .then(res => {
-          //   return res;
-          // }).then(res =>
-          //   setLoading(false))
       );
 
     // 지원내역 가져오는 부분

@@ -86,8 +86,7 @@ export default function UserRegister() {
     if (!isPhone(values.phone)) phoneError = "휴대폰 형식이 아닙니다.";
 
     if (values.name.length === 0) nameError = "이름을 입력해주세요.";
-
-    //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
+    
     setError({
       userIdError, emailError, pwdError, confirmPwd, nameError, phoneError
     })
@@ -149,7 +148,7 @@ export default function UserRegister() {
         }),
       }).
         then(
-          alert("success"),
+          alert("회원가입이 완료되었습니다."),
           gogo.push('/')
           //window.location.href = '/'
         )
