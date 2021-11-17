@@ -21,9 +21,9 @@ export default function Card({ idx, key, data, setData }) {
         })
     );
   };
-  const corpName = GetCorpName(data.coprNo);
+  const corpName = GetCorpName(data.corpNo);
 
-  console.log("data" , corpName);
+  console.log("data" , data.corpNo);
   if (data.closed === "T")
     return (
       <div className="card" style={{ width: "60rem", margin: "13px" }}>
@@ -63,6 +63,7 @@ export default function Card({ idx, key, data, setData }) {
     return (
       <div className="card card-outline-success" style={{ width: "60rem", margin: "13px" }}>
         <div className="card-body">
+        <h6 className="card-title" style={{fontSize: "17px", marginBottom: "8px"}} >{corpName}</h6>
           <h5 className="card-title">{data.jobsTitle}</h5>
           <h6 className="card-description">{data.jobsContext}</h6>
           <p className="card-text card-text-ing">고용형태 : {data.jobType}</p>
