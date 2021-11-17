@@ -19,7 +19,7 @@ export default function JobListForProcessDetail() {
       })
       .then((data) => {
         setData(data);
-        // setLoading(false);
+        setLoading(false);
         console.log('최종 확인용', data);
       });
 
@@ -35,12 +35,11 @@ export default function JobListForProcessDetail() {
 
   }, []);
 
-  // if (loading)
-  //   return (
-  //     <div class="spinner-border text-primary" role="status">
-  //       잠시만 기다려 주세요
-  //     </div>
-  //   );
+  if (loading)
+    return (
+      <div class="spinner-border text-primary" role="status">
+      </div>
+    );
   return (
     <div id="wrap">
       <Header />
@@ -53,9 +52,9 @@ export default function JobListForProcessDetail() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-0">{jobTitle.jobsTitle}</p>
+                      <p className="card-title mb-4 ml-3">{jobTitle.jobsTitle}</p>
                       <div className="table-responsive">
-                        <table className="table table-striped table-borderless">
+                        <table className="table table-striped table-borderless" style={{marginBottom:"2rem"}}>
                           <thead>
                             <tr>
                               <th>번호</th>
