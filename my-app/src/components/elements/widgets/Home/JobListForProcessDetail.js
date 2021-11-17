@@ -9,6 +9,19 @@ export default function JobListForProcessDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jobsNo } = useParams();
+  const [jobTitle, setJobTitle] = useState([]);
+
+  // useEffect(() => {
+  //   fetch(`/process-service/process/final/${jobsNo}`)
+  //     .then((res) => {
+  //       return res.json();
+  //     })
+  //     .then((data) => {
+  //       setData(data);
+  //       setLoading(false);
+  //       console.log(data);
+  //     });
+  // }, []);
 
   useEffect(() => {
     fetch(`/process-service/process/final/${jobsNo}`)
@@ -19,6 +32,16 @@ export default function JobListForProcessDetail() {
         setData(data);
         setLoading(false);
         console.log(data);
+      });
+
+    fetch(`/job-service/jobs/${jobsNo}`)
+      .then((res) => {
+        return res.json();
+      })
+      .then((jobTitle) => {
+        setJobTitle(jobTitle);
+        setLoading(false);
+        console.log(jobTitle);
       });
   }, []);
 
@@ -40,7 +63,7 @@ export default function JobListForProcessDetail() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-0">합격자 명단</p>
+                      <p className="card-title mb-0">{jobTitle.jobsTitle}</p>
                       <div className="table-responsive">
                         <table className="table table-striped table-borderless">
                           <thead>
@@ -49,6 +72,7 @@ export default function JobListForProcessDetail() {
                               <th>지원자</th>
                               <th>이메일</th>
                               <th>전화번호</th>
+                              <th>필기 전형 점수</th>
                               <th>1차 면접 점수</th>
                               <th>2차 면접 점수</th>
                             </tr>
