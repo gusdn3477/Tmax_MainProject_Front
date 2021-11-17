@@ -42,7 +42,7 @@ export default function MyProcessCard({ data, interview, corpName, jobtitle
         );
 
     if (!data.writtenResult) {
-        return (<><h3 style={{lineHeight:"130%"}}>안녕하세요 <b>{data2.name}</b>님 <br/> <b>{corpName}</b>입니다.</h3>
+        return (<><h4 style={{lineHeight:"130%"}}>안녕하세요 <b>{data2.name}</b>님 <br/> <b>{corpName}</b>입니다.</h4>
             <hr></hr>
             <div>먼저 <b>{jobtitle} 공고</b>에 지원해 주신 것에 감사의 말씀 드립니다.<br></br>
             <b>{data2.name}</b>님은 현재 필기전형 진행중이며, 결과가 나오는 대로 알려드리겠습니다.<br/><br/>
@@ -52,7 +52,7 @@ export default function MyProcessCard({ data, interview, corpName, jobtitle
         if (data.writtenResult === "P") {
             if (!interview.firstInterviewResult) {
                 return (
-                    <><h3 style={{lineHeight:"130%"}}> {jobtitle} <br/>서류전형 결과 안내드립니다.</h3>
+                    <><h4 style={{lineHeight:"130%"}}> {jobtitle} <br/>서류전형 결과 안내드립니다.</h4>
                     <hr/>
                     <div>안녕하십니까 <b>{data2.name}</b>님, <b>{corpName}</b>입니다.<br></br>
                         먼저 <b>{jobtitle} 공고</b>에 지원해주셔서 감사합니다.<br></br><br/>
@@ -68,7 +68,7 @@ export default function MyProcessCard({ data, interview, corpName, jobtitle
             }
             else {
                 if (interview.firstInterviewResult === "F") {
-                    return (<><h3 style={{lineHeight:"130%"}}>  {jobtitle} <br/>1차 면접 전형 결과 안내드립니다.</h3>
+                    return (<><h4 style={{lineHeight:"130%"}}>  {jobtitle} <br/>1차 면접 전형 결과 안내드립니다.</h4>
                         <hr/>
                         <div>안녕하십니까 <b>{data2.name}</b>님, <b>{corpName}</b>입니다.<br></br>
                             먼저 <b>{jobtitle} 공고</b> 채용에 관심을 가지고 귀한 시간을 내주셔서 감사드립니다.
@@ -82,7 +82,7 @@ export default function MyProcessCard({ data, interview, corpName, jobtitle
                 }
                 else {
                     if (!interview.secondInterviewResult) {
-                        return (<><h3 style={{lineHeight:"130%"}}>  {jobtitle} <br/>1차 실무 면접 결과 안내드립니다.</h3>
+                        return (<><h4 style={{lineHeight:"130%"}}>  {jobtitle} <br/>1차 실무 면접 결과 안내드립니다.</h4>
                             <hr/>
                             <div>안녕하십니까 <b>{data2.name}</b>님, <b>{corpName}</b>입니다.<br></br>
                                 먼저 <b>{jobtitle} 공고</b>에 지원해주셔서 감사합니다.<br></br><br/>
@@ -97,7 +97,7 @@ export default function MyProcessCard({ data, interview, corpName, jobtitle
                     }
                     else {
                         if (interview.secondInterviewResult === "P") {
-                            return (<><h3 style={{lineHeight:"130%"}}>  {jobtitle} <br/>최종 면접 전형 결과 안내드립니다.</h3>
+                            return (<><h4 style={{lineHeight:"130%"}}>  {jobtitle} <br/>최종 면접 전형 결과 안내드립니다.</h4>
                                 <hr/>
                                 <div>안녕하십니까 <b>{data2.name}</b>님, <b>{corpName}</b>입니다.<br></br>
                                     먼저 <b>{jobtitle} 공고</b>에 지원해주셔서 감사합니다.<br></br><br/>
@@ -107,7 +107,7 @@ export default function MyProcessCard({ data, interview, corpName, jobtitle
                                 );
                         }
                         else {
-                            return (<><h3 style={{lineHeight:"130%"}}>  {jobtitle} <br/>최종 면접 결과 안내드립니다.</h3>
+                            return (<><h4 style={{lineHeight:"130%"}}>  {jobtitle} <br/>최종 면접 결과 안내드립니다.</h4>
                                 <hr/>
                                 <div>안녕하십니까 <b>{data2.name}</b>님, <b>{corpName}</b>입니다.<br></br>
                                     먼저 <b>{jobtitle} 공고</b> 채용에 관심을 가지고 귀한 시간을 내주셔서 감사드립니다.
@@ -125,7 +125,7 @@ export default function MyProcessCard({ data, interview, corpName, jobtitle
         }
         else {
             return (
-                <><h3 style={{lineHeight:"130%"}}>  {jobtitle} <br/>서류전형 결과 안내드립니다.</h3>
+                <><h4 style={{lineHeight:"130%"}}>  {jobtitle} <br/>서류전형 결과 안내드립니다.</h4>
                 <hr/>
                 <div>안녕하십니까 <b>{data2.name}</b>님, <b>{corpName}</b>입니다.<br></br>
                     먼저 <b>{jobtitle} 공고</b> 채용에 관심을 가지고 귀한 시간을 내주셔서 감사드립니다.
