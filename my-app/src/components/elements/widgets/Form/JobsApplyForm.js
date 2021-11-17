@@ -9,7 +9,6 @@ import { useParams } from "react-router";
 import Brand from "../brand/Brand";
 
 export default function JobsApplyForm() {
-
   const gogo = useHistory();
   const [loading, setLoading] = useState(true);
   const [values, setValues] = useState();
@@ -17,15 +16,15 @@ export default function JobsApplyForm() {
   const { jobsNo } = useParams();
 
   useEffect(() => {
-    fetch(`/user-service/users/${localStorage.getItem('userId')}`)
-      .then(res => {
+    fetch(`/user-service/users/${localStorage.getItem("userId")}`)
+      .then((res) => {
         return res.json();
       })
-      .then(data => {
+      .then((data) => {
         console.log(data);
         setValues(data);
         setLoading(false);
-      })
+      });
   }, []);
 
   const apply = () => {
@@ -40,32 +39,31 @@ export default function JobsApplyForm() {
         applyEmail: values.email,
         jobsNo: jobsNo,
         applyContact: values.phoneNum,
-        portfolio: values.portfolio
+        portfolio: values.portfolio,
       }),
-    }).
-      then(
-        alert("지원 완료되었습니다."),
-        gogo.push('/')
-        //window.location.href = '/'
-
-      )
-  }
+    }).then(
+      alert("지원 완료되었습니다."),
+      gogo.push("/")
+      //window.location.href = '/'
+    );
+  };
 
   const handleChangeForm = (e) => {
     setValues({
       ...values,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-  }
+  };
 
   const handleFileForm = (e) => {
     setValues({
       ...values,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-  }
+  };
 
-  if (loading) return <div class="spinner-border text-primary" role="status"></div>;
+  if (loading)
+    return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div className="container-scroller">
       <div className="container-fluid page-body-wrapper full-page-wrapper">
@@ -77,34 +75,70 @@ export default function JobsApplyForm() {
                 <h4>지원 페이지</h4>
                 <form className="pt-3">
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이메일" readOnly
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="exampleInputUsername1"
+                      placeholder="이메일"
+                      readOnly
                       name="email"
                       value={values.email}
-                      onChange={handleChangeForm} />
+                      onChange={handleChangeForm}
+                    />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이름" readOnly
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="exampleInputEmail1"
+                      placeholder="이름"
+                      readOnly
                       name="name"
                       value={values.name}
-                      onChange={handleChangeForm} />
+                      onChange={handleChangeForm}
+                    />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="휴대폰 번호" name="phoneNum"
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="exampleInputUsername1"
+                      placeholder="휴대폰 번호"
+                      name="phoneNum"
                       value={values.phoneNum}
-                      onChange={handleChangeForm} />
+                      onChange={handleChangeForm}
+                    />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="주소" name="address"
+                    <input
+                      type="text"
+                      class="form-control form-control-lg"
+                      id="exampleInputUsername1"
+                      placeholder="주소"
+                      name="address"
                       value={values.address}
-                      onChange={handleChangeForm} />
+                      onChange={handleChangeForm}
+                    />
                   </div>
                   <div class="form-group">
-                    <input type="file" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="포트폴리오" name="portfolio"
+                    <input
+                      type="file"
+                      class="form-control form-control-lg"
+                      id="exampleInputUsername1"
+                      placeholder="포트폴리오"
+                      name="portfolio"
                       value={values.portfolio}
-                      onChange={handleFileForm} />
+                      onChange={handleFileForm}
+                    />
                   </div>
                   <div className="mt-3">
-                    <button type="button" className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" onClick={apply}>지원하기</button>
+                    <button
+                      type="button"
+                      className="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                      onClick={apply}
+                    >
+                      지원하기
+                    </button>
                   </div>
                 </form>
               </div>

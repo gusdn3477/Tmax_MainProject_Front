@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Banner from "../../elements/ui/Banner";
-import Header from "../../layout/Header";
-import Footer from "../../layout/Footer";
+import Banner from "../../ui/Banner";
+import Header from "../../../layout/Header";
+import Footer from "../../../layout/Footer";
 import { useEffect } from "react";
-import Pagination from "../../../utilities/Pagination";
-import { paginate } from "../../../utilities/paginate";
+import Pagination from "../../../../utilities/Pagination";
+import { paginate } from "../../../../utilities/paginate";
 import { Link } from "react-router-dom";
 
 // Jobs list로 보시면 됩니다.
-export default function HRJobsList() {
+export default function JobListForProcess() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [jobpage, setJobpage] = useState({
@@ -50,9 +50,12 @@ export default function HRJobsList() {
           <div className="main-panel">
             <div className="content-wrapper">
               <div className="row">
-              {pagedJobs.map((data) => (
+                {pagedJobs.map((data) => (
                   // <Card  data={job} setData={job} />
-                  <div className="card" style={{ width: "70%" , margin: "25px", marginLeft: "100px" }}>
+                  <div
+                    className="card"
+                    style={{ width: "60rem", margin: "13px" }}
+                  >
                     <div>
                       {data.closed === "T" ? (
                         <div className="card-inverse-info card-inverse-info-position ">
@@ -64,12 +67,19 @@ export default function HRJobsList() {
                       )}
                     </div>
                     <div className="card-body">
-                    {(data.closed === "T") ?
-                        <><h5 className="card-title" style={{ color: "#949aa1" }}>{data.jobsTitle} </h5>
-                        <h6 className="card-description">{data.jobsContext}</h6>
-                        <p className="card-text card-text-end">고용형태 : {data.jobType}</p>
-                      <p className="card-text card-text-end">채용유형 : {data.jobQualify}</p>
-                      <p className="card-text card-text-end">지원자격 : {data.employType}</p>
+                      <h5 className="card-title" style={{ color: "#949aa1" }}>
+                        {data.jobsTitle}
+                      </h5>
+                      <h6 className="card-description">{data.jobsContext}</h6>
+                      <p className="card-text card-text-end">
+                        고용형태 : {data.jobType}
+                      </p>
+                      <p className="card-text card-text-end">
+                        채용유형 : {data.jobQualify}
+                      </p>
+                      <p className="card-text card-text-end">
+                        지원자격 : {data.employType}
+                      </p>
                       {data.applyStart && data.applyEnd ? (
                         <p
                           className="card-text"
@@ -78,23 +88,11 @@ export default function HRJobsList() {
                           지원기간 : {data.applyStart.substring(0, 10)} ~{" "}
                           {data.applyEnd.substring(0, 10)}
                         </p>
-                      ) : ("")
-                      }</>
-                         : <><h5 className="card-title" >{data.jobsTitle} </h5>
-                         <h6 className="card-description">{data.jobsContext}</h6>
-                      <p className="card-text card-text-ing">고용형태 : {data.jobType}</p>
-                      <p className="card-text card-text-ing">채용유형 : {data.jobQualify}</p>
-                      <p className="card-text card-text-ing">지원자격 : {data.employType}</p>
-                      {data.applyStart && data.applyEnd ? (
-                        <p className="card-text"
-                          style={{ color: "red", marginLeft: ".5rem" }}>
-                          지원기간 : {data.applyStart.substring(0, 10)} ~{" "}
-                          {data.applyEnd.substring(0, 10)}
-                        </p>
-                      ) : ("")
-                      }
-                         </>}
-                      <Link to={`/jobs/${data.jobsNo}`}>
+                      ) : (
+                        ""
+                      )}
+                      {/* <Link to={`/jobs/${data.jobsNo}`}> */}
+                      <Link to={`/process/final/${data.jobsNo}`}>
                         <button
                           type="button"
                           className="btn btn-primary"
@@ -103,7 +101,7 @@ export default function HRJobsList() {
                             backgroundColor: "#4b49acbf",
                           }}
                         >
-                          공고보기
+                          합격자 명단 보기
                         </button>
                       </Link>
                     </div>
@@ -115,7 +113,8 @@ export default function HRJobsList() {
                     pageSize={pageSize}
                     currentPage={currentPage}
                     onPageChange={handlePageChange}
-                  /></div>
+                  />
+                </div>
               </div>
             </div>
             <Footer />

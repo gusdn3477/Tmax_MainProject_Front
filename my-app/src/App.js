@@ -38,6 +38,8 @@ import WrittenScore from "./components/pages/process/WrittenScore";
 import FirstInterviewScore from "./components/pages/process/FIrstInterviewScore";
 import SecondInterviewScore from "./components/pages/process/SecondInterviewScore";
 import ApplyChart from "./components/elements/widgets/Home/ApplyChart";
+import JobListForProcess from "./components/elements/widgets/Home/JobListForProcess";
+import JobsListForProcessDetail from "./components/elements/widgets/Home/JobListForProcessDetail";
 
 function App() {
   return (
@@ -151,6 +153,16 @@ function App() {
           {/* 통계자료 - 공고별 지원자수 보기*/}
           <Route exact path="/statistics">
             <ApplyChart />
+          </Route>
+
+          {/*공고별 합격자 명단 보여주기   */}
+          <Route exact path="/process/final">
+            <JobListForProcess />
+          </Route>
+
+          {/*공고별 합격자 명단 보여주기   */}
+          <Route exact path="/process/final/:jobsNo">
+            <JobsListForProcessDetail />
           </Route>
 
           {/* 예외 처리 부분 */}
