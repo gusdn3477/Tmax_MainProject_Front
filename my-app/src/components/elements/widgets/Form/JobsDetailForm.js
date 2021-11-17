@@ -3,6 +3,7 @@ import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 import { useParams } from "react-router";
 import Brand from "../brand/Brand";
+import { GetCorpName } from "../../../../utilities/ChangeString";
 
 export default function JobsDetailForm({ data, data2, data3 }) {
   const gogo = useHistory();
@@ -100,6 +101,8 @@ export default function JobsDetailForm({ data, data2, data3 }) {
     cancelConfirm,
     deleteHR
   );
+  const corpName = GetCorpName(data.corpNo);
+  console.log("corpName", corpName)
 
   return (
     <div>
@@ -113,7 +116,8 @@ export default function JobsDetailForm({ data, data2, data3 }) {
               <div className="col-lg-8 mx-auto">
                 <div className="auth-form-light text-left py-5 px-4 px-sm-5">
                   <Brand />
-                  <h2 style={{ fontFamily: "Noto Snas KR", fontWeight: "900", paddingLeft: "2%", lineHeight: "1.4" }}>{data?.jobsTitle}</h2>
+                  <h3 style={{ fontFamily: "Noto Snas KR", fontWeight: "900", paddingLeft: "2%", lineHeight: "0.8" }}>{corpName}</h3>
+                  <h2 style={{ fontFamily: "Noto Snas KR", fontWeight: "900", paddingLeft: "2%", lineHeight: "1.2" }}>{data?.jobsTitle}</h2>
 
                   <form className="pt-5">
                     <div className="form-group display-5" style={{ marginBottom: "4rem" }}>
