@@ -98,7 +98,7 @@ export default function FirstInterviewTableForm({ idx, key, data, jobsNo, setDat
       <td><input style={{width:"70%"}} type="number" class="form-control" id="exampleInputPassword1" name="score" placeholder="Only Number" onChange={handleChangeForm} /></td>
       <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.firstInterviewScore}</td>
-      <td style={{paddingLeft:"3rem"}}>{data.firstInterviewResult}</td>
+      <td>{data.firstInterviewResult ? data.firstInterviewResult : "미정"}</td>
       {/* <td>{passOrNonPass ? (passOrNonPass.firstInterviewResult) : ""}</td> */}
       <td style={{paddingLeft:"2rem"}}>{data.firstInterviewer ? name2 : ""}</td>
       <td style={{paddingLeft:"2rem"}}>{data.firstCheck ? name3 : ""}</td>

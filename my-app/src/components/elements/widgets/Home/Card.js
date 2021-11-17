@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Pagination from "../../../../utilities/Pagination";
 import { paginate } from "../../../../utilities/paginate";
+import { GetCorpName } from "../../../../utilities/ChangeString";
 
 export default function Card({ idx, key, data, setData }) {
   
@@ -20,7 +21,9 @@ export default function Card({ idx, key, data, setData }) {
         })
     );
   };
+  const corpName = GetCorpName(data.coprNo);
 
+  console.log("data" , corpName);
   if (data.closed === "T")
     return (
       <div className="card" style={{ width: "60rem", margin: "13px" }}>
