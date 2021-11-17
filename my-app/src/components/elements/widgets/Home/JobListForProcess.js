@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Banner from "../../elements/ui/Banner";
-import Header from "../../layout/Header";
-import Footer from "../../layout/Footer";
+import Banner from "../../ui/Banner";
+import Header from "../../../layout/Header";
+import Footer from "../../../layout/Footer";
 import { useEffect } from "react";
-import Pagination from "../../../utilities/Pagination";
-import { paginate } from "../../../utilities/paginate";
+import Pagination from "../../../../utilities/Pagination";
+import { paginate } from "../../../../utilities/paginate";
 import { Link } from "react-router-dom";
 
 // Jobs list로 보시면 됩니다.
-export default function HRJobsList() {
+export default function JobListForProcess() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [jobpage, setJobpage] = useState({
@@ -91,7 +91,8 @@ export default function HRJobsList() {
                       ) : (
                         ""
                       )}
-                      <Link to={`/jobs/${data.jobsNo}`}>
+                      {/* <Link to={`/jobs/${data.jobsNo}`}> */}
+                      <Link to={`/process/final/${data.jobsNo}`}>
                         <button
                           type="button"
                           className="btn btn-primary"
@@ -100,7 +101,7 @@ export default function HRJobsList() {
                             backgroundColor: "#4b49acbf",
                           }}
                         >
-                          공고보기
+                          합격자 명단 보기
                         </button>
                       </Link>
                     </div>

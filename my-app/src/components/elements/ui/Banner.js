@@ -49,6 +49,11 @@ export default function Banner() {
                     2차 면접 전형
                   </Link>
                 </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/process/final">
+                    합격자 명단
+                  </Link>
+                </li>
               </ul>
             </div>
           </li>
