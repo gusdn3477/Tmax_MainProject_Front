@@ -88,7 +88,7 @@ export default function MyListForm({ idx, key, data }) {
   if (loading)
     return (
       <div className="spinner-border text-primary" role="status">
-        잠시만 기다려 주세요
+
       </div>
     );
 

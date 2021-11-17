@@ -6,6 +6,7 @@ import { useParams } from 'react-router';
 import SecondInterviewTableForm from '../../elements/widgets/Form/SecondInterviewTableForm';
 import Pagination from '../../../utilities/Pagination';
 import { paginate } from '../../../utilities/paginate';
+import ChangeJobString from '../../../utilities/ChangeString';
 
 export default function SecondInterviewScore() {
 
@@ -50,6 +51,10 @@ export default function SecondInterviewScore() {
 
   const PassOrNot = () => { // jobprocess 가져올 수 있어야 함
 
+    if(!data[0]){
+      alert("합/불 여부를 결정할 명단이 없습니다.");
+      return;
+    }
     if(data[0].secondCheck){
       alert("이미 합/불 여부가 결정났습니다.");
       return;
@@ -124,6 +129,8 @@ export default function SecondInterviewScore() {
     cancelConfirm,
     PassOrNot
   );
+  const jobsNo3 = ChangeJobString(jobsNo);
+  console.log("jobsno", jobsNo)
 
   if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
@@ -140,7 +147,7 @@ export default function SecondInterviewScore() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-4">2차 면접 대상자 목록</p>
+                      <p className="card-title mb-4">{jobsNo3} 2차 면접 대상자 목록</p>
                       <div className="table-responsive">
                         <table className="table table-striped table-borderless">
                           <thead>
@@ -151,8 +158,8 @@ export default function SecondInterviewScore() {
                               <th>채점하기</th>
                               <th>점수</th>
                               <th>합/불 여부</th>
-                              <th>채점자 인사코드</th>
-                              <th>최종 결정자 인사코드</th>
+                              <th>평가자</th>
+                              <th>최종 결정 담당자</th>
                             </tr>
                           </thead>
                           <tbody>

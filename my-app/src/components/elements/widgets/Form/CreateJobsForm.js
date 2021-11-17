@@ -157,7 +157,7 @@ export default function CreateJobsForm() {
       }),
     }).
       then(
-        alert("success"),
+        alert("공고 생성 완료"),
         gogo.push('/')
         //window.location.href = '/'
       )

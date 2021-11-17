@@ -1,9 +1,14 @@
 import { useState, useEffect } from "react";
+import { ChangeEmpNoString } from "../../../../utilities/ChangeString";
+
 
 export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setData, secondInterviewPass, setSecondInterviewPass }) {
 
   const [values, setValues] = useState(data);
   const [loading, setLoading] = useState(false);
+  const name2 = ChangeEmpNoString(data.secondInterviewer)
+  const name3 = ChangeEmpNoString(data.firstCheck)
+  console.log("name", name3);
 
   const score = () => {
 
@@ -96,9 +101,9 @@ export default function SecondInterviewTableForm({ idx, key, data, jobsNo, setDa
       <td><button type="button" className="btn btn-primary" onClick={confirmScore}>채점하기</button></td>
       <td>{data.secondInterviewScore}</td>
       <td>{data.secondInterviewResult ? data.secondInterviewResult : "미정"}</td>
-      <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td>
+      <td>{data.secondInterviewer ? name2 : ""}</td>
       {/* <td>{data.secondInterviewer ? (data.secondInterviewer).substring(0,8) : ""}</td> */}
-      <td>{data.secondCheck ? (data.secondCheck).substring(0,8) : ""}</td>
+      <td>{data.secondCheck ? name3 : ""}</td>
     </tr>
   );
 }
