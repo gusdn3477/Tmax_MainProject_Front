@@ -19,7 +19,7 @@ export default function ApplyChart() {
   console.log(`${localStorage.getItem("corpNo")}`);
 
   useEffect(() => {
-    fetch(`user-service/apply/count/${localStorage.getItem("corpNo")}`)
+    fetch(`user-service/users/apply/count/${localStorage.getItem("corpNo")}`)
       .then((res) => {
         return res.json();
       })
