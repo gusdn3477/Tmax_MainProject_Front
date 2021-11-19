@@ -51,6 +51,11 @@ export default function Banner() {
                 </li>
                 <li className="nav-item">
                   <Link className="nav-link" to="/process/final">
+                    지원자 명단
+                  </Link>
+                </li>
+                <li className="nav-item">
+                  <Link className="nav-link" to="/process/pass">
                     합격자 명단
                   </Link>
                 </li>

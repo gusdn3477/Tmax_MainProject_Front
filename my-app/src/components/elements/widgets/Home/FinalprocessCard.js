@@ -17,7 +17,7 @@ export default function FinalProcessCard({ idx, key, what, data, setData }) {
           <p className="card-text  card-text-ing">지원기간 : {(data.applyStart).substring(0, 10)} ~ {(data.applyEnd).substring(0, 10)}</p> : ""
         }
         <Link to={`/process/${what}/${data.jobsNo}`}>
-          <button type="button" className="btn btn-primary" style={{ margin: "0.8rem" }}>합격자 명단 보기</button>
+          <button type="button" className="btn btn-primary" style={{ margin: "0.8rem" }}>명단 보기</button>
         </Link>
       </div>
     </div>

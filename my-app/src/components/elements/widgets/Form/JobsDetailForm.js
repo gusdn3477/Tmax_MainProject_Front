@@ -113,7 +113,7 @@ export default function JobsDetailForm({ data, data2, data3 }) {
         <div className="container-fluid page-body-wrapper full-page-wrapper">
           <div className="content-wrapper d-flex align-items-center auth px-0">
             <div className="row w-100 mx-0">
-              <div className="col-lg-8 mx-auto">
+              <div className="col-lg-12 mx-auto">
                 <div className="auth-form-light text-left py-5 px-4 px-sm-5">
                   <Brand />
                   <h3 style={{ fontFamily: "Noto Snas KR", fontWeight: "900", paddingLeft: "2%", lineHeight: "0.8" }}>{corpName}</h3>
@@ -125,10 +125,10 @@ export default function JobsDetailForm({ data, data2, data3 }) {
                     </div>
                     <div className="table-responsive">
                       <table className="simple_table">
-                        <thead>
-                          <tbody>
+                        <thead >
+                          <tbody >
                             <tr>
-                              <th scope="row" style={{ width: "200px" }}>채용구분</th>
+                              <th>채용구분</th>
                               <td>{data?.employType}</td>
                             </tr>
                             <tr>
@@ -151,7 +151,7 @@ export default function JobsDetailForm({ data, data2, data3 }) {
                             </tr>
                             <tr>
                               <th>담당업무</th>
-                              <td>{data?.workDetail}</td>
+                              <td >{data?.workDetail}</td>
                             </tr>
                             <tr>
                               <th>근무지역</th>
