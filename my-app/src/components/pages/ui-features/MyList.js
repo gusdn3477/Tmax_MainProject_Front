@@ -37,7 +37,7 @@ export default function MyList() {
                 <div className="col-md-12 grid-margin stretch-card">
                   <div className="card">
                     <div className="card-body">
-                      <p className="card-title mb-0">나의 지원현황</p>
+                      <p className="card-title mb-3">나의 지원현황</p>
                       <div className="table-responsive">
                         <table className="table table-striped table-borderless">
                           <thead>

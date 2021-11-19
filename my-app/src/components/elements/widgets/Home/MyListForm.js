@@ -136,8 +136,9 @@ export default function MyListForm({ idx, key, data }) {
                   aria-label="Close"
                 ></button>
               </div>
-              <div className="modal-body" value={data}>
-                <h3>최종 지원이 완료되었습니다.</h3>
+              <div className="modal-body" style={{paddingLeft:"3rem"}} value={data}>
+                <h3 className="modal-text">최종 지원이 완료되었습니다.</h3>
+                <div className="modal-text-sub" style={{padding:"1.3rem 1.3rem .5rem 1.3rem"}}>
                 <br></br> 이름 : {applyInfo.applyName} <br></br>
                 <br></br> 이메일 : {applyInfo.applyEmail} <br></br>
                 <br></br> 전화번호 : {applyInfo.applyContact} <br></br>
@@ -145,7 +146,7 @@ export default function MyListForm({ idx, key, data }) {
                 {/* <br></br> 지원날짜 : {applyInfo.applyDateTime} */}
                 {/* <br></br> data.jobsNo : {data.jobsNo} <br></br> */}
                 <br></br> 지원번호 : {applyInfo.jobsNo ? applyInfo.jobsNo.substring(0, 8) : ""} <br></br>
-              </div>
+              </div></div>
               {/* <div>{applyList}</div> */}
               <div className="modal-footer">
                 <button
