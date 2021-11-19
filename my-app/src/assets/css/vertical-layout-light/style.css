@@ -15123,7 +15123,7 @@ a.close.disabled {
 
 @media (min-width: 576px) {
   .modal-dialog {
-    max-width: 500px;
+    max-width: 700px;
     margin: 30px auto;
   }
   .modal-dialog-scrollable {
@@ -30774,8 +30774,8 @@ div.tagsinput span.tag a {
 }
 
 .simple_table th { 
-  width: 45%;
-  padding-left: 13%; 
+  width: 30%;
+  padding-left: 4rem; 
   border: none; 
   /* border-left: 5px solid #C03; 
   border-bottom: 1px solid #DDD; 
@@ -30790,6 +30790,7 @@ div.tagsinput span.tag a {
   /* text-underline-position: under; */
   text-decoration :underline rgba(24, 83, 220, 0.42) 7px;
 }
+
 .simple_table td { 
   /* padding: 15px;  */
   border: none; 
@@ -30831,4 +30832,10 @@ div.tagsinput span.tag a {
   line-height: 1.5rem;
   font-family: "google_mid";
   word-spacing: 4px;
+}
+
+
+.fc-right .fc-prev-button, .fc-right .fc-next-button{
+  background-color: #3c75b7;
+  background-image: none;
 }

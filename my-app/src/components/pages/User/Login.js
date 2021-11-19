@@ -201,12 +201,12 @@ export default function UserLogin() {
                           <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">로그인</button>
                         </div>
                         <div class="my-2 d-flex justify-content-between align-items-center">
-                          {/* <div class="form-check">
-                            <label class="form-check-label text-muted">
+                          <div class="form-check">
+                           {/*  <label class="form-check-label text-muted">
                               <input type="checkbox" class="form-check-input" />
                               로그인 기억하기
-                            </label>
-                          </div> */}
+                            </label> */}
+                          </div>
                           <Link to="/user/findpwd" class="auth-link text-black">비밀번호를 잊으셨나요?</Link>
                         </div>
                         {/* <div class="mb-2">

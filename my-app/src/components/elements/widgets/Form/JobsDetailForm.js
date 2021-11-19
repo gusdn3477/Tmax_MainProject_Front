@@ -167,29 +167,30 @@ export default function JobsDetailForm({ data, data2, data3 }) {
                             </tr>
                             {localStorage.getItem("empNo") ?
                               <Fragment>
+                                <div style={{padding:"3.5rem 0"}}><hr style={{width:"320%"}}></hr> </div>
                                 <tr>
-                                  <th>필기 배수</th>
-                                  <td>{data2?.writtenMultiple}</td>
+                                  <th style={{fontSize:"1.2rem"}}>필기 배수</th>
+                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.writtenMultiple}</td>
                                 </tr>
                                 <tr>
-                                  <th>필기 합격자 수</th>
-                                  <td>{data2?.writtenPass}명</td>
+                                  <th style={{fontSize:"1.2rem"}}>필기 합격자 수</th>
+                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.writtenPass}명</td>
                                 </tr>
                                 <tr>
-                                  <th>1차 면접 배수</th>
-                                  <td>{data2?.intv1Multiple}</td>
+                                  <th style={{fontSize:"1.2rem"}}>1차 면접 배수</th>
+                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.intv1Multiple}</td>
                                 </tr>
                                 <tr>
-                                  <th>1차 면접 합격자 수</th>
-                                  <td>{data2?.intv1Pass}명</td>
+                                  <th style={{fontSize:"1.2rem"}}>1차 면접 합격자 수</th>
+                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.intv1Pass}명</td>
                                 </tr>
                                 <tr>
-                                  <th>2차 면접 배수</th>
-                                  <td>{data2?.intv2Multiple}</td>
+                                  <th style={{fontSize:"1.2rem"}}>2차 면접 배수</th>
+                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.intv2Multiple}</td>
                                 </tr>
                                 <tr>
-                                  <th>2차 면접 합격자 수</th>
-                                  <td>{data2?.intv2Pass}명</td>
+                                  <th style={{fontSize:"1.2rem"}}>2차 면접 합격자 수</th>
+                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.intv2Pass}명</td>
                                 </tr>
                               </Fragment>
                               : ""}
