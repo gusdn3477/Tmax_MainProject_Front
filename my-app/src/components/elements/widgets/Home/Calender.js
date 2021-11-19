@@ -40,16 +40,19 @@ export default function Calender() {
         plugins={[dayGridPlugin, timeGridPlugin, interactionPlugin]}
         initialView="dayGridMonth"
         headerToolbar={{
-          center: "dayGridMonth,timeGridWeek,timeGridDay new",
+          //center: "dayGridMonth,timeGridWeek,timeGridDay new",
+          
         }}
-        customButtons={{
-          new: {
-            text: "new",
-            click: () => console.log("new event"),
-          },
-        }}
+        // customButtons={{
+        //   dayGridMonth: {
+        //     text: "Month",
+            
+        //     backgroundColor: "#3c75b7",
+        //   },
+        // }}
         events={events}
         week
+        
         eventColor="sky"
         eventTextColor="white"
         eventColor="#596fc5"

@@ -144,7 +144,7 @@ export default function MyListForm({ idx, key, data }) {
                 <br></br> 지원날짜 : {applyInfo.applyDateTime ? applyInfo.applyDateTime.substring(0, 10) : ""}<br></br>
                 {/* <br></br> 지원날짜 : {applyInfo.applyDateTime} */}
                 {/* <br></br> data.jobsNo : {data.jobsNo} <br></br> */}
-                <br></br> 지원번호 : {applyInfo.jobsNo} <br></br>
+                <br></br> 지원번호 : {applyInfo.jobsNo ? applyInfo.jobsNo.substring(0, 8) : ""} <br></br>
               </div>
               {/* <div>{applyList}</div> */}
               <div className="modal-footer">
