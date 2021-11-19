@@ -9,6 +9,7 @@ export default function JobsDetail() {
 
   const [loading, setLoading] = useState(true);
   const [loading2, setLoading2] = useState(true);
+  const [loading3, setLoading3] = useState(true);
 
   const [values, setValues] = useState();
   const [data, setData] = useState();
@@ -21,17 +22,19 @@ export default function JobsDetail() {
         return res.json();
       })
       .then(data => {
-        console.log(data);
+        // console.log(data);
         setValues(data);
-      }).then(
-        fetch(`/job-service/jobprocess/${jobsNo}`)
-          .then(res => {
-            return res.json();
-          })
-          .then(data => {
-            setProcess(data, setLoading(false));
-          })
-      );
+        setLoading(false);
+      })
+
+    fetch(`/job-service/jobprocess/${jobsNo}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setProcess(data);
+        setLoading2(false);
+      })
 
     // 지원내역 가져오는 부분
     fetch(
@@ -41,12 +44,13 @@ export default function JobsDetail() {
         return res.json();
       })
       .then((res) => {
-        setData(res, setLoading2(false));
-        console.log("지원내역", res);
+        setData(res);
+        setLoading3(false);
+        // console.log("지원내역", res);
       })
   }, []);
 
-  if (loading || loading2) return <div class="spinner-border text-primary" role="status"></div>;
+  if (loading || loading2 || loading3) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div id="wrap">
       <Header />
