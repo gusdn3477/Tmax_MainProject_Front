@@ -139,4 +139,6 @@ export default function MyProcessCard({ data, interview, corpName, jobtitle
         }
     }
 
+    
+
 }
