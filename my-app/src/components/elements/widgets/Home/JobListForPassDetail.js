@@ -5,12 +5,13 @@ import Footer from "../../../layout/Footer";
 import JobListForProcessDetailForm from "../../widgets/Form/JobListForProcessDetailForm";
 import { useParams } from "react-router";
 
-export default function JobListForProcessDetail() {
+export default function JobListForPassDetail() {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
   const { jobsNo } = useParams();
   const [jobTitle, setJobTitle] = useState([]);
 
+  
   useEffect(() => {
     fetch(`/process-service/process/final/${jobsNo}`)
       .then((res) => {
@@ -18,8 +19,9 @@ export default function JobListForProcessDetail() {
       })
       .then((data) => {
         setData(data);
+        const data2 = data.filter(data => data.secondInterviewResult === 'P');
         setLoading(false);
-        console.log('최종 확인용', data);
+        console.log('최종 확인용', data2);
       });
 
     fetch(`/job-service/jobs/${jobsNo}`)

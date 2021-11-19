@@ -40,6 +40,8 @@ import SecondInterviewScore from "./components/pages/process/SecondInterviewScor
 import ApplyChart from "./components/elements/widgets/Home/ApplyChart";
 import JobListForProcess from "./components/elements/widgets/Home/JobListForProcess";
 import JobsListForProcessDetail from "./components/elements/widgets/Home/JobListForProcessDetail";
+import JobListForPassDetail from "./components/elements/widgets/Home/JobListForPassDetail";
+import JobListForPass from "./components/elements/widgets/Home/JobListForPass";
 
 function App() {
   return (
@@ -155,14 +157,24 @@ function App() {
             <ApplyChart />
           </Route>
 
-          {/*공고별 합격자 명단 보여주기   */}
+          {/*공고별 지원자 명단 보여주기   */}
           <Route exact path="/process/final">
             <JobListForProcess />
           </Route>
 
-          {/*공고별 합격자 명단 보여주기   */}
+          {/*공고별 지원자 명단 보여주기   */}
           <Route exact path="/process/final/:jobsNo">
             <JobsListForProcessDetail />
+          </Route>
+
+          {/*공고별 합격자 명단 보여주기   */}
+          <Route exact path="/process/pass">
+            <JobListForPass/>
+          </Route>
+
+          {/*공고별 합격자 명단 보여주기   */}
+          <Route exact path="/process/pass/:jobsNo">
+            <JobListForPassDetail />
           </Route>
 
           {/* 예외 처리 부분 */}
