@@ -113,7 +113,7 @@ export default function JobsDetailForm({ data, data2, data3 }) {
         <div className="container-fluid page-body-wrapper full-page-wrapper">
           <div className="content-wrapper d-flex align-items-center auth px-0">
             <div className="row w-100 mx-0">
-              <div className="col-lg-12 mx-auto">
+              <div className="col-lg-10 mx-auto">
                 <div className="auth-form-light text-left py-5 px-4 px-sm-5">
                   <Brand />
                   <h3 style={{ fontFamily: "Noto Snas KR", fontWeight: "900", paddingLeft: "2%", lineHeight: "0.8" }}>{corpName}</h3>
@@ -167,30 +167,30 @@ export default function JobsDetailForm({ data, data2, data3 }) {
                             </tr>
                             {localStorage.getItem("empNo") ?
                               <Fragment>
-                                <div style={{padding:"3.5rem 0"}}><hr style={{width:"320%"}}></hr> </div>
+                                <div style={{padding:"2rem 0"}}><hr style={{color:"transparent"}}></hr> </div>
                                 <tr>
-                                  <th style={{fontSize:"1.2rem"}}>필기 배수</th>
-                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.writtenMultiple}</td>
+                                  <th style={{}}>필기 배수</th>
+                                  <td style={{paddingLeft:"3.5rem"}}>{data2?.writtenMultiple}&nbsp;배수</td>
+                                {/* </tr>
+                                <tr> */}
+                                  <th style={{fontSize:""}}>필기 합격자 수</th>
+                                  <td style={{paddingLeft:"3.5rem"}}>{data2?.writtenPass}명</td>
                                 </tr>
                                 <tr>
-                                  <th style={{fontSize:"1.2rem"}}>필기 합격자 수</th>
-                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.writtenPass}명</td>
+                                  <th style={{fontSize:""}}>1차 면접 배수</th>
+                                  <td style={{paddingLeft:"3.5rem"}}>{data2?.intv1Multiple}&nbsp;배수</td>
+                                {/* </tr>
+                                <tr> */}
+                                  <th style={{fontSize:""}}>1차 면접 합격자 수</th>
+                                  <td style={{paddingLeft:"3.5rem"}}>{data2?.intv1Pass}명</td>
                                 </tr>
                                 <tr>
-                                  <th style={{fontSize:"1.2rem"}}>1차 면접 배수</th>
-                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.intv1Multiple}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{fontSize:"1.2rem"}}>1차 면접 합격자 수</th>
-                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.intv1Pass}명</td>
-                                </tr>
-                                <tr>
-                                  <th style={{fontSize:"1.2rem"}}>2차 면접 배수</th>
-                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.intv2Multiple}</td>
-                                </tr>
-                                <tr>
-                                  <th style={{fontSize:"1.2rem"}}>2차 면접 합격자 수</th>
-                                  <td style={{paddingLeft:"1.5rem"}}>{data2?.intv2Pass}명</td>
+                                  <th style={{fontSize:""}}>2차 면접 배수</th>
+                                  <td style={{paddingLeft:"3.5rem"}}>{data2?.intv2Multiple}&nbsp;배수</td>
+                                {/* </tr>
+                                <tr> */}
+                                  <th style={{fontSize:""}}>2차 면접 합격자 수</th>
+                                  <td style={{paddingLeft:"3.5rem"}}>{data2?.intv2Pass}명</td>
                                 </tr>
                               </Fragment>
                               : ""}
