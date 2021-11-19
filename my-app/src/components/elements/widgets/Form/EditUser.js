@@ -92,7 +92,7 @@ export default function EditUser() {
     if (!isPwd(values.password)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
     if (!confirmPassword(values.password, values.confirmPassword)) confirmPwd = "비밀번호가 일치하지 않습니다.";
     if (values.userId === values.password) pwdError = "아이디를 비밀번호로 사용 할 수 없습니다.";
-    if (!isPhone(values.phone)) phoneError = "휴대폰 형식이 아닙니다.";
+    if (!isPhone(values.phoneNum)) phoneError = "휴대폰 형식이 아닙니다.";
 
     if (values.name.length === 0) nameError = "이름을 입력해주세요.";
 
@@ -129,7 +129,7 @@ export default function EditUser() {
           password: values.password,
           name: values.name,
           email: values.email,
-          phoneNum: values.phone,
+          phoneNum: values.phoneNum,
           address: values.address
         }),
       }).
