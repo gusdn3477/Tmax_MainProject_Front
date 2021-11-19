@@ -66,7 +66,7 @@
     "web-vitals": "^1.1.2",
     "x-editable": "^1.5.1"
   },
-  "proxy": "http://127.0.0.1:8000",
+  "proxy": "http://3.37.133.220:8000",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
