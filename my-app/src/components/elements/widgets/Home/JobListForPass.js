@@ -68,7 +68,7 @@ export default function JobListForPass() {
                     // idx={idx + 1}
                     // key={item.idx}
                     data={data}
-                    what={"final"}
+                    what={"pass"}
                     setData={setData}
                   />
                 )
