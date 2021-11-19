@@ -120,7 +120,7 @@ export default function JobsApplyForm() {
                       onChange={handleChangeForm}
                     />
                   </div>
-                  <div class="form-group">
+                  {/* <div class="form-group">
                     <input
                       type="file"
                       class="form-control form-control-lg"
@@ -130,7 +130,7 @@ export default function JobsApplyForm() {
                       value={values.portfolio}
                       onChange={handleFileForm}
                     />
-                  </div>
+                  </div> */}
                   <div className="mt-3">
                     <button
                       type="button"
