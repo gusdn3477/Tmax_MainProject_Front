@@ -12,8 +12,6 @@ export default function HRCheckPasswordForm() {
 
   const gogo = useHistory();
 
-  const [usersDatas, setUsersDatas] = useState([]);
-
   const [values, setValues] = useState({
     password: '',
     confirmPassword: ''
@@ -30,8 +28,7 @@ export default function HRCheckPasswordForm() {
   })
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 
@@ -43,12 +40,9 @@ export default function HRCheckPasswordForm() {
     let pwdError = "";
     let confirmPwd = "";
 
-
     if (!isPwd(values.password)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
     if (!confirmPassword(values.password, values.confirmPassword)) confirmPwd = "비밀번호가 일치하지 않습니다.";
-    if (values.userId === values.password) pwdError = "아이디를 비밀번호로 사용 할 수 없습니다.";
-
-    //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
+    
     setError({
       pwdError, confirmPwd
     })
@@ -69,38 +63,52 @@ export default function HRCheckPasswordForm() {
 
     const valid = onTextCheck();
 
-    if (!valid) console.error("retry");
+    if (!valid) {
+      console.error("retry");
+      alert("정확한 정보를 입력해 주세요");
+    }
 
     else {
 
-      fetch(`/user-service/users`, {
+      fetch(`/hr-service/hr/checkpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: values.userId,
-          password: values.password
+          empNo: localStorage.getItem('empNo'), //values.userId,
+          pwd: values.password
         }),
       }).
-        then(
-          alert("success"),
-          gogo.push('/')
-          //window.location.href = '/'
-        )
+      then(res => res.text()).
+      then(res => {
+        if(res === "true"){
+          gogo.push('/hr/edit/profile');
+        }
+        else{
+          alert("회원정보가 일치하지 않습니다.");
+        }
+      }
+      )
     }
   }
   
   return (
+    
     <div class="container-scroller">
-      <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-center auth px-0">
+      <link rel="preconnect" href="https://fonts.googleapis.com"/>
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+      <link href="https://fonts.googleapis.com/css2?family=Gaegu:wght@700&family=Gowun+Dodum&family=IBM+Plex+Sans+KR:wght@300;400,500&display=swap" rel="stylesheet"></link>
+
+
+      <div class="container-fluid page-body-wrapper full-page-wrapper" style={{fontFamily:"IBM Plex Sans KR", fontWeight:"500"}}>
+        <div class="content-wrapper d-flex align-items-center auth px-10">
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
-              <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+              <div class="auth-form-light text-left  px-4 px-sm-5" style={{paddingTop: "6rem", paddingBottom:"6rem"}}>
                 <Brand />
-                <h4>비밀번호 확인</h4>
-                <h6 class="font-weight-light">비밀번호가 일치해야 회원정보 수정 페이지로 넘어갈 수 있습니다.</h6>
+                <h3 class="font-weight-bold">비밀번호 확인</h3>
+                <h6 >비밀번호가 일치해야 회원정보 수정 페이지로 넘어갈 수 있습니다.</h6>
                 <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호"
@@ -117,8 +125,8 @@ export default function HRCheckPasswordForm() {
                   }
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호 확인"
-                      name="confirm_password"
-                      value={values.confirm_password}
+                      name="confirmPassword"
+                      value={values.confirmPassword}
                       onChange={handleChangeForm} />
                   </div>
                   {
@@ -130,9 +138,6 @@ export default function HRCheckPasswordForm() {
                   }
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">확인</button>
-                  </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a>
                   </div>
                 </form>
               </div>

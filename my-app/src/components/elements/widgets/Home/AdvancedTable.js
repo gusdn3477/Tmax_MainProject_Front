@@ -15,9 +15,6 @@ export default function AdvancedTable() {
                       <th>1차 면접관</th>
                       <th>1차 면점 점수</th>
                       <th>1차 면접 합/불</th>
-                      <th>2차 면접관</th>
-                      <th>2차 면점 점수</th>
-                      <th>2차 면접 합/불</th>
                     </tr>
                   </thead>
                 </table>

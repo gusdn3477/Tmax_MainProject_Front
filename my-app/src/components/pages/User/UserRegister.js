@@ -6,6 +6,7 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
+import DaumPost from "../../../utilities/DaumPostCode";
 import Brand from "../../elements/widgets/brand/Brand";
 
 export default function UserRegister() {
@@ -16,10 +17,7 @@ export default function UserRegister() {
 
   const gogo = useHistory();
 
-  const [usersDatas, setUsersDatas] = useState([]);
-
   const [values, setValues] = useState({
-    userId: '',
     email: '',
     password: '',
     confirmPassword: '',
@@ -58,8 +56,7 @@ export default function UserRegister() {
   };
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 
@@ -89,8 +86,7 @@ export default function UserRegister() {
     if (!isPhone(values.phone)) phoneError = "휴대폰 형식이 아닙니다.";
 
     if (values.name.length === 0) nameError = "이름을 입력해주세요.";
-
-    //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
+    
     setError({
       userIdError, emailError, pwdError, confirmPwd, nameError, phoneError
     })
@@ -106,37 +102,53 @@ export default function UserRegister() {
     });
   }
 
+  const checkEmail = () => {
+    fetch(`/user-service/users/checkemail`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: values.email
+      }),
+    }).
+      then(res => res.text()).
+      then(res => {
+        if (res === "true") {
+          alert("이미 등록된 계정입니다.")
+        }
+        else {
+          alert("사용 가능한 이메일입니다.");
+        }
+      })
+  }
+
   const handlePutUserLists = (e) => {
-    //alert(usersDatas.length);
-    //console.log(values);
+
     e.preventDefault();
 
     const valid = onTextCheck();
 
     if (!valid) console.error("retry");
-
     else {
-
       fetch(`/user-service/users`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          id: usersDatas.length + 1,
-          userId: values.userId,
-          pwd: values.password,
-          name: values.name,
           email: values.email,
-          phone: values.phone,
+          password: values.password,
+          confirmPassword: values.confirmPassword,
+          phoneNum: values.phone,
+          applyName: values.name,
           address: values.address
         }),
       }).
         then(
-          alert("success"),
+          alert("회원가입이 완료되었습니다."),
           gogo.push('/')
           //window.location.href = '/'
-
         )
     }
   }
@@ -147,27 +159,68 @@ export default function UserRegister() {
           <div class="row w-100 mx-0">
             <div class="col-lg-4 mx-auto">
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
-                <Brand/>
+                <Brand />
                 <h4>회원가입</h4>
                 <h6 class="font-weight-light">최소한의 정보로 가입해 보세요.</h6>
-                <form class="pt-3">
+                <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이름" />
+                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1"
+                      name="name"
+                      value={values.name}
+                      onChange={handleChangeForm}
+                      placeholder="이름" />
                   </div>
                   <div class="form-group">
-                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이메일 주소" />
+                    <input type="email" class="form-control form-control-lg" id="exampleInputEmail1"
+                      name="email"
+                      value={values.email}
+                      onChange={handleChangeForm}
+                      placeholder="이메일 주소" />
+                  </div>
+                  <button class="btn btn-outline-success" style={{marginBottom:"1rem", marginTop:"-1rem",padding:"0.7rem", float:"right"}} type="button" onClick={checkEmail}>이메일 중복 확인</button>
+                  <div class="form-group">
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1"
+                      name="password"
+                      value={values.password}
+                      onChange={handleChangeForm}
+                      placeholder="비밀번호" />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호" />
+                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword2"
+                      name="confirmPassword"
+                      value={values.confirmPassword}
+                      onChange={handleChangeForm}
+                      placeholder="비밀번호 확인" />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputPassword2" placeholder="비밀번호 확인" />
+                    <input type="text" class="form-control form-control-lg" id="phone-number"
+                      name="phone"
+                      value={values.phone}
+                      onChange={handleChangeForm}
+                      placeholder="휴대폰 번호" />
                   </div>
+                  {/* <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    Launch demo modal
+                  </button>
+
+                  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <DaumPost data={address}/>
+                        </div>
+                      </div>
+                    </div>
+                  </div> */}
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="phone-number" placeholder="휴대폰 번호" />
-                  </div>
-                  <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="address" placeholder="주소" />
+                    <input type="text" class="form-control form-control-lg" id="address"
+                      name="address"
+                      value={values.address}
+                      onChange={handleChangeForm}
+                      placeholder="주소" />
                   </div>
                   <div class="mb-4">
                     <div class="form-check">
@@ -178,7 +231,7 @@ export default function UserRegister() {
                     </div>
                   </div>
                   <div class="mt-3">
-                    <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn" href="../../index.html">SIGN UP</a>
+                    <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN UP</button>
                   </div>
                   <div class="text-center mt-4 font-weight-light">
                     Already have an account? <Link to="/login">Login</Link>

@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import DaumPostCode from 'react-daum-postcode';
 
-const DaumPost = ({}) => {
+const DaumPost = ({data}) => {
+
+    const [address, setAddress] = useState(data);
     const handleComplete = (data) => {
         let fullAddress = data.address;
         let extraAddress = '';
@@ -12,6 +15,7 @@ const DaumPost = ({}) => {
                 extraAddress += (extraAddress !== '' ? `, ${data.buildingName}` : data.buildingName);
             }
             fullAddress += (extraAddress !== '' ? ` (${extraAddress})` : '');
+            setAddress(fullAddress);
         }
         //fullAddress -> 전체 주소반환
     }

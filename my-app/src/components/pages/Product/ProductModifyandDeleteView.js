@@ -19,7 +19,7 @@ export default function ProductModifyandDeleteView({data, setCartDatas}) {
     }
 
     const handleDelete = (id) => {
-        fetch(`/catalog-service/catalogs/${id}`,{
+        fetch(`/catalog-service/catalogs/${id}`,{ // body에 넣어야 함
             method: "DELETE"
         }).then(
             alert("삭제 되었습니다!"),

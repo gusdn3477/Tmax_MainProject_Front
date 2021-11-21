@@ -1,8 +1,3 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
@@ -11,8 +6,6 @@ import Brand from "../brand/Brand";
 export default function UserCheckPasswordForm() {
 
   const gogo = useHistory();
-
-  const [usersDatas, setUsersDatas] = useState([]);
 
   const [values, setValues] = useState({
     password: '',
@@ -30,8 +23,7 @@ export default function UserCheckPasswordForm() {
   })
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 
@@ -54,7 +46,7 @@ export default function UserCheckPasswordForm() {
     })
 
     if (pwdError || confirmPwd) return false;
-      return true;
+    return true;
   }
 
   const handleChangeForm = (e) => {
@@ -73,20 +65,25 @@ export default function UserCheckPasswordForm() {
 
     else {
 
-      fetch(`/user-service/users`, {
+      fetch(`/user-service/users/checkpwd`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          userId: values.userId, // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯(백엔드 단에서 처리)
+          userId: localStorage.getItem('userId'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯(백엔드 단에서 처리)
           password: values.password
         }),
       }).
-        then(
-          alert("success"),
-          gogo.push('/')
-        )
+      then(res => res.text()).
+      then(res => {
+        if(res === "true"){
+          gogo.push('/user/edit/profile');
+        }
+        else{
+          alert("회원정보가 일치하지 않습니다.");
+        }
+      })
     }
   }
   return (
@@ -115,7 +112,7 @@ export default function UserCheckPasswordForm() {
                   }
                   <div class="form-group">
                     <input type="password" class="form-control form-control-lg" id="exampleInputPassword1" placeholder="비밀번호 확인"
-                      name="confirm_password"
+                      name="confirmPassword"
                       value={values.confirmPassword}
                       onChange={handleChangeForm} />
                   </div>
@@ -128,9 +125,6 @@ export default function UserCheckPasswordForm() {
                   }
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">확인</button>
-                  </div>
-                  <div class="my-2 d-flex justify-content-between align-items-center">
-                    <a href="#" class="auth-link text-black" onClick={() => alert("준비중입니다")}>Forgot password?</a>
                   </div>
                 </form>
               </div>

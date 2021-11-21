@@ -1,35 +1,22 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
 import Brand from "../brand/Brand";
 
 export default function EditHR() {
 
-  const [address, setAddress] = useState(''); // 주소
-  const [addressDetail, setAddressDetail] = useState(''); // 상세주소
-  const [isOpenPost, setIsOpenPost] = useState(false);
-
   const gogo = useHistory();
-
-  const [usersDatas, setUsersDatas] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   const [values, setValues] = useState({
     empNo: '',
     email: '',
+    name: '',
+    parents: '',
     password: '',
     confirmPassword: '',
-    phone: '',
-    name: ''
   })
 
   const [guideTxts, setGuideTxts] = useState({
-    userGuide: '최대 20자 까지 가능합니다.',
-    emailGuide: '이메일 형식에 맞게 작성해 주세요.',
     pwdGuide: '숫자와 문자를 조합해서 최소 8글자는 입력해 주세요.',
     confirmPwdGuide: '한번더 입력해 주세요.',
     nameGuide: '',
@@ -37,28 +24,25 @@ export default function EditHR() {
   });
 
   const [error, setError] = useState({
-    userIdError: '',
-    emailError: '',
     pwdError: '',
     confirmPwd: '',
     nameError: '',
     phoneError: ''
   })
-
-  const isUserId = userId => {
-    const userIdRegex = /^[a-z0-9_!@$%^&*-+=?"]{1,20}$/
-    return userIdRegex.test(userId);
-  }
-
-  const isEmail = email => {
-    const emailRegex = /^(([^<>()\].,;:\s@"]+(\.[^<>()\].,;:\s@"]+)*)|(".+"))@(([^<>()¥[\].,;:\s@"]+\.)+[^<>()[\].,;:\s@"]{2,})$/i;
-
-    return emailRegex.test(email);
-  };
+  
+  useEffect(()=>{
+    fetch(`/hr-service/hr/detail/${localStorage.getItem('empNo')}`)
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        setValues(data);
+        setLoading(false);
+    });
+  },[]);
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 
@@ -72,29 +56,19 @@ export default function EditHR() {
   }
 
   const onTextCheck = () => {
-    let userIdError = "";
-    let emailError = "";
     let pwdError = "";
     let confirmPwd = "";
     let nameError = "";
-    let phoneError = "";
 
-
-    if (!isUserId(values.userId)) userIdError = "아이디 형식을 확인 해 주세요.( 한글 불가 )";
-    if (!isEmail(values.email)) emailError = "email 형식이 아닙니다.";
     if (!isPwd(values.password)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
     if (!confirmPassword(values.password, values.confirmPassword)) confirmPwd = "비밀번호가 일치하지 않습니다.";
-    if (values.userId === values.password) pwdError = "아이디를 비밀번호로 사용 할 수 없습니다.";
-    if (!isPhone(values.phone)) phoneError = "휴대폰 형식이 아닙니다.";
 
     if (values.name.length === 0) nameError = "이름을 입력해주세요.";
-
-    //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
     setError({
-      userIdError, emailError, pwdError, confirmPwd, nameError, phoneError
+      pwdError, confirmPwd, nameError
     })
 
-    if (userIdError || emailError || pwdError || confirmPwd || nameError || phoneError) return false;
+    if (pwdError || confirmPwd || nameError) return false;
     return true;
   }
 
@@ -106,8 +80,7 @@ export default function EditHR() {
   }
 
   const putHR = (e) => {
-    //alert(usersDatas.length);
-    //console.log(values);
+
     e.preventDefault();
     const valid = onTextCheck();
 
@@ -122,13 +95,12 @@ export default function EditHR() {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          empNo: values.empNo,
+          empNo: localStorage.getItem('empNo'),
           pwd: values.password,
-          name: values.name,
-          email: values.email
+          name: values.name
         }),
       }).then(
-          alert("success"),
+          alert("회원정보가 수정되었습니다."),
           gogo.push('/') // 아래꺼 써야 할수도
           //window.location.href = '/'
 
@@ -136,23 +108,30 @@ export default function EditHR() {
     }
   }
 
-  const deleteHR = (e) => {
+  const deleteHR = () => {
     // e.preventDefault();
-    fetch(`/hr-service/hr`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        empNo: values.empNo, // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
-        password: values.password
-      }),
-    }).
-      then(
-        alert("탈퇴 성공!"),
-        localStorage.clear(),
-        gogo.push('/')
-      )
+    const valid = onTextCheck();
+    if (!valid) {
+      console.error("retry");
+      alert("정확한 정보를 입력해 주세요");
+    }
+    else{
+      fetch(`/hr-service/hr`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          empNo: localStorage.getItem('empNo'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
+          pwd: values.password
+        }),
+      }).
+        then(
+          alert("회원 탈퇴에 성공했습니다."),
+          localStorage.clear(),
+          gogo.push('/')
+        )
+      }
   }
 
   const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
@@ -178,12 +157,13 @@ export default function EditHR() {
   const deleteConfirm = () => 1;
   const cancelConfirm = () => 0;
   const confirmDelete = useConfirm(
-    "삭제하시겠습니까?",
+    "탈퇴하시겠습니까?",
     deleteConfirm,
     cancelConfirm,
     deleteHR
   );
 
+  if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -193,22 +173,54 @@ export default function EditHR() {
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand />
                 <h4>인사담당자 정보 수정</h4>
-                {/* <h6 class="font-weight-light">공고를 등록해 보세요!</h6> */}
                 <form class="pt-3" onSubmit={putHR}>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이메일" readOnly />
+                    <div>이메일</div>
+                    <input type="email" class="form-control form-control-lg" id="exampleInputUsername1" 
+                    name="email" 
+                    value={values.email}
+                    onChange={handleChangeForm}
+                    placeholder="이메일" readOnly />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="성함" />
+                    <div>인사코드</div>
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
+                    name="empNo" 
+                    value={values.empNo}
+                    onChange={handleChangeForm}
+                    placeholder="회원번호" readOnly />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="비밀번호" />
+                    <div>이름</div>
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
+                    name="name" 
+                    value={values.name}
+                    onChange={handleChangeForm}
+                    placeholder="이름" />
                   </div>
                   <div class="form-group">
-                    <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="비밀번호 확인" />
+                    <div>직급</div>
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" 
+                    name="name" 
+                    value={values.parents}
+                    onChange={handleChangeForm}
+                    placeholder="직급" readOnly/>
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="닉네임" />
+                    <div>비밀번호</div>
+                    <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" 
+                    name="password"
+                    value={values.password}
+                    onChange={handleChangeForm}
+                    placeholder="비밀번호" />
+                  </div>
+                  <div class="form-group">
+                    <div>비밀번호 확인</div>
+                    <input type="password" class="form-control form-control-lg" id="exampleInputEmail1" 
+                    name="confirmPassword" 
+                    value={values.confirmPassword}
+                    onChange={handleChangeForm}
+                    placeholder="비밀번호 확인" />
                   </div>
                   <div class="mt-3">
                     <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">수정하기</button>

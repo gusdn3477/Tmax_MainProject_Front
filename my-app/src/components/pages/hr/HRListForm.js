@@ -1,70 +1,80 @@
-export default function HRListForm({data}) {
+import { useState, useEffect } from "react";
+
+export default function HRListForm({ idx, key, data, setMyList }) {
+
+  const [parents, setParents] = useState();
+
+  useEffect(() => {
+    fetch(`/hr-service/hr/detail/${localStorage.getItem('empNo')}`)
+      .then(res => {
+        return res.json();
+      })
+      .then(data => {
+        setParents(data);
+      });
+  }, []);
+
+  const handleDelete = () => {
+
+    fetch(`/hr-service/hr/super`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        parents: parents.parents,
+        empNo: data.empNo // 확실하지 않음 되면 이걸로 사용
+      })
+    }).then(
+      alert("삭제 되었습니다!"),
+      fetch(`/hr-service/hr/${localStorage.getItem('empNo')}`)
+        .then(res => {
+          return res.json();
+        })
+        .then(data => {
+          setMyList(data);
+        })
+    )
+  }
+
+  const useConfirm = (message = null, onConfirm, onCancel, deleteHR) => {
+    if (!onConfirm || typeof onConfirm !== "function") {
+      return;
+    }
+    if (onCancel && typeof onCancel !== "function") {
+      return;
+    }
+
+    const confirmAction = () => {
+      if (window.confirm(message)) {
+        onConfirm();
+        deleteHR();
+      } else {
+        onCancel();
+      }
+    };
+
+    return confirmAction;
+  };
+
+  const deleteConfirm = () => 1;
+  const cancelConfirm = () => 0;
+  const confirmDelete = useConfirm(
+    "삭제하시겠습니까?",
+    deleteConfirm,
+    cancelConfirm,
+    handleDelete
+  );
 
   return (
-    <div className="col-md-12 grid-margin stretch-card">
-      <div className="card">
-        <div className="card-body">
-          <p className="card-title mb-0">{data.title}</p>
-          <div className="table-responsive">
-            <table className="table table-striped table-borderless">
-              <thead>
-                <tr>
-                  <th>{data.name}</th>
-                  <th>{data.companyName}</th>
-                  <th>{data.period}</th>
-                  <th>{data.status}</th>
-                  <th>{data.remove}</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Search Engine Marketing</td>
-                  <td className="font-weight-bold">$362</td>
-                  <td>21 Sep 2018</td>
-                  <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
-                  <td><button type="button" class="btn btn-danger">Danger</button></td>
-                </tr>
-                <tr>
-                  <td>Search Engine Optimization</td>
-                  <td className="font-weight-bold">$116</td>
-                  <td>13 Jun 2018</td>
-                  <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
-                </tr>
-                <tr>
-                  <td>Display Advertising</td>
-                  <td className="font-weight-bold">$551</td>
-                  <td>28 Sep 2018</td>
-                  <td className="font-weight-medium"><div className="badge badge-warning">Pending</div></td>
-                </tr>
-                <tr>
-                  <td>Pay Per Click Advertising</td>
-                  <td className="font-weight-bold">$523</td>
-                  <td>30 Jun 2018</td>
-                  <td className="font-weight-medium"><div className="badge badge-warning">Pending</div></td>
-                </tr>
-                <tr>
-                  <td>E-Mail Marketing</td>
-                  <td className="font-weight-bold">$781</td>
-                  <td>01 Nov 2018</td>
-                  <td className="font-weight-medium"><div className="badge badge-danger">Cancelled</div></td>
-                </tr>
-                <tr>
-                  <td>Referral Marketing</td>
-                  <td className="font-weight-bold">$283</td>
-                  <td>20 Mar 2018</td>
-                  <td className="font-weight-medium"><div className="badge badge-warning">Pending</div></td>
-                </tr>
-                <tr>
-                  <td>Social media marketing</td>
-                  <td className="font-weight-bold">$897</td>
-                  <td>26 Oct 2018</td>
-                  <td className="font-weight-medium"><div className="badge badge-success">Completed</div></td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+    <tr>
+      <td>{idx}</td>
+      <td>{data.name}</td>
+      <td className="font-weight-bold">{data.email}</td>
+      <td>{data.empNo}</td>
+      <td className="font-weight-bold">{data.parents === "admin" ? "슈퍼" : "일반"}</td>
+      <td className="font-weight-bold" style={{textAlign:"center"}}>{data.auth === "true" ? "허가" : "불허"}</td>
+      <td className="font-weight-medium" style={{textAlign:"center"}}><button type="button" class="btn btn-outline-danger" onClick={() => confirmDelete()}>삭제하기</button></td>
+    </tr>
   );
 }

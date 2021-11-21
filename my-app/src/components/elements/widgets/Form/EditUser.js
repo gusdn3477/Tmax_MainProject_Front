@@ -1,12 +1,5 @@
-// import Header from '../../layout/Header';
-// import Footer from '../../layout/Footer';
-// import Bread from '../../elements/ui/Bread';
-// import RegisterForm from '../../elements/widgets/Form/Register';
-// import { Fragment } from 'react';
 import { useState, useEffect, useRedf } from "react";
 import { useHistory } from "react-router";
-import { Link } from "react-router-dom";
-import { confirmAlert } from 'react-confirm-alert';
 import 'react-confirm-alert/src/react-confirm-alert.css';
 import Brand from "../brand/Brand";
 
@@ -15,6 +8,7 @@ export default function EditUser() {
   const [address, setAddress] = useState(''); // 주소
   const [addressDetail, setAddressDetail] = useState(''); // 상세주소
   const [isOpenPost, setIsOpenPost] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   const gogo = useHistory();
 
@@ -25,7 +19,7 @@ export default function EditUser() {
     email: '',
     password: '',
     confirmPassword: '',
-    phone: '',
+    phoneNum: '',
     name: '',
     address: '',
   })
@@ -48,6 +42,17 @@ export default function EditUser() {
     phoneError: ''
   })
 
+  useEffect(()=>{
+    fetch(`/user-service/users/${localStorage.getItem('userId')}`)
+    .then(res => {
+        return res.json();
+    })
+    .then(data => {
+        setValues(data);
+        setLoading(false);
+    });
+  },[]);
+
   const isUserId = userId => {
     const userIdRegex = /^[a-z0-9_!@$%^&*-+=?"]{1,20}$/
     return userIdRegex.test(userId);
@@ -60,8 +65,7 @@ export default function EditUser() {
   };
 
   const isPwd = pass => {
-    const pwdRegex = /^.*(?=.{6,20})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&]).*$/;
-
+    const pwdRegex = /^.*(?=.{6,40})(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[@$!%*#?&-]).*$/;
     return pwdRegex.test(pass);
   }
 
@@ -88,11 +92,10 @@ export default function EditUser() {
     if (!isPwd(values.password)) pwdError = "비밀번호 조건을 만족 할 수 없습니다.";
     if (!confirmPassword(values.password, values.confirmPassword)) confirmPwd = "비밀번호가 일치하지 않습니다.";
     if (values.userId === values.password) pwdError = "아이디를 비밀번호로 사용 할 수 없습니다.";
-    if (!isPhone(values.phone)) phoneError = "휴대폰 형식이 아닙니다.";
+    if (!isPhone(values.phoneNum)) phoneError = "휴대폰 형식이 아닙니다.";
 
     if (values.name.length === 0) nameError = "이름을 입력해주세요.";
 
-    //console.log(userIdError, emailError, pwdError, confirmPwd, nameError, phoneError, userTypesError, useConfirmError)
     setError({
       userIdError, emailError, pwdError, confirmPwd, nameError, phoneError
     })
@@ -109,19 +112,13 @@ export default function EditUser() {
   }
 
   const handlePutUserLists = (e) => {
-    //alert(usersDatas.length);
-    //console.log(values);
     e.preventDefault();
-
     const valid = onTextCheck();
-
     if (!valid) {
       console.error("retry");
       alert("정확한 정보를 입력해 주세요");
     }
-
     else {
-
       fetch(`/user-service/users`, {
         method: "PUT",
         headers: {
@@ -132,12 +129,12 @@ export default function EditUser() {
           password: values.password,
           name: values.name,
           email: values.email,
-          phone: values.phone,
+          phoneNum: values.phoneNum,
           address: values.address
         }),
       }).
         then(
-          alert("success"),
+          alert("회원정보가 수정되었습니다."),
           gogo.push('/')
           //window.location.href = '/'
         )
@@ -146,11 +143,15 @@ export default function EditUser() {
 
   const deleteUser = (e) => {
     // e.preventDefault();
-    fetch(`/user-service/users/${localStorage.getItem('userId')}`, {
+    fetch(`/user-service/users`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
       },
+      body: JSON.stringify({
+        userId: localStorage.getItem('userId'), // 토큰에서 가지고 있어야 함. 유저 조회 기능 넣어서 가져온 뒤 비밀번호 비교 후에 짜야 할 듯
+        password: values.password
+      }),
     }).
       then(
         alert("탈퇴 성공!"),
@@ -188,6 +189,7 @@ export default function EditUser() {
     deleteUser
   );
 
+  if (loading) return <div class="spinner-border text-primary" role="status"></div>;
   return (
     <div class="container-scroller">
       <div class="container-fluid page-body-wrapper full-page-wrapper">
@@ -197,7 +199,6 @@ export default function EditUser() {
               <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                 <Brand />
                 <h4>회원정보 수정</h4>
-                {/* <h6 class="font-weight-light">공고를 등록해 보세요!</h6> */}
                 <form class="pt-3" onSubmit={handlePutUserLists}>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="이메일" readOnly
@@ -206,7 +207,7 @@ export default function EditUser() {
                       onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
-                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="성함"
+                    <input type="text" class="form-control form-control-lg" id="exampleInputEmail1" placeholder="이름"
                       name="name"
                       value={values.name}
                       onChange={handleChangeForm} />
@@ -225,7 +226,7 @@ export default function EditUser() {
                   </div>
                   <div class="form-group">
                     <input type="text" class="form-control form-control-lg" id="exampleInputUsername1" placeholder="휴대폰 번호" name="phone"
-                      value={values.phone}
+                      value={values.phoneNum}
                       onChange={handleChangeForm} />
                   </div>
                   <div class="form-group">
