@@ -151,7 +151,7 @@ export default function JobsDetailForm({ data, data2, data3 }) {
                             </tr>
                             <tr>
                               <th>담당업무</th>
-                              <td >{data?.workDetail}</td>
+                              <td style={{width:""}}>{data?.workDetail}</td>
                             </tr>
                             <tr>
                               <th>근무지역</th>
@@ -165,15 +165,22 @@ export default function JobsDetailForm({ data, data2, data3 }) {
                               <th>자격요건</th>
                               <td>{data?.jobQualify}</td>
                             </tr>
+                            </tbody>
+                        </thead>
+                      </table>
                             {localStorage.getItem("empNo") ?
                               <Fragment>
-                                <div style={{padding:"2rem 0"}}><hr style={{color:"transparent"}}></hr> </div>
+                                <div style={{padding:"2rem 0"}}><hr style={{color:"gray"}}></hr>
+                                <h6 style={{color:"gray"}}> ※ 아래 정보는 지원자에게 보이지 않습니다.</h6> </div>
+                                <div>
+                                  <table className="simple_table"><thead><tbody>
+
                                 <tr>
                                   <th style={{}}>필기 배수</th>
-                                  <td style={{paddingLeft:"3.5rem"}}>{data2?.writtenMultiple}&nbsp;배수</td>
+                                  <td style={{paddingLeft:"3.5rem", width:"15rem"}}>{data2?.writtenMultiple}&nbsp;배수</td>
                                 {/* </tr>
                                 <tr> */}
-                                  <th style={{fontSize:""}}>필기 합격자 수</th>
+                                  <th style={{textAlign:""}}>필기 합격자 수</th>
                                   <td style={{paddingLeft:"3.5rem"}}>{data2?.writtenPass}명</td>
                                 </tr>
                                 <tr>
@@ -181,7 +188,7 @@ export default function JobsDetailForm({ data, data2, data3 }) {
                                   <td style={{paddingLeft:"3.5rem"}}>{data2?.intv1Multiple}&nbsp;배수</td>
                                 {/* </tr>
                                 <tr> */}
-                                  <th style={{fontSize:""}}>1차 면접 합격자 수</th>
+                                  <th style={{textAlign:""}}>1차 면접 합격자 수</th>
                                   <td style={{paddingLeft:"3.5rem"}}>{data2?.intv1Pass}명</td>
                                 </tr>
                                 <tr>
@@ -189,14 +196,14 @@ export default function JobsDetailForm({ data, data2, data3 }) {
                                   <td style={{paddingLeft:"3.5rem"}}>{data2?.intv2Multiple}&nbsp;배수</td>
                                 {/* </tr>
                                 <tr> */}
-                                  <th style={{fontSize:""}}>2차 면접 합격자 수</th>
+                                  <th style={{textAlign:""}}>2차 면접 합격자 수</th>
                                   <td style={{paddingLeft:"3.5rem"}}>{data2?.intv2Pass}명</td>
                                 </tr>
+                                </tbody> </thead></table>
+                                </div>
                               </Fragment>
                               : ""}
-                          </tbody>
-                        </thead>
-                      </table>
+                          
                     </div>
 
                     <div class="row align-items-center" style={{ margin: "3rem 10% 2rem" }}>

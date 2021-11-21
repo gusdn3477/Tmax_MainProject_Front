@@ -53,7 +53,7 @@ export default function Calender() {
         events={events}
         week
         
-        eventColor="sky"
+        
         eventTextColor="white"
         eventColor="#596fc5"
         nowIndicator
